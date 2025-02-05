@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3629478694356967566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7338699090716222000}
+  - component: {fileID: 6980702683957590785}
+  - component: {fileID: 683238128165660915}
+  m_Layer: 0
+  m_Name: Model_Broccoli
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7338699090716222000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3629478694356967566}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 0.7, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6617509291477146555}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6980702683957590785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3629478694356967566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce2c724501f844149bd6c529682b3b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sta: {fileID: 0}
+  Anim: {fileID: 683238128165660915}
+--- !u!95 &683238128165660915
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3629478694356967566}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: de861d9360c874846983d980a0258c8d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1001 &6655375626073734224
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7338699090716222000}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.32
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.88
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8524724
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5227723
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 63.037
+      objectReference: {fileID: 0}
+    - target: {fileID: -5567805169428471535, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 084c1d98a508404418cf4124da0925de, type: 2}
+    - target: {fileID: 919132149155446097, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: m_Name
+      value: Broccoli_Real
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345538298905527479, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a42b0abd199910544a967f262805f1be, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3259140028644584922, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+--- !u!4 &6617509291477146555 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 432b7c70533f1084ea16fa52a89b6bf5, type: 3}
+  m_PrefabInstance: {fileID: 6655375626073734224}
+  m_PrefabAsset: {fileID: 0}
