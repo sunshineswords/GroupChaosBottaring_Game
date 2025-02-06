@@ -1,4 +1,4 @@
-using Photon.Pun;
+﻿using Photon.Pun;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -30,7 +30,17 @@ public class Shot_Obj : MonoBehaviourPun
     {
         if (HitList.ContainsKey(HitState.Sta)) return;
         HitList.Add(HitState.Sta,Hitd.HitCT);
-        HitState.Sta.Damage(HitPos, Hitd.Damage);
+        if(HitState.Sta.DashTime > 0)
+        {
+            DamageObj.DamageSet(HitPos, "Miss", Color.gray);
+            return;
+        }
+        float Dam = Hitd.BaseDam;
+        Dam += USta.Atk * Hitd.AtkDamPer * 0.01f;
+        Dam += USta.Def * Hitd.DefDamPer * 0.01f;
+        Dam -= HitState.Sta.Def * Hitd.DefRemPer * 0.01f;
+        if (Dam < 1) Dam = 1;
+        HitState.Sta.Damage(HitPos,Mathf.RoundToInt(Dam));
         if(HitRem)ShotDel();
     }
     public void ShotDel()

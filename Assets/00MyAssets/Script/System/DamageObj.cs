@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using static DataBase;
 public class DamageObj : MonoBehaviour
@@ -12,10 +12,14 @@ public class DamageObj : MonoBehaviour
     int times = 0;
     static public void DamageSet(Vector3 Pos,int Val,Color Col)
     {
+        DamageSet(Pos,Val.ToString(),Col);
+    }
+    static public void DamageSet(Vector3 Pos, string Tx, Color Col)
+    {
         var DamObj = Instantiate(DB.DamageObjs, Pos, Quaternion.identity);
-        DamObj.DamText.text = Val.ToString();
+        DamObj.DamText.text = Tx;
         DamObj.DamText.color = Col;
-        DamObj.MoveVect = new Vector3(Random.value - 0.5f,0f, Random.value - 0.5f);
+        DamObj.MoveVect = new Vector3(Random.value - 0.5f, 0f, Random.value - 0.5f);
     }
     void FixedUpdate()
     {

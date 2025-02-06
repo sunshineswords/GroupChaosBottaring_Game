@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c22cee1cabc9b84f92975ed946ab97c, type: 3}
+  m_Name: Atk_Gun_3
+  m_EditorClassIdentifier: 
+  Name: "\u92833"
+  Info: 
+  Icon: {fileID: 0}
+  EndTime: 35
+  CT: 0
+  SPUse: 0
+  Aiming: 0
+  Move_Fixeds:
+  - Times: {x: 0, y: 100}
+    SpeedRem: 100
+    NoJump: 1
+    NoDash: 0
+  Shots:
+  - Obj: {fileID: 5905403385281065886, guid: 9bef7728e40c6614b99d30b5855e2020, type: 3}
+    Fires:
+    - Times: {x: 5, y: 5, z: 0}
+      Count: 1
+      Speed: {x: 4500, y: 4500}
+      Trans:
+        PosBase: 0
+        PosChange: {x: 0, y: 0, z: 0}
+        PosRand: {x: 0, y: 0, z: 0}
+        PosWay: {x: 0, y: 0, z: 0}
+        PosTime: {x: 0, y: 0, z: 0}
+        RotBase: 0
+        RotChange: {x: 0, y: 0, z: 0}
+        RotRand: {x: 1, y: 1, z: 1}
+        RotWay: {x: 0, y: 0, z: 0}
+        RotTime: {x: 0, y: 0, z: 0}
+    Hits:
+      BaseDam: 0
+      AtkDamPer: 140
+      DefDamPer: 0
+      DefRemPer: 0
+      HitCT: 0
+  Branch:
+  - Times: {x: 25, y: 25}
+    Ifs: 01000000
+    FutureAtk: {fileID: 11400000, guid: 6614949bc610122489c1b122142469f0, type: 2}
+  - Times: {x: 15, y: 24}
+    Ifs: 00000000
+    FutureAtk: {fileID: 11400000, guid: 4f5dc83d101f6364ab114a7f222aae1d, type: 2}
+  Anims:
+  - Times: {x: 0, y: 35}
+    ID: 102

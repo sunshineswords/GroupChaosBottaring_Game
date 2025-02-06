@@ -6,7 +6,7 @@ public class UI_BattleBase : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI TimeTx;
     [SerializeField] TextMeshProUGUI DeathTx;
-    [SerializeField] List<UI_Sin_EnemyUI> EnemyUIs;
+    [SerializeField] List<UI_Sin_BossUI> EnemyUIs;
 
     void LateUpdate()
     {

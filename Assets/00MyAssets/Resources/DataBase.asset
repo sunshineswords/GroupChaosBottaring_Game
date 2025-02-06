@@ -15,3 +15,13 @@ MonoBehaviour:
   DamageObjs: {fileID: 2133383468784159366, guid: d9a10580db32dc449af2d44e7449845c, type: 3}
   PlayerHitEffect: {fileID: 104953593097573077, guid: c1eddefba415daf40ba9262312403e13, type: 3}
   EnemyHitEffect: {fileID: 104953593097573077, guid: d4b2116be55691941987471b228b1dd9, type: 3}
+  Charas:
+  - {fileID: 11400000, guid: 07821d065f745214395a81df54ff17ce, type: 2}
+  - {fileID: 11400000, guid: a7854d6c44cf2e94d898f0a5ac93e7aa, type: 2}
+  N_Atks:
+  - {fileID: 11400000, guid: 3e51450c87a735b49a71ea3a6b83f0ba, type: 2}
+  - {fileID: 11400000, guid: 9aadef567f5056f4899de5138d52469e, type: 2}
+  S_Atks:
+  - {fileID: 11400000, guid: 8d3fd8336d5d82e4ebb6e672981a5e1f, type: 2}
+  E_Atks:
+  - {fileID: 11400000, guid: 40dbec132893f92458f13ebb61e76ddd, type: 2}

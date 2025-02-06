@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c22cee1cabc9b84f92975ed946ab97c, type: 3}
+  m_Name: Atk_BroccoliQuiq
+  m_EditorClassIdentifier: 
+  Name: "\u30AF\u30A4\u30C3\u30AF\u30D6\u30ED\u30C3\u30B3\u30EA\u30FC"
+  Info: 
+  Icon: {fileID: 0}
+  EndTime: 75
+  CT: 8
+  SPUse: 0
+  Aiming: 0
+  Move_Fixeds:
+  - Times: {x: 0, y: 100}
+    SpeedRem: 100
+    NoJump: 1
+    NoDash: 1
+  Shots:
+  - Obj: {fileID: 5905403385281065886, guid: f5974f404649ca64bb7daed5fdc00e7e, type: 3}
+    Fires:
+    - Times: {x: 35, y: 75, z: 8}
+      Count: 1
+      Speed: {x: 1400, y: 1400}
+      Trans:
+        PosBase: 0
+        PosChange: {x: 0, y: 0, z: 0}
+        PosRand: {x: 0, y: 0, z: 0}
+        PosWay: {x: 0, y: 0, z: 0}
+        PosTime: {x: 0, y: 0, z: 0}
+        RotBase: 0
+        RotChange: {x: 0, y: 0, z: 0}
+        RotRand: {x: 5, y: 5, z: 5}
+        RotWay: {x: 0, y: 0, z: 0}
+        RotTime: {x: 0, y: 0, z: 0}
+    Hits:
+      BaseDam: 0
+      AtkDamPer: 32
+      DefDamPer: 0
+      DefRemPer: 0
+      HitCT: 0
+  Branch: []
+  Anims:
+  - Times: {x: 0, y: 35}
+    ID: 1

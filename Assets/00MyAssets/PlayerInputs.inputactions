@@ -24,7 +24,25 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Normal_Atk",
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "1beca534-aa24-4abd-bb17-de4cb5f2086b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "3b771e2a-ae8d-41e1-9af2-2b1af714345b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "N_Atk",
                     "type": "Button",
                     "id": "d805e13f-d847-4a5e-ba33-a668aa4dda08",
                     "expectedControlType": "",
@@ -33,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Skill_Atk",
+                    "name": "S1_Atk",
                     "type": "Button",
                     "id": "1b1d2e61-20a1-48ad-ba4c-e6af26cf6fa9",
                     "expectedControlType": "",
@@ -42,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Extra_Atk",
+                    "name": "E_Atk",
                     "type": "Button",
                     "id": "57cf9c44-34ca-41e1-b451-660df4da1234",
                     "expectedControlType": "",
@@ -224,7 +242,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Normal_Atk",
+                    "action": "N_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -235,7 +253,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Skill_Atk",
+                    "action": "S1_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -246,7 +264,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Extra_Atk",
+                    "action": "E_Atk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c16626e1-c20e-4823-9561-800a95c08e3b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5281ecfb-cfd4-4d9c-93ce-2ccecd7be86e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
