@@ -18,7 +18,7 @@ MonoBehaviour:
   EndTime: 50
   CT: 0
   SPUse: 0
-  Aiming: 0
+  Aiming: 1
   Move_Fixeds:
   - Times: {x: 0, y: 100}
     SpeedRem: 100

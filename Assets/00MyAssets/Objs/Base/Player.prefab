@@ -208,7 +208,7 @@ Transform:
   m_GameObject: {fileID: 1679772084164990643}
   serializedVersion: 2
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 2, z: -6}
+  m_LocalPosition: {x: 2.5, y: 2, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -737,6 +737,9 @@ MonoBehaviour:
   SP: 0
   DeathTime: 0
   DashTime: 0
+  SpeedRem: 0
+  NoJump: 0
+  NoDash: 0
   AtkD: {fileID: 0}
   AtkSlot: 0
   AtkTime: 0
@@ -1211,6 +1214,9 @@ MonoBehaviour:
   Sta: {fileID: 8308598217215942496}
   PCont: {fileID: 7175417792407954925}
   CamRotTrans: {fileID: 8661382350568997423}
+  CamPosTrans: {fileID: 2945549963710934567}
+  ZomeSpeed: 20
+  ZomeDis: 25
   CamHight: 1
   RotSpeed: {x: 15, y: 25}
   RotLim: {x: -85, y: 85}

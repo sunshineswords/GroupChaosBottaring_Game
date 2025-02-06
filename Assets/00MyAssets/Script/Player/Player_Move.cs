@@ -6,6 +6,9 @@ public class Player_Move : MonoBehaviourPun
     public State_Base Sta;
     [SerializeField] Player_Cont PCont;
     [SerializeField] Transform CamRotTrans;
+    [SerializeField] Transform CamPosTrans;
+    [SerializeField] float ZomeSpeed;
+    [SerializeField] float ZomeDis;
     [SerializeField] float CamHight;
     [SerializeField] Vector2 RotSpeed;
     [SerializeField] Vector2 RotLim;
@@ -20,6 +23,11 @@ public class Player_Move : MonoBehaviourPun
     bool GroundB;
     bool Ground;
     Vector3 DashVect;
+    Vector3 PosBase;
+    private void Start()
+    {
+        PosBase = CamPosTrans.localPosition;
+    }
     private void Update()
     {
         if (!photonView.IsMine) return;
@@ -44,6 +52,7 @@ public class Player_Move : MonoBehaviourPun
 
         if (!Sta.NoDash && PCont.Dash_Enter)
         {
+            Sta.AtkD = null;
             Sta.DashTime = DashTime;
             DashVect = MoveVect.magnitude >= 0.1f ? MoveVect : Sta.Rig.transform.forward;
         }
@@ -87,14 +96,16 @@ public class Player_Move : MonoBehaviourPun
         }
         #endregion
         #region 照準
-        if (Sta.AtkD!=null)
+        if (Sta.AtkD != null && Sta.AtkD.Aiming)
         {
-            if (Sta.AtkD.Aiming)
-            {
-                var LookRot = Cam.transform.eulerAngles;
-                LookRot.x = 0;
-                Sta.Rig.transform.eulerAngles = LookRot;
-            }
+            var LookRot = Cam.transform.eulerAngles;
+            LookRot.x = 0;
+            Sta.Rig.transform.eulerAngles = LookRot;
+            CamPosTrans.localPosition = Vector3.Lerp(CamPosTrans.localPosition, PosBase * ZomeDis * 0.01f, ZomeSpeed * 0.01f);
+        }
+        else
+        {
+            CamPosTrans.localPosition = Vector3.Lerp(CamPosTrans.localPosition, PosBase, ZomeSpeed * 0.01f);
         }
         #endregion
 
