@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class OperatingInstructionsManager_Gabu : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
     public GameObject space;
     public GameObject textPrefab;
     public GameObject iconPrefab;
+    public GameObject spacingPrefab;
     public Status statu = Status.UI;
 
     public enum Status: int
@@ -108,6 +110,13 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
             TextMeshProUGUI tmpro = textPrefab.GetComponent<TextMeshProUGUI>();
             tmpro.text = icones[i].title;
             Debug.Log($"tmpro:{tmpro}, title:{icones[i].title}");
+
+            // テキストの順番をアイコンに合わせる
+            tmpro.transform.SetSiblingIndex(icon.transform.GetSiblingIndex() + 1);
+
+            // スペースを開ける
+            GameObject spacing = Instantiate(spacingPrefab, space.transform);
+            spacing.transform.SetSiblingIndex(icon.transform.GetSiblingIndex() + 2);
         }
 
         // 端のスペースを生成

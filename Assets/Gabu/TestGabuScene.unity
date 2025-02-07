@@ -377,6 +377,7 @@ MonoBehaviour:
   space: {fileID: 1606472824}
   textPrefab: {fileID: 8413869125558082556, guid: 5e0a4da0453596c42a35093cd4adade4, type: 3}
   iconPrefab: {fileID: 3351788684888168797, guid: 696102d6c7e00f24bafdca03545966ff, type: 3}
+  spacingPrefab: {fileID: 3423499480633220364, guid: 15390605fe14b634492e20afdf2ca10a, type: 3}
   statu: 0
 --- !u!1 &1891061807
 GameObject:
