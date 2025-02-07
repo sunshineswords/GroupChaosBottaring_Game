@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using TMPro;
 
 public class OperatingInstructionsManager_Gabu : MonoBehaviour
 {
@@ -13,10 +13,14 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
     public GameObject space;
     public GameObject textPrefab;
     public GameObject iconPrefab;
+    public Status statu = Status.UI;
 
-    private readonly int DefaultRange = 0;
-    private readonly int PlayerRange = 6;
-    private readonly int UIRange = 10;
+    public enum Status: int
+    {
+        UI,
+        Play,
+        NONE
+    }
 
     #endregion
 
@@ -30,31 +34,36 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
         }
 
         int deviceIndex = GetDeviceIndex();
-        string actionMap = playerInput.currentActionMap.name;
+        SetIcones(GetIcones(deviceIndex, statu));
+    }
 
-        List<Texture> icones = new List<Texture>();
-        if ("Player" == actionMap)
+    private ActionIcone[] GetIcones(int deviceIndex, Status statu)
+    {
+        // デフォルトの操作説明
+        List<ActionIcone> icones = new List<ActionIcone>()
+        { actionIcones_DB.Menu_icons[deviceIndex] };
+
+
+        if (Status.Play == statu)  // ゲーム画面の操作説明
         {
-            for (int i = DefaultRange + 1; i <= PlayerRange; i++)
-            {
-                icones.Add(actionIcones_DB.Menu_icons[i]);
-            }
+            icones.Add(actionIcones_DB.Move_icons[deviceIndex]);
+            icones.Add(actionIcones_DB.Jump_icons[deviceIndex]);
+            icones.Add(actionIcones_DB.N_Atk_icons[deviceIndex]);
+            icones.Add(actionIcones_DB.S1_Atk_icons[deviceIndex]);
+            icones.Add(actionIcones_DB.E_Atk_icons[deviceIndex]);
+            icones.Add(actionIcones_DB.Look_icons[deviceIndex]);
         }
-        else if ("UI" == actionMap)
+        else if (Status.UI == statu) // UI操作が必要な画面の操作説明
         {
-            for (int i = PlayerRange + 1; i <= UIRange; i++)
-            {
-                icones.Add(actionIcones_DB.Menu_icons[i]);
-            }
+            icones.Add(actionIcones_DB.UIMove_icons[deviceIndex]);
+            icones.Add(actionIcones_DB.UICofirm_icons[deviceIndex]);
+            icones.Add(actionIcones_DB.UIBack_icons[deviceIndex]);
         }
         else
         {
-            space.SetActive(false);
             Debug.LogWarning("未定義のアクションマップが使われています");
-            return;
         }
-
-        SetIcones(icones.ToArray());
+        return icones.ToArray();
     }
 
     private int GetDeviceIndex()
@@ -68,12 +77,19 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
             case "PlayStation Controller":
                 return 2;
             default:
+                Debug.LogWarning("未定義のデバイスが使われています");
                 return 3;
         }
     }
 
-    private void SetIcones(Texture[] icones)
+    private void SetIcones(ActionIcone[] icones)
     {
+        if (icones == null)
+        {
+            Debug.LogWarning("アイコンが設定されていません");
+            return;
+        }
+
         space.SetActive(true);
 
         // 端のスペースを生成
@@ -85,11 +101,13 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
         {
             // アイコンの生成
             GameObject icon = Instantiate(iconPrefab, space.transform);
-            icon.GetComponent<RawImage>().texture = icones[i];
+            icon.GetComponent<RawImage>().texture = icones[i].icon;
 
             // テキストの生成
             Instantiate(textPrefab, space.transform);
-            textPrefab.GetComponent<TextMeshProUGUI>().text = playerInput.currentActionMap.actions[i].name;
+            TextMeshProUGUI tmpro = textPrefab.GetComponent<TextMeshProUGUI>();
+            tmpro.text = icones[i].title;
+            Debug.Log($"tmpro:{tmpro}, title:{icones[i].title}");
         }
 
         // 端のスペースを生成
