@@ -147,13 +147,20 @@ MonoBehaviour:
   Player: 0
   Boss: 0
   MHP: 500
-  Atk: 100
+  Atk: 50
   Def: 20
   HP: 0
+  SP: 0
   DeathTime: 0
+  DashTime: 0
+  SpeedRem: 0
+  NoJump: 0
+  NoDash: 0
+  Aiming: 0
   AtkD: {fileID: 0}
   AtkSlot: 0
   AtkTime: 0
+  AtkBranch: 0
   Target: {fileID: 0}
   Anim_MoveID: 0
   Anim_AtkID: 0
@@ -257,7 +264,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -328,7 +335,6 @@ GameObject:
   - component: {fileID: 445015283412896091}
   - component: {fileID: 1974375645721806414}
   - component: {fileID: 483342128089584710}
-  - component: {fileID: 7002374674125097207}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -404,27 +410,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7002374674125097207
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7900789993703803608}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1544550461700310150
 PrefabInstance:
   m_ObjectHideFlags: 0

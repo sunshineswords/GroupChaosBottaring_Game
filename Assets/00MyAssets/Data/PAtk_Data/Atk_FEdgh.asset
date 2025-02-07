@@ -17,17 +17,14 @@ MonoBehaviour:
   Icon: {fileID: 0}
   EndTime: 35
   CT: 15
-  SPUse: 0
-  Aiming: 0
-  Move_Fixeds:
-  - Times: {x: 0, y: 100}
-    SpeedRem: 100
-    NoJump: 1
-    NoDash: 0
+  SPUse: 250
+  Fixeds: []
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 0c56efc3434685e47910e02aa1d2c02a, type: 3}
     Fires:
-    - Times: {x: 0, y: 0, z: 0}
+    - EditDisp: '[0]BNum:0,Time:(0, 0, 0),Count:1,Speed:(500.00, 500.00)'
+      BranchNum: 0
+      Times: {x: 0, y: 0, z: 0}
       Count: 1
       Speed: {x: 500, y: 500}
       Trans:
@@ -42,12 +39,17 @@ MonoBehaviour:
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
+    - EditDisp: '[0]BNum:0'
+      BranchNum: 0
       BaseDam: 0
       AtkDamPer: 900
       DefDamPer: 0
       DefRemPer: 0
-      HitCT: 0
-  Branch: []
+      SPAdd: 0
+    HitCT: 0
+  Branchs: []
   Anims:
-  - Times: {x: 0, y: 35}
+  - EditDisp: '[0]BNum:0Time:(0, 35)ID:30'
+    BranchNum: 0
+    Times: {x: 0, y: 35}
     ID: 30

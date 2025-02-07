@@ -1,0 +1,265 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c22cee1cabc9b84f92975ed946ab97c, type: 3}
+  m_Name: Atk_Blade
+  m_EditorClassIdentifier: 
+  Name: "\u30D6\u30EC\u30A4\u30C9"
+  Info: 
+  Icon: {fileID: 0}
+  EndTime: 60
+  CT: 0
+  SPUse: 0
+  Fixeds:
+  - EditDisp: '[0]BNum:0Time:(0, 999)'
+    BranchNum: 0
+    Times: {x: 0, y: 999}
+    SpeedRem: 100
+    NoJump: 0
+    NoDash: 0
+    Aiming: 0
+  - EditDisp: '[1]BNum:1Time:(0, 999)'
+    BranchNum: 1
+    Times: {x: 0, y: 999}
+    SpeedRem: 100
+    NoJump: 0
+    NoDash: 0
+    Aiming: 0
+  - EditDisp: '[2]BNum:2Time:(0, 999)'
+    BranchNum: 2
+    Times: {x: 0, y: 999}
+    SpeedRem: 100
+    NoJump: 0
+    NoDash: 0
+    Aiming: 0
+  - EditDisp: '[3]BNum:3Time:(0, 999)'
+    BranchNum: 3
+    Times: {x: 0, y: 999}
+    SpeedRem: 100
+    NoJump: 0
+    NoDash: 0
+    Aiming: 0
+  - EditDisp: '[4]BNum:4Time:(0, 999)'
+    BranchNum: 4
+    Times: {x: 0, y: 999}
+    SpeedRem: 100
+    NoJump: 0
+    NoDash: 0
+    Aiming: 0
+  - EditDisp: '[5]BNum:10Time:(0, 999)'
+    BranchNum: 10
+    Times: {x: 0, y: 999}
+    SpeedRem: 50
+    NoJump: 0
+    NoDash: 0
+    Aiming: 0
+  Shots:
+  - Obj: {fileID: 5905403385281065886, guid: e2f1fe1cf2ac91346af19af8f935c63a, type: 3}
+    Fires:
+    - EditDisp: '[0]BNum:0,Time:(15, 15, 0),Count:1,Speed:(0.00, 0.00)'
+      BranchNum: 0
+      Times: {x: 15, y: 15, z: 0}
+      Count: 1
+      Speed: {x: 0, y: 0}
+      Trans:
+        PosBase: 0
+        PosChange: {x: 0, y: 0, z: 1}
+        PosRand: {x: 0, y: 0, z: 0}
+        PosWay: {x: 0, y: 0, z: 0}
+        PosTime: {x: 0, y: 0, z: 0}
+        RotBase: 0
+        RotChange: {x: 0, y: 0, z: 10}
+        RotRand: {x: 0, y: 0, z: 0}
+        RotWay: {x: 0, y: 0, z: 0}
+        RotTime: {x: 0, y: 0, z: 0}
+    - EditDisp: '[1]BNum:1,Time:(15, 15, 0),Count:1,Speed:(0.00, 0.00)'
+      BranchNum: 1
+      Times: {x: 15, y: 15, z: 0}
+      Count: 1
+      Speed: {x: 0, y: 0}
+      Trans:
+        PosBase: 0
+        PosChange: {x: 0, y: 0, z: 1}
+        PosRand: {x: 0, y: 0, z: 0}
+        PosWay: {x: 0, y: 0, z: 0}
+        PosTime: {x: 0, y: 0, z: 0}
+        RotBase: 0
+        RotChange: {x: 0, y: 0, z: -15}
+        RotRand: {x: 0, y: 0, z: 0}
+        RotWay: {x: 0, y: 0, z: 0}
+        RotTime: {x: 0, y: 0, z: 0}
+    - EditDisp: '[2]BNum:2,Time:(20, 20, 0),Count:1,Speed:(0.00, 0.00)'
+      BranchNum: 2
+      Times: {x: 20, y: 20, z: 0}
+      Count: 1
+      Speed: {x: 0, y: 0}
+      Trans:
+        PosBase: 0
+        PosChange: {x: 0, y: 0, z: 1}
+        PosRand: {x: 0, y: 0, z: 0}
+        PosWay: {x: 0, y: 0, z: 0}
+        PosTime: {x: 0, y: 0, z: 0}
+        RotBase: 0
+        RotChange: {x: 0, y: 0, z: 45}
+        RotRand: {x: 0, y: 0, z: 0}
+        RotWay: {x: 0, y: 0, z: 0}
+        RotTime: {x: 0, y: 0, z: 0}
+    - EditDisp: '[3]BNum:2,Time:(20, 20, 0),Count:1,Speed:(0.00, 0.00)'
+      BranchNum: 2
+      Times: {x: 20, y: 20, z: 0}
+      Count: 1
+      Speed: {x: 0, y: 0}
+      Trans:
+        PosBase: 0
+        PosChange: {x: 0, y: 0, z: 1}
+        PosRand: {x: 0, y: 0, z: 0}
+        PosWay: {x: 0, y: 0, z: 0}
+        PosTime: {x: 0, y: 0, z: 0}
+        RotBase: 0
+        RotChange: {x: 0, y: 0, z: -45}
+        RotRand: {x: 0, y: 0, z: 0}
+        RotWay: {x: 0, y: 0, z: 0}
+        RotTime: {x: 0, y: 0, z: 0}
+    - EditDisp: '[4]BNum:3,Time:(30, 30, 0),Count:1,Speed:(0.00, 0.00)'
+      BranchNum: 3
+      Times: {x: 30, y: 30, z: 0}
+      Count: 1
+      Speed: {x: 0, y: 0}
+      Trans:
+        PosBase: 0
+        PosChange: {x: 0, y: 0, z: 1}
+        PosRand: {x: 0, y: 0, z: 0}
+        PosWay: {x: 0, y: 0, z: 0}
+        PosTime: {x: 0, y: 0, z: 0}
+        RotBase: 0
+        RotChange: {x: 0, y: 0, z: 90}
+        RotRand: {x: 0, y: 0, z: 0}
+        RotWay: {x: 0, y: 0, z: 0}
+        RotTime: {x: 0, y: 0, z: 0}
+    Hits:
+    - EditDisp: '[0]BNum:0'
+      BranchNum: 0
+      BaseDam: 0
+      AtkDamPer: 200
+      DefDamPer: 0
+      DefRemPer: 0
+      SPAdd: 9
+    - EditDisp: '[1]BNum:1'
+      BranchNum: 1
+      BaseDam: 0
+      AtkDamPer: 220
+      DefDamPer: 0
+      DefRemPer: 0
+      SPAdd: 12
+    - EditDisp: '[2]BNum:2'
+      BranchNum: 2
+      BaseDam: 0
+      AtkDamPer: 150
+      DefDamPer: 0
+      DefRemPer: 0
+      SPAdd: 7
+    - EditDisp: '[3]BNum:3'
+      BranchNum: 3
+      BaseDam: 0
+      AtkDamPer: 400
+      DefDamPer: 0
+      DefRemPer: 0
+      SPAdd: 45
+    HitCT: 0
+  - Obj: {fileID: 5905403385281065886, guid: 8193bca05b61e5545b09999a08fbff55, type: 3}
+    Fires:
+    - EditDisp: '[0]BNum:10,Time:(15, 15, 0),Count:1,Speed:(0.00, 0.00)'
+      BranchNum: 10
+      Times: {x: 15, y: 15, z: 0}
+      Count: 1
+      Speed: {x: 0, y: 0}
+      Trans:
+        PosBase: 0
+        PosChange: {x: 0, y: 0, z: 0}
+        PosRand: {x: 0, y: 0, z: 0}
+        PosWay: {x: 0, y: 0, z: 0}
+        PosTime: {x: 0, y: 0, z: 0}
+        RotBase: 0
+        RotChange: {x: 0, y: 0, z: 0}
+        RotRand: {x: 0, y: 0, z: 0}
+        RotWay: {x: 0, y: 0, z: 0}
+        RotTime: {x: 0, y: 0, z: 0}
+    Hits:
+    - EditDisp: '[0]BNum:10'
+      BranchNum: 10
+      BaseDam: 0
+      AtkDamPer: 50
+      DefDamPer: 0
+      DefRemPer: 0
+      SPAdd: 3
+    HitCT: 15
+  Branchs:
+  - EditDisp: '[0]BNum:0,1,2,3Time:(45, 60)Future{Num:10Time:0}'
+    BranchNums: 00000000010000000200000003000000
+    Times: {x: 45, y: 60}
+    Ifs: 01000000
+    FutureNum: 10
+    FutureTime: 0
+  - EditDisp: '[1]BNum:0Time:(30, 45)Future{Num:1Time:0}'
+    BranchNums: 00000000
+    Times: {x: 30, y: 45}
+    Ifs: 00000000
+    FutureNum: 1
+    FutureTime: 0
+  - EditDisp: '[2]BNum:1Time:(30, 45)Future{Num:2Time:0}'
+    BranchNums: 01000000
+    Times: {x: 30, y: 45}
+    Ifs: 00000000
+    FutureNum: 2
+    FutureTime: 0
+  - EditDisp: '[3]BNum:2Time:(30, 45)Future{Num:3Time:0}'
+    BranchNums: 02000000
+    Times: {x: 30, y: 45}
+    Ifs: 00000000
+    FutureNum: 3
+    FutureTime: 0
+  - EditDisp: '[4]BNum:3Time:(35, 45)Future{Num:0Time:0}'
+    BranchNums: 03000000
+    Times: {x: 35, y: 45}
+    Ifs: 00000000
+    FutureNum: 0
+    FutureTime: 0
+  - EditDisp: '[5]BNum:10Time:(45, 60)Future{Num:10Time:0}'
+    BranchNums: 0a000000
+    Times: {x: 45, y: 60}
+    Ifs: 01000000
+    FutureNum: 10
+    FutureTime: 0
+  Anims:
+  - EditDisp: '[0]BNum:0Time:(0, 35)ID:1'
+    BranchNum: 0
+    Times: {x: 0, y: 35}
+    ID: 1
+  - EditDisp: '[1]BNum:1Time:(0, 35)ID:2'
+    BranchNum: 1
+    Times: {x: 0, y: 35}
+    ID: 2
+  - EditDisp: '[2]BNum:2Time:(0, 35)ID:3'
+    BranchNum: 2
+    Times: {x: 0, y: 35}
+    ID: 3
+  - EditDisp: '[3]BNum:3Time:(0, 35)ID:4'
+    BranchNum: 3
+    Times: {x: 0, y: 35}
+    ID: 4
+  - EditDisp: '[4]BNum:4Time:(0, 35)ID:5'
+    BranchNum: 4
+    Times: {x: 0, y: 35}
+    ID: 5
+  - EditDisp: '[5]BNum:10Time:(0, 35)ID:10'
+    BranchNum: 10
+    Times: {x: 0, y: 35}
+    ID: 10

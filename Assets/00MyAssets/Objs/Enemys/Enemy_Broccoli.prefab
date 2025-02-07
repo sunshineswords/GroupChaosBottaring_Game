@@ -305,10 +305,17 @@ MonoBehaviour:
   Atk: 200
   Def: 50
   HP: 0
+  SP: 0
   DeathTime: 0
+  DashTime: 0
+  SpeedRem: 0
+  NoJump: 0
+  NoDash: 0
+  Aiming: 0
   AtkD: {fileID: 0}
   AtkSlot: 0
   AtkTime: 0
+  AtkBranch: 0
   Target: {fileID: 0}
   Anim_MoveID: 0
   Anim_AtkID: 0
@@ -396,7 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  DamAdds: 2
+  DamAdds: 200
 --- !u!1001 &388386998231469886
 PrefabInstance:
   m_ObjectHideFlags: 0

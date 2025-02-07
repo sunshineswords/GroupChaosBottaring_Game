@@ -17,6 +17,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public int Team;
     public bool Player;
     public bool Boss;
+    public bool Undet;
     [Header("ステータス")]
     public int MHP;
     public int Atk;
@@ -26,13 +27,17 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public int SP;
     public int DeathTime;
     public int DashTime;
+
     public float SpeedRem;
     public bool NoJump;
     public bool NoDash;
+    public bool Aiming;
 
     public Data_Atk AtkD;
     public int AtkSlot;
     public int AtkTime;
+    public int AtkBranch;
+
     public State_Base Target;
     public int Anim_MoveID;
     public int Anim_AtkID;
@@ -62,26 +67,28 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (!photonView.IsMine) return;
         if (HP <= 0)
         {
+
             if (Player)
             {
                 if(DeathTime == 0)BTManager.DeathAdd();
-                DeathTime++;
-                if(DeathTime >= 300)
-                {
-                    HP = MHP;
-                }
+                if(DeathTime >= 300)HP = MHP;
+            }
+            else if (Undet)
+            {
+                if (DeathTime >= 300)HP = MHP;
             }
             else if (!Boss)
             {
-                photonView.RPC(nameof(RPC_DeathEffect), RpcTarget.All);
-                PhotonNetwork.Destroy(gameObject);
+                if (DeathTime >= 60) Deletes();
             }
+            DeathTime++;
             DashTime = 0;
         }
         else
         {
             DeathTime = 0;
         }
+        if (!Player && BTManager.End) Deletes();
         DashTime--;
 
         AtkPlays(CamTrans.eulerAngles);
@@ -119,48 +126,32 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     }
     public void AtkInput(int UseAtkSlot, Data_Atk UseAtkD, bool Enter, bool Stay)
     {
+        if (HP <= 0) return;
         if (AtkD == null && Enter)
         {
             if (AtkCTs.ContainsKey(UseAtkSlot)) return;
+            if (SP < UseAtkD.SPUse) return;
             int CTs = Mathf.RoundToInt(UseAtkD.CT * 60);
             AtkCTs.Add(UseAtkSlot, new AtkCTC { CT = CTs, CTMax = CTs });
+            SP -= UseAtkD.SPUse;
+
             AtkD = UseAtkD;
             AtkSlot = UseAtkSlot;
             AtkTime = 0;
+            AtkBranch = 0;
             return;
         }
         if (AtkD != null && UseAtkSlot == AtkSlot)
         {
-            for (int i = 0; i < AtkD.Branch.Length; i++)
-            {
-                var BranchD = AtkD.Branch[i];
-                if (!V3IntTimeCheck(AtkTime, (Vector3Int)BranchD.Times)) continue;
-                bool Check = true;
-                for (int j = 0; j < BranchD.Ifs.Length; j++)
-                {
-                    switch (BranchD.Ifs[j])
-                    {
-                        case Data_Atk.AtkIfE.攻撃単入力:
-                            if (!Enter) Check = false;
-                            break;
-                        case Data_Atk.AtkIfE.攻撃長入力:
-                            if (!Stay) Check = false;
-                            break;
-                        case Data_Atk.AtkIfE.攻撃未入力:
-                            if (Enter || Stay) Check = false;
-                            break;
-                    }
-                    if (!Check) break;
-                }
-                if (Check)
-                {
-                    AtkD = BranchD.FutureAtk;
-                    AtkTime = 0;
-                    return;
-                }
-            }
+            State_Atk.Branch(this, Enter, Stay);
         }
 
+    }
+
+    void Deletes()
+    {
+        photonView.RPC(nameof(RPC_DeathEffect), RpcTarget.All);
+        PhotonNetwork.Destroy(gameObject);
     }
     [PunRPC]
     void RPC_Damage(Vector3 HitPos, int Val)
@@ -198,6 +189,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         SpeedRem = 0;
         NoJump = false;
         NoDash = false;
+        Aiming = false;
         #region スキル処理
         if (HP <= 0) AtkD = null;
         Anim_AtkID = 0;
@@ -206,7 +198,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             AtkTime = 0;
             return;
         }
-        State_Atk.MoveFixed(this);
+        State_Atk.Fixed(this);
         State_Atk.Shot(this,PosGet(), RotGet(),CamRot);
         State_Atk.Anim(this);
         AtkTime++;

@@ -19,4 +19,5 @@ public class DataBase : ScriptableObject
     public Data_Atk[] N_Atks;
     public Data_Atk[] S_Atks;
     public Data_Atk[] E_Atks;
+    public Data_Stage[] Stages;
 }

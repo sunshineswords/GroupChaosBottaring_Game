@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 using static DataBase;
 using static PlayerValue;
@@ -8,6 +9,7 @@ public class UI_Player : MonoBehaviour
     [SerializeField] Player_Cont PCont;
     [SerializeField] Image HPBar;
     [SerializeField] UI_Sin_Atk[] AtkUIs;
+    [SerializeField] TextMeshProUGUI AtkInfoTx;
 
     void LateUpdate()
     {
@@ -40,10 +42,16 @@ public class UI_Player : MonoBehaviour
             Sta.AtkCTs.TryGetValue(Slot, out var AtkCTs);
             if (AtkCTs != null) AtkUIs[i].CTImage.fillAmount = ((float)AtkCTs.CT / Mathf.Max(1, AtkCTs.CTMax));
             else AtkUIs[i].CTImage.fillAmount = 0;
-            if (AtkD.SPUse > 0) AtkUIs[i].ChargeImage.fillAmount = (float)Sta.SP / AtkD.SPUse;
+            if (AtkD.SPUse > 0)
+            {
+                AtkUIs[i].ChargeImage.fillAmount = (float)Sta.SP / AtkD.SPUse;
+                if (Sta.SP < AtkD.SPUse) AtkUIs[i].BackImage.color = Color.gray;
+            }
             else AtkUIs[i].ChargeImage.fillAmount = 0;
         }
-
+        AtkInfoTx.text = "S" + Sta.AtkSlot;
+        AtkInfoTx.text += "\nT" + Sta.AtkTime;
+        AtkInfoTx.text += "\nB" + Sta.AtkBranch;
 
     }
 }

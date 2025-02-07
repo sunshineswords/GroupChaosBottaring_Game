@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class Shot_Obj : MonoBehaviourPun
 {
     public State_Base USta;
+    public Rigidbody Rig;
     [SerializeField] int RemTime;
     [SerializeField] bool HitRem;
-    [System.NonSerialized] public Data_Atk.ShotC_Hits Hitd;
+    [System.NonSerialized] public Data_Atk.ShotC_Base ShotD;
     public int Times = 0;
+    public int BranchNum;
     public Dictionary<State_Base,int> HitList = new Dictionary<State_Base,int>();
     private void FixedUpdate()
     {
         if (!photonView.IsMine) return;
         Times++;
-        if (Hitd.HitCT > 0)
+        if (ShotD.HitCT > 0)
         {
             var HitKeys = HitList.Keys.ToArray();
             for (int i = 0; i < HitKeys.Length; i++)
@@ -29,19 +32,26 @@ public class Shot_Obj : MonoBehaviourPun
     public void Hits(State_Hit HitState,Vector3 HitPos)
     {
         if (HitList.ContainsKey(HitState.Sta)) return;
-        HitList.Add(HitState.Sta,Hitd.HitCT);
+        HitList.Add(HitState.Sta, ShotD.HitCT);
         if(HitState.Sta.DashTime > 0)
         {
             DamageObj.DamageSet(HitPos, "Miss", Color.gray);
             return;
         }
-        float Dam = Hitd.BaseDam;
-        Dam += USta.Atk * Hitd.AtkDamPer * 0.01f;
-        Dam += USta.Def * Hitd.DefDamPer * 0.01f;
-        Dam -= HitState.Sta.Def * Hitd.DefRemPer * 0.01f;
-        if (Dam < 1) Dam = 1;
-        HitState.Sta.Damage(HitPos,Mathf.RoundToInt(Dam));
-        if(HitRem)ShotDel();
+        for(int i=0;i< ShotD.Hits.Length; i++)
+        {
+            var Hit = ShotD.Hits[i];
+            if (BranchNum != Hit.BranchNum) continue;
+            float Dam = Hit.BaseDam;
+            Dam += USta.Atk * Hit.AtkDamPer * 0.01f;
+            Dam += USta.Def * Hit.DefDamPer * 0.01f;
+            Dam -= HitState.Sta.Def * Hit.DefRemPer * 0.01f;
+            Dam *= 1f + HitState.DamAdds * 0.01f;
+            if (Dam < 1) Dam = 1;
+            HitState.Sta.Damage(HitPos, Mathf.RoundToInt(Dam));
+            USta.SP += Hit.SPAdd;
+        }
+        if (HitRem) ShotDel();
     }
     public void ShotDel()
     {

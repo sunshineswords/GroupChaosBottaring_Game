@@ -8,8 +8,14 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     static public BattleManager BTManager;
 
     [SerializeField] public int TimeLimSec;
+    public int TimeStar;
+    public int DeathStar;
+
     public int Time;
     public int DeathCount;
+    public int Star;
+    public bool BossCheck;
+    public bool End;
     [System.NonSerialized] public List<State_Base> StateList = new List<State_Base>();
     [System.NonSerialized] public List<State_Base> PlayerList = new List<State_Base>();
     [System.NonSerialized] public List<State_Base> BossList = new List<State_Base>();
@@ -30,10 +36,22 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     {
         if (!PhotonNetwork.InRoom) return;
         ListSet();
-        if (photonView.IsMine)
+        if (!photonView.IsMine) return;
+        if (!End)
         {
-            Time--;
+            if (Time > 0) Time--;
+            BossCheck = BossList.Count > 0;
+            for (int i = 0; i < BossList.Count; i++)
+            {
+                if (BossList[i].HP > 0) BossCheck = false;
+            }
+            if (BossCheck || Time <= 0) End = true;
+            Star = 3;
+            if (Time <= TimeStar * 60) Star--;
+            if (DeathCount > DeathStar) Star--;
+            if (Time <= 0) Star--;
         }
+
     }
     void ListSet()
     {
@@ -63,11 +81,17 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
         {
             stream.SendNext(Time);
             stream.SendNext(DeathCount);
+            stream.SendNext(Star);
+            stream.SendNext(BossCheck);
+            stream.SendNext(End);
         }
         else
         {
             Time = (int)stream.ReceiveNext();
             DeathCount = (int)stream.ReceiveNext();
+            Star = (int)stream.ReceiveNext();
+            BossCheck = (bool)stream.ReceiveNext();
+            End = (bool)stream.ReceiveNext();
         }
     }
 }

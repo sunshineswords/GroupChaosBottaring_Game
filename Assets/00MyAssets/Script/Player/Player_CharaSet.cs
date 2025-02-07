@@ -16,7 +16,7 @@ public class Player_CharaSet : MonoBehaviourPun,IPunObservable
         {
             BCharaID = CharaID;
             if(CharaObj!=null)Destroy(CharaObj);
-            var InsChara = Instantiate(DB.Charas[PSaves.CharaID].ModelObj, transform.position, transform.rotation);
+            var InsChara = Instantiate(DB.Charas[CharaID].ModelObj, transform.position, transform.rotation);
             InsChara.transform.parent = transform;
             InsChara.Sta = Sta;
             CharaObj = InsChara.gameObject;

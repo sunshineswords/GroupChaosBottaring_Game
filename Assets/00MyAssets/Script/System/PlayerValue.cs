@@ -2,6 +2,7 @@
 
 public class PlayerValue
 {
+    static public int StageID = 0;
     static public PSavesC PSaves;
 
     public class PSavesC

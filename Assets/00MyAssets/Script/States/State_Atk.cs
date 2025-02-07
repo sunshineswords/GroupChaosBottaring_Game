@@ -1,21 +1,24 @@
 ﻿using Photon.Pun;
 
 using UnityEngine;
+using static Data_Atk;
 using static Statics;
 public class State_Atk
 {
-    static public void MoveFixed(State_Base USta)
+    static public void Fixed(State_Base USta)
     {
         var AtkD = USta.AtkD;
-        if (AtkD.Move_Fixeds == null) return;
-        for(int i = 0; i < AtkD.Move_Fixeds.Length; i++)
+        if (AtkD.Fixeds == null) return;
+        for(int i = 0; i < AtkD.Fixeds.Length; i++)
         {
-            var MFixed = AtkD.Move_Fixeds[i];
+            var MFixed = AtkD.Fixeds[i];
+            if (USta.AtkBranch != MFixed.BranchNum) continue;
             if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)MFixed.Times))
             {
                 USta.SpeedRem = MFixed.SpeedRem;
                 USta.NoDash = MFixed.NoDash;
                 USta.NoJump = MFixed.NoJump;
+                USta.Aiming = MFixed.Aiming;
             }
         }
     }
@@ -29,6 +32,7 @@ public class State_Atk
             for (int j = 0; j < AtShot.Fires.Length; j++)
             {
                 var AtFire = AtShot.Fires[j];
+                if (USta.AtkBranch != AtFire.BranchNum) continue;
                 if (!V3IntTimeCheck(USta.AtkTime, AtFire.Times)) continue;
 
                 for (int k = 0; k < AtFire.Count; k++)
@@ -79,10 +83,50 @@ public class State_Atk
                     ShotRig.linearVelocity += ShotIns.transform.forward * V2_Rand_Float(AtFire.Speed)*0.01f;
                     var SObj = ShotIns.GetComponent<Shot_Obj>();
                     SObj.USta = USta;
-                    SObj.Hitd = AtShot.Hits;
+                    SObj.ShotD = AtShot;
+                    SObj.BranchNum = USta.AtkBranch;
                     #endregion
                 }
 
+            }
+        }
+    }
+    static public void Branch(State_Base USta,bool Enter,bool Stay)
+    {
+        var AtkD = USta.AtkD;
+        if (AtkD.Branchs == null) return;
+        for (int i = 0; i < AtkD.Branchs.Length; i++)
+        {
+            var BranchD = AtkD.Branchs[i];
+            bool NumCheck = false;
+            for (int j = 0; j < BranchD.BranchNums.Length; j++)
+            {
+                if (USta.AtkBranch == BranchD.BranchNums[j]) NumCheck = true;
+            }
+            if (!NumCheck) continue;
+            if (!V3IntTimeCheck(USta.AtkTime, (Vector3Int)BranchD.Times)) continue;
+            bool Check = true;
+            for (int j = 0; j < BranchD.Ifs.Length; j++)
+            {
+                switch (BranchD.Ifs[j])
+                {
+                    case Data_Atk.AtkIfE.攻撃単入力:
+                        if (!Enter) Check = false;
+                        break;
+                    case Data_Atk.AtkIfE.攻撃長入力:
+                        if (!Stay) Check = false;
+                        break;
+                    case Data_Atk.AtkIfE.攻撃未入力:
+                        if (Enter || Stay) Check = false;
+                        break;
+                }
+                if (!Check) break;
+            }
+            if (Check)
+            {
+                USta.AtkBranch = BranchD.FutureNum;
+                USta.AtkTime = BranchD.FutureTime;
+                return;
             }
         }
     }
@@ -93,6 +137,7 @@ public class State_Atk
         for (int i = 0; i < AtkD.Anims.Length; i++)
         {
             var AtAnim = AtkD.Anims[i];
+            if (USta.AtkBranch != AtAnim.BranchNum) continue;
             if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)AtAnim.Times))
             {
                 if (AtAnim.ID != 0) USta.Anim_AtkID = AtAnim.ID;

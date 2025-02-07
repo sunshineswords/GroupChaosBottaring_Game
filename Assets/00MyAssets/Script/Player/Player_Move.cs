@@ -96,7 +96,7 @@ public class Player_Move : MonoBehaviourPun
         }
         #endregion
         #region 照準
-        if (Sta.AtkD != null && Sta.AtkD.Aiming)
+        if (Sta.AtkD != null && Sta.Aiming)
         {
             var LookRot = Cam.transform.eulerAngles;
             LookRot.x = 0;
