@@ -6,6 +6,7 @@ public interface IUIAnimation
     void Play();
     void Pause();
     void Resume();
+    void Reverse();
     void Stop();
 
     void SetDuration(float duration);
@@ -13,6 +14,7 @@ public interface IUIAnimation
     void SetLoop(int loopCount, LoopType loopType);
 
     bool IsPlaying { get; }
+    bool IsReversed { get; }
     bool IsPaused { get; }
 
     event Action OnStart;

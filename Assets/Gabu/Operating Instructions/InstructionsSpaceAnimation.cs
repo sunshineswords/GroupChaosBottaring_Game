@@ -7,6 +7,7 @@ public class InstructionsSpaceAnimation : MonoBehaviour, IUIAnimation
     #region 変数
 
     private Tween _tween;
+    private RectTransform rectTransform => transform as RectTransform;
 
     [SerializeField] Vector2 _startPosition;
     [SerializeField] Vector2 _endPosition;
@@ -17,6 +18,8 @@ public class InstructionsSpaceAnimation : MonoBehaviour, IUIAnimation
 
     public bool IsPlaying => _tween != null && _tween.IsActive() && _tween.IsPlaying();
     public bool IsPaused => _tween != null && _tween.IsActive() && !_tween.IsPlaying();
+    public bool IsReversed => _tween != null && _tween.IsActive() && isReversed;
+    private bool isReversed = false;
 
     public event Action OnStart;
     public event Action OnComplete;
@@ -29,10 +32,11 @@ public class InstructionsSpaceAnimation : MonoBehaviour, IUIAnimation
 
     public void Play()
     {
-        if (_tween == null)
+        if (_tween == null || isReversed)
         {
             _tween = CreateAnimation();
         }
+        isReversed= false;
 
         _tween.Play();
         OnStart?.Invoke();
@@ -46,6 +50,18 @@ public class InstructionsSpaceAnimation : MonoBehaviour, IUIAnimation
     public void Resume()
     {
         _tween?.Play();
+    }
+
+    public void Reverse()
+    {
+        if (_tween == null || !isReversed)
+        {
+            _tween = CreateReverseAnimation();
+        }
+        isReversed = true;
+
+        _tween.Play();
+        OnStart?.Invoke();
     }
 
     public void Stop()
@@ -84,8 +100,20 @@ public class InstructionsSpaceAnimation : MonoBehaviour, IUIAnimation
 
     private Tween CreateAnimation()
     {
-        transform.position = _startPosition;
-        return transform.DOMoveY(_endPosition.y, _duration)
+        rectTransform.anchoredPosition = _startPosition;
+
+        return rectTransform.DOAnchorPos(_endPosition, _duration)
+            .SetEase(_easeType)
+            .SetLoops(_loopCount, _loopType)
+            .OnComplete(() => OnComplete?.Invoke())
+            .OnUpdate(() => OnUpdate?.Invoke());
+    }
+
+    private Tween CreateReverseAnimation()
+    {
+        rectTransform.anchoredPosition = _endPosition;
+
+        return rectTransform.DOAnchorPos(_startPosition, _duration)
             .SetEase(_easeType)
             .SetLoops(_loopCount, _loopType)
             .OnComplete(() => OnComplete?.Invoke())
