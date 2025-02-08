@@ -170,6 +170,12 @@ public abstract class ColorSystem : MonoBehaviour
         return Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="currentColor"></param>
+    /// <param name="v"></param>
+    /// <returns></returns>
     public Color SubtractionValue(Color currentColor, float v)
     {
         Color.RGBToHSV(currentColor, out currentColor.r, out currentColor.g, out currentColor.b);
