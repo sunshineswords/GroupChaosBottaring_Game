@@ -12,4 +12,4 @@ SelectOutlineは`CIRCLESLinearSHADOW`というピクセル数266x266,PixcelPerUn
 
 ボタンの標準の大きさは100x50くらいを想定していて、最小値は50x25を想定してる
 
-色は適当に白(E1E1E1)黒(191919)
+色は適当に白(f1f1f1) 黒(191919)
