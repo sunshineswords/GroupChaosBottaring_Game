@@ -1,4 +1,4 @@
-このプロジェクトのUIのデファクトスタンダード（？）は`Assets/Gabu/DOTweenAnimation/Prefab/ButtonPrefab.prefab`にあるボタン。
+このプロジェクトのUIのデファクトスタンダード（？）は`Assets/Gabu/DOTweenAnimation/Prefab/ButtonPrefab.prefab`にあるボタン。\n
 つまりUIの設定は基本このプレハブを参照して。
 軽く説明すると、
 BGIは`CIRCLE0PXSMA`ていうピクセル数が133x133,PixcelPerUnitが100の円の画像画像を使ってPixcelPerUnitMultipyは`6.0`、
