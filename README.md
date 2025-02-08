@@ -11,3 +11,5 @@ Outlineは`CIRCLE10PXSMA`ていうピクセル数266x266,PixcelPerUnitが200の�
 SelectOutlineは`CIRCLESLinearSHADOW`というピクセル数266x266,PixcelPerUnitが200のグラデーションがかかった円の画像、PixcelPerUnitMultipyは`6.0`、これもインタラクティブなものにのみ付ける、というかこれは選択された時に表示される画像だからインタラクティブでないものには不要なはず
 
 ボタンの標準の大きさは100x50くらいを想定していて、最小値は50x25を想定してる
+
+色は適当に白(E1E1E1)黒(191919)
