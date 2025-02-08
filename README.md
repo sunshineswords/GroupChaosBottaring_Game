@@ -1,0 +1,7 @@
+このプロジェクトのUIのデファクトスタンダード（？）は`Assets/Gabu/DOTweenAnimation/Prefab/ButtonPrefab.prefab`にあるボタン。
+つまりUIの設定は基本このプレハブを参照して。
+軽く説明すると、
+BGIは`CIRCLE0PXSMA`ていうピクセル数が133x133,PixcelPerUnitが100の円の画像画像を使ってPixcelPerUnitMultipyは`6.0`、
+Outlineは`CIRCLE10PXSMA`ていうピクセル数266x266,PixcelPerUnitが200の穴が開いた円の画像、PixcelPerUnitMultipyは`6.0`、なおOutlineはインタラクティブなものにのみつけること、
+SelectOutlineは`CIRCLESLinearSHADOW`というピクセル数266x266,PixcelPerUnitが200のグラデーションがかかった円の画像、PixcelPerUnitMultipyは`6.0`、これもインタラクティブなものにのみ付ける、というかこれは選択された時に表示される画像だからインタラクティブでないものには不要なはず
+ボタンの標準の大きさは100x50くらいを想定していて、最小値は50x25を想定してる
