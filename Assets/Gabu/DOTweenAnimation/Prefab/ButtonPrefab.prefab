@@ -90,7 +90,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5441527557953258083}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5055548666251341801}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &5813356032229719460
 Animator:
   serializedVersion: 7
@@ -231,6 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f187ae7e94eb08409310b68718d2cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsAlignment: 1
+  setState: 0
   _animator: {fileID: 5813356032229719460}
   _transform: {fileID: 6625244913753994139}
   _unitPosition: {x: 0, y: 0, z: 0}
@@ -713,6 +727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c261ecc43342149992ea717159586c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsAlignment: 1
+  setState: 0
   _animator: {fileID: 5813356032229719460}
   _transform: {fileID: 2018329221513929124}
   _unitPosition: {x: 0, y: 0, z: 0}
