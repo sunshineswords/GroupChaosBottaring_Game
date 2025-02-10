@@ -115,8 +115,6 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
             icon.transform.SetAsLastSibling();
             tmpro.transform.SetAsLastSibling();
             spacing.transform.SetAsLastSibling();
-
-            Debug.Log($"{i} title:{icones[i].title}, {tmpro.text}");
         }
 
         // 端のスペースを生成

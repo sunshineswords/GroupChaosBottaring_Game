@@ -11,6 +11,9 @@ public class UISystem_Gabu : ColorSystem
     protected int _i_currentAnimation = 0;
     protected int _i_lastAnimation = 0;
 
+    public bool IsAlignment = true;
+    public int setState = 0;
+
     [SerializeField]
     protected Animator _animator;
 
@@ -82,6 +85,10 @@ public class UISystem_Gabu : ColorSystem
     /// <returns></returns>
     protected int CheckAnimationState()
     {
+        if(_animator == null)
+        {
+            return setState;
+        }
         if (_isButton || _animator == null)
         {
             return (int)AnimatorState.Normal;
