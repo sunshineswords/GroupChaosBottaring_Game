@@ -8,9 +8,12 @@ public class AttackButtonSystem_Gabu : MonoBehaviour
 
     private float currentCT = 0f;
     public float ct = 0f;
+    public float currentCharge = 0f;
+    public float charge = 0f;
     public AnimatorStatu statu = AnimatorStatu.Normal;
 
     [SerializeField] private Slider _CTSider;
+    [SerializeField] private Slider _ChargeSlider;
     [SerializeField] private UISystem_Gabu[] _uiSystem;
 
     public enum AnimatorStatu : int
@@ -29,10 +32,15 @@ public class AttackButtonSystem_Gabu : MonoBehaviour
     {
         if (currentCT == ct)
         {
-            return;
+            currentCT = ct;
+            _CTSider.value = currentCT;
         }
-        currentCT = ct;
-        _CTSider.value = currentCT;
+
+        if(currentCharge == charge)
+        {
+            currentCharge = charge;
+            _ChargeSlider.value = currentCharge;
+        }
 
         for (int i = 0; i < _uiSystem.Length; i++)
         {

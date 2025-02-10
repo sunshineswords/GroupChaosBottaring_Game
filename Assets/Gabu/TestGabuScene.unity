@@ -5740,12 +5740,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1713743250}
     m_Modifications:
     - target: {fileID: 719095042797704012, guid: 14c976d31e590d04e990966e0dd5e4e1, type: 3}
-      propertyPath: m_Value
-      value: 0.573
-      objectReference: {fileID: 0}
-    - target: {fileID: 719095042797704012, guid: 14c976d31e590d04e990966e0dd5e4e1, type: 3}
       propertyPath: m_TargetGraphic
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242431548334820844, guid: 14c976d31e590d04e990966e0dd5e4e1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242431548334820844, guid: 14c976d31e590d04e990966e0dd5e4e1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6689451883903037830, guid: 14c976d31e590d04e990966e0dd5e4e1, type: 3}
       propertyPath: m_FillAmount
