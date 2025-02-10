@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12fea65286e7ef41b8dcbac1ecf837d, type: 3}
   m_Name: Stage_2
   m_EditorClassIdentifier: 
-  Name: "\u30B9\u30C6\u30FC\u30B82"
+  Name: "W\u30D6\u30ED\u30C3\u30B3\u30EA\u30FC"
   Info: 
   Icon: {fileID: 0}
   SceneID: 3

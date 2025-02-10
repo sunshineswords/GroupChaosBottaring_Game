@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Chara_StickSmail
   m_EditorClassIdentifier: 
   Name: "\u30B9\u30C6\u30C3\u30AF\u30B9\u30DE\u30A4\u30EB"
+  Icon: {fileID: 2800000, guid: 5fff334c68a72a44aa6e38104d36d292, type: 3}
   ModelObj: {fileID: 6980702683957590785, guid: d868d56810b650f45a7be729d6f23ec4, type: 3}

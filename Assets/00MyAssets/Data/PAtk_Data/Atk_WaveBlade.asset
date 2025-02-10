@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u30A6\u30A7\u30FC\u30D6\u30D6\u30EC\u30A4\u30C9"
   Info: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: 70e101e1d5ceaa5439bf3ad4e3c791f7, type: 3}
   EndTime: 60
   CT: 6
   SPUse: 0
+  BranchInfos: []
   Fixeds: []
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: e2f1fe1cf2ac91346af19af8f935c63a, type: 3}

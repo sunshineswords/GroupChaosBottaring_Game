@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u964D\u77E2"
   Info: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: e2d5130a8ce869d4c86353fecbc37907, type: 3}
   EndTime: 75
   CT: 0
   SPUse: 0
+  BranchInfos: []
   Fixeds:
   - EditDisp: '[0]BNum:0Time:(0, 999)'
     BranchNum: 0
@@ -41,8 +42,8 @@ MonoBehaviour:
         PosWay: {x: 0, y: 0, z: 0}
         PosTime: {x: 0, y: 0, z: 0}
         RotBase: 0
-        RotChange: {x: -80, y: 0, z: 0}
-        RotRand: {x: 3, y: 3, z: 0}
+        RotChange: {x: -75, y: 0, z: 0}
+        RotRand: {x: 10, y: 10, z: 0}
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:

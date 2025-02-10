@@ -14,10 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u30BD\u30FC\u30C9"
   Info: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: 2f80e1dbe4acdf145aa64427bf8e2ff1, type: 3}
   EndTime: 50
   CT: 0
   SPUse: 0
+  BranchInfos:
+  - BID: 0
+    Name: "\u4E00\u6BB5"
+  - BID: 1
+    Name: "\u4E8C\u6BB5"
+  - BID: 2
+    Name: "\u4E09\u6BB5"
+  - BID: 3
+    Name: "\u56DB\u6BB5"
+  - BID: 4
+    Name: "\u4E94\u6BB5"
+  - BID: 10
+    Name: "\u91CD\u653B\u6483"
   Fixeds:
   - EditDisp: '[0]BNum:0Time:(0, 999)'
     BranchNum: 0
@@ -205,41 +218,41 @@ MonoBehaviour:
       SPAdd: 2
     HitCT: 0
   Branchs:
-  - EditDisp: '[0]BNum:0,1,2,3,4Time:(35, 50)Future{Num:10Time:0}'
-    BranchNums: 0000000001000000020000000300000004000000
-    Times: {x: 35, y: 50}
-    Ifs: 01000000
-    FutureNum: 10
-    FutureTime: 0
-  - EditDisp: '[1]BNum:0Time:(15, 35)Future{Num:1Time:0}'
+  - EditDisp: '[0]BNum:0Time:(15, 35)Future{Num:1Time:0}'
     BranchNums: 00000000
     Times: {x: 15, y: 35}
     Ifs: 00000000
     FutureNum: 1
     FutureTime: 0
-  - EditDisp: '[2]BNum:1Time:(15, 35)Future{Num:2Time:0}'
+  - EditDisp: '[1]BNum:1Time:(15, 35)Future{Num:2Time:0}'
     BranchNums: 01000000
     Times: {x: 15, y: 35}
     Ifs: 00000000
     FutureNum: 2
     FutureTime: 0
-  - EditDisp: '[3]BNum:2Time:(15, 35)Future{Num:3Time:0}'
+  - EditDisp: '[2]BNum:2Time:(15, 35)Future{Num:3Time:0}'
     BranchNums: 02000000
     Times: {x: 15, y: 35}
     Ifs: 00000000
     FutureNum: 3
     FutureTime: 0
-  - EditDisp: '[4]BNum:3Time:(15, 35)Future{Num:4Time:0}'
+  - EditDisp: '[3]BNum:3Time:(15, 35)Future{Num:4Time:0}'
     BranchNums: 03000000
     Times: {x: 15, y: 35}
     Ifs: 00000000
     FutureNum: 4
     FutureTime: 0
-  - EditDisp: '[5]BNum:4Time:(25, 35)Future{Num:0Time:0}'
+  - EditDisp: '[4]BNum:4Time:(25, 35)Future{Num:0Time:0}'
     BranchNums: 04000000
     Times: {x: 25, y: 35}
     Ifs: 00000000
     FutureNum: 0
+    FutureTime: 0
+  - EditDisp: '[5]BNum:0,1,2,3,4Time:(35, 50)Future{Num:10Time:0}'
+    BranchNums: 0000000001000000020000000300000004000000
+    Times: {x: 35, y: 50}
+    Ifs: 01000000
+    FutureNum: 10
     FutureTime: 0
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 35)ID:1'

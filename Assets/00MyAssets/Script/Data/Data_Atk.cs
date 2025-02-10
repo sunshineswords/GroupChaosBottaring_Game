@@ -1,18 +1,26 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 [CreateAssetMenu(menuName ="DataCre/Atk")]
 public class Data_Atk : ScriptableObject
 {
     public string Name;
-    public string Info;
+    [TextArea]public string Info;
     public Texture Icon;
     public int EndTime;
     public float CT;
     public int SPUse;
 
+    public List<BranchInfoC> BranchInfos;
     public FixedC[] Fixeds;
     public ShotC_Base[] Shots;
     public AtkBranchC[] Branchs;
     public AnimC[] Anims;
+    [System.Serializable]
+    public class BranchInfoC
+    {
+        public int BID;
+        public string Name;
+    }
     [System.Serializable]
     public class FixedC
     {
@@ -113,6 +121,7 @@ public class Data_Atk : ScriptableObject
         攻撃単入力,
         攻撃長入力,
         攻撃未入力,
+        攻撃未長入力,
     }
     [System.Serializable]
     public class AnimC

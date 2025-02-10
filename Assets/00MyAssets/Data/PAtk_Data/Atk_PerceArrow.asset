@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u8CAB\u901A\u77E2"
   Info: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: e2d5130a8ce869d4c86353fecbc37907, type: 3}
   EndTime: 65
   CT: 0
   SPUse: 0
+  BranchInfos: []
   Fixeds:
   - EditDisp: '[0]BNum:0Time:(0, 999)'
     BranchNum: 0
@@ -27,7 +28,7 @@ MonoBehaviour:
     NoDash: 0
     Aiming: 1
   Shots:
-  - Obj: {fileID: 5905403385281065886, guid: a03aeeb8a81c27c4f9299970c3b0e459, type: 3}
+  - Obj: {fileID: 5905403385281065886, guid: 9479656777050ff458a1d78bff6f6164, type: 3}
     Fires:
     - EditDisp: '[0]BNum:0,Time:(45, 45, 0),Count:1,Speed:(9000.00, 9000.00)'
       BranchNum: 0

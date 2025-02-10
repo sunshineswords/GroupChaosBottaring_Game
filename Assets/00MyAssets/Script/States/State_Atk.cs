@@ -119,6 +119,9 @@ public class State_Atk
                     case Data_Atk.AtkIfE.攻撃未入力:
                         if (Enter || Stay) Check = false;
                         break;
+                    case Data_Atk.AtkIfE.攻撃未長入力:
+                        if (Stay) Check = false;
+                        break;
                 }
                 if (!Check) break;
             }

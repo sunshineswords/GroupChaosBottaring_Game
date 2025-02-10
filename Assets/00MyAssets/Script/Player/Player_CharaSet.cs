@@ -11,7 +11,7 @@ public class Player_CharaSet : MonoBehaviourPun,IPunObservable
 
     void Update()
     {
-        if (photonView.IsMine) CharaID = PSaves.CharaID;
+        if (photonView.IsMine) CharaID = PriSetGet.CharaID;
         if (BCharaID != CharaID)
         {
             BCharaID = CharaID;

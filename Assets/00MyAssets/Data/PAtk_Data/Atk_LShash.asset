@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u30ED\u30F3\u30B0\u30B9\u30E9\u30C3\u30B7\u30E5"
   Info: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: 2f80e1dbe4acdf145aa64427bf8e2ff1, type: 3}
   EndTime: 35
   CT: 6
   SPUse: 0
+  BranchInfos: []
   Fixeds: []
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 0cbfb87061fdf2b48ba0288629373887, type: 3}
@@ -45,6 +46,7 @@ MonoBehaviour:
       AtkDamPer: 160
       DefDamPer: 0
       DefRemPer: 0
+      SPAdd: 0
     HitCT: 0
   Branchs: []
   Anims:

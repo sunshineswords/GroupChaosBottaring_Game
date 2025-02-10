@@ -7,7 +7,9 @@ public class UI_Player : MonoBehaviour
 {
     [SerializeField] State_Base Sta;
     [SerializeField] Player_Cont PCont;
+    [SerializeField] Player_Atk PAtk;
     [SerializeField] Image HPBar;
+    [SerializeField] TextMeshProUGUI AtkFBTx;
     [SerializeField] UI_Sin_Atk[] AtkUIs;
     [SerializeField] TextMeshProUGUI AtkInfoTx;
 
@@ -20,18 +22,25 @@ public class UI_Player : MonoBehaviour
             Data_Atk AtkD = null;
             bool Input = false;
             int Slot = i;
+            AtkFBTx.text = !PAtk.Backs ? "表" : "裏";
+
+            var Atks = PriSetGet.AtkGet(PAtk.Backs);
             switch (i)
             {
                 case 0:
-                    AtkD = DB.N_Atks[PSaves.N_AtkID];
+                    AtkD = DB.N_Atks[Atks.N_AtkID];
                     Input = PCont.NAtk_Stay;
                     break;
                 case 1:
-                    AtkD = DB.S_Atks[PSaves.S1_AtkID];
+                    AtkD = DB.S_Atks[Atks.S1_AtkID];
                     Input = PCont.S1Atk_Stay;
                     break;
                 case 2:
-                    AtkD = DB.E_Atks[PSaves.E_AtkID];
+                    AtkD = DB.S_Atks[Atks.S2_AtkID];
+                    Input = PCont.S2Atk_Stay;
+                    break;
+                case 3:
+                    AtkD = DB.E_Atks[Atks.E_AtkID];
                     Input = PCont.EAtk_Stay;
                     Slot = 10;
                     break;

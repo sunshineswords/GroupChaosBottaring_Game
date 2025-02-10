@@ -994,8 +994,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34549ac200edd304e9be1f3e7e353300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeLimSec: 600
-  TimeStar: 540
+  TimeLimSec: 300
+  TimeStar: 120
   DeathStar: 15
   Time: 0
   DeathCount: 0
