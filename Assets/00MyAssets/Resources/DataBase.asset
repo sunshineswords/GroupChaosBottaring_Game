@@ -37,6 +37,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 72e534dc8c266734cb39f667e189e117, type: 2}
   - {fileID: 11400000, guid: cd7e365ec09a84e43b714ab3eecfe0f9, type: 2}
   - {fileID: 11400000, guid: ba33213edd0bb0e46b06fdd42a2c6ec5, type: 2}
+  Wepons:
+  - {fileID: 6293833836109196858, guid: 93808f716b8dfec41a3316c3ae98591c, type: 3}
   Stages:
   - {fileID: 11400000, guid: 632b57d86c62ed6439b96f12aeb840a2, type: 2}
   - {fileID: 11400000, guid: 07c8d87946b505d4484d0d663a5c7a9d, type: 2}

@@ -1,10 +1,53 @@
 ﻿using Photon.Pun;
 
 using UnityEngine;
-using static Data_Atk;
+using System.Linq;
 using static Statics;
+using static DataBase;
 public class State_Atk
 {
+    static public void Branch(State_Base USta, bool Enter, bool Stay)
+    {
+        var AtkD = USta.AtkD;
+        if (AtkD.Branchs == null) return;
+        for (int i = 0; i < AtkD.Branchs.Length; i++)
+        {
+            var BranchD = AtkD.Branchs[i];
+            bool NumCheck = false;
+            for (int j = 0; j < BranchD.BranchNums.Length; j++)
+            {
+                if (USta.AtkBranch == BranchD.BranchNums[j]) NumCheck = true;
+            }
+            if (!NumCheck) continue;
+            if (!V3IntTimeCheck(USta.AtkTime, (Vector3Int)BranchD.Times)) continue;
+            bool Check = true;
+            for (int j = 0; j < BranchD.Ifs.Length; j++)
+            {
+                switch (BranchD.Ifs[j])
+                {
+                    case Data_Atk.AtkIfE.攻撃単入力:
+                        if (!Enter) Check = false;
+                        break;
+                    case Data_Atk.AtkIfE.攻撃長入力:
+                        if (!Stay) Check = false;
+                        break;
+                    case Data_Atk.AtkIfE.攻撃未入力:
+                        if (Enter || Stay) Check = false;
+                        break;
+                    case Data_Atk.AtkIfE.攻撃未長入力:
+                        if (Stay) Check = false;
+                        break;
+                }
+                if (!Check) break;
+            }
+            if (Check)
+            {
+                USta.AtkBranch = BranchD.FutureNum;
+                USta.AtkTime = BranchD.FutureTime;
+                return;
+            }
+        }
+    }
     static public void Fixed(State_Base USta)
     {
         var AtkD = USta.AtkD;
@@ -99,45 +142,21 @@ public class State_Atk
             }
         }
     }
-    static public void Branch(State_Base USta,bool Enter,bool Stay)
+
+    static public void WeponSet(State_Base USta)
     {
         var AtkD = USta.AtkD;
-        if (AtkD.Branchs == null) return;
-        for (int i = 0; i < AtkD.Branchs.Length; i++)
+        if (AtkD.WeponSets == null) return;
+        for (int i = 0; i < AtkD.WeponSets.Length; i++)
         {
-            var BranchD = AtkD.Branchs[i];
-            bool NumCheck = false;
-            for (int j = 0; j < BranchD.BranchNums.Length; j++)
+            var AtWep = AtkD.WeponSets[i];
+            if (USta.AtkBranch != AtWep.BranchNum) continue;
+            if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)AtWep.Times))
             {
-                if (USta.AtkBranch == BranchD.BranchNums[j]) NumCheck = true;
-            }
-            if (!NumCheck) continue;
-            if (!V3IntTimeCheck(USta.AtkTime, (Vector3Int)BranchD.Times)) continue;
-            bool Check = true;
-            for (int j = 0; j < BranchD.Ifs.Length; j++)
-            {
-                switch (BranchD.Ifs[j])
-                {
-                    case Data_Atk.AtkIfE.攻撃単入力:
-                        if (!Enter) Check = false;
-                        break;
-                    case Data_Atk.AtkIfE.攻撃長入力:
-                        if (!Stay) Check = false;
-                        break;
-                    case Data_Atk.AtkIfE.攻撃未入力:
-                        if (Enter || Stay) Check = false;
-                        break;
-                    case Data_Atk.AtkIfE.攻撃未長入力:
-                        if (Stay) Check = false;
-                        break;
-                }
-                if (!Check) break;
-            }
-            if (Check)
-            {
-                USta.AtkBranch = BranchD.FutureNum;
-                USta.AtkTime = BranchD.FutureTime;
-                return;
+                USta.WeponSets.TryAdd((int)AtWep.Set, -1);
+                USta.WeponPoss.TryAdd((int)AtWep.Set, Vector3.zero);
+                USta.WeponRots.TryAdd((int)AtWep.Set, Vector3.zero);
+                USta.WeponSets[(int)AtWep.Set] = DB.Wepons.IndexOf(AtWep.Obj);
             }
         }
     }

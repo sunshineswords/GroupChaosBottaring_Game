@@ -28,17 +28,22 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public int DeathTime;
     public int DashTime;
 
-    public float SpeedRem;
-    public bool NoJump;
-    public bool NoDash;
-    public bool Aiming;
+    public State_Base Target;
 
     public Data_Atk AtkD;
     public int AtkSlot;
     public int AtkTime;
     public int AtkBranch;
 
-    public State_Base Target;
+    public float SpeedRem;
+    public bool NoJump;
+    public bool NoDash;
+    public bool Aiming;
+
+    public Dictionary<int,int> WeponSets = new Dictionary<int, int>();
+    public Dictionary<int, Vector3> WeponPoss = new Dictionary<int, Vector3>();
+    public Dictionary<int, Vector3> WeponRots = new Dictionary<int, Vector3>();
+
     public int Anim_MoveID;
     public int Anim_AtkID;
     public int Anim_OtherID;
@@ -186,6 +191,11 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             if (AtkCTs[CTKeys[i]].CT <= 0) AtkCTs.Remove(CTKeys[i]);
         }
         #endregion
+        var WeponKeys = WeponSets.Keys.ToArray();
+        for (int i = 0; i < WeponKeys.Length; i++)
+        {
+            WeponSets[WeponKeys[i]] = -1;
+        }
         SpeedRem = 0;
         NoJump = false;
         NoDash = false;
@@ -200,6 +210,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
         State_Atk.Fixed(this);
         State_Atk.Shot(this,PosGet(), RotGet(),CamRot);
+        State_Atk.WeponSet(this);
         State_Atk.Anim(this);
         AtkTime++;
         if (AtkTime > AtkD.EndTime) AtkD = null;

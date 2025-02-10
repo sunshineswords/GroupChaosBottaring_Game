@@ -33,6 +33,61 @@ MonoBehaviour:
     Name: "\u72D9\u3044"
   - BID: 11
     Name: "\u72D9\u5C04\u6483"
+  Branchs:
+  - EditDisp: '[0]BNum:0Time:(5, 50)Future{Num:1Time:0}'
+    BranchNums: 00000000
+    Times: {x: 5, y: 50}
+    Ifs: 03000000
+    FutureNum: 1
+    FutureTime: 0
+  - EditDisp: '[1]BNum:1Time:(25, 50)Future{Num:2Time:0}'
+    BranchNums: 01000000
+    Times: {x: 25, y: 50}
+    Ifs: 00000000
+    FutureNum: 2
+    FutureTime: 0
+  - EditDisp: '[2]BNum:2Time:(25, 50)Future{Num:3Time:0}'
+    BranchNums: 02000000
+    Times: {x: 25, y: 50}
+    Ifs: 00000000
+    FutureNum: 3
+    FutureTime: 0
+  - EditDisp: '[3]BNum:3Time:(25, 50)Future{Num:1Time:0}'
+    BranchNums: 03000000
+    Times: {x: 25, y: 50}
+    Ifs: 00000000
+    FutureNum: 1
+    FutureTime: 0
+  - EditDisp: '[4]BNum:0Time:(20, 50)Future{Num:10Time:0}'
+    BranchNums: 00000000
+    Times: {x: 20, y: 50}
+    Ifs: 01000000
+    FutureNum: 10
+    FutureTime: 0
+  - EditDisp: '[5]BNum:1,2,3Time:(40, 50)Future{Num:10Time:0}'
+    BranchNums: 010000000200000003000000
+    Times: {x: 40, y: 50}
+    Ifs: 01000000
+    FutureNum: 10
+    FutureTime: 0
+  - EditDisp: '[6]BNum:10Time:(45, 50)Future{Num:10Time:0}'
+    BranchNums: 0a000000
+    Times: {x: 45, y: 50}
+    Ifs: 
+    FutureNum: 10
+    FutureTime: 0
+  - EditDisp: '[7]BNum:10Time:(0, 50)Future{Num:11Time:0}'
+    BranchNums: 0a000000
+    Times: {x: 0, y: 50}
+    Ifs: 02000000
+    FutureNum: 11
+    FutureTime: 0
+  - EditDisp: '[8]BNum:11Time:(25, 50)Future{Num:10Time:0}'
+    BranchNums: 0b000000
+    Times: {x: 25, y: 50}
+    Ifs: 01000000
+    FutureNum: 10
+    FutureTime: 0
   Fixeds:
   - EditDisp: '[0]BNum:10Time:(0, 999)'
     BranchNum: 10
@@ -166,61 +221,19 @@ MonoBehaviour:
       DefRemPer: 0
       SPAdd: 10
     HitCT: 0
-  Branchs:
-  - EditDisp: '[0]BNum:0Time:(5, 50)Future{Num:1Time:0}'
-    BranchNums: 00000000
-    Times: {x: 5, y: 50}
-    Ifs: 03000000
-    FutureNum: 1
-    FutureTime: 0
-  - EditDisp: '[1]BNum:1Time:(25, 50)Future{Num:2Time:0}'
-    BranchNums: 01000000
-    Times: {x: 25, y: 50}
-    Ifs: 00000000
-    FutureNum: 2
-    FutureTime: 0
-  - EditDisp: '[2]BNum:2Time:(25, 50)Future{Num:3Time:0}'
-    BranchNums: 02000000
-    Times: {x: 25, y: 50}
-    Ifs: 00000000
-    FutureNum: 3
-    FutureTime: 0
-  - EditDisp: '[3]BNum:3Time:(25, 50)Future{Num:1Time:0}'
-    BranchNums: 03000000
-    Times: {x: 25, y: 50}
-    Ifs: 00000000
-    FutureNum: 1
-    FutureTime: 0
-  - EditDisp: '[4]BNum:0Time:(20, 50)Future{Num:10Time:0}'
-    BranchNums: 00000000
-    Times: {x: 20, y: 50}
-    Ifs: 01000000
-    FutureNum: 10
-    FutureTime: 0
-  - EditDisp: '[5]BNum:1,2,3Time:(40, 50)Future{Num:10Time:0}'
-    BranchNums: 010000000200000003000000
-    Times: {x: 40, y: 50}
-    Ifs: 01000000
-    FutureNum: 10
-    FutureTime: 0
-  - EditDisp: '[6]BNum:10Time:(45, 50)Future{Num:10Time:0}'
-    BranchNums: 0a000000
-    Times: {x: 45, y: 50}
-    Ifs: 
-    FutureNum: 10
-    FutureTime: 0
-  - EditDisp: '[7]BNum:10Time:(0, 50)Future{Num:11Time:0}'
-    BranchNums: 0a000000
-    Times: {x: 0, y: 50}
-    Ifs: 02000000
-    FutureNum: 11
-    FutureTime: 0
-  - EditDisp: '[8]BNum:11Time:(25, 50)Future{Num:10Time:0}'
-    BranchNums: 0b000000
-    Times: {x: 25, y: 50}
-    Ifs: 01000000
-    FutureNum: 10
-    FutureTime: 0
+  WeponSets:
+  - BranchNum: 10
+    Times: {x: 0, y: 999}
+    Obj: {fileID: 6293833836109196858, guid: 93808f716b8dfec41a3316c3ae98591c, type: 3}
+    Set: 0
+    PosChange: {x: 0, y: 0, z: 0}
+    RotChange: {x: 0, y: 0, z: 0}
+  - BranchNum: 11
+    Times: {x: 0, y: 999}
+    Obj: {fileID: 6293833836109196858, guid: 93808f716b8dfec41a3316c3ae98591c, type: 3}
+    Set: 0
+    PosChange: {x: 0, y: 0, z: 0}
+    RotChange: {x: 0, y: 0, z: 0}
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 50)ID:101'
     BranchNum: 0
