@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -872,8 +872,8 @@ MonoBehaviour:
   Player: 1
   Boss: 0
   Undet: 0
-  MHP: 1000
-  Atk: 100
+  MHP: 1000000
+  Atk: 100000
   Def: 20
   HP: 0
   SP: 0

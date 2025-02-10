@@ -214,8 +214,8 @@ MonoBehaviour:
   Player: 0
   Boss: 0
   Undet: 1
-  MHP: 5000
-  Atk: 100
+  MHP: 10000000
+  Atk: 100000
   Def: 20
   HP: 0
   SP: 0

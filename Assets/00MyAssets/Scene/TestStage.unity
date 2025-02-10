@@ -819,6 +819,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 805049447542634046, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
+      propertyPath: TimeLimSec
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2156027594301703700, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
       propertyPath: m_Name
       value: BattleManagers

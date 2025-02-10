@@ -8,7 +8,7 @@ public class UI_BattleBase : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI TimeTx;
     [SerializeField] TextMeshProUGUI DeathTx;
-    [SerializeField] List<UI_Sin_BossUI> EnemyUIs;
+    [SerializeField] List<UI_Sin_BossUI> BossUIs;
 
     [SerializeField] TextMeshProUGUI TimeStarTx;
     [SerializeField] TextMeshProUGUI DeathStarTx;
@@ -24,16 +24,26 @@ public class UI_BattleBase : MonoBehaviour
         DeathStarTx.text = (BTManager.DeathCount < BTManager.DeathStar ? "★" : "☆");
         DeathStarTx.text += "Death:" + BTManager.DeathStar;
 
-        for (int i = 0; i < Mathf.Max(EnemyUIs.Count, BTManager.BossList.Count); i++)
+        for (int i = 0; i < Mathf.Max(BossUIs.Count, BTManager.BossList.Count); i++)
         {
             if (i < BTManager.BossList.Count)
             {
-                if (EnemyUIs.Count <= i) EnemyUIs.Add(Instantiate(EnemyUIs[0], EnemyUIs[0].transform.parent));
+                if (BossUIs.Count <= i) BossUIs.Add(Instantiate(BossUIs[0], BossUIs[0].transform.parent));
                 var Sta = BTManager.BossList[i];
-                EnemyUIs[i].NameTx.text = Sta.Name;
-                EnemyUIs[i].HPBar.fillAmount = (float)Sta.HP / Mathf.Max(1, Sta.MHP);
+                BossUIs[i].NameTx.text = Sta.Name;
+                BossUIs[i].HPBar.fillAmount = (float)Sta.HP / Mathf.Max(1, Sta.MHP);
+                switch (Sta.Team)
+                {
+                    case 0:
+                        BossUIs[i].HPFill.color = Color.green;
+                        break;
+                    default:
+                        BossUIs[i].HPFill.color = Color.red;
+                        break;
+                }
+
             }
-            EnemyUIs[i].gameObject.SetActive(i < BTManager.BossList.Count);
+            BossUIs[i].gameObject.SetActive(i < BTManager.BossList.Count);
         }
 
     }

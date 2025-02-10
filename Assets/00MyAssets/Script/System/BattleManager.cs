@@ -46,6 +46,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
                 if (BossList[i].HP > 0) BossCheck = false;
             }
             if (BossCheck || Time <= 0) End = true;
+            if (TimeLimSec < 0) End = false;
             Star = 3;
             if (Time <= TimeStar * 60) Star--;
             if (DeathCount > DeathStar) Star--;

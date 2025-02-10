@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4397316487515943800}
   - component: {fileID: 8481682598002606175}
   m_Layer: 5
-  m_Name: Enemys
+  m_Name: Bosss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 3336609923278046707}
   - component: {fileID: 6004434707819058969}
   m_Layer: 5
-  m_Name: EnemyName
+  m_Name: BossName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.2509804, g: 0.2509804, b: 0.2509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1279,7 +1279,7 @@ GameObject:
   - component: {fileID: 1763155241847154605}
   - component: {fileID: 9155114802439651309}
   m_Layer: 5
-  m_Name: EnemyUI
+  m_Name: BossUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1358,6 +1358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTx: {fileID: 6004434707819058969}
   HPBar: {fileID: 4283557395050953889}
+  HPFill: {fileID: 1556311623080610700}
 --- !u!1 &6107310667841309764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2209,7 +2210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeTx: {fileID: 5160255778504899572}
   DeathTx: {fileID: 1236816972629334011}
-  EnemyUIs:
+  BossUIs:
   - {fileID: 9155114802439651309}
   TimeStarTx: {fileID: 869334585373116841}
   DeathStarTx: {fileID: 9214878299698305784}

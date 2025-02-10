@@ -82,9 +82,17 @@ public class State_Atk
                     var ShotRig = ShotIns.GetComponent<Rigidbody>();
                     ShotRig.linearVelocity += ShotIns.transform.forward * V2_Rand_Float(AtFire.Speed)*0.01f;
                     var SObj = ShotIns.GetComponent<Shot_Obj>();
-                    SObj.USta = USta;
-                    SObj.ShotD = AtShot;
-                    SObj.BranchNum = USta.AtkBranch;
+                    if (SObj != null)
+                    {
+                        SObj.USta = USta;
+                        SObj.ShotD = AtShot;
+                        SObj.BranchNum = USta.AtkBranch;
+                    }
+                    var Sta = ShotIns.GetComponent<State_Base>();
+                    if (Sta != null)
+                    {
+                        Sta.Team = USta.Team;
+                    }
                     #endregion
                 }
 

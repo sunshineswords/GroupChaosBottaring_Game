@@ -18,6 +18,7 @@ MonoBehaviour:
   EndTime: 75
   CT: 6
   SPUse: 0
+  BranchInfos: []
   Fixeds: []
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 608504d33cd03a5439d5fdfa89bbd42f, type: 3}
@@ -45,10 +46,11 @@ MonoBehaviour:
       AtkDamPer: 100
       DefDamPer: 0
       DefRemPer: 0
+      SPAdd: 0
     HitCT: 0
   Branchs: []
   Anims:
-  - EditDisp: '[0]BNum:0Time:(0, 85)ID:1'
+  - EditDisp: '[0]BNum:0Time:(25, 85)ID:1'
     BranchNum: 0
-    Times: {x: 0, y: 85}
+    Times: {x: 25, y: 85}
     ID: 1

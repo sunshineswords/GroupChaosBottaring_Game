@@ -77,7 +77,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             {
                 if (DeathTime >= 300)HP = MHP;
             }
-            else if (!Boss)
+            else if (!Boss && Team!=0)
             {
                 if (DeathTime >= 60) Deletes();
             }
@@ -211,6 +211,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(MHP);
+            stream.SendNext(Team);
 
             stream.SendNext(HP);
             stream.SendNext(Anim_MoveID);
@@ -221,6 +222,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         else
         {
             MHP = (int)stream.ReceiveNext();
+            Team = (int)stream.ReceiveNext();
 
             HP = (int)stream.ReceiveNext();
             Anim_MoveID = (int)stream.ReceiveNext();
