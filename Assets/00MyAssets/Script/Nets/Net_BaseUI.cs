@@ -1,4 +1,4 @@
-using Photon.Pun;
+ï»¿using Photon.Pun;
 using Photon.Realtime;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,20 +8,20 @@ using UnityEngine.UI;
 
 public class Net_BaseUI : MonoBehaviourPunCallbacks
 {
-    [Tooltip("“¯Šú‚·‚éƒvƒŒƒtƒ@ƒu"), SerializeField] Net_PhotonPrefabs Prefabs;
-    [Tooltip("ƒIƒtƒ‰ƒCƒ“UI"), SerializeField] GameObject OfflineUI;
-    [Tooltip("ƒIƒ“ƒ‰ƒCƒ“UI"), SerializeField] GameObject OnlineUI;
-    [Tooltip("Ú‘±‘Ò‹@UI"), SerializeField] GameObject ConnectWait;
-    [Tooltip("Ú‘±Š®—¹UI"), SerializeField] GameObject ConnectEnd;
-    [Tooltip("ƒ‹[ƒ€‘I‘ğˆ—"), SerializeField] UIChange Selects;
-    [Tooltip("ƒ‹[ƒ€‘I‘ğ—pUI"), SerializeField] GameObject SelectUI;
-    [Tooltip("ƒvƒŒƒCƒ„[–¼“ü—Í"), SerializeField] TMP_InputField PlayerNameIn;
-    [Tooltip("ì¬ƒ‹[ƒ€–¼“ü—Í"), SerializeField] TMP_InputField CreateNameIn;
-    [Tooltip("ì¬ƒƒbƒZ[ƒW“ü—Í"), SerializeField] TMP_InputField MessageIn;
-    [Tooltip("ì¬ƒvƒ‰ƒCƒx[ƒg"),SerializeField] Toggle PrivateT;
-    [Tooltip("Q‰Áƒ‹[ƒ€–¼“ü—Í"), SerializeField] TMP_InputField JoinNameIn;
-    [Tooltip("ƒƒr[—pƒTƒuUI"), SerializeField] List<SinsUI_LobbyRoomUIs> LobbySinUIs;
-    [Tooltip("ƒ‹[ƒ€“àUI"), SerializeField] GameObject InRoomUI;
+    [Tooltip("åŒæœŸã™ã‚‹ãƒ—ãƒ¬ãƒ•ã‚¡ãƒ–"), SerializeField] Net_PhotonPrefabs Prefabs;
+    [Tooltip("ã‚ªãƒ•ãƒ©ã‚¤ãƒ³UI"), SerializeField] GameObject OfflineUI;
+    [Tooltip("ã‚ªãƒ³ãƒ©ã‚¤ãƒ³UI"), SerializeField] GameObject OnlineUI;
+    [Tooltip("æ¥ç¶šå¾…æ©ŸUI"), SerializeField] GameObject ConnectWait;
+    [Tooltip("æ¥ç¶šå®Œäº†UI"), SerializeField] GameObject ConnectEnd;
+    [Tooltip("ãƒ«ãƒ¼ãƒ é¸æŠå‡¦ç†"), SerializeField] UIChange Selects;
+    [Tooltip("ãƒ«ãƒ¼ãƒ é¸æŠç”¨UI"), SerializeField] GameObject SelectUI;
+    [Tooltip("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åå…¥åŠ›"), SerializeField] TMP_InputField PlayerNameIn;
+    [Tooltip("ä½œæˆãƒ«ãƒ¼ãƒ åå…¥åŠ›"), SerializeField] TMP_InputField CreateNameIn;
+    [Tooltip("ä½œæˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å…¥åŠ›"), SerializeField] TMP_InputField MessageIn;
+    [Tooltip("ä½œæˆãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆ"),SerializeField] Toggle PrivateT;
+    [Tooltip("å‚åŠ ãƒ«ãƒ¼ãƒ åå…¥åŠ›"), SerializeField] TMP_InputField JoinNameIn;
+    [Tooltip("ãƒ­ãƒ“ãƒ¼ç”¨ã‚µãƒ–UI"), SerializeField] List<SinsUI_LobbyRoomUIs> LobbySinUIs;
+    [Tooltip("ãƒ«ãƒ¼ãƒ å†…UI"), SerializeField] GameObject InRoomUI;
 
     private void Start()
     {
@@ -33,6 +33,8 @@ public class Net_BaseUI : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         PlayerNameIn.text = PlayerPrefs.GetString("PlayerName", "");
         Net_PlayerNameSet();
+
+        PlayerValue.Load();
     }
     void LateUpdate()
     {
@@ -40,7 +42,7 @@ public class Net_BaseUI : MonoBehaviourPunCallbacks
         UIActives();
         LobbyIns();
     }
-    /// <summary>UI•\¦</summary>
+    /// <summary>UIè¡¨ç¤º</summary>
     void UIActives()
     {
         bool Connect = !PhotonNetwork.IsConnected || !PhotonNetwork.IsConnectedAndReady;
@@ -51,30 +53,31 @@ public class Net_BaseUI : MonoBehaviourPunCallbacks
         SelectUI.SetActive(!PhotonNetwork.InRoom);
         InRoomUI.SetActive(PhotonNetwork.InRoom);
     }
-    /// <summary>ƒƒr[Q‰Á</summary>
+    /// <summary>ãƒ­ãƒ“ãƒ¼å‚åŠ </summary>
     void LobbyIns()
     {
         if (Selects.UIID == 3 && !PhotonNetwork.InLobby) PhotonNetwork.JoinLobby();
         if (Selects.UIID != 3 && PhotonNetwork.InLobby) PhotonNetwork.LeaveLobby();
     }
-    //ƒvƒŒƒCƒ„[–¼•ÏX
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼åå¤‰æ›´
     public void Net_PlayerNameSet()
     {
         if (PlayerNameIn.text != "") PhotonNetwork.NickName = PlayerNameIn.text;
-        else PhotonNetwork.NickName = "–³–¼" + Random.Range(1000,10000);
+        else PhotonNetwork.NickName = "ç„¡å" + Random.Range(1000,10000);
         PlayerPrefs.SetString("PlayerName", PhotonNetwork.NickName);
     }
-    //ƒT[ƒo[Ú‘±
+    //ã‚µãƒ¼ãƒãƒ¼æ¥ç¶š
     public void Net_Connects()
     {
         PhotonNetwork.ConnectUsingSettings();
     }
-    //ƒT[ƒo[Ø’f
+    //ã‚µãƒ¼ãƒãƒ¼åˆ‡æ–­
     public void Net_Disconnect()
     {
         PhotonNetwork.Disconnect();
+        PhotonNetwork.OfflineMode = true;
     }
-    //V‹Kƒ‹[ƒ€ì¬
+    //æ–°è¦ãƒ«ãƒ¼ãƒ ä½œæˆ
     public void Net_RoomCreate()
     {
         var RoomIDs = CreateNameIn.text;
@@ -86,19 +89,19 @@ public class Net_BaseUI : MonoBehaviourPunCallbacks
         }
         PhotonNetwork.CreateRoom(RoomIDs,RoomOptionGet(MessageIn.text,PrivateT.isOn));
     }
-    //–¼‘Oƒ‹[ƒ€Q‰Á
+    //åå‰ãƒ«ãƒ¼ãƒ å‚åŠ 
     public void Net_RoomJoin()
     {
         PhotonNetwork.JoinRoom(JoinNameIn.text);
     }
-    //ƒ‰ƒ“ƒ_ƒ€ƒ‹[ƒ€Q‰Á
+    //ãƒ©ãƒ³ãƒ€ãƒ ãƒ«ãƒ¼ãƒ å‚åŠ 
     public void Net_RandomJoin()
     {
         PhotonNetwork.JoinRandomRoom();
     }
 
 
-    //ƒ‰ƒ“ƒ_ƒ€ƒ‹[ƒ€—pì¬
+    //ãƒ©ãƒ³ãƒ€ãƒ ãƒ«ãƒ¼ãƒ ç”¨ä½œæˆ
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
 
@@ -106,9 +109,9 @@ public class Net_BaseUI : MonoBehaviourPunCallbacks
         if (Random.value >= 0.1f) RoomIDs = "RandomRoom";
         else RoomIDs = "BackRoom";
         RoomIDs += Random.Range(0, 10000).ToString("D4");
-        PhotonNetwork.CreateRoom(RoomIDs, RoomOptionGet("ƒ‰ƒ“ƒ_ƒ€ƒ‹[ƒ€",false));
+        PhotonNetwork.CreateRoom(RoomIDs, RoomOptionGet("ãƒ©ãƒ³ãƒ€ãƒ ãƒ«ãƒ¼ãƒ ",false));
     }
-    /// <summary>ƒ‹[ƒ€ƒIƒvƒVƒ‡ƒ“İ’è</summary>
+    /// <summary>ãƒ«ãƒ¼ãƒ ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¨­å®š</summary>
     public RoomOptions RoomOptionGet(string Message, bool Private)
     {
         var RoomOP = new RoomOptions();
@@ -122,12 +125,12 @@ public class Net_BaseUI : MonoBehaviourPunCallbacks
         RoomOP.IsVisible = !Private;
         return RoomOP;
     }
-    //ƒIƒtƒ‰ƒCƒ“‰»
+    //ã‚ªãƒ•ãƒ©ã‚¤ãƒ³åŒ–
     public override void OnDisconnected(DisconnectCause cause)
     {
         PhotonNetwork.OfflineMode = true;
     }
-    //ƒƒr[—p
+    //ãƒ­ãƒ“ãƒ¼ç”¨
     Net_RoomList roomList = new Net_RoomList();
     public override void OnRoomListUpdate(List<RoomInfo> changedRoomList)
     {

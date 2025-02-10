@@ -1,17 +1,19 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
 
+using static DataBase;
+
 public class Net_RoomUI : MonoBehaviour
 {
-    [Tooltip("ƒ‹[ƒ€–¼ƒeƒLƒXƒg"), SerializeField]TextMeshProUGUI RoomName;
-    [Tooltip("Q‰ÁƒvƒŒƒCƒ„[—pƒTƒuUI"), SerializeField] List<Net_JoinPlayerUI> JoinPlayers;
-    [Tooltip("ƒ}ƒXƒ^[—pUI"), SerializeField] GameObject MasterOnly;
-    [Tooltip("ƒvƒ‰ƒCƒx[ƒgØ‚è‘Ö‚¦ƒgƒOƒ‹"), SerializeField] Toggle PrivateT;
-    [Tooltip("”ñƒ}ƒXƒ^[—pUI"), SerializeField] GameObject NoMaster;
+    [Tooltip("ãƒ«ãƒ¼ãƒ åãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField]TextMeshProUGUI RoomName;
+    [Tooltip("å‚åŠ ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”¨ã‚µãƒ–UI"), SerializeField] List<Net_JoinPlayerUI> JoinPlayers;
+    [Tooltip("ãƒã‚¹ã‚¿ãƒ¼ç”¨UI"), SerializeField] GameObject MasterOnly;
+    [Tooltip("ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆåˆ‡ã‚Šæ›¿ãˆãƒˆã‚°ãƒ«"), SerializeField] Toggle PrivateT;
+    [Tooltip("éãƒã‚¹ã‚¿ãƒ¼ç”¨UI"), SerializeField] GameObject NoMaster;
 
     void LateUpdate()
     {
@@ -47,20 +49,20 @@ public class Net_RoomUI : MonoBehaviour
         PrivateT.isOn = !CRoom.IsVisible;
     }
 
-    //ƒ‹[ƒ€‘Şº
+    //ãƒ«ãƒ¼ãƒ é€€å®¤
     public void Net_RoomExit()
     {
         PhotonNetwork.LeaveRoom();
     }
-    //ƒvƒ‰ƒCƒx[ƒgØ‚è‘Ö‚¦
+    //ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆåˆ‡ã‚Šæ›¿ãˆ
     public void Net_PrivateTChange()
     {
         var CRoom = PhotonNetwork.CurrentRoom;
         CRoom.IsVisible = !PrivateT.isOn;
     }
-    //ƒQ[ƒ€ŠJn
+    //ã‚²ãƒ¼ãƒ é–‹å§‹
     public void Net_GameStart()
     {
-        PhotonNetwork.LoadLevel(1);
+        PhotonNetwork.LoadLevel(DB.Stages[PlayerValue.StageID].SceneID);
     }
 }

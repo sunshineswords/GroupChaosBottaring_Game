@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 [CreateAssetMenu(menuName ="DataCre/DataBase")]
 public class DataBase : ScriptableObject
 {
@@ -14,4 +14,10 @@ public class DataBase : ScriptableObject
     public DamageObj DamageObjs;
     public GameObject PlayerHitEffect;
     public GameObject EnemyHitEffect;
+
+    public Data_Chara[] Charas;
+    public Data_Atk[] N_Atks;
+    public Data_Atk[] S_Atks;
+    public Data_Atk[] E_Atks;
+    public Data_Stage[] Stages;
 }

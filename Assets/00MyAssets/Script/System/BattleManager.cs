@@ -1,4 +1,4 @@
-using Photon.Pun;
+﻿using Photon.Pun;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,12 +8,17 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     static public BattleManager BTManager;
 
     [SerializeField] public int TimeLimSec;
+    public int TimeStar;
+    public int DeathStar;
+
     public int Time;
     public int DeathCount;
-
-    [System.NonSerialized] public List<Player_State> PlayerList = new List<Player_State>();
-    [System.NonSerialized]public List<Enemy_State> EnemyList = new List<Enemy_State>();
-    [System.NonSerialized] public List<Enemy_State> BossList = new List<Enemy_State>();
+    public int Star;
+    public bool BossCheck;
+    public bool End;
+    [System.NonSerialized] public List<State_Base> StateList = new List<State_Base>();
+    [System.NonSerialized] public List<State_Base> PlayerList = new List<State_Base>();
+    [System.NonSerialized] public List<State_Base> BossList = new List<State_Base>();
 
     void Start()
     {
@@ -31,19 +36,33 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     {
         if (!PhotonNetwork.InRoom) return;
         ListSet();
-        if (photonView.IsMine)
+        if (!photonView.IsMine) return;
+        if (!End)
         {
-            Time--;
+            if (Time > 0) Time--;
+            BossCheck = BossList.Count > 0;
+            for (int i = 0; i < BossList.Count; i++)
+            {
+                if (BossList[i].HP > 0) BossCheck = false;
+            }
+            if (BossCheck || Time <= 0) End = true;
+            Star = 3;
+            if (Time <= TimeStar * 60) Star--;
+            if (DeathCount > DeathStar) Star--;
+            if (Time <= 0) Star--;
         }
+
     }
     void ListSet()
     {
-        PlayerList = FindObjectsByType<Player_State>(FindObjectsSortMode.None).OrderBy(x => x.photonView.ViewID).ToList();
-        EnemyList = FindObjectsByType<Enemy_State>(FindObjectsSortMode.None).OrderBy(x => x.photonView.ViewID).ToList();
+        StateList = FindObjectsByType<State_Base>(FindObjectsSortMode.None).OrderBy(x => x.photonView.ViewID).ToList();
+        PlayerList.Clear();
         BossList.Clear();
-        for(int i=0;i< EnemyList.Count; i++)
+        for (int i = 0; i < StateList.Count; i++)
         {
-            if (EnemyList[i].Boss)BossList.Add(EnemyList[i]);
+            var Sta = StateList[i];
+            if (Sta.Player) PlayerList.Add(Sta);
+            if (Sta.Boss) BossList.Add(Sta);
         }
     }
     public void DeathAdd()
@@ -62,11 +81,17 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
         {
             stream.SendNext(Time);
             stream.SendNext(DeathCount);
+            stream.SendNext(Star);
+            stream.SendNext(BossCheck);
+            stream.SendNext(End);
         }
         else
         {
             Time = (int)stream.ReceiveNext();
             DeathCount = (int)stream.ReceiveNext();
+            Star = (int)stream.ReceiveNext();
+            BossCheck = (bool)stream.ReceiveNext();
+            End = (bool)stream.ReceiveNext();
         }
     }
 }

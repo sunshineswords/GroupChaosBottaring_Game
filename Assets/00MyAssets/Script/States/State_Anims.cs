@@ -1,8 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class State_Anims : MonoBehaviour
 {
-    [SerializeField] State_Base Sta;
+    public State_Base Sta;
     [SerializeField] Animator Anim;
 
     void Update()
