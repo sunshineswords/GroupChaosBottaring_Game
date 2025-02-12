@@ -4,6 +4,12 @@ using UnityEngine;
 using System.Linq;
 using static Statics;
 using static DataBase;
+using static Data_Atk;
+using UnityEditor.VersionControl;
+using static UnityEditor.PlayerSettings;
+using static UnityEngine.Rendering.DebugUI.Table;
+
+
 public class State_Atk
 {
     static public void Branch(State_Base USta, bool Enter, bool Stay)
@@ -37,15 +43,28 @@ public class State_Atk
                     case Data_Atk.AtkIfE.攻撃未長入力:
                         if (Stay) Check = false;
                         break;
+                    case AtkIfE.地上:
+                        if(!USta.Ground) Check = false;
+                        break;
+                    case AtkIfE.空中:
+                        if (USta.Ground) Check = false;
+                        break;
+                    case AtkIfE.MP有り:
+                        if (USta.LowMP) Check = false;
+                        break;
+                    case AtkIfE.MP無し:
+                        if(!USta.LowMP)Check = false;
+                        break;
                 }
                 if (!Check) break;
             }
-            if (Check)
-            {
-                USta.AtkBranch = BranchD.FutureNum;
-                USta.AtkTime = BranchD.FutureTime;
-                return;
-            }
+            if (!Check) continue;
+            if (BranchD.UseMP > 0 && USta.LowMP) continue;
+            USta.MP -= BranchD.UseMP;
+            USta.AtkBranch = BranchD.FutureNum;
+            USta.AtkTime = BranchD.FutureTime;
+            return;
+
         }
     }
     static public void Fixed(State_Base USta)
@@ -62,10 +81,11 @@ public class State_Atk
                 USta.NoDash = MFixed.NoDash;
                 USta.NoJump = MFixed.NoJump;
                 USta.Aiming = MFixed.Aiming;
+                USta.NGravity = MFixed.NGravity;
             }
         }
     }
-    static public void Shot(State_Base USta, Vector3 CharaPos, Vector3 CharaRot,Vector3 CamRot)
+    static public void Shot(State_Base USta, Vector3 BasePos, Vector3 BaseRot,Vector3 CamRot)
     {
         var AtkD = USta.AtkD;
         if (AtkD.Shots == null) return;
@@ -81,68 +101,133 @@ public class State_Atk
                 for (int k = 0; k < AtFire.Count; k++)
                 {
                     float WaySet = k - ((AtFire.Count - 1) / 2f);
-                    var Pos = CharaPos;
-                    #region 座標設定
-                    switch (AtFire.Trans.PosBase)
-                    {
-                        case Data_Atk.PosBaseE.ターゲット位置:
-                            if (USta.Target != null) Pos = USta.Target.PosGet();
-                            break;
-                    }
-                    Pos += Quaternion.Euler(CharaRot) * AtFire.Trans.PosChange;
-                    Pos += Quaternion.Euler(CharaRot) * AtFire.Trans.PosWay * WaySet;
-                    Pos += Quaternion.Euler(CharaRot) * AtFire.Trans.PosTime * USta.AtkTime;
-                    Vector3 RPos;
-                    RPos.x = Float_NegRand(AtFire.Trans.PosRand.x);
-                    RPos.y = Float_NegRand(AtFire.Trans.PosRand.y);
-                    RPos.z = Float_NegRand(AtFire.Trans.PosRand.z);
-                    Pos += Quaternion.Euler(CharaRot) * RPos;
-                    #endregion
-                    var Rot = CharaRot;
-                    #region 角度設定
-                    switch (AtFire.Trans.RotBase)
-                    {
-                        case Data_Atk.RotBaseE.固定: Rot = Vector3.zero; break;
-                        case Data_Atk.RotBaseE.ターゲット方向:
-                            if (USta.Target != null)
-                            {
-                                var TVect = USta.Target.PosGet() - Pos;
-                                Rot = Quaternion.LookRotation(Vector3.forward, TVect).eulerAngles;
-                            }
-                            break;
-                        case Data_Atk.RotBaseE.使用者カメラ方向: Rot = CamRot; break;
-                    }
-                    Rot += AtFire.Trans.RotChange;
-                    Rot += AtFire.Trans.RotWay * WaySet;
-                    Rot += AtFire.Trans.RotTime * USta.AtkTime;
-                    Rot.x += Float_NegRand(AtFire.Trans.RotRand.x);
-                    Rot.y += Float_NegRand(AtFire.Trans.RotRand.y);
-                    Rot.z += Float_NegRand(AtFire.Trans.RotRand.z);
-                    #endregion
-
-                    #region 発射
-                    var ShotIns = PhotonNetwork.Instantiate(AtShot.Obj.name, Pos, Quaternion.Euler(Rot));
-                    var ShotRig = ShotIns.GetComponent<Rigidbody>();
-                    ShotRig.linearVelocity += ShotIns.transform.forward * V2_Rand_Float(AtFire.Speed)*0.01f;
-                    var SObj = ShotIns.GetComponent<Shot_Obj>();
-                    if (SObj != null)
-                    {
-                        SObj.USta = USta;
-                        SObj.ShotD = AtShot;
-                        SObj.BranchNum = USta.AtkBranch;
-                    }
-                    var Sta = ShotIns.GetComponent<State_Base>();
-                    if (Sta != null)
-                    {
-                        Sta.Team = USta.Team;
-                    }
-                    #endregion
+                    var Pos = PosGet(USta, AtFire, BasePos, BaseRot, WaySet,USta.AtkTime);
+                    var Rot = RotGet(USta, AtFire, Pos, BaseRot, CamRot, WaySet, USta.AtkTime);
+                    Shots(USta, AtShot, AtFire.Speed, Pos, Rot);
+                }
+            }
+        }
+    }
+    static public void ShotAdd(State_Base USta,Data_AddShot AddShotD,int Times, Vector3 BasePos, Vector3 BaseRot)
+    {
+        for (int i = 0; i < AddShotD.Shots.Length; i++)
+        {
+            var AtShot = AddShotD.Shots[i];
+            for (int j = 0; j < AtShot.Fires.Length; j++)
+            {
+                var AtFire = AtShot.Fires[j];
+                for (int k = 0; k < AtFire.Count; k++)
+                {
+                    float WaySet = k - ((AtFire.Count - 1) / 2f);
+                    var Pos = PosGet(USta, AtFire, BasePos, BaseRot, WaySet,Times);
+                    var Rot = RotGet(USta, AtFire, Pos, BaseRot,BaseRot, WaySet, Times);
+                    Shots(USta, AtShot, AtFire.Speed, Pos, Rot);
                 }
 
             }
         }
     }
 
+    static public Vector3 PosGet(State_Base USta, ShotC_Fire Fire, Vector3 BasePos, Vector3 BaseRot, float Way,int Times)
+    {
+        var Pos = BasePos;
+        switch (Fire.Trans.PosBase)
+        {
+            case Data_Atk.PosBaseE.ターゲット位置:
+                if (USta.Target != null) Pos = USta.Target.PosGet();
+                break;
+        }
+        Pos += Quaternion.Euler(BaseRot) * Fire.Trans.PosChange;
+        Pos += Quaternion.Euler(BaseRot) * Fire.Trans.PosWay * Way;
+        Pos += Quaternion.Euler(BaseRot) * Fire.Trans.PosTime * Times;
+        Vector3 RPos;
+        RPos.x = Float_NegRand(Fire.Trans.PosRand.x);
+        RPos.y = Float_NegRand(Fire.Trans.PosRand.y);
+        RPos.z = Float_NegRand(Fire.Trans.PosRand.z);
+        Pos += Quaternion.Euler(BaseRot) * RPos;
+        return Pos;
+    }
+    static public Vector3 RotGet(State_Base USta, ShotC_Fire Fire, Vector3 BasePos, Vector3 BaseRot, Vector3 CamRot, float Way, int Times)
+    {
+        var Rot = RotBaseGet(USta, Fire.Trans.RotBase, BasePos, BaseRot, CamRot);
+        Rot += Fire.Trans.RotChange;
+        Rot += Fire.Trans.RotWay * Way;
+        Rot += Fire.Trans.RotTime * Times;
+        Rot.x += Float_NegRand(Fire.Trans.RotRand.x);
+        Rot.y += Float_NegRand(Fire.Trans.RotRand.y);
+        Rot.z += Float_NegRand(Fire.Trans.RotRand.z);
+        return Rot;
+    }
+    static public Vector3 RotBaseGet(State_Base USta, RotBaseE RotBase,Vector3 Pos,Vector3 Rot,Vector3 CamRot)
+    {
+        switch (RotBase)
+        {
+            case RotBaseE.固定:return Vector3.zero;
+            case RotBaseE.ターゲット方向:
+                if (USta.Target != null || USta.TargetHit != null)
+                {
+                    var TVect = (USta.Target != null ? USta.Target.PosGet() : USta.TargetHit.PosGet()) - Pos;
+                    Debug.Log(TVect);
+                    Debug.Log(Quaternion.LookRotation(TVect,Vector3.forward).eulerAngles);
+                    return Quaternion.LookRotation(TVect, Vector3.forward).eulerAngles;
+                }
+                break;
+            case RotBaseE.使用者カメラ方向: return CamRot;
+        }
+        return Rot;
+    }
+    static public void Shots(State_Base USta,ShotC_Base Shot,Vector2 Speed,Vector3 Pos,Vector3 Rot)
+    {
+        var ShotIns = PhotonNetwork.Instantiate(Shot.Obj.name, Pos, Quaternion.Euler(Rot));
+        var ShotRig = ShotIns.GetComponent<Rigidbody>();
+        ShotRig.linearVelocity += ShotIns.transform.forward * V2_Rand_Float(Speed) * 0.01f;
+        var SObj = ShotIns.GetComponent<Shot_Obj>();
+        if (SObj != null)
+        {
+            SObj.USta = USta;
+            SObj.ShotD = Shot;
+            SObj.BranchNum = USta.AtkBranch;
+        }
+        var Sta = ShotIns.GetComponent<State_Base>();
+        if (Sta != null)
+        {
+            Sta.Team = USta.Team;
+        }
+    }
+
+    static public void Move(State_Base USta, Vector3 CamRot)
+    {
+        var AtkD = USta.AtkD;
+        if (AtkD.Moves == null) return;
+        for (int i = 0; i < AtkD.Moves.Length; i++)
+        {
+            var Move = AtkD.Moves[i];
+            if (USta.AtkBranch != Move.BranchNum) continue;
+            if (!V3IntTimeCheck(USta.AtkTime, Move.Times)) continue;
+            var RigVect = USta.Rig.linearVelocity;
+            var Rot = RotBaseGet(USta, Move.Base,USta.PosGet(), USta.RotGet(), CamRot);
+            if(Move.SetSpeed) RigVect = Quaternion.Euler(Rot) * Move.Vect * 0.01f;
+            else RigVect += Quaternion.Euler(Rot) * Move.Vect * 0.01f;
+            USta.Rig.linearVelocity = RigVect;
+        }
+    }
+    static public void State(State_Base USta)
+    {
+        var AtkD = USta.AtkD;
+        if (AtkD.States == null) return;
+        for (int i = 0; i < AtkD.States.Length; i++)
+        {
+            var State = AtkD.States[i];
+            if (State.BranchNum != USta.AtkBranch) continue;
+            if (!V3IntTimeCheck(USta.AtkTime, State.Times)) continue;
+            switch (State.State)
+            {
+                case StateE.HP:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(State.Adds)); break;
+                case StateE.MP:USta.MP += State.Adds;break;
+                case StateE.SP:USta.SP += State.Adds;break;
+            }
+        }
+    }
     static public void WeponSet(State_Base USta)
     {
         var AtkD = USta.AtkD;
@@ -156,7 +241,10 @@ public class State_Atk
                 USta.WeponSets.TryAdd((int)AtWep.Set, -1);
                 USta.WeponPoss.TryAdd((int)AtWep.Set, Vector3.zero);
                 USta.WeponRots.TryAdd((int)AtWep.Set, Vector3.zero);
+
                 USta.WeponSets[(int)AtWep.Set] = DB.Wepons.IndexOf(AtWep.Obj);
+                USta.WeponPoss[(int)AtWep.Set] = AtWep.PosChange;
+                USta.WeponRots[(int)AtWep.Set] = AtWep.RotChange;
             }
         }
     }

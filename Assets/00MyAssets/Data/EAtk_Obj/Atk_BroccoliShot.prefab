@@ -139,6 +139,8 @@ MonoBehaviour:
   Rig: {fileID: 8710933915686848093}
   RemTime: 60
   HitRem: 1
+  DelAddShots:
+  - {fileID: 11400000, guid: 75804ec4aa09ac44e96ef243cf8f958c, type: 2}
   Times: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
@@ -154,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
+  WallRem: 1
 --- !u!135 &1096604114630377537
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -195,6 +198,7 @@ MonoBehaviour:
     TargetMode: 1
     TargetCT: 50
     Target: {fileID: 0}
+    TargetHit: {fileID: 0}
     TCT: 0
   - Times: {x: 0, y: 999, z: 0}
     MoveMode: -1
@@ -202,6 +206,7 @@ MonoBehaviour:
     TargetMode: 0
     TargetCT: 0
     Target: {fileID: 0}
+    TargetHit: {fileID: 0}
     TCT: 0
 --- !u!1 &7425847801273460772
 GameObject:

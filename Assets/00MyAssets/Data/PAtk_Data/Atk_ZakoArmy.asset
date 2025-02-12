@@ -19,6 +19,7 @@ MonoBehaviour:
   CT: 15
   SPUse: 250
   BranchInfos: []
+  Branchs: []
   Fixeds:
   - EditDisp: '[0]BNum:0Time:(0, 60)'
     BranchNum: 0
@@ -27,24 +28,25 @@ MonoBehaviour:
     NoJump: 0
     NoDash: 0
     Aiming: 1
+    NGravity: 0
   Shots:
   - Obj: {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
     Fires:
-    - EditDisp: '[0]BNum:0,Time:(30, 30, 0),Count:12,Speed:(2000.00, 6000.00)'
+    - EditDisp: '[0]BNum:0,Time:(30, 30, 0),Count:7,Speed:(0.00, 0.00)'
       BranchNum: 0
       Times: {x: 30, y: 30, z: 0}
-      Count: 12
-      Speed: {x: 2000, y: 6000}
+      Count: 7
+      Speed: {x: 0, y: 0}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
+        PosChange: {x: -3, y: 0, z: 4}
         PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
+        PosWay: {x: 1, y: 0, z: 0}
         PosTime: {x: 0, y: 0, z: 0}
         RotBase: 2
         RotChange: {x: 0, y: 0, z: 0}
         RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 30, z: 0}
+        RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
     - EditDisp: '[0]BNum:0'
@@ -55,7 +57,9 @@ MonoBehaviour:
       DefRemPer: 0
       SPAdd: 0
     HitCT: 0
-  Branchs: []
+  Moves: []
+  States: []
+  WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 60)ID:3'
     BranchNum: 0

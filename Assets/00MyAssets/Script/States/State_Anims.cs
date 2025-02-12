@@ -15,13 +15,16 @@ public class State_Anims : MonoBehaviour
         Anim.SetInteger("MoveID", Sta.Anim_MoveID);
         Anim.SetInteger("AtkID", Sta.Anim_AtkID);
         Anim.SetInteger("OtherID", Sta.Anim_OtherID);
-        SetTrans.TryAdd(0, Anim.GetBoneTransform(HumanBodyBones.RightHand));
-        SetTrans.TryAdd(1, Anim.GetBoneTransform(HumanBodyBones.LeftHand));
+        if (Anim.avatar != null)
+        {
+            SetTrans.TryAdd(0, Anim.GetBoneTransform(HumanBodyBones.RightHand));
+            SetTrans.TryAdd(1, Anim.GetBoneTransform(HumanBodyBones.LeftHand));
+
+        }
         var WeponKeys = Sta.WeponSets.Keys.ToArray();
         for (int i = 0; i < WeponKeys.Length; i++)
         {
             var WepKey = WeponKeys[i];
-            Debug.Log("Wep" + WepKey + ":" + Sta.WeponSets[i]);
             WeponSets.TryAdd(WepKey, -1);
             WeponSObjs.TryAdd(WepKey, null);
             if (WeponSets[WepKey] != Sta.WeponSets[WepKey])
@@ -31,14 +34,18 @@ public class State_Anims : MonoBehaviour
                 if (WeponSets[WepKey] >= 0)
                 {
                     var InsWepon = Instantiate(DB.Wepons[WeponSets[WepKey]]);
-                    InsWepon.transform.parent = SetTrans[WepKey];
-                    InsWepon.transform.localPosition = Vector3.zero;
-                    InsWepon.transform.localPosition += Sta.WeponPoss[WepKey];
-                    InsWepon.transform.localRotation = Quaternion.identity;
-                    InsWepon.transform.localEulerAngles += Sta.WeponRots[WepKey];
+                    var Trans = SetTrans.TryGetValue(WepKey,out var oTrans) ? oTrans : null;
+                    InsWepon.transform.parent = Trans != null ? Trans : transform;
                     WeponSObjs[WepKey] = InsWepon;
                 }
-
+            }
+            var SetWep = WeponSObjs[WepKey];
+            if (WeponSObjs[WepKey] != null)
+            {
+                SetWep.transform.localPosition = Vector3.zero;
+                SetWep.transform.localPosition += Sta.WeponPoss[WepKey];
+                SetWep.transform.localRotation = Quaternion.identity;
+                SetWep.transform.localEulerAngles += Sta.WeponRots[WepKey];
             }
         }
     }

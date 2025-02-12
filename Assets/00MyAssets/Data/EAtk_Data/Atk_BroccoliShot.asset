@@ -18,6 +18,8 @@ MonoBehaviour:
   EndTime: 45
   CT: 0
   SPUse: 0
+  BranchInfos: []
+  Branchs: []
   Fixeds: []
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: f5974f404649ca64bb7daed5fdc00e7e, type: 3}
@@ -45,8 +47,10 @@ MonoBehaviour:
       AtkDamPer: 100
       DefDamPer: 0
       DefRemPer: 0
+      SPAdd: 0
     HitCT: 0
-  Branchs: []
+  Moves: []
+  WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 35)ID:1'
     BranchNum: 0

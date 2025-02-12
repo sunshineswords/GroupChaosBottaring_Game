@@ -11,8 +11,11 @@ public class Shot_Obj : MonoBehaviourPun
     [SerializeField] int RemTime;
     [SerializeField] bool HitRem;
     [System.NonSerialized] public Data_Atk.ShotC_Base ShotD;
+    public Data_AddShot[] DelAddShots;
+
     public int Times = 0;
     public int BranchNum;
+    bool Dels = false;
     public Dictionary<State_Base,int> HitList = new Dictionary<State_Base,int>();
     private void FixedUpdate()
     {
@@ -55,6 +58,16 @@ public class Shot_Obj : MonoBehaviourPun
     }
     public void ShotDel()
     {
+        if (!Dels)
+        {
+            Dels = true;
+            if (DelAddShots != null)
+                for (int i = 0; i < DelAddShots.Length; i++)
+                {
+                    State_Atk.ShotAdd(USta, DelAddShots[i],Times, transform.position, transform.eulerAngles);
+                }
+        }
+
         PhotonNetwork.Destroy(gameObject);
     }
 }

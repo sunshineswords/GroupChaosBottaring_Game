@@ -24,12 +24,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ab94a06bdb2103642ac357da1981b900, type: 2}
   - {fileID: 11400000, guid: fe790ac966b5f3f4a8749b652c324b56, type: 2}
   - {fileID: 11400000, guid: 2d2a4a4ed7a321c46bb4ce187efc6cc3, type: 2}
+  - {fileID: 11400000, guid: c5bf7f6a7bee8204d890feaff821f3ef, type: 2}
+  - {fileID: 11400000, guid: 746e60bb4b228b240b23de22703f4d15, type: 2}
+  - {fileID: 11400000, guid: c9635e4e9c42f0c4698ae8a0a3fdd29a, type: 2}
   S_Atks:
   - {fileID: 11400000, guid: 8d3fd8336d5d82e4ebb6e672981a5e1f, type: 2}
   - {fileID: 11400000, guid: 11ffa3577a5219f4aa9e40347ae2f43c, type: 2}
   - {fileID: 11400000, guid: 0a8aa34750e629047bc54d93a2e0b4cf, type: 2}
   - {fileID: 11400000, guid: 8987fdee0776d5b48bd97355c4cd7fab, type: 2}
   - {fileID: 11400000, guid: 5d3c652b7957c7642b6dcb3ce656e2c6, type: 2}
+  - {fileID: 11400000, guid: 62a26761199953041a35a8c51b06929f, type: 2}
+  - {fileID: 11400000, guid: 2cda9d4341bfeff419eff21300c22f1e, type: 2}
   E_Atks:
   - {fileID: 11400000, guid: 40dbec132893f92458f13ebb61e76ddd, type: 2}
   - {fileID: 11400000, guid: 7940ced0e66f13b48a4a5fdc7c157138, type: 2}
@@ -37,8 +42,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 72e534dc8c266734cb39f667e189e117, type: 2}
   - {fileID: 11400000, guid: cd7e365ec09a84e43b714ab3eecfe0f9, type: 2}
   - {fileID: 11400000, guid: ba33213edd0bb0e46b06fdd42a2c6ec5, type: 2}
+  - {fileID: 11400000, guid: da22a7279bdef4547b197610c86c8ba1, type: 2}
+  - {fileID: 11400000, guid: 352e9c4e2aa5e3940acb8572fbf6f984, type: 2}
+  - {fileID: 11400000, guid: 719586dd196f4a546b1b4bce90de6d30, type: 2}
   Wepons:
   - {fileID: 6293833836109196858, guid: 93808f716b8dfec41a3316c3ae98591c, type: 3}
+  - {fileID: 6293833836109196858, guid: fdcd55e0466b77c4a87c0528646b8a6a, type: 3}
+  - {fileID: 6293833836109196858, guid: 1fa631b6e4f35a44a90d5646f718260f, type: 3}
+  - {fileID: 6293833836109196858, guid: 4a57d28086d6f2f488440fa625e16d7d, type: 3}
+  - {fileID: 6293833836109196858, guid: 3d11648eb48e09e46abbed22b097c343, type: 3}
+  - {fileID: 6293833836109196858, guid: 34999135b8ab0a14c88341df51f2f4f3, type: 3}
+  - {fileID: 6293833836109196858, guid: 79ddd92fee3f8294598064cd47154545, type: 3}
   Stages:
   - {fileID: 11400000, guid: 632b57d86c62ed6439b96f12aeb840a2, type: 2}
   - {fileID: 11400000, guid: 07c8d87946b505d4484d0d663a5c7a9d, type: 2}

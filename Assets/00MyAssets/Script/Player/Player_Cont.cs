@@ -1,9 +1,11 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static BattleManager;
+using static Statics;
 public class Player_Cont : MonoBehaviourPun
 {
-    [SerializeField] int AIID = 0;
+    public int AIID = 0;
     [SerializeField] PlayerInput PI;
     public Vector2 Move;
     public Vector2 Look;
@@ -20,6 +22,8 @@ public class Player_Cont : MonoBehaviourPun
     public bool EAtk_Enter;
     public bool EAtk_Stay;
 
+
+
     void Update()
     {
         if (!photonView.IsMine) return;
@@ -30,7 +34,7 @@ public class Player_Cont : MonoBehaviourPun
             case 1: AILV0(); break;
 
         }
-        PICont();
+
     }
     void ResetInput()
     {
@@ -74,4 +78,5 @@ public class Player_Cont : MonoBehaviourPun
         S2Atk_Enter = Random.value <= 0.1f;
         EAtk_Enter = Random.value <= 0.05f;
     }
+
 }

@@ -17,6 +17,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     public bool BossCheck;
     public bool End;
     [System.NonSerialized] public List<State_Base> StateList = new List<State_Base>();
+    [System.NonSerialized] public List<State_Hit> HitList = new List<State_Hit>();
     [System.NonSerialized] public List<State_Base> PlayerList = new List<State_Base>();
     [System.NonSerialized] public List<State_Base> BossList = new List<State_Base>();
 
@@ -56,6 +57,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     }
     void ListSet()
     {
+        HitList = FindObjectsByType<State_Hit>(FindObjectsSortMode.None).OrderBy(x => x.Sta.photonView.ViewID).ToList();
         StateList = FindObjectsByType<State_Base>(FindObjectsSortMode.None).OrderBy(x => x.photonView.ViewID).ToList();
         PlayerList.Clear();
         BossList.Clear();

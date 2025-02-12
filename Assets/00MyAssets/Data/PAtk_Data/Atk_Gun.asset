@@ -224,16 +224,40 @@ MonoBehaviour:
   WeponSets:
   - BranchNum: 10
     Times: {x: 0, y: 999}
-    Obj: {fileID: 6293833836109196858, guid: 93808f716b8dfec41a3316c3ae98591c, type: 3}
+    Obj: {fileID: 6293833836109196858, guid: fdcd55e0466b77c4a87c0528646b8a6a, type: 3}
     Set: 0
     PosChange: {x: 0, y: 0, z: 0}
-    RotChange: {x: 0, y: 0, z: 0}
+    RotChange: {x: 315, y: 290, z: 265}
   - BranchNum: 11
     Times: {x: 0, y: 999}
-    Obj: {fileID: 6293833836109196858, guid: 93808f716b8dfec41a3316c3ae98591c, type: 3}
+    Obj: {fileID: 6293833836109196858, guid: fdcd55e0466b77c4a87c0528646b8a6a, type: 3}
     Set: 0
     PosChange: {x: 0, y: 0, z: 0}
-    RotChange: {x: 0, y: 0, z: 0}
+    RotChange: {x: 315, y: 290, z: 265}
+  - BranchNum: 0
+    Times: {x: 0, y: 999}
+    Obj: {fileID: 6293833836109196858, guid: fdcd55e0466b77c4a87c0528646b8a6a, type: 3}
+    Set: 0
+    PosChange: {x: 0, y: 0, z: 0}
+    RotChange: {x: 315, y: 290, z: 265}
+  - BranchNum: 1
+    Times: {x: 0, y: 999}
+    Obj: {fileID: 6293833836109196858, guid: fdcd55e0466b77c4a87c0528646b8a6a, type: 3}
+    Set: 0
+    PosChange: {x: 0, y: 0, z: 0}
+    RotChange: {x: 315, y: 290, z: 265}
+  - BranchNum: 2
+    Times: {x: 0, y: 999}
+    Obj: {fileID: 6293833836109196858, guid: fdcd55e0466b77c4a87c0528646b8a6a, type: 3}
+    Set: 0
+    PosChange: {x: 0, y: 0, z: 0}
+    RotChange: {x: 315, y: 290, z: 265}
+  - BranchNum: 3
+    Times: {x: 0, y: 999}
+    Obj: {fileID: 6293833836109196858, guid: fdcd55e0466b77c4a87c0528646b8a6a, type: 3}
+    Set: 0
+    PosChange: {x: 0, y: 0, z: 0}
+    RotChange: {x: 315, y: 290, z: 265}
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 50)ID:101'
     BranchNum: 0
@@ -253,5 +277,9 @@ MonoBehaviour:
     ID: 102
   - EditDisp: '[4]BNum:2Time:(0, 50)ID:102'
     BranchNum: 2
+    Times: {x: 0, y: 50}
+    ID: 102
+  - EditDisp: '[5]BNum:3Time:(0, 50)ID:102'
+    BranchNum: 3
     Times: {x: 0, y: 50}
     ID: 102

@@ -13,22 +13,32 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public Rigidbody Rig;
     public Transform CamTrans;
     public float Hight;
-    public GameObject DeathEffect;
-    public int Team;
-    public bool Player;
-    public bool Boss;
-    public bool Undet;
+    [Tooltip("チーム")] public int Team;
+    [Tooltip("プレイヤー")] public bool Player;
+    [Tooltip("ボス")] public bool Boss;
+    [Tooltip("不死")] public bool Undet;
+    [Tooltip("死亡エフェクト")] public GameObject DeathEffect;
     [Header("ステータス")]
-    public int MHP;
-    public int Atk;
-    public int Def;
+    [Tooltip("最大HP")]public int MHP;
+    [Tooltip("秒間HP回復速度")] public float HPRegene;
+    [Tooltip("最大MP(移動力)")] public int MMP;
+    [Tooltip("秒間MP回復速度")] public float MPRegene;
+    [Tooltip("攻撃力")] public int Atk;
+    [Tooltip("防御力")] public int Def;
     [Header("変数")]
-    public int HP;
-    public int SP;
+    public float HP;
+    public float MP;
+    public float SP;
     public int DeathTime;
+
+    public bool LowMP;
+
     public int DashTime;
+    public bool GroundB;
+    public bool Ground;
 
     public State_Base Target;
+    public State_Hit TargetHit;
 
     public Data_Atk AtkD;
     public int AtkSlot;
@@ -39,6 +49,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public bool NoJump;
     public bool NoDash;
     public bool Aiming;
+    public bool NGravity;
 
     public Dictionary<int,int> WeponSets = new Dictionary<int, int>();
     public Dictionary<int, Vector3> WeponPoss = new Dictionary<int, Vector3>();
@@ -59,10 +70,12 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     private void Start()
     {
         HP = MHP;
+        MP = MMP;
         if (!PhotonNetwork.OfflineMode)
         {
             if (Player) Name = photonView.Owner.NickName;
         }
+        if (CamTrans == null) CamTrans = transform;
     }
     private void FixedUpdate()
     {
@@ -70,6 +83,16 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (HP <= 0) Anim_OtherID = 2;
 
         if (!photonView.IsMine) return;
+        Ground = GroundB;
+        GroundB = false;
+        if (MP <= 0)
+        {
+            MP = 0;
+            LowMP = true;
+        }
+        if(Ground)MP += MPRegene / 60f;
+        MP = Mathf.Min(MP, MMP);
+        if (LowMP && MP >= MMP * 0.2f) LowMP = false;
         if (HP <= 0)
         {
 
@@ -82,7 +105,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             {
                 if (DeathTime >= 300)HP = MHP;
             }
-            else if (!Boss && Team!=0)
+            else if (!Boss)
             {
                 if (DeathTime >= 60) Deletes();
             }
@@ -91,12 +114,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
         else
         {
+            HP += HPRegene / 60f;
+            HP = Mathf.Min(HP, MHP);
             DeathTime = 0;
         }
-        if (!Player && BTManager.End) Deletes();
+        if (!Player && Team != 0 && BTManager.End) Deletes();
         DashTime--;
 
         AtkPlays(CamTrans.eulerAngles);
+        if (Rig) Rig.useGravity = !NGravity;
     }
 
     public Vector3 PosGet()
@@ -138,7 +164,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             if (SP < UseAtkD.SPUse) return;
             int CTs = Mathf.RoundToInt(UseAtkD.CT * 60);
             AtkCTs.Add(UseAtkSlot, new AtkCTC { CT = CTs, CTMax = CTs });
-            SP -= UseAtkD.SPUse;
+            if(UseAtkD.SPUse>0)SP = 0;
 
             AtkD = UseAtkD;
             AtkSlot = UseAtkSlot;
@@ -161,16 +187,16 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [PunRPC]
     void RPC_Damage(Vector3 HitPos, int Val)
     {
-        Color DamCol = Color.white;
+        Color DamCol = Val >= 0 ? Color.white : Color.magenta;
         GameObject HitEffect = DB.EnemyHitEffect;
         switch (Team)
         {
             case 0:
-                DamCol = Color.red;
+                DamCol = Val >= 0 ? Color.red : Color.green;
                 HitEffect = DB.PlayerHitEffect;
                 break;
         }
-        DamageObj.DamageSet(HitPos, Val, DamCol);
+        DamageObj.DamageSet(HitPos, Mathf.Abs(Val), DamCol);
         var InsHitEffect = Instantiate(HitEffect, HitPos, Quaternion.identity);
         if (!photonView.IsMine) return;
         HP -= Val;
@@ -200,6 +226,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         NoJump = false;
         NoDash = false;
         Aiming = false;
+        NGravity = false;
         #region スキル処理
         if (HP <= 0) AtkD = null;
         Anim_AtkID = 0;
@@ -210,6 +237,8 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
         State_Atk.Fixed(this);
         State_Atk.Shot(this,PosGet(), RotGet(),CamRot);
+        State_Atk.Move(this, CamRot);
+        State_Atk.State(this);
         State_Atk.WeponSet(this);
         State_Atk.Anim(this);
         AtkTime++;
@@ -225,6 +254,16 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             stream.SendNext(Team);
 
             stream.SendNext(HP);
+
+            var WepSetKeys = WeponSets.Keys.ToArray();
+            var WepSetIDs = WeponSets.Values.ToArray();
+            var WepSetPoss = WeponPoss.Values.ToArray();
+            var WepSetRots = WeponRots.Values.ToArray();
+            stream.SendNext(WepSetKeys);
+            stream.SendNext(WepSetIDs);
+            stream.SendNext(WepSetPoss);
+            stream.SendNext(WepSetRots);
+
             stream.SendNext(Anim_MoveID);
             stream.SendNext(Anim_AtkID);
             stream.SendNext(Anim_OtherID);
@@ -235,7 +274,22 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             MHP = (int)stream.ReceiveNext();
             Team = (int)stream.ReceiveNext();
 
-            HP = (int)stream.ReceiveNext();
+            HP = (float)stream.ReceiveNext();
+
+            var WepSetKeys = (int[])stream.ReceiveNext();
+            var WepSetIDs = (int[])stream.ReceiveNext();
+            var WepSetPoss = (Vector3[])stream.ReceiveNext();
+            var WepSetRots = (Vector3[])stream.ReceiveNext();
+            WeponSets.Clear();
+            WeponPoss.Clear();
+            WeponRots.Clear();
+            for (int i = 0; i < WepSetKeys.Length; i++)
+            {
+                WeponSets.Add(WepSetKeys[i], WepSetIDs[i]);
+                WeponPoss.Add(WepSetKeys[i], WepSetPoss[i]);
+                WeponRots.Add(WepSetKeys[i], WepSetRots[i]);
+            }
+
             Anim_MoveID = (int)stream.ReceiveNext();
             Anim_AtkID = (int)stream.ReceiveNext();
             Anim_OtherID = (int)stream.ReceiveNext();
