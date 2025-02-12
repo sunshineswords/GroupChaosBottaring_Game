@@ -1,19 +1,23 @@
 ﻿using DG.Tweening;
-using System;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
-public class InstructionsSpaceAnimation : MonoBehaviour, IUIAnimation
+public class ColorebleUI : MonoBehaviour, IUIAnimation
 {
+
     #region 変数
 
     [SerializeField]
     private bool playOnStart = true;
 
     private Tween _tween;
-    private RectTransform rectTransform => transform as RectTransform;
 
-    [SerializeField] Vector2 _startPosition;
-    [SerializeField] Vector2 _endPosition;
+    [SerializeField]
+    private Image image = null;
+
+    [SerializeField] Color _startColor;
+    [SerializeField] Color _endColor;
     [SerializeField] float _duration = 0.3f;
     [SerializeField] Ease _easeType = Ease.Linear;
     [SerializeField] int _loopCount = 0;
@@ -103,9 +107,9 @@ public class InstructionsSpaceAnimation : MonoBehaviour, IUIAnimation
 
     private Tween CreateAnimation()
     {
-        rectTransform.anchoredPosition = _startPosition;
+        image.color = _startColor;
 
-        return rectTransform.DOAnchorPos(_endPosition, _duration)
+        return image.DOColor(_endColor, _duration)
             .SetEase(_easeType)
             .SetLoops(_loopCount, _loopType)
             .OnComplete(() => OnComplete?.Invoke())
@@ -114,9 +118,9 @@ public class InstructionsSpaceAnimation : MonoBehaviour, IUIAnimation
 
     private Tween CreateReverseAnimation()
     {
-        rectTransform.anchoredPosition = _endPosition;
+        image.color = _endColor;
 
-        return rectTransform.DOAnchorPos(_startPosition, _duration)
+        return image.DOColor(_startColor, _duration)
             .SetEase(_easeType)
             .SetLoops(_loopCount, _loopType)
             .OnComplete(() => OnComplete?.Invoke())
