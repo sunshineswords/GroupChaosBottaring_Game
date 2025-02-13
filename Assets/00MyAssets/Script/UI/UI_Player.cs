@@ -9,14 +9,17 @@ public class UI_Player : MonoBehaviour
     [SerializeField] Player_Cont PCont;
     [SerializeField] Player_Atk PAtk;
     [SerializeField] Image HPBar;
+    [SerializeField] Image MPBar;
+    [SerializeField] Image MPFill;
     [SerializeField] TextMeshProUGUI AtkFBTx;
     [SerializeField] UI_Sin_Atk[] AtkUIs;
     [SerializeField] TextMeshProUGUI AtkInfoTx;
 
     void LateUpdate()
     {
-        HPBar.fillAmount = (float)Sta.HP / Mathf.Max(1, Sta.MHP);
-
+        HPBar.fillAmount = Sta.HP / Mathf.Max(1, Sta.MHP);
+        MPBar.fillAmount = Sta.MP / Mathf.Max(1, Sta.MMP);
+        MPFill.color = Sta.LowMP ? Color.red : Color.white;
         for(int i = 0; i < AtkUIs.Length; i++)
         {
             Data_Atk AtkD = null;

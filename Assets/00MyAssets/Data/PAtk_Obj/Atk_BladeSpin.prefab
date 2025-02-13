@@ -19424,6 +19424,7 @@ GameObject:
   - component: {fileID: 4996487390174411274}
   - component: {fileID: -1467573478106684984}
   - component: {fileID: 2647640555106031623}
+  - component: {fileID: -7632642970117116558}
   m_Layer: 0
   m_Name: Atk_BladeSpin
   m_TagString: Untagged
@@ -19568,6 +19569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   USta: {fileID: 0}
+  Rig: {fileID: 8710933915686848093}
   RemTime: 75
   HitRem: 0
   Times: 0
@@ -19585,6 +19587,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
+--- !u!114 &-7632642970117116558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905403385281065886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685eb37c37aedfc4ab8095085b9269d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SObj: {fileID: -1467573478106684984}
+  Moves:
+  - Times: {x: 0, y: 999, z: 0}
+    MoveMode: 12
+    Pow: 0
+    TargetMode: 10
+    TargetCT: 999
+    Target: {fileID: 0}
+    TCT: 0
 --- !u!1 &7055061268664047510
 GameObject:
   m_ObjectHideFlags: 0

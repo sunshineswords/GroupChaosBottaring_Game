@@ -3,42 +3,71 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="DataCre/Atk")]
 public class Data_Atk : ScriptableObject
 {
+    const string Ttp_BID = "分岐ID条件";
+    const string Ttp_Times = "時間条件\n攻撃時間がx～yフレームの間\nzフレーム間隔";
     public string Name;
     [TextArea]public string Info;
     public Texture Icon;
-    public int EndTime;
-    public float CT;
-    public int SPUse;
+    [Tooltip("終了時間(フレーム)")] public int EndTime;
+    [Tooltip("CT(秒)")] public float CT;
+    [Tooltip("SP消費")] public int SPUse;
 
-    public List<BranchInfoC> BranchInfos;
-    public FixedC[] Fixeds;
-    public ShotC_Base[] Shots;
-    public AtkBranchC[] Branchs;
-    public AnimC[] Anims;
+    [Header("分岐情報")]public List<BranchInfoC> BranchInfos;
+    [Header("分岐先")] public AtkBranchC[] Branchs;
+    [Header("制限")] public FixedC[] Fixeds;
+    [Header("弾発射")] public ShotC_Base[] Shots;
+    [Header("移動")] public MoveC[] Moves;
+    [Header("ステータス変化")] public StateC[] States;
+    [Header("武器表示")] public WeponSetC[] WeponSets;
+    [Header("アニメーション")] public AnimC[] Anims;
     [System.Serializable]
     public class BranchInfoC
     {
-        public int BID;
-        public string Name;
+        [Tooltip(Ttp_BID)] public int BID;
+        [Tooltip("分岐名")] public string Name;
+    }
+    [System.Serializable]
+    public class AtkBranchC
+    {
+        [HideInInspector] public string EditDisp;
+        [Tooltip(Ttp_BID + "いずれか")] public int[] BranchNums;
+        [Tooltip(Ttp_Times)] public Vector2Int Times;
+        [Tooltip("追加条件")] public AtkIfE[] Ifs;
+        [Tooltip("MP消費")] public float UseMP;
+        [Tooltip("分岐先ID")] public int FutureNum;
+        [Tooltip("分岐後攻撃時間(フレーム)")] public int FutureTime;
+    }
+    public enum AtkIfE
+    {
+        攻撃単入力 = 0,
+        攻撃長入力,
+        攻撃未入力,
+        攻撃未長入力,
+        地上 = 10,
+        空中 = 11,
+        MP有り=20,
+        MP無し=21,
     }
     [System.Serializable]
     public class FixedC
     {
         [HideInInspector] public string EditDisp;
-        public int BranchNum;
-        public Vector2Int Times;
-        public float SpeedRem;
-        public bool NoJump;
-        public bool NoDash;
-        public bool Aiming;
+        [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip(Ttp_Times)] public Vector2Int Times;
+        [Tooltip("移動減速")] public float SpeedRem;
+        [Tooltip("ジャンプ不可")] public bool NoJump;
+        [Tooltip("ダッシュ不可")] public bool NoDash;
+        [Tooltip("照準モード")] public bool Aiming;
+        [Tooltip("無重力")] public bool NGravity;
     }
+
     [System.Serializable]
     public class ShotC_Base
     {
-        public GameObject Obj;
-        public ShotC_Fire[] Fires;
-        public ShotC_Hit[] Hits;
-        public int HitCT;
+        [Tooltip("弾オブジェクト")] public GameObject Obj;
+        [Tooltip("発射")] public ShotC_Fire[] Fires;
+        [Tooltip("命中効果")] public ShotC_Hit[] Hits;
+        [Tooltip("多段ヒットCT(0以下は単発ヒット)")] public int HitCT;
         public void EditDispSet()
         {
             for(int i = 0; i < Fires.Length; i++)
@@ -63,11 +92,11 @@ public class Data_Atk : ScriptableObject
     public class ShotC_Fire
     {
         [HideInInspector] public string EditDisp;
-        public int BranchNum;
-        public Vector3Int Times;
-        public int Count;
-        public Vector2 Speed;
-        public ShotC_Trans Trans;
+        [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip(Ttp_Times)] public Vector3Int Times;
+        [Tooltip("弾数")] public int Count;
+        [Tooltip("弾速度x～y")] public Vector2 Speed;
+        [Tooltip("発射形状")] public ShotC_Trans Trans;
     }
     public enum PosBaseE
     {
@@ -84,52 +113,78 @@ public class Data_Atk : ScriptableObject
     [System.Serializable]
     public class ShotC_Trans
     {
-        public PosBaseE PosBase;
-        public Vector3 PosChange;
-        public Vector3 PosRand;
-        public Vector3 PosWay;
-        public Vector3 PosTime;
-        public RotBaseE RotBase;
-        public Vector3 RotChange;
-        public Vector3 RotRand;
-        public Vector3 RotWay;
-        public Vector3 RotTime;
+        [Tooltip("座標基準")] public PosBaseE PosBase;
+        [Tooltip("座標ズレ")] public Vector3 PosChange;
+        [Tooltip("座標ブレ")] public Vector3 PosRand;
+        [Tooltip("座標拡散")] public Vector3 PosWay;
+        [Tooltip("座標時間変化")] public Vector3 PosTime;
+        [Tooltip("角度基準")] public RotBaseE RotBase;
+        [Tooltip("角度ズレ")] public Vector3 RotChange;
+        [Tooltip("角度ブレ")] public Vector3 RotRand;
+        [Tooltip("角度拡散")] public Vector3 RotWay;
+        [Tooltip("角度時間変化")] public Vector3 RotTime;
     }
     [System.Serializable]
     public class ShotC_Hit
     {
         [HideInInspector] public string EditDisp;
-        public int BranchNum;
-        public int BaseDam;
-        public float AtkDamPer;
-        public float DefDamPer;
-        public float DefRemPer;
-        public int SPAdd;
+        [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip("基礎ダメージ")] public int BaseDam;
+        [Tooltip("使用者攻撃力依存%")] public float AtkDamPer;
+        [Tooltip("使用者防御力依存%")] public float DefDamPer;
+        [Tooltip("対象防御軽減%")] public float DefRemPer;
+        [Tooltip("命中時SP増加量")] public int SPAdd;
     }
     [System.Serializable]
-    public class AtkBranchC
+    public class MoveC
     {
-        [HideInInspector] public string EditDisp;
-        public int[] BranchNums;
-        public Vector2Int Times;
-        public AtkIfE[] Ifs;
-        public int FutureNum;
-        public int FutureTime;
+        [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip(Ttp_Times)] public Vector3Int Times;
+        public RotBaseE Base;
+        public Vector3 Vect;
+        public bool SetSpeed;
     }
-    public enum AtkIfE
+    [System.Serializable]
+    public class StateC
     {
-        攻撃単入力,
-        攻撃長入力,
-        攻撃未入力,
-        攻撃未長入力,
+        [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip(Ttp_Times)] public Vector3Int Times;
+        public StateE State;
+        public float Adds;
+    }
+    public enum StateE
+    {
+        HP,
+        MP,
+        SP,
+    }
+    [System.Serializable]
+    public class WeponSetC
+    {
+        [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip(Ttp_Times)] public Vector2Int Times;
+        [Tooltip("武器オブジェクト")] public GameObject Obj;
+        [Tooltip("表示部位")] public WeponSetE Set;
+        [Tooltip("位置ズレ")] public Vector3 PosChange;
+        [Tooltip("角度ズレ")] public Vector3 RotChange;
+    }
+    public enum WeponSetE
+    {
+        基点 = -1,
+        右手 = 0,
+        左手 = 1,
+        右足 = 10,
+        左足 = 11,
+        胴体 = 20,
+        頭 = 30,
     }
     [System.Serializable]
     public class AnimC
     {
         [HideInInspector] public string EditDisp;
-        public int BranchNum;
-        public Vector2Int Times;
-        public int ID;
+        [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip(Ttp_Times)] public Vector2Int Times;
+        [Tooltip("アニメーションID")] public int ID;
     }
 
 
@@ -142,9 +197,8 @@ public class Data_Atk : ScriptableObject
             Fixed.EditDisp = "[" + i + "]";
             Fixed.EditDisp += "BNum:" + Fixed.BranchNum;
             Fixed.EditDisp += "Time:" + Fixed.Times;
+
         }
-        if (Shots != null)
-        for (int i = 0; i < Shots.Length; i++) Shots[i].EditDispSet();
         if (Branchs != null)
             for (int i = 0; i < Branchs.Length; i++)
             {
@@ -157,9 +211,12 @@ public class Data_Atk : ScriptableObject
                     Branch.EditDisp += Branch.BranchNums[j];
                 }
                 Branch.EditDisp += "Time:" + Branch.Times;
+                Branch.EditDisp += "MP:" + Branch.UseMP;
                 Branch.EditDisp += "Future{Num:" + Branch.FutureNum;
                 Branch.EditDisp += "Time:" + Branch.FutureTime + "}";
             }
+        if (Shots != null)
+        for (int i = 0; i < Shots.Length; i++) Shots[i].EditDispSet();
         if (Anims != null)
         for (int i = 0; i < Anims.Length; i++)
         {

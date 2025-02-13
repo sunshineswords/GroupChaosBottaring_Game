@@ -19,6 +19,7 @@ MonoBehaviour:
   CT: 6
   SPUse: 0
   BranchInfos: []
+  Branchs: []
   Fixeds: []
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 0cbfb87061fdf2b48ba0288629373887, type: 3}
@@ -46,9 +47,17 @@ MonoBehaviour:
       AtkDamPer: 160
       DefDamPer: 0
       DefRemPer: 0
-      SPAdd: 0
+      SPAdd: 15
     HitCT: 0
-  Branchs: []
+  Moves: []
+  States: []
+  WeponSets:
+  - BranchNum: 0
+    Times: {x: 0, y: 50}
+    Obj: {fileID: 6293833836109196858, guid: 93808f716b8dfec41a3316c3ae98591c, type: 3}
+    Set: 0
+    PosChange: {x: 0, y: 0, z: 0}
+    RotChange: {x: 0, y: 0, z: 0}
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 35)ID:20'
     BranchNum: 0

@@ -352,18 +352,21 @@ MonoBehaviour:
     TargetMode: 0
     TargetCT: 0
     Target: {fileID: 0}
+    TargetHit: {fileID: 0}
     TCT: 0
   - Times: {x: 75, y: 90, z: 0}
     MoveMode: 11
     Pow: 30
-    TargetMode: 2
+    TargetMode: 1
     TargetCT: 60
     Target: {fileID: 0}
+    TargetHit: {fileID: 0}
     TCT: 0
   - Times: {x: 90, y: 150, z: 0}
     MoveMode: 11
     Pow: 3
-    TargetMode: 2
-    TargetCT: 60
+    TargetMode: 1
+    TargetCT: 64
     Target: {fileID: 0}
+    TargetHit: {fileID: 0}
     TCT: 0
