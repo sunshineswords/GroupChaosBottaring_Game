@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c12fea65286e7ef41b8dcbac1ecf837d, type: 3}
-  m_Name: Stage_2
+  m_Name: Stage_NightMea
   m_EditorClassIdentifier: 
-  Name: "W\u30D6\u30ED\u30C3\u30B3\u30EA\u30FC"
+  Name: "\u60AA\u5922"
   Info: 
-  Icon: {fileID: 2800000, guid: c52b0a0623874c74baad17011f3d9323, type: 3}
-  SceneID: 3
+  Icon: {fileID: 2800000, guid: 0e5367b990015e24d813e5b3d270f26a, type: 3}
+  SceneID: 4

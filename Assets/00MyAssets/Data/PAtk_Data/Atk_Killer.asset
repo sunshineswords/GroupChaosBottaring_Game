@@ -19,6 +19,21 @@ MonoBehaviour:
   CT: 1
   SPUse: 0
   BranchInfos: []
+  Branchs:
+  - EditDisp: '[0]BNum:0Time:(30, 34)MP:0Future{Num:0Time:0}'
+    BranchNums: 00000000
+    Times: {x: 30, y: 34}
+    Ifs: 01000000
+    UseMP: 0
+    FutureNum: 0
+    FutureTime: 0
+  - EditDisp: '[1]BNum:0Time:(0, 34)MP:0Future{Num:0Time:35}'
+    BranchNums: 00000000
+    Times: {x: 0, y: 34}
+    Ifs: 02000000
+    UseMP: 0
+    FutureNum: 0
+    FutureTime: 35
   Fixeds: []
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 0cbfb87061fdf2b48ba0288629373887, type: 3}
@@ -42,25 +57,15 @@ MonoBehaviour:
     Hits:
     - EditDisp: '[0]BNum:0'
       BranchNum: 0
-      BaseDam: 400
+      BaseDam: 40400
       AtkDamPer: 0
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 0
     HitCT: 0
-  Branchs:
-  - EditDisp: '[0]BNum:0Time:(30, 34)Future{Num:0Time:0}'
-    BranchNums: 00000000
-    Times: {x: 30, y: 34}
-    Ifs: 01000000
-    FutureNum: 0
-    FutureTime: 0
-  - EditDisp: '[1]BNum:0Time:(0, 34)Future{Num:0Time:35}'
-    BranchNums: 00000000
-    Times: {x: 0, y: 34}
-    Ifs: 02000000
-    FutureNum: 0
-    FutureTime: 35
+  Moves: []
+  States: []
+  WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 35)ID:20'
     BranchNum: 0

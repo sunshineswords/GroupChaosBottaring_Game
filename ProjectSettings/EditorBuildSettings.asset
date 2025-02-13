@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00MyAssets/Scene/Stage2.unity
     guid: b2ba607540381ff449b2bdc1a64ca3c9
+  - enabled: 1
+    path: Assets/00MyAssets/Scene/NightMea.unity
+    guid: 154f06922d5027e4a913a716dfad4f5f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

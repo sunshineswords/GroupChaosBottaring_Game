@@ -18,6 +18,7 @@ MonoBehaviour:
   Charas:
   - {fileID: 11400000, guid: 07821d065f745214395a81df54ff17ce, type: 2}
   - {fileID: 11400000, guid: a7854d6c44cf2e94d898f0a5ac93e7aa, type: 2}
+  - {fileID: 11400000, guid: d63ac7c08b5230a46ba236779afe35d0, type: 2}
   N_Atks:
   - {fileID: 11400000, guid: 3e51450c87a735b49a71ea3a6b83f0ba, type: 2}
   - {fileID: 11400000, guid: 9aadef567f5056f4899de5138d52469e, type: 2}
@@ -58,3 +59,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 632b57d86c62ed6439b96f12aeb840a2, type: 2}
   - {fileID: 11400000, guid: 07c8d87946b505d4484d0d663a5c7a9d, type: 2}
   - {fileID: 11400000, guid: fa020ce2b68dc2f4d88c0491add5409f, type: 2}
+  - {fileID: 11400000, guid: df83f23cba6d833468299782c594175d, type: 2}
