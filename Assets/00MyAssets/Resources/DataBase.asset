@@ -35,6 +35,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d3c652b7957c7642b6dcb3ce656e2c6, type: 2}
   - {fileID: 11400000, guid: 62a26761199953041a35a8c51b06929f, type: 2}
   - {fileID: 11400000, guid: 2cda9d4341bfeff419eff21300c22f1e, type: 2}
+  - {fileID: 11400000, guid: bf14e10963a99ae45a9290d7e7da2a06, type: 2}
   E_Atks:
   - {fileID: 11400000, guid: 40dbec132893f92458f13ebb61e76ddd, type: 2}
   - {fileID: 11400000, guid: 7940ced0e66f13b48a4a5fdc7c157138, type: 2}

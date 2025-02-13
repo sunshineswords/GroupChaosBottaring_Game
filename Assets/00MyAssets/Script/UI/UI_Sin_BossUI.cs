@@ -5,6 +5,13 @@ using UnityEngine.UI;
 public class UI_Sin_BossUI : MonoBehaviour
 {
     public TextMeshProUGUI NameTx;
-    public Image HPBar;
-    public Image HPFill;
+    public Image HPBackBar;
+    public Image HPBackFill;
+    public Image HPFrontBar;
+    public Image HPFrontFill;
+    public float CHPPer;
+    private void Start()
+    {
+        CHPPer = 1;
+    }
 }

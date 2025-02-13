@@ -8,16 +8,40 @@ public class UI_Player : MonoBehaviour
     [SerializeField] State_Base Sta;
     [SerializeField] Player_Cont PCont;
     [SerializeField] Player_Atk PAtk;
-    [SerializeField] Image HPBar;
+    [SerializeField] Image HPBackBar;
+    [SerializeField] Image HPBackFill;
+    [SerializeField] Image HPFrontBar;
+    [SerializeField] Image HPFrontFill;
     [SerializeField] Image MPBar;
     [SerializeField] Image MPFill;
     [SerializeField] TextMeshProUGUI AtkFBTx;
     [SerializeField] UI_Sin_Atk[] AtkUIs;
     [SerializeField] TextMeshProUGUI AtkInfoTx;
-
+    float CHPPer;
+    private void Start()
+    {
+        CHPPer = 1f;
+    }
     void LateUpdate()
     {
-        HPBar.fillAmount = Sta.HP / Mathf.Max(1, Sta.MHP);
+        float ChangeSpeed = 0.01f;
+        float HPPer = Sta.HP / Mathf.Max(1, Sta.MHP);
+        if(HPPer < CHPPer)
+        {
+            HPBackBar.fillAmount = CHPPer;
+            HPBackFill.color = new Color(1f, 0.5f, 0f);
+            HPFrontBar.fillAmount = HPPer;
+            HPFrontFill.color = Color.green;
+            CHPPer = Mathf.Max(CHPPer - ChangeSpeed,HPPer);
+        }
+        else
+        {
+            HPBackBar.fillAmount = HPPer;
+            HPBackFill.color = new Color(0.5f, 1f, 0.5f); 
+            HPFrontBar.fillAmount = CHPPer;
+            HPFrontFill.color = Color.green;
+            CHPPer = Mathf.Min(CHPPer + ChangeSpeed, HPPer);
+        }
         MPBar.fillAmount = Sta.MP / Mathf.Max(1, Sta.MMP);
         MPFill.color = Sta.LowMP ? Color.red : Color.white;
         for(int i = 0; i < AtkUIs.Length; i++)
