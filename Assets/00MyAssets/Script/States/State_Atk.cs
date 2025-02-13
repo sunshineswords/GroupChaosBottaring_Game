@@ -5,9 +5,7 @@ using System.Linq;
 using static Statics;
 using static DataBase;
 using static Data_Atk;
-using UnityEditor.VersionControl;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.Rendering.DebugUI.Table;
+
 
 
 public class State_Atk
