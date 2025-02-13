@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Atk_Sword
   m_EditorClassIdentifier: 
   Name: "\u30BD\u30FC\u30C9"
-  Info: 
+  Info: "\u8FD1\u8DDD\u96E2\u6B66\u5668\u3067\u3042\u308B"
   Icon: {fileID: 2800000, guid: 2f80e1dbe4acdf145aa64427bf8e2ff1, type: 3}
   EndTime: 50
   CT: 0

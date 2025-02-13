@@ -8,6 +8,7 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
 {
     [SerializeField] List<UI_Sin_Set> PriSet_Sin_UIs;
     [SerializeField] Toggle FBToggle;
+    [SerializeField] TextMeshProUGUI InfoTx;
     [SerializeField] UI_Sin_Set[] SetSelectUIs;
     [SerializeField] List<UI_Sin_Set> Set_Sin_UIs;
     int SelectID = 0;
@@ -48,14 +49,37 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
         SetSelectUIs[4].Name.text = E_Atk_Data.Name;
         SetSelectUIs[4].Icon.texture = E_Atk_Data.Icon;
         int DataCount = 0;
+        InfoTx.text = "";
         switch (SelectID)
         {
-            case 0: DataCount = DB.Charas.Length; break;
-            case 10: DataCount = DB.N_Atks.Length; break;
+            case 0:
+                DataCount = DB.Charas.Length;
+                InfoTx.text = Chara_Data.Name;
+                break;
+            case 10:
+                DataCount = DB.N_Atks.Length;
+                InfoTx.text = N_Atk_Data.Name;
+                InfoTx.text += "\n" + N_Atk_Data.InfoGets();
+                break;
             case 11:
             case 12:
-                DataCount = DB.S_Atks.Length; break;
-            case 20: DataCount = DB.E_Atks.Length; break;
+                DataCount = DB.S_Atks.Length;
+                if (SelectID == 11)
+                {
+                    InfoTx.text = S1_Atk_Data.Name;
+                    InfoTx.text += "\n" + S1_Atk_Data.InfoGets();
+                }
+                else
+                {
+                    InfoTx.text = S2_Atk_Data.Name;
+                    InfoTx.text += "\n" + S2_Atk_Data.InfoGets();
+                }
+                break;
+            case 20: 
+                DataCount = DB.E_Atks.Length;
+                InfoTx.text = E_Atk_Data.Name;
+                InfoTx.text += "\n" + E_Atk_Data.InfoGets();
+                break;
         }
         for (int i=0;i < Mathf.Max(DataCount,Set_Sin_UIs.Count); i++)
         {
@@ -112,6 +136,7 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
             }
             Set_Sin_UIs[i].gameObject.SetActive(i < DataCount);
         }
+
     }
     void UI_Sin_Set.SetReturn.ReturnID(string Type, int ID)
     {

@@ -60,7 +60,6 @@ public class Data_Atk : ScriptableObject
         [Tooltip("照準モード")] public bool Aiming;
         [Tooltip("無重力")] public bool NGravity;
     }
-
     [System.Serializable]
     public class ShotC_Base
     {
@@ -86,6 +85,30 @@ public class Data_Atk : ScriptableObject
                 Hit.EditDisp += "BNum:" + Hit.BranchNum;
             }
 
+        }
+        public string OtherStrGet(int BNum)
+        {
+            string Str = "";
+            int ShotCounts = 0;
+            for(int i = 0; i < Fires.Length; i++)
+            {
+                var Fire = Fires[i];
+                if (Fire.BranchNum != BNum) continue;
+                int TCounts = (Fire.Times.y - Fire.Times.x) / Mathf.Max(1, Fire.Times.z)+1;
+                ShotCounts += Fire.Count * TCounts;
+            }
+            for (int i = 0; i < Hits.Length; i++)
+            {
+                var Hit = Hits[i];
+                if (Hit.BranchNum != BNum) continue;
+                if(Str!="") Str += "\n";
+                if (Hit.BaseDam != 0) Str += Hit.BaseDam;
+                if (Hit.AtkDamPer != 0) Str += "攻撃力" + Hit.AtkDamPer + "%";
+                if (Hit.DefDamPer != 0) Str += "防御力" + Hit.DefDamPer + "%";
+                if (Hit.DefRemPer != 0) Str += "防御影響" + Hit.DefRemPer + "%";
+                if (ShotCounts != 1) Str += "×" + ShotCounts;
+            }
+            return Str;
         }
     }
     [System.Serializable]
@@ -187,7 +210,34 @@ public class Data_Atk : ScriptableObject
         [Tooltip("アニメーションID")] public int ID;
     }
 
-
+    public string InfoGets()
+    {
+        string Str = "";
+        if (Info != "") Str = Info;
+        if (BranchInfos.Count > 0)
+        {
+            for (int i = 0; i < BranchInfos.Count; i++)
+            {
+                var BInfo = BranchInfos[i];
+                if (Str != "") Str += "\n";
+                Str += BInfo.Name;
+                for (int j = 0; j < Shots.Length; j++)
+                {
+                    var Shot = Shots[j];
+                    Str += "\n" + Shot.OtherStrGet(BInfo.BID);
+                }
+            }
+        }
+        else
+        {
+            for (int j = 0; j < Shots.Length; j++)
+            {
+                var Shot = Shots[j];
+                Str += Shot.OtherStrGet(0);
+            }
+        }
+        return Str;
+    }
     private void OnValidate()
     {
         if(Fixeds!=null)
