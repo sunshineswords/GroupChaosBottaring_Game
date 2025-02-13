@@ -6,6 +6,17 @@ public class TextAnimation_Gabu : UISystem_Gabu
 {
     #region 変数
     private TextMeshProUGUI tmp;
+
+    [SerializeField, Header("各状態のテキスト色")]
+    private Color _normalTextColor;
+    [SerializeField]
+    private Color _highlightedTextColor;
+    [SerializeField]
+    private Color _pressedTextColor;
+    [SerializeField]
+    private Color _selectedTextColor;
+    [SerializeField]
+    private Color _disabledTextColor;
     #endregion
 
     #region 関数
@@ -16,7 +27,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
             return;
         }
 
-        Animate(_normalScaleMultiplier, _normalScaleDuration, _normalEase, _color);
+        Animate(_normalScaleMultiplier, _normalScaleDuration, _normalEase, _normalTextColor);
     }
 
     protected override void HighlightedAnimation()
@@ -26,11 +37,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
             return;
         }
 
-        Color targetColor = _isMonochrome
-            ? SubtractionHSV(_color, 0f, 1f, -0.4f)
-            : SubtractionHSV(_color, 0f, -0.4f, -0.4f);
-
-        Animate(_highlightedScaleMultiplier, _highlightedScaleDuration, _highlightedEase, targetColor);
+        Animate(_highlightedScaleMultiplier, _highlightedScaleDuration, _highlightedEase, _highlightedTextColor);
     }
 
     protected override void PressedAnimation()
@@ -40,11 +47,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
             return;
         }
 
-        Color targetColor = _isMonochrome
-            ? SubtractionHSV(_color, 0f, 1f, 0.5f)
-            : SubtractionHSV(_color, 0f, -0.2f, 0.5f);
-
-        Animate(_pressedScaleMultiplier, _pressedScaleDuration, _pressedEase, targetColor);
+        Animate(_pressedScaleMultiplier, _pressedScaleDuration, _pressedEase, _pressedTextColor);
     }
 
     protected override void SelectedAnimation()
@@ -54,11 +57,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
             return;
         }
 
-        Color targetColor = _isMonochrome
-            ? SubtractionHSV(_color, 0f, 1f, -0.2f)
-            : SubtractionHSV(_color, 0f, -0.2f, -0.2f);
-
-        Animate(_selectedScaleMultiplier, _selectedScaleDuration, _selectedEase, targetColor);
+        Animate(_selectedScaleMultiplier, _selectedScaleDuration, _selectedEase, _selectedTextColor);
     }
 
     protected override void DisabledAnimation()
@@ -68,11 +67,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
             return;
         }
 
-        Color targetColor = _isMonochrome
-            ? SubtractionHSV(_color, 0f, 1f, 0.7f)
-            : SubtractionHSV(_color, 0f, 0.7f, 0.7f);
-
-        Animate(_disabledScaleMultiplier, _disabledScaleDuration, _disabledEase, targetColor);
+        Animate(_disabledScaleMultiplier, _disabledScaleDuration, _disabledEase, _disabledTextColor);
     }
 
     private void Animate(float scaleMultiplier, float duration, Ease ease, Color targetColor)
