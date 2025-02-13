@@ -21,7 +21,7 @@ public class ImageAnimation_Gabu : UISystem_Gabu
 
     #endregion
 
-    #region 関数
+#region 関数
     protected override void NormalAnimation()
     {
         if (_i_currentAnimation == _i_lastAnimation)
