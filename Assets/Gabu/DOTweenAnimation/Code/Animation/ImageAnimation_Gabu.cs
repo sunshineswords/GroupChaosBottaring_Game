@@ -8,17 +8,6 @@ public class ImageAnimation_Gabu : UISystem_Gabu
     [SerializeField, Header("画像")]
     protected Image image;
 
-    [SerializeField, Header("基本色")]
-    protected Color _normalColor;
-    [SerializeField, Header("カーソルが上にいる時の色")]
-    protected Color _highlightedColor;
-    [SerializeField, Header("押されている時の色")]
-    protected Color _pressedColor;
-    [SerializeField, Header("選択している時の色")]
-    protected Color _selectedColor;
-    [SerializeField, Header("無効な時の色")]
-    protected Color _disabledColor;
-
     #endregion
 
 #region 関数
@@ -107,7 +96,14 @@ public class ImageAnimation_Gabu : UISystem_Gabu
         if (image == null)
         {
             image = GetComponent<Image>();
+            if(image == null)
+            {
+                Debug.LogWarning("Imageがアタッチされていません");
+                return;
+            }
         }
+        if (_isGetColor) _normalColor = image.color;
+        else image.color = _normalColor;
 
         base.Start();
 
@@ -130,11 +126,10 @@ public class ImageAnimation_Gabu : UISystem_Gabu
         _disabledScaleMultiplier = 0.95f;
 
         // Set default colors
-        _normalColor = _color;
-        _highlightedColor = SubtractionHSV(_color, 0f, -0.4f, -0.4f);
-        _pressedColor = SubtractionHSV(_color, 0f, -0.2f, 0.5f);
-        _selectedColor = SubtractionHSV(_color, 0f, -0.2f, -0.2f);
-        _disabledColor = SubtractionHSV(_color, 0f, 0.7f, 0.7f);
+        _highlightedColor = SubtractionHSV(_normalColor, 0f, -0.4f, -0.4f);
+        _pressedColor = SubtractionHSV(_normalColor, 0f, -0.2f, 0.5f);
+        _selectedColor = SubtractionHSV(_normalColor, 0f, -0.2f, -0.2f);
+        _disabledColor = SubtractionHSV(_normalColor, 0f, 0.7f, 0.7f);
 
         // Set default eases
         _normalEase = Ease.InOutSine;

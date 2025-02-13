@@ -5,8 +5,6 @@ using UnityEngine;
 public class ButtonOutlineAnimation_Gabu : ImageAnimation_Gabu
 {
     #region 変数
-    protected Ease ease = Ease.OutBack;
-    protected readonly float _highAlpha = 0.7f;
     #endregion
 
     #region 関数
@@ -17,12 +15,8 @@ public class ButtonOutlineAnimation_Gabu : ImageAnimation_Gabu
             return;
         }
 
-        ease = (Ease)UnityEngine.Random.Range(0, Enum.GetNames(typeof(Ease)).Length);
-        ease = ease == Ease.INTERNAL_Custom ? Ease.OutBack : ease;
-
-        image.DOColor(new Color(_color.r, _color.g, _color.b, 0), duration: 0.4f).SetEase(ease);
+        image.DOColor(_normalColor, _normalScaleDuration).SetEase(_normalEase);
     }
-
 
     protected override void HighlightedAnimation()
     {
@@ -31,10 +25,7 @@ public class ButtonOutlineAnimation_Gabu : ImageAnimation_Gabu
             return;
         }
 
-        ease = (Ease)UnityEngine.Random.Range(0, Enum.GetNames(typeof(Ease)).Length);
-        ease = ease == Ease.INTERNAL_Custom ? Ease.OutBack : ease;
-
-        image.DOColor(new Color(_color.r, _color.g, _color.b, _highAlpha), duration: 0.4f).SetEase(ease);
+        image.DOColor(_highlightedColor, _highlightedScaleDuration).SetEase(_highlightedEase);
     }
 
     protected override void PressedAnimation()
@@ -44,10 +35,7 @@ public class ButtonOutlineAnimation_Gabu : ImageAnimation_Gabu
             return;
         }
 
-        ease = (Ease)UnityEngine.Random.Range(0, Enum.GetNames(typeof(Ease)).Length);
-        ease = ease == Ease.INTERNAL_Custom ? Ease.OutBack : ease;
-
-        image.DOColor(new Color(_color.r, _color.g, _color.b, 1), duration: 0.4f).SetEase(ease);
+        image.DOColor(_pressedColor, _pressedScaleDuration).SetEase(_pressedEase);
     }
 
     protected override void SelectedAnimation()
@@ -56,7 +44,8 @@ public class ButtonOutlineAnimation_Gabu : ImageAnimation_Gabu
         {
             return;
         }
-        HighlightedAnimation();
+
+        image.DOColor(_selectedColor, _selectedScaleDuration).SetEase(_selectedEase);
     }
 
     protected override void DisabledAnimation()
@@ -66,10 +55,7 @@ public class ButtonOutlineAnimation_Gabu : ImageAnimation_Gabu
             return;
         }
 
-        ease = (Ease)UnityEngine.Random.Range(0, Enum.GetNames(typeof(Ease)).Length);
-        ease = ease == Ease.INTERNAL_Custom ? Ease.OutBack : ease;
-
-        image.DOColor(new Color(Color.gray.a, Color.gray.g, Color.gray.b, _highAlpha), duration: 0.4f).SetEase(ease);
+        image.DOColor(_disabledColor, _disabledScaleDuration).SetEase(_disabledEase);
     }
     #endregion 
 }

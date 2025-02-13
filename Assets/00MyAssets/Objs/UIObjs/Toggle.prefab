@@ -95,9 +95,15 @@ MonoBehaviour:
   _unitPosition: {x: 0, y: 0, z: 0}
   _unitRotation: {x: 0, y: 0, z: 0}
   _unitScale: {x: 0, y: 0, z: 0}
-  _color: {r: 1, g: 1, b: 1, a: 1}
+  _normalColor: {r: 0, g: 0, b: 0, a: 0}
+  _highlightedColor: {r: 0, g: 0, b: 0, a: 0}
+  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
+  _selectedColor: {r: 1, g: 1, b: 1, a: 0.69803923}
+  _disabledColor: {r: 0, g: 0, b: 0, a: 0}
   _isAutoColor: 0
-  _isMonochrome: 1
+  _isLockHue: 1
+  _isLockSaturation: 1
+  _isLockValue: 1
   _disabledImage: {fileID: 7666329934070870367}
   _isReset: 0
   _normalScaleDuration: 0.2
@@ -116,11 +122,6 @@ MonoBehaviour:
   _selectedScaleMultiplier: 1.1
   _disabledScaleMultiplier: 1
   image: {fileID: 7890127449188959077}
-  _normalColor: {r: 0, g: 0, b: 0, a: 0}
-  _highlightedColor: {r: 0, g: 0, b: 0, a: 0}
-  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
-  _selectedColor: {r: 1, g: 1, b: 1, a: 0.69803923}
-  _disabledColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &3299426415078806026
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,9 +626,15 @@ MonoBehaviour:
   _unitPosition: {x: 0, y: 0, z: 0}
   _unitRotation: {x: 0, y: 0, z: 0}
   _unitScale: {x: 0, y: 0, z: 0}
-  _color: {r: 0, g: 0, b: 0, a: 1}
+  _normalColor: {r: 0, g: 0, b: 0, a: 0}
+  _highlightedColor: {r: 0, g: 0, b: 0, a: 1}
+  _pressedColor: {r: 0, g: 0, b: 0, a: 1}
+  _selectedColor: {r: 0, g: 0, b: 0, a: 0.69803923}
+  _disabledColor: {r: 0, g: 0, b: 0, a: 0}
   _isAutoColor: 0
-  _isMonochrome: 1
+  _isLockHue: 1
+  _isLockSaturation: 1
+  _isLockValue: 1
   _disabledImage: {fileID: 7666329934070870367}
   _isReset: 0
   _normalScaleDuration: 0.2
@@ -646,11 +653,6 @@ MonoBehaviour:
   _selectedScaleMultiplier: 1.1
   _disabledScaleMultiplier: 1
   image: {fileID: 9080973059357671133}
-  _normalColor: {r: 0, g: 0, b: 0, a: 0}
-  _highlightedColor: {r: 0, g: 0, b: 0, a: 1}
-  _pressedColor: {r: 0, g: 0, b: 0, a: 1}
-  _selectedColor: {r: 0, g: 0, b: 0, a: 0.69803923}
-  _disabledColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8485407318215649698
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,9 +849,15 @@ MonoBehaviour:
   _unitPosition: {x: 0, y: 0, z: 0}
   _unitRotation: {x: 0, y: 0, z: 0}
   _unitScale: {x: 0, y: 0, z: 0}
-  _color: {r: 1, g: 1, b: 1, a: 1}
+  _normalColor: {r: 1, g: 1, b: 1, a: 1}
+  _highlightedColor: {r: 1, g: 1, b: 1, a: 1}
+  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
+  _selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  _disabledColor: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   _isAutoColor: 1
-  _isMonochrome: 1
+  _isLockHue: 0
+  _isLockSaturation: 0
+  _isLockValue: 1
   _disabledImage: {fileID: 0}
   _isReset: 0
   _normalScaleDuration: 0.2
@@ -868,11 +876,6 @@ MonoBehaviour:
   _selectedScaleMultiplier: 1.1
   _disabledScaleMultiplier: 1
   image: {fileID: 8387718882192298144}
-  _normalColor: {r: 1, g: 1, b: 1, a: 1}
-  _highlightedColor: {r: 1, g: 1, b: 1, a: 1}
-  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
-  _selectedColor: {r: 1, g: 1, b: 1, a: 1}
-  _disabledColor: {r: 0.7, g: 0.7, b: 0.7, a: 1}
 --- !u!1 &9093694859726536085
 GameObject:
   m_ObjectHideFlags: 0
