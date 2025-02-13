@@ -1184,6 +1184,10 @@ PrefabInstance:
       value: BattleManagers
       objectReference: {fileID: 0}
     - target: {fileID: 3657368560402503257, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3657368560402503257, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0.99
       objectReference: {fileID: 0}
@@ -1193,7 +1197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657368560402503257, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: -1700.0005
       objectReference: {fileID: 0}
     - target: {fileID: 3657368560402503257, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1201,7 +1205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3657368560402503257, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: -849.99976
       objectReference: {fileID: 0}
     - target: {fileID: 3657368560402503257, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
       propertyPath: m_AnchoredPosition.y
