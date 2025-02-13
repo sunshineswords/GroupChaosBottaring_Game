@@ -5,18 +5,7 @@ using UnityEngine;
 public class TextAnimation_Gabu : UISystem_Gabu
 {
     #region 変数
-    private TextMeshProUGUI tmp;
-
-    [SerializeField, Header("各状態のテキスト色")]
-    private Color _normalTextColor;
-    [SerializeField]
-    private Color _highlightedTextColor;
-    [SerializeField]
-    private Color _pressedTextColor;
-    [SerializeField]
-    private Color _selectedTextColor;
-    [SerializeField]
-    private Color _disabledTextColor;
+    private TextMeshProUGUI tmp;    
     #endregion
 
     #region 関数
@@ -27,7 +16,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
             return;
         }
 
-        Animate(_normalScaleMultiplier, _normalScaleDuration, _normalEase, _normalTextColor);
+        Animate(_normalScaleMultiplier, _normalScaleDuration, _normalEase, _normalColor);
     }
 
     protected override void HighlightedAnimation()
@@ -37,7 +26,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
             return;
         }
 
-        Animate(_highlightedScaleMultiplier, _highlightedScaleDuration, _highlightedEase, _highlightedTextColor);
+        Animate(_highlightedScaleMultiplier, _highlightedScaleDuration, _highlightedEase, _highlightedColor);
     }
 
     protected override void PressedAnimation()
@@ -47,7 +36,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
             return;
         }
 
-        Animate(_pressedScaleMultiplier, _pressedScaleDuration, _pressedEase, _pressedTextColor);
+        Animate(_pressedScaleMultiplier, _pressedScaleDuration, _pressedEase, _pressedColor);
     }
 
     protected override void SelectedAnimation()
@@ -57,7 +46,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
             return;
         }
 
-        Animate(_selectedScaleMultiplier, _selectedScaleDuration, _selectedEase, _selectedTextColor);
+        Animate(_selectedScaleMultiplier, _selectedScaleDuration, _selectedEase, _selectedColor);
     }
 
     protected override void DisabledAnimation()
@@ -67,7 +56,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
             return;
         }
 
-        Animate(_disabledScaleMultiplier, _disabledScaleDuration, _disabledEase, _disabledTextColor);
+        Animate(_disabledScaleMultiplier, _disabledScaleDuration, _disabledEase, _disabledColor);
     }
 
     private void Animate(float scaleMultiplier, float duration, Ease ease, Color targetColor)
@@ -82,7 +71,15 @@ public class TextAnimation_Gabu : UISystem_Gabu
         if (tmp == null)
         {
             tmp = GetComponent<TextMeshProUGUI>();
+            if(tmp == null)
+            {
+                Debug.LogWarning("TextMeshProUGUIがアタッチされていません");
+                return;
+            }
         }
+
+        if (_isGetColor) _normalColor = tmp.color;
+        else tmp.color = _normalColor;
 
         base.Start();
 

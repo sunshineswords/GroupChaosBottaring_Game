@@ -8,17 +8,6 @@ public class ScalableAnimation : UISystem_Gabu
     [SerializeField, Header("画像")]
     protected Image image;
 
-    [SerializeField, Header("基本色")]
-    protected Color _normalColor;
-    [SerializeField, Header("カーソルが上にいる時の色")]
-    protected Color _highlightedColor;
-    [SerializeField, Header("押されている時の色")]
-    protected Color _pressedColor;
-    [SerializeField, Header("選択している時の色")]
-    protected Color _selectedColor;
-    [SerializeField, Header("無効な時の色")]
-    protected Color _disabledColor;
-
     [SerializeField, Header("基本のスケール")]
     protected Vector3 _normalScale = Vector3.one;
     [SerializeField, Header("カーソルが上にいる時のスケール")]

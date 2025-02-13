@@ -9,7 +9,7 @@ public class UISystem_Gabu : ColorSystem
     protected bool _isButton = false;
     protected bool _isEexecute = true;
     protected int _i_currentAnimation = 0;
-    protected int _i_lastAnimation = 0;
+    protected int _i_lastAnimation = -1;
 
     public bool IsAlignment = true;
     public int setState = 0;
@@ -27,12 +27,27 @@ public class UISystem_Gabu : ColorSystem
     protected Vector3 _unitScale;
 
     [SerializeField, Header("基本色")]
-    protected Color _color = new Color(0.75f, 0.75f, 0.75f);
+    protected Color _normalColor = new Color(0.8823529f, 0.8823529f, 0.8823529f, 1f);
+    [SerializeField, Header("カーソルが上にいる時の色")]
+    protected Color _highlightedColor = Color.white;
+    [SerializeField, Header("押されている時の色")]
+    protected Color _pressedColor = Color.white;
+    [SerializeField, Header("選択している時の色")]
+    protected Color _selectedColor = Color.white;
+    [SerializeField, Header("無効な時の色")]
+    protected Color _disabledColor = new Color(0.7019608f, 0.7019608f, 0.7019608f, 1f);
 
-    [SerializeField, Header("自動で色の彩度、明度を変更")]
+    [SerializeField, Header("UI色を取得して基本色を変える")]
+    protected bool _isGetColor = false;
+    [SerializeField, Header("基本色を元に他の色を変える")]
     protected bool _isAutoColor = false;
-    [SerializeField, Header("S(彩度)gaが変更されなくなる")]
-    protected bool _isMonochrome = true;
+    [SerializeField, Header("H(色相)が変更されなくなる")]
+    protected bool _isLockHue = true;
+    [SerializeField, Header("S(彩度)gaが変更されなくなる、モノクロになります")]
+    protected bool _isLockSaturation = true;
+    [SerializeField, Header("V(明度)が変更されなくなる")]
+    protected bool _isLockValue = true;
+
 
     [SerializeField, Header("Disabledの時に使われる画像")]
     protected Image _disabledImage;
@@ -72,6 +87,7 @@ public class UISystem_Gabu : ColorSystem
     [SerializeField]
     protected float _disabledScaleMultiplier = 1.0f;
 
+
     protected enum AnimatorState : int
     {
         Normal = 0, Highlighted, Pressed, Selected, Disabled
@@ -85,7 +101,7 @@ public class UISystem_Gabu : ColorSystem
     /// <returns></returns>
     protected int CheckAnimationState()
     {
-        if(_animator == null)
+        if (_animator == null)
         {
             return setState;
         }
@@ -122,7 +138,7 @@ public class UISystem_Gabu : ColorSystem
             return;
         }
 
-        if (_isMonochrome)
+        if (_isLockSaturation)
         {
             _transform.DOScale(_unitScale * _highlightedScaleMultiplier, _highlightedScaleDuration).SetEase(_highlightedEase);
         }
@@ -139,7 +155,7 @@ public class UISystem_Gabu : ColorSystem
             return;
         }
 
-        if (_isMonochrome)
+        if (_isLockSaturation)
         {
             _transform.DOScale(_unitScale * _pressedScaleMultiplier, _pressedScaleDuration).SetEase(_pressedEase);
         }
@@ -156,7 +172,7 @@ public class UISystem_Gabu : ColorSystem
             return;
         }
 
-        if (_isMonochrome)
+        if (_isLockSaturation)
         {
             _transform.DOScale(_unitScale * _selectedScaleMultiplier, _selectedScaleDuration).SetEase(_selectedEase);
         }
@@ -173,7 +189,7 @@ public class UISystem_Gabu : ColorSystem
             return;
         }
 
-        if (_isMonochrome)
+        if (_isLockSaturation)
         {
             _transform.DOScale(_unitScale, _disabledScaleDuration).SetEase(_disabledEase);
         }
@@ -182,44 +198,10 @@ public class UISystem_Gabu : ColorSystem
             _transform.DOScale(_unitScale, _disabledScaleDuration).SetEase(_disabledEase);
         }
     }
-    #endregion
 
-    protected virtual void Start()
+    public void UpdateAnimation()
     {
-        if (_animator == null)
-        {
-            _animator = GetComponent<Animator>();
-        }
-        if (_transform == null)
-        {
-            _transform = GetComponent<Transform>();
-        }
-        if (_unitPosition != _transform.position)
-        {
-            _unitPosition = _transform.position;
-        }
-        if (_unitRotation != _transform.eulerAngles)
-        {
-            _unitRotation = _transform.eulerAngles;
-        }
-        if (_unitScale != _transform.localScale)
-        {
-            _unitScale = _transform.localScale;
-        }
-        if (_isAutoColor)
-        {
-            _color = ChengeHSV(_color, s: 0.65f, v: 0.7f);
-        }
 
-    }
-
-    protected virtual void Update()
-    {
-        if (_animator == null)
-        {
-            return;
-        }
-        
         _i_currentAnimation = CheckAnimationState();
         switch (_i_currentAnimation)
         {
@@ -243,5 +225,77 @@ public class UISystem_Gabu : ColorSystem
                 break;
         }
         _i_lastAnimation = _i_currentAnimation;
+    }
+    #endregion
+
+    protected virtual void Start()
+    {
+        if (_isAutoColor)
+        {
+
+            Color HSV_H;
+            Color.RGBToHSV(_highlightedColor, out HSV_H.r, out HSV_H.g, out HSV_H.b);
+            Color HSV_P;
+            Color.RGBToHSV(_pressedColor, out HSV_P.r, out HSV_P.g, out HSV_P.b);
+            Color HSV_S;
+            Color.RGBToHSV(_selectedColor, out HSV_S.r, out HSV_S.g, out HSV_S.b);
+            Color HSV_D;
+            Color.RGBToHSV(_disabledColor, out HSV_D.r, out HSV_D.g, out HSV_D.b);
+            if (!_isLockHue)
+            {
+                HSV_H.r = GetHue(_normalColor);
+                HSV_P.r = GetHue(_normalColor);
+                HSV_S.r = GetHue(_normalColor);
+                HSV_D.r = GetHue(_normalColor);
+            }
+            if (!_isLockSaturation)
+            {
+                HSV_H.g = GetSaturation(_normalColor);
+                HSV_P.g = GetSaturation(_normalColor);
+                HSV_S.g = GetSaturation(_normalColor);
+                HSV_D.g = GetSaturation(_normalColor);
+            }
+            if (!_isLockValue)
+            {
+                HSV_H.b = GetValue(_normalColor);
+                HSV_P.b = GetValue(_normalColor);
+                HSV_S.b = GetValue(_normalColor);
+                HSV_D.b = GetValue(_normalColor);
+            }
+            _highlightedColor = Color.HSVToRGB(HSV_H.r, HSV_H.g, HSV_H.b);
+            _pressedColor = Color.HSVToRGB(HSV_P.r, HSV_P.g, HSV_P.b);
+            _selectedColor = Color.HSVToRGB(HSV_S.r, HSV_S.g, HSV_S.b);
+            _disabledColor = Color.HSVToRGB(HSV_D.r, HSV_D.g, HSV_D.b);
+        }
+        if (_animator == null)
+        {
+            _animator = GetComponent<Animator>();
+        }
+        if (_transform == null)
+        {
+            _transform = GetComponent<Transform>();
+        }
+        if (_unitPosition != _transform.position)
+        {
+            _unitPosition = _transform.position;
+        }
+        if (_unitRotation != _transform.eulerAngles)
+        {
+            _unitRotation = _transform.eulerAngles;
+        }
+        if (_unitScale != _transform.localScale)
+        {
+            _unitScale = _transform.localScale;
+        }
+    }
+
+    protected virtual void Update()
+    {
+        if (_animator == null) 
+        {
+            return;
+        }
+
+        UpdateAnimation();
     }
 }

@@ -149,6 +149,12 @@ public abstract class ColorSystem : MonoBehaviour
         return currentColor.g;
     }
 
+    protected Color ChengeHue(Color currentColor, float h)
+    {
+        Color.RGBToHSV(currentColor, out currentColor.r, out currentColor.g, out currentColor.b);
+        Color newColor = new Color(h, currentColor.g, currentColor.b);
+        return Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
+    }
     public Color AddHue(Color currentColor, float h)
     {
         Color.RGBToHSV(currentColor, out currentColor.r, out currentColor.g, out currentColor.b);
@@ -160,6 +166,19 @@ public abstract class ColorSystem : MonoBehaviour
     {
         Color.RGBToHSV(currentColor, out currentColor.r, out currentColor.g, out currentColor.b);
         Color newColor = new Color(currentColor.r - h, currentColor.g, currentColor.b);
+        return Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
+    }
+
+    public float GetHue(Color currentColor)
+    {
+        Color.RGBToHSV(currentColor, out currentColor.r, out currentColor.g, out currentColor.b);
+        return currentColor.r;
+    }
+
+    public Color ChengeValue(Color currentColor, float v)
+    {
+        Color.RGBToHSV(currentColor, out currentColor.r, out currentColor.g, out currentColor.b);
+        Color newColor = new Color(currentColor.r, currentColor.g, v);
         return Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
     }
 
@@ -181,6 +200,12 @@ public abstract class ColorSystem : MonoBehaviour
         Color.RGBToHSV(currentColor, out currentColor.r, out currentColor.g, out currentColor.b);
         Color newColor = new Color(currentColor.r, currentColor.g, currentColor.b - v);
         return Color.HSVToRGB(newColor.r, newColor.g, newColor.b);
+    }
+
+    public float GetValue(Color currentColor)
+    {
+        Color.RGBToHSV(currentColor, out currentColor.r, out currentColor.g, out currentColor.b);
+        return currentColor.b;
     }
 
     #endregion

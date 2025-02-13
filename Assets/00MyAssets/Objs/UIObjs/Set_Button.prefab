@@ -231,9 +231,15 @@ MonoBehaviour:
   _unitPosition: {x: 0, y: 0, z: 0}
   _unitRotation: {x: 0, y: 0, z: 0}
   _unitScale: {x: 0, y: 0, z: 0}
-  _color: {r: 1, g: 1, b: 1, a: 1}
+  _normalColor: {r: 0, g: 0, b: 0, a: 0}
+  _highlightedColor: {r: 0, g: 0, b: 0, a: 0}
+  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
+  _selectedColor: {r: 1, g: 1, b: 1, a: 0.69803923}
+  _disabledColor: {r: 0, g: 0, b: 0, a: 0}
   _isAutoColor: 0
-  _isMonochrome: 1
+  _isLockHue: 1
+  _isLockSaturation: 1
+  _isLockValue: 1
   _disabledImage: {fileID: 9061116092149742615}
   _isReset: 0
   _normalScaleDuration: 0.2
@@ -252,11 +258,6 @@ MonoBehaviour:
   _selectedScaleMultiplier: 1.1
   _disabledScaleMultiplier: 1
   image: {fileID: 3069594223618836053}
-  _normalColor: {r: 0, g: 0, b: 0, a: 0}
-  _highlightedColor: {r: 0, g: 0, b: 0, a: 0}
-  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
-  _selectedColor: {r: 1, g: 1, b: 1, a: 0.69803923}
-  _disabledColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &790666013313538757
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,9 +353,15 @@ MonoBehaviour:
   _unitPosition: {x: 0, y: 0, z: 0}
   _unitRotation: {x: 0, y: 0, z: 0}
   _unitScale: {x: 0, y: 0, z: 0}
-  _color: {r: 1, g: 1, b: 1, a: 1}
+  _normalColor: {r: 0, g: 0, b: 0, a: 0}
+  _highlightedColor: {r: 0, g: 0, b: 0, a: 0}
+  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
+  _selectedColor: {r: 1, g: 1, b: 1, a: 0.69803923}
+  _disabledColor: {r: 0, g: 0, b: 0, a: 0}
   _isAutoColor: 0
-  _isMonochrome: 1
+  _isLockHue: 1
+  _isLockSaturation: 1
+  _isLockValue: 1
   _disabledImage: {fileID: 9061116092149742615}
   _isReset: 0
   _normalScaleDuration: 0.2
@@ -373,11 +380,6 @@ MonoBehaviour:
   _selectedScaleMultiplier: 1.1
   _disabledScaleMultiplier: 1
   image: {fileID: 8837353821540863533}
-  _normalColor: {r: 0, g: 0, b: 0, a: 0}
-  _highlightedColor: {r: 0, g: 0, b: 0, a: 0}
-  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
-  _selectedColor: {r: 1, g: 1, b: 1, a: 0.69803923}
-  _disabledColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &4184444048398212930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,9 +1050,15 @@ MonoBehaviour:
   _unitPosition: {x: 0, y: 0, z: 0}
   _unitRotation: {x: 0, y: 0, z: 0}
   _unitScale: {x: 0, y: 0, z: 0}
-  _color: {r: 1, g: 1, b: 1, a: 1}
+  _normalColor: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 1}
+  _highlightedColor: {r: 1, g: 1, b: 1, a: 1}
+  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
+  _selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  _disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   _isAutoColor: 1
-  _isMonochrome: 1
+  _isLockHue: 0
+  _isLockSaturation: 0
+  _isLockValue: 1
   _disabledImage: {fileID: 9061116092149742615}
   _isReset: 0
   _normalScaleDuration: 0.2
@@ -1069,8 +1077,3 @@ MonoBehaviour:
   _selectedScaleMultiplier: 1.05
   _disabledScaleMultiplier: 1
   image: {fileID: 7186868165546958312}
-  _normalColor: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 1}
-  _highlightedColor: {r: 1, g: 1, b: 1, a: 1}
-  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
-  _selectedColor: {r: 1, g: 1, b: 1, a: 1}
-  _disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
