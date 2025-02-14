@@ -11,6 +11,8 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
     public GameObject space;
     public GameObject iconPrefab;
     public Status statu = Status.UI;
+    public InstructionsSpaceAnimation ins;
+    public int deviceIndex;
 
     public enum Status : int
     {
@@ -30,8 +32,9 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        int deviceIndex = GetDeviceIndex();
+        deviceIndex = GetDeviceIndex();
         SetIcones(GetIcones(deviceIndex, statu));
+        ins.Play();
     }
 
     private ActionIcone[] GetIcones(int deviceIndex, Status statu)
@@ -110,6 +113,14 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
 
     private void Start()
     {
+        UpDateIcones();
+    }
+    private void Update()
+    {
+        if (deviceIndex == GetDeviceIndex())
+        {
+            return;
+        }
         UpDateIcones();
     }
 }

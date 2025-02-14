@@ -54,6 +54,8 @@ MonoBehaviour:
   space: {fileID: 5362043850296852683}
   iconPrefab: {fileID: 3351788684888168797, guid: 696102d6c7e00f24bafdca03545966ff, type: 3}
   statu: 1
+  ins: {fileID: 895196787200385517}
+  deviceIndex: 0
 --- !u!1 &5362043850296852683
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,8 +27,7 @@ public class InstructionsSpaceAnimation : MonoBehaviour, IUIAnimation
     public event Action OnStart;
     public event Action OnComplete;
     public event Action OnUpdate;
-
-
+     
     #endregion
 
     #region 関数
