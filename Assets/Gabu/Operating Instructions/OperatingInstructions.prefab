@@ -24,7 +24,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2318996987273874038}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -52,9 +52,7 @@ MonoBehaviour:
   actionIcones_DB: {fileID: 11400000, guid: 8496e63cb01043148905f993f42992ff, type: 2}
   playerInput: {fileID: 0}
   space: {fileID: 5362043850296852683}
-  textPrefab: {fileID: 8413869125558082556, guid: 5e0a4da0453596c42a35093cd4adade4, type: 3}
   iconPrefab: {fileID: 3351788684888168797, guid: 696102d6c7e00f24bafdca03545966ff, type: 3}
-  spacingPrefab: {fileID: 3423499480633220364, guid: 15390605fe14b634492e20afdf2ca10a, type: 3}
   statu: 1
 --- !u!1 &5362043850296852683
 GameObject:
@@ -146,16 +144,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 25
+    m_Right: 25
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 30
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 1
+  m_Spacing: 5
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -171,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c6ac4105ac1e14bb78f32c4293e6dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnStart: 1
   _startPosition: {x: 0, y: -50}
   _endPosition: {x: 0, y: 0}
   _duration: 0.3

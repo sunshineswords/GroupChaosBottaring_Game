@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217f53f4fc8fa6b458c6cfb620e60708, type: 3}
   m_Name: ActionIcones_DB
   m_EditorClassIdentifier: 
+  default_index: 0
+  play_index: 9
+  ui_index: 13
   Menu_icons:
   - {fileID: 11400000, guid: 529bef8632ebe6847ba64e7749446c7a, type: 2}
   - {fileID: 11400000, guid: 805858e642d60f84297f3761dce54133, type: 2}
@@ -27,6 +30,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0aad3aa9bcfad1b4cbeaa1bf8215e4c8, type: 2}
   - {fileID: 11400000, guid: 67d900e96218f29438b51d29abcb65ca, type: 2}
   - {fileID: 11400000, guid: 69eb51997782b3a48aedf9fe2ea03bfe, type: 2}
+  Target_icons:
+  - {fileID: 11400000, guid: b00a76f1c6c00bd47a3b5fc700080c8d, type: 2}
+  - {fileID: 11400000, guid: c86713b83bb2d27459c9bfa79ed78dfc, type: 2}
+  - {fileID: 11400000, guid: 7864eb231f1360b4d9261bc3b236f09c, type: 2}
+  - {fileID: 11400000, guid: b00a76f1c6c00bd47a3b5fc700080c8d, type: 2}
+  Chenge_icons:
+  - {fileID: 11400000, guid: 006724c31f6146f48a0a21ea25c27593, type: 2}
+  - {fileID: 11400000, guid: cae13cdbad309bc409638cd9114b6990, type: 2}
+  - {fileID: 11400000, guid: 7f36ae57cd458444280e1d5b232c714e, type: 2}
+  - {fileID: 11400000, guid: 006724c31f6146f48a0a21ea25c27593, type: 2}
   N_Atk_icons:
   - {fileID: 11400000, guid: e753d57e9617fea42ba946329be5e11d, type: 2}
   - {fileID: 11400000, guid: 85e3e4497cec9d94289cc55bf5e68f7a, type: 2}
@@ -37,6 +50,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cd0a15b30d64c3940acdd0099469ca3c, type: 2}
   - {fileID: 11400000, guid: e6ed1fb6ebb593b4a844c0d17a25451c, type: 2}
   - {fileID: 11400000, guid: 3123d8850671b6e47a35ca2bd1880c8d, type: 2}
+  S2_Atk_icons:
+  - {fileID: 11400000, guid: 94dc410a1e0d4344b9dda410b068595e, type: 2}
+  - {fileID: 11400000, guid: 5b4a941b703b4c4469a7765838d536c7, type: 2}
+  - {fileID: 11400000, guid: 817a43cbcfd97e34e8dac054b9edcd38, type: 2}
+  - {fileID: 11400000, guid: 94dc410a1e0d4344b9dda410b068595e, type: 2}
   E_Atk_icons:
   - {fileID: 11400000, guid: 62445564878a12a48a24307fd8d6337a, type: 2}
   - {fileID: 11400000, guid: 20206b95207e7cf49b65264989c580d3, type: 2}

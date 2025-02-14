@@ -253,17 +253,6 @@
                 },
                 {
                     "name": "",
-                    "id": "46b4d7cf-1ed1-45a8-88f6-cb6de79feca2",
-                    "path": "<Keyboard>/z",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "S1_Atk",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2c30bde3-b192-40d8-aae4-c2136162dca9",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
@@ -275,12 +264,45 @@
                 },
                 {
                     "name": "",
-                    "id": "d48c2da8-f19a-40f9-9bef-29210cf7eddb",
-                    "path": "<Keyboard>/x",
+                    "id": "46b4d7cf-1ed1-45a8-88f6-cb6de79feca2",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "S2_Atk",
+                    "action": "S1_Atk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70878ee1-1308-425e-957e-0ddf6adc5647",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "S1_Atk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f582db63-57d4-4d59-bb37-ab2c9f150da0",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "S1_Atk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3800272b-545b-42bf-a762-0ff635f7f4f2",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "S1_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -291,6 +313,50 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
+                    "action": "S2_Atk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d48c2da8-f19a-40f9-9bef-29210cf7eddb",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "S2_Atk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "80f1455a-d36f-4cad-8ea8-eadd64e9e4c6",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "S2_Atk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "05184776-91dc-411e-9a4d-68fdaaa5b33e",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "S2_Atk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f37d44de-ec8e-4e7b-9976-e8e7b9bfb295",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "S2_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false

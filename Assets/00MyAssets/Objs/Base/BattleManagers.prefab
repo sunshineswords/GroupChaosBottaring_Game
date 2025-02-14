@@ -2747,7 +2747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7035207770633140286, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 70
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7035207770633140286, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3014,6 +3014,34 @@ PrefabInstance:
     - target: {fileID: 2091103707894034803, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214240606656183925, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
+      propertyPath: _isAutoColor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214240606656183925, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
+      propertyPath: _pressedColor.b
+      value: 0.100000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214240606656183925, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
+      propertyPath: _pressedColor.g
+      value: 0.100000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214240606656183925, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
+      propertyPath: _selectedColor.b
+      value: 0.40000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214240606656183925, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
+      propertyPath: _selectedColor.g
+      value: 0.40000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214240606656183925, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
+      propertyPath: _highlightedColor.b
+      value: 0.4009434
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214240606656183925, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
+      propertyPath: _highlightedColor.g
+      value: 0.4009434
       objectReference: {fileID: 0}
     - target: {fileID: 6589526318832568928, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_Pivot.x

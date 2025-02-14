@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class OperatingInstructionsManager_Gabu : MonoBehaviour
 {
@@ -11,9 +9,7 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
     public ActionIcones_DB actionIcones_DB;
     public PlayerInput playerInput;
     public GameObject space;
-    public GameObject textPrefab;
     public GameObject iconPrefab;
-    public GameObject spacingPrefab;
     public Status statu = Status.UI;
 
     public enum Status : int
@@ -49,8 +45,11 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
         {
             icones.Add(actionIcones_DB.Move_icons[deviceIndex]);
             icones.Add(actionIcones_DB.Jump_icons[deviceIndex]);
+            icones.Add(actionIcones_DB.Target_icons[deviceIndex]);
+            icones.Add(actionIcones_DB.Chenge_icons[deviceIndex]);
             icones.Add(actionIcones_DB.N_Atk_icons[deviceIndex]);
             icones.Add(actionIcones_DB.S1_Atk_icons[deviceIndex]);
+            icones.Add(actionIcones_DB.S2_Atk_icons[deviceIndex]);
             icones.Add(actionIcones_DB.E_Atk_icons[deviceIndex]);
             icones.Add(actionIcones_DB.Look_icons[deviceIndex]);
         }
@@ -93,36 +92,18 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
 
         space.SetActive(true);
 
-        // 端のスペースを生成
-        GameObject spacing1 = Instantiate(iconPrefab, space.transform);
-        spacing1.GetComponent<RawImage>().texture = null;
-        spacing1.GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
-
         for (int i = 0; i < icones.Length; i++)
         {
             // アイコンの生成
             GameObject icon = Instantiate(iconPrefab, space.transform);
-            icon.GetComponent<RawImage>().texture = icones[i].icon;
+            IconPrefabSystem_Gabu prefabSystem = icon.GetComponent<IconPrefabSystem_Gabu>();
 
-            // テキストの生成
-            GameObject tmpObj = Instantiate(textPrefab, space.transform);
-            TextMeshProUGUI tmpro = tmpObj.GetComponent<TextMeshProUGUI>();
-            tmpro.text = icones[i].title;
-            // スペースを開ける
-            GameObject spacing = Instantiate(spacingPrefab, space.transform);
+            // アイコンの設定
+            prefabSystem.icon.texture = icones[i].icon;
 
-            // テキストとアイコンの順番を合わせる
-            icon.transform.SetAsLastSibling();
-            tmpro.transform.SetAsLastSibling();
-            spacing.transform.SetAsLastSibling();
+            // テキストの設定
+            prefabSystem.tmpro.text = icones[i].title;
         }
-
-        // 端のスペースを生成
-        GameObject spacing2 = Instantiate(iconPrefab, space.transform);
-        spacing2.GetComponent<RawImage>().texture = null;
-        spacing2.GetComponent<RawImage>().color = new Color(0, 0, 0, 0);
-        spacing1.transform.SetAsFirstSibling();
-        spacing2.transform.SetAsLastSibling();
     }
 
     #endregion

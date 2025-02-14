@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f027804dfa2bed047accec4633a5aade, type: 3}
-  m_Name: "playstation_\u30B9\u30AD\u30EB"
+  m_Name: "keyboard_\u30B9\u30AD\u30EB1"
   m_EditorClassIdentifier: 
-  icon: {fileID: 2800000, guid: 65aab92c0968d8f4ab2eb554485e182a, type: 3}
-  title: "\u30B9\u30AD\u30EB"
+  icon: {fileID: 2800000, guid: 5a143a19b3ccf0b4f946ac1eb646ab22, type: 3}
+  title: "\u30B9\u30AD\u30EB1"
   description: 
