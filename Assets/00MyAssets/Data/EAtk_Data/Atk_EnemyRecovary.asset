@@ -27,10 +27,12 @@ MonoBehaviour:
   - BranchNum: 0
     Times: {x: 50, y: 50, z: 0}
     State: 0
-    Adds: 5000000
+    Adds: 1000000
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 60)ID:20'
     BranchNum: 0
     Times: {x: 0, y: 60}
     ID: 20
+    Speed: 0
+  SEPlays: []

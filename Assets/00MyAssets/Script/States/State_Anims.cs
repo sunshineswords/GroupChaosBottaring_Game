@@ -12,8 +12,10 @@ public class State_Anims : MonoBehaviour
 
     void Update()
     {
+        if (Sta == null) return;
         Anim.SetInteger("MoveID", Sta.Anim_MoveID);
         Anim.SetInteger("AtkID", Sta.Anim_AtkID);
+        Anim.SetFloat("AtkSpeed", Sta.Anim_AtkSpeed);
         Anim.SetInteger("OtherID", Sta.Anim_OtherID);
         if (Anim.avatar != null)
         {

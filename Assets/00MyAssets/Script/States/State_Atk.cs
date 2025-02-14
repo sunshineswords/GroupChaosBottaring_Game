@@ -5,7 +5,7 @@ using System.Linq;
 using static Statics;
 using static DataBase;
 using static Data_Atk;
-
+using static BattleManager;
 
 
 public class State_Atk
@@ -256,8 +256,33 @@ public class State_Atk
             if (USta.AtkBranch != AtAnim.BranchNum) continue;
             if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)AtAnim.Times))
             {
-                if (AtAnim.ID != 0) USta.Anim_AtkID = AtAnim.ID;
+                if (AtAnim.ID != 0)
+                {
+                    USta.Anim_AtkID = AtAnim.ID;
+                    USta.Anim_AtkSpeed = 1f + AtAnim.Speed*0.01f;
+                }
             }
+        }
+    }
+    static public void SEPlay(State_Base USta)
+    {
+        var AtkD = USta.AtkD;
+        if (AtkD.SEPlays == null) return;
+        for(int i = 0; i < AtkD.SEPlays.Length; i++)
+        {
+            var SEPlay = AtkD.SEPlays[i];
+            if (USta.AtkBranch != SEPlay.BranchNum) continue;
+            if (!V3IntTimeCheck(USta.AtkTime, SEPlay.Times)) continue;
+            BTManager.SEPlay(SEPlay.Clip, USta.PosGet(), SEPlay.Volume, SEPlay.Pitch);
+        }
+    }
+    static public void SEPlayAdd(Data_AddShot AddShotD, Vector3 Pos)
+    {
+        if (AddShotD.SEPlays == null) return;
+        for (int i = 0; i < AddShotD.SEPlays.Length; i++)
+        {
+            var SEPlay = AddShotD.SEPlays[i];
+            BTManager.SEPlay(SEPlay.Clip, Pos, SEPlay.Volume, SEPlay.Pitch);
         }
     }
 }

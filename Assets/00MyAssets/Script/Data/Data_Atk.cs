@@ -20,6 +20,7 @@ public class Data_Atk : ScriptableObject
     [Header("ステータス変化")] public StateC[] States;
     [Header("武器表示")] public WeponSetC[] WeponSets;
     [Header("アニメーション")] public AnimC[] Anims;
+    [Header("効果音再生")] public SEPlayC[] SEPlays;
     [System.Serializable]
     public class BranchInfoC
     {
@@ -208,19 +209,32 @@ public class Data_Atk : ScriptableObject
         [Tooltip(Ttp_BID)] public int BranchNum;
         [Tooltip(Ttp_Times)] public Vector2Int Times;
         [Tooltip("アニメーションID")] public int ID;
+        [Tooltip("アニメーション速度加算%")] public float Speed;
+    }
+    [System.Serializable]
+    public class SEPlayC
+    {
+        [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip(Ttp_Times)] public Vector3Int Times;
+        [Tooltip("SEファイル")] public AudioClip Clip;
+        [Tooltip("音量")] public float Volume = 100f;
+        [Tooltip("音程-300～300"), Range(-300f, 300f)] public float Pitch = 100f;
     }
 
     public string InfoGets()
     {
         string Str = "";
         if (Info != "") Str = Info;
+        if (Str != "") Str += "\n";
+        Str += "CT" + CT+"秒";
+        if (SPUse > 0)Str += "\nSP" + SPUse;
+        
         if (BranchInfos.Count > 0)
         {
             for (int i = 0; i < BranchInfos.Count; i++)
             {
                 var BInfo = BranchInfos[i];
-                if (Str != "") Str += "\n";
-                Str += BInfo.Name;
+                Str += "\n" + BInfo.Name;
                 for (int j = 0; j < Shots.Length; j++)
                 {
                     var Shot = Shots[j];
@@ -233,7 +247,7 @@ public class Data_Atk : ScriptableObject
             for (int j = 0; j < Shots.Length; j++)
             {
                 var Shot = Shots[j];
-                Str += Shot.OtherStrGet(0);
+                Str += "\n" + Shot.OtherStrGet(0);
             }
         }
         return Str;

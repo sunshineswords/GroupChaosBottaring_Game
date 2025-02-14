@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
 public class Shot_Obj : MonoBehaviourPun
 {
@@ -12,6 +11,8 @@ public class Shot_Obj : MonoBehaviourPun
     [SerializeField] bool HitRem;
     [System.NonSerialized] public Data_Atk.ShotC_Base ShotD;
     public Data_AddShot[] DelAddShots;
+    public ParticleSystem[] SepParticles;
+    public TrailRenderer[] SepTrails;
 
     public int Times = 0;
     public int BranchNum;
@@ -64,10 +65,30 @@ public class Shot_Obj : MonoBehaviourPun
             if (DelAddShots != null)
                 for (int i = 0; i < DelAddShots.Length; i++)
                 {
-                    State_Atk.ShotAdd(USta, DelAddShots[i],Times, transform.position, transform.eulerAngles);
+                    State_Atk.ShotAdd(USta, DelAddShots[i], Times, transform.position, transform.eulerAngles);
+                    State_Atk.SEPlayAdd(DelAddShots[i], transform.position);
                 }
+            photonView.RPC(nameof(RPC_SepObj), RpcTarget.All);
         }
-
         PhotonNetwork.Destroy(gameObject);
+    }
+    [PunRPC]
+    void RPC_SepObj()
+    {
+        if (SepParticles != null)
+            for (int i = 0; i < SepParticles.Length; i++)
+            {
+                SepParticles[i].transform.parent = null;
+                var ParMain = SepParticles[i].main;
+                ParMain.loop = false;
+                ParMain.stopAction = ParticleSystemStopAction.Destroy;
+            }
+        if(SepTrails!=null)
+            for (int i = 0; i < SepTrails.Length; i++)
+            {
+                SepTrails[i].transform.parent = null;
+                SepTrails[i].autodestruct = true;
+            }
+
     }
 }

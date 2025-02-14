@@ -137,10 +137,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   USta: {fileID: 0}
   Rig: {fileID: 8710933915686848093}
-  RemTime: 60
+  RemTime: 150
   HitRem: 1
   DelAddShots:
   - {fileID: 11400000, guid: 75804ec4aa09ac44e96ef243cf8f958c, type: 2}
+  SepParticles: []
   Times: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623

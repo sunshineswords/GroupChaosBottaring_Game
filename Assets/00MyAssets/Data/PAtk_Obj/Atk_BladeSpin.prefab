@@ -19572,6 +19572,13 @@ MonoBehaviour:
   Rig: {fileID: 8710933915686848093}
   RemTime: 75
   HitRem: 0
+  DelAddShots: []
+  SepParticles:
+  - {fileID: 5880481052811853557}
+  - {fileID: 6207063596064766920}
+  - {fileID: 865553001914827567}
+  - {fileID: 4983063264260496228}
+  - {fileID: 6393386175756660899}
   Times: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
@@ -19587,6 +19594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
+  WallRem: 0
 --- !u!114 &-7632642970117116558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19607,6 +19615,7 @@ MonoBehaviour:
     TargetMode: 10
     TargetCT: 999
     Target: {fileID: 0}
+    TargetHit: {fileID: 0}
     TCT: 0
 --- !u!1 &7055061268664047510
 GameObject:

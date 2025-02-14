@@ -4990,6 +4990,10 @@ MonoBehaviour:
   Rig: {fileID: 0}
   RemTime: 200
   HitRem: 0
+  DelAddShots: []
+  SepParticles:
+  - {fileID: 8842683406498741388}
+  SepTrails: []
   Times: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
@@ -5005,6 +5009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
+  WallRem: 0
 --- !u!135 &2782370460987721148
 SphereCollider:
   m_ObjectHideFlags: 0

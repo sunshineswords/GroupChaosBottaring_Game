@@ -17,12 +17,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [Tooltip("プレイヤー")] public bool Player;
     [Tooltip("ボス")] public bool Boss;
     [Tooltip("不死")] public bool Undet;
+    public SEPlayC DamageSE;
+    public SEPlayC DeathSE;
     [Tooltip("死亡エフェクト")] public GameObject DeathEffect;
     [Header("ステータス")]
     [Tooltip("最大HP")]public int MHP;
     [Tooltip("秒間HP回復速度")] public float HPRegene;
     [Tooltip("最大MP(移動力)")] public int MMP;
     [Tooltip("秒間MP回復速度")] public float MPRegene;
+    [Tooltip("秒間SP回復速度")] public float SPRegene;
     [Tooltip("攻撃力")] public int Atk;
     [Tooltip("防御力")] public int Def;
     [Header("変数")]
@@ -57,6 +60,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
 
     public int Anim_MoveID;
     public int Anim_AtkID;
+    public float Anim_AtkSpeed;
     public int Anim_OtherID;
 
     public Dictionary<int,AtkCTC> AtkCTs = new Dictionary<int,AtkCTC>();
@@ -98,7 +102,11 @@ public class State_Base : MonoBehaviourPun,IPunObservable
 
             if (Player)
             {
-                if(DeathTime == 0)BTManager.DeathAdd();
+                if (DeathTime == 0)
+                {
+                    BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
+                    BTManager.DeathAdd();
+                }
                 if(DeathTime >= 300)HP = MHP;
             }
             else if (Undet)
@@ -107,7 +115,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             }
             else if (!Boss)
             {
-                if (DeathTime >= 60) Deletes();
+                if (DeathTime >= 60)
+                {
+                    BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
+                    Deletes();
+                }
+            }
+            else
+            {
+                if (DeathTime == 0) BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
             }
             DeathTime++;
             DashTime = 0;
@@ -116,6 +132,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         {
             HP += HPRegene / 60f;
             HP = Mathf.Min(HP, MHP);
+            SP += SPRegene / 60f;
             DeathTime = 0;
         }
         if (!Player && Team != 0 && BTManager.End) Deletes();
@@ -188,16 +205,18 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     void RPC_Damage(Vector3 HitPos, int Val)
     {
         Color DamCol = Val >= 0 ? Color.white : Color.magenta;
-        GameObject HitEffect = DB.EnemyHitEffect;
+        GameObject HitEffect = Val >= 0 ? DB.HitEffects[1] : DB.HealEffects[1];
         switch (Team)
         {
             case 0:
                 DamCol = Val >= 0 ? Color.red : Color.green;
-                HitEffect = DB.PlayerHitEffect;
+                HitEffect = Val >= 0 ? DB.HitEffects[0] : DB.HealEffects[0];
                 break;
         }
         DamageObj.DamageSet(HitPos, Mathf.Abs(Val), DamCol);
         var InsHitEffect = Instantiate(HitEffect, HitPos, Quaternion.identity);
+        if (Val >= 0)BTManager.SEPlay(DamageSE.Clip, HitPos, DamageSE.Volume, DamageSE.Pitch, true);
+
         if (!photonView.IsMine) return;
         HP -= Val;
     }
@@ -230,6 +249,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         #region スキル処理
         if (HP <= 0) AtkD = null;
         Anim_AtkID = 0;
+        Anim_AtkSpeed = 1;
         if (AtkD==null)
         {
             AtkTime = 0;
@@ -241,6 +261,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         State_Atk.State(this);
         State_Atk.WeponSet(this);
         State_Atk.Anim(this);
+        State_Atk.SEPlay(this);
         AtkTime++;
         if (AtkTime > AtkD.EndTime) AtkD = null;
         #endregion
@@ -266,6 +287,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
 
             stream.SendNext(Anim_MoveID);
             stream.SendNext(Anim_AtkID);
+            stream.SendNext(Anim_AtkSpeed);
             stream.SendNext(Anim_OtherID);
 
         }
@@ -292,6 +314,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
 
             Anim_MoveID = (int)stream.ReceiveNext();
             Anim_AtkID = (int)stream.ReceiveNext();
+            Anim_AtkSpeed = (float)stream.ReceiveNext();
             Anim_OtherID = (int)stream.ReceiveNext();
         }
     }
