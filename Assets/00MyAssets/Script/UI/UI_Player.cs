@@ -72,7 +72,10 @@ public class UI_Player : MonoBehaviour
                     Slot = 10;
                     break;
             }
-            AtkUIs[i].BackImage.color = Input ? Color.yellow : Color.white;
+            if (Input)
+            {
+                AtkUIs[i].Play();
+            }
             AtkUIs[i].Name.text = AtkD.Name;
             AtkUIs[i].Icon.texture = AtkD.Icon;
             Sta.AtkCTs.TryGetValue(Slot, out var AtkCTs);
