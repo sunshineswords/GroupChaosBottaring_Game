@@ -11,8 +11,8 @@ public class UISystem_Gabu : ColorSystem
     protected int _i_currentAnimation = 0;
     protected int _i_lastAnimation = -1;
 
-    public bool IsAlignment = true;
-    public int setState = 0;
+    public bool IsChangeable = true;
+    public int setStatu = 0;
 
     [SerializeField]
     protected Animator _animator;
@@ -88,7 +88,7 @@ public class UISystem_Gabu : ColorSystem
     protected float _disabledScaleMultiplier = 1.0f;
 
 
-    protected enum AnimatorState : int
+    public enum AnimatorStatu : int
     {
         Normal = 0, Highlighted, Pressed, Selected, Disabled
     }
@@ -103,22 +103,22 @@ public class UISystem_Gabu : ColorSystem
     {
         if (_animator == null)
         {
-            return setState;
+            return setStatu;
         }
         if (_isButton || _animator == null)
         {
-            return (int)AnimatorState.Normal;
+            return (int)AnimatorStatu.Normal;
         }
 
-        foreach (string state in Enum.GetNames(typeof(AnimatorState)))
+        foreach (string state in Enum.GetNames(typeof(AnimatorStatu)))
         {
             if (_animator.GetCurrentAnimatorStateInfo(0).IsName(state))
             {
-                return (int)Enum.Parse(typeof(AnimatorState), state);
+                return (int)Enum.Parse(typeof(AnimatorStatu), state);
             }
         }
 
-        return (int)AnimatorState.Normal;
+        return (int)AnimatorStatu.Normal;
     }
 
 
@@ -199,25 +199,23 @@ public class UISystem_Gabu : ColorSystem
         }
     }
 
-    public void UpdateAnimation()
+    public void UpdateAnimation(int _i_currentAnimation)
     {
-
-        _i_currentAnimation = CheckAnimationState();
         switch (_i_currentAnimation)
         {
-            case (int)AnimatorState.Normal:
+            case (int)AnimatorStatu.Normal:
                 NormalAnimation();
                 break;
-            case (int)AnimatorState.Highlighted:
+            case (int)AnimatorStatu.Highlighted:
                 HighlightedAnimation();
                 break;
-            case (int)AnimatorState.Pressed:
+            case (int)AnimatorStatu.Pressed:
                 PressedAnimation();
                 break;
-            case (int)AnimatorState.Selected:
+            case (int)AnimatorStatu.Selected:
                 SelectedAnimation();
                 break;
-            case (int)AnimatorState.Disabled:
+            case (int)AnimatorStatu.Disabled:
                 DisabledAnimation();
                 break;
             default:
@@ -226,6 +224,20 @@ public class UISystem_Gabu : ColorSystem
         }
         _i_lastAnimation = _i_currentAnimation;
     }
+
+    /// <summary>
+    /// 外部からステータスを変更します。isChangeableがfalseの場合は変更できません。
+    /// </summary>
+    /// <param name="newStatu">実行するアニメーションのステータス</param>
+    public void ChangeStatu(AnimatorStatu newStatu)
+    {
+        if (!IsChangeable)
+        {
+            return;
+        }
+        UpdateAnimation((int)newStatu);
+    }
+
     #endregion
 
     protected virtual void Start()
@@ -296,6 +308,12 @@ public class UISystem_Gabu : ColorSystem
             return;
         }
 
-        UpdateAnimation();
+        if(IsChangeable)
+        {
+            return;
+        }
+
+        _i_currentAnimation = CheckAnimationState();
+        UpdateAnimation(_i_currentAnimation);
     }
 }

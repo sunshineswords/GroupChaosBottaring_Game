@@ -110,19 +110,19 @@ public class TextAnimation_Gabu : UISystem_Gabu
         _i_currentAnimation = CheckAnimationState();
         switch (_i_currentAnimation)
         {
-            case (int)AnimatorState.Normal:
+            case (int)AnimatorStatu.Normal:
                 NormalAnimation();
                 break;
-            case (int)AnimatorState.Highlighted:
+            case (int)AnimatorStatu.Highlighted:
                 HighlightedAnimation();
                 break;
-            case (int)AnimatorState.Pressed:
+            case (int)AnimatorStatu.Pressed:
                 PressedAnimation();
                 break;
-            case (int)AnimatorState.Selected:
+            case (int)AnimatorStatu.Selected:
                 SelectedAnimation();
                 break;
-            case (int)AnimatorState.Disabled:
+            case (int)AnimatorStatu.Disabled:
                 DisabledAnimation();
                 break;
             default:

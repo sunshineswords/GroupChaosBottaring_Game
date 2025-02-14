@@ -46,10 +46,10 @@ public class AttackButtonSystem_Gabu : MonoBehaviour
         {
             if (statu == AnimatorStatu.NONE)
             {
-                _uiSystem[i].IsAlignment = true;
+                _uiSystem[i].IsChangeable = true;
                 continue;
             }
-            _uiSystem[i].setState = (int)statu;
+            _uiSystem[i].setStatu = (int)statu;
         }
     }
 }

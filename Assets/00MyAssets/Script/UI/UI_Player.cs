@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static DataBase;
 using static PlayerValue;
+
 public class UI_Player : MonoBehaviour
 {
     [SerializeField] State_Base Sta;
@@ -72,10 +73,13 @@ public class UI_Player : MonoBehaviour
                     Slot = 10;
                     break;
             }
-            if (Input)
+
+            foreach (var animation in AtkUIs[i].imageAnimation)
             {
-                AtkUIs[i].Play();
+                // 入力があった場合にアニメーションをPressedに変更
+                animation.ChangeStatu(Input ? UISystem_Gabu.AnimatorStatu.Pressed : UISystem_Gabu.AnimatorStatu.Normal);
             }
+
             AtkUIs[i].Name.text = AtkD.Name;
             AtkUIs[i].Icon.texture = AtkD.Icon;
             Sta.AtkCTs.TryGetValue(Slot, out var AtkCTs);
