@@ -87,6 +87,11 @@ public class ImageAnimation_Gabu : UISystem_Gabu
         }
     }
 
+    public void UpdateImageAnimation(ImageAnimation_Gabu imageAnimation)
+    {
+        base.UpdateSettings(imageAnimation);
+        image = imageAnimation.image ?? image;
+    }
 
     #endregion
 

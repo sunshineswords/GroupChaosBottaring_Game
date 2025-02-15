@@ -274,8 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c261ecc43342149992ea717159586c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAlignment: 1
-  setState: 0
+  IsChangeable: 0
+  setStatu: 0
   _animator: {fileID: 3131440344636224361}
   _transform: {fileID: 6312308474101038414}
   _unitPosition: {x: 0, y: 0, z: 0}
@@ -286,6 +286,7 @@ MonoBehaviour:
   _pressedColor: {r: 1, g: 1, b: 1, a: 1}
   _selectedColor: {r: 1, g: 1, b: 1, a: 1}
   _disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _isGetColor: 0
   _isAutoColor: 1
   _isLockHue: 0
   _isLockSaturation: 0
@@ -532,8 +533,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f187ae7e94eb08409310b68718d2cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAlignment: 1
-  setState: 0
+  IsChangeable: 0
+  setStatu: 0
   _animator: {fileID: 3131440344636224361}
   _transform: {fileID: 3461227691612876748}
   _unitPosition: {x: 0, y: 0, z: 0}
@@ -544,6 +545,7 @@ MonoBehaviour:
   _pressedColor: {r: 1, g: 1, b: 1, a: 1}
   _selectedColor: {r: 1, g: 1, b: 1, a: 1}
   _disabledColor: {r: 0, g: 0, b: 0, a: 0}
+  _isGetColor: 0
   _isAutoColor: 0
   _isLockHue: 1
   _isLockSaturation: 1
@@ -654,8 +656,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f187ae7e94eb08409310b68718d2cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAlignment: 1
-  setState: 0
+  IsChangeable: 0
+  setStatu: 0
   _animator: {fileID: 3131440344636224361}
   _transform: {fileID: 1182970618729934705}
   _unitPosition: {x: 0, y: 0, z: 0}
@@ -666,6 +668,7 @@ MonoBehaviour:
   _pressedColor: {r: 1, g: 1, b: 1, a: 1}
   _selectedColor: {r: 1, g: 1, b: 1, a: 0.69803923}
   _disabledColor: {r: 0, g: 0, b: 0, a: 0}
+  _isGetColor: 0
   _isAutoColor: 0
   _isLockHue: 1
   _isLockSaturation: 1

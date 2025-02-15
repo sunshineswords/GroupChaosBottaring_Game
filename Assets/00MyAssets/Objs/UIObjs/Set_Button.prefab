@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52.5
+  m_fontSize: 38.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -224,18 +224,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f187ae7e94eb08409310b68718d2cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAlignment: 1
-  setState: 0
+  IsChangeable: 0
+  setStatu: 0
   _animator: {fileID: 5445691093122514001}
   _transform: {fileID: 6566573606887780376}
   _unitPosition: {x: 0, y: 0, z: 0}
   _unitRotation: {x: 0, y: 0, z: 0}
   _unitScale: {x: 0, y: 0, z: 0}
   _normalColor: {r: 0, g: 0, b: 0, a: 0}
-  _highlightedColor: {r: 0, g: 0, b: 0, a: 0}
+  _highlightedColor: {r: 1, g: 1, b: 1, a: 0.69803923}
   _pressedColor: {r: 1, g: 1, b: 1, a: 1}
   _selectedColor: {r: 1, g: 1, b: 1, a: 0.69803923}
   _disabledColor: {r: 0, g: 0, b: 0, a: 0}
+  _isGetColor: 0
   _isAutoColor: 0
   _isLockHue: 1
   _isLockSaturation: 1
@@ -346,8 +347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f187ae7e94eb08409310b68718d2cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAlignment: 1
-  setState: 0
+  IsChangeable: 0
+  setStatu: 0
   _animator: {fileID: 5445691093122514001}
   _transform: {fileID: 4968324472157459685}
   _unitPosition: {x: 0, y: 0, z: 0}
@@ -358,6 +359,7 @@ MonoBehaviour:
   _pressedColor: {r: 1, g: 1, b: 1, a: 1}
   _selectedColor: {r: 1, g: 1, b: 1, a: 0.69803923}
   _disabledColor: {r: 0, g: 0, b: 0, a: 0}
+  _isGetColor: 0
   _isAutoColor: 0
   _isLockHue: 1
   _isLockSaturation: 1
@@ -597,7 +599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 3534170909772389628, guid: fc3dd1f15fc737c4f9ab28fc5b08ab4e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2b2ea08ce56be9d429602dbb5365b9f4, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1043,8 +1045,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c261ecc43342149992ea717159586c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAlignment: 1
-  setState: 0
+  IsChangeable: 0
+  setStatu: 0
   _animator: {fileID: 5445691093122514001}
   _transform: {fileID: 216201742435911386}
   _unitPosition: {x: 0, y: 0, z: 0}
@@ -1055,6 +1057,7 @@ MonoBehaviour:
   _pressedColor: {r: 1, g: 1, b: 1, a: 1}
   _selectedColor: {r: 1, g: 1, b: 1, a: 1}
   _disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  _isGetColor: 0
   _isAutoColor: 1
   _isLockHue: 0
   _isLockSaturation: 0

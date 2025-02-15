@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 public class ColorebleUI : MonoBehaviour, IUIAnimation
 {
@@ -16,8 +16,8 @@ public class ColorebleUI : MonoBehaviour, IUIAnimation
     [SerializeField]
     private Image image = null;
 
-    [SerializeField] Color _startColor;
-    [SerializeField] Color _endColor;
+    [SerializeField] Color _startColor = Color.white;
+    [SerializeField] Color _endColor = Color.black;
     [SerializeField] float _duration = 0.3f;
     [SerializeField] Ease _easeType = Ease.Linear;
     [SerializeField] int _loopCount = 0;

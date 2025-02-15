@@ -2370,8 +2370,8 @@ RectTransform:
   - {fileID: 7203140835106300081}
   - {fileID: 8777055891526823396}
   - {fileID: 8680195522443564215}
-  - {fileID: 2517403205065914771}
   - {fileID: 5740236742546748146}
+  - {fileID: 2517403205065914771}
   m_Father: {fileID: 8136510282919451861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2485,6 +2485,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8680195522443564215}
     m_Modifications:
+    - target: {fileID: 3921916626522737947, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
+      propertyPath: IsChangeable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4861210604041086034, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_text
       value: "\u9000\u5BA4"
@@ -2677,6 +2681,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2517403205065914771}
     m_Modifications:
+    - target: {fileID: 3921916626522737947, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
+      propertyPath: IsChangeable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4861210604041086034, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_text
       value: "\u9000\u5BA4"
@@ -2869,6 +2877,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1662900611096284204, guid: 6d45520ec222d3f4a8336fa9c078ac7d, type: 3}
+      propertyPath: IsChangeable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2018190031447041546, guid: 6d45520ec222d3f4a8336fa9c078ac7d, type: 3}
       propertyPath: m_text
       value: "\u30E1\u30CB\u30E5\u30FC"
@@ -3014,6 +3026,10 @@ PrefabInstance:
     - target: {fileID: 2091103707894034803, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_Name
       value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2214240606656183925, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
+      propertyPath: IsChangeable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2214240606656183925, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: _isAutoColor

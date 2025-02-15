@@ -2,14 +2,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ToggleUIAnimationo : MonoBehaviour
+public class BinaryUIAnimationo : MonoBehaviour
 {
     public ColorebleUI myAnimation;
-    public Toggle toggle;
     public bool isReverse = true;
-    public void UpdateAnimation()
+    public void UpdateAnimation(bool binary)
     {
-        if (toggle.isOn)
+        if (binary)
         {
             myAnimation.Play();
         }

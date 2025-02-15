@@ -11,7 +11,7 @@ public class UISystem_Gabu : ColorSystem
     protected int _i_currentAnimation = 0;
     protected int _i_lastAnimation = -1;
 
-    public bool IsChangeable = true;
+    public bool IsChangeable = false;
     public int setStatu = 0;
 
     [SerializeField]
@@ -20,11 +20,11 @@ public class UISystem_Gabu : ColorSystem
     [SerializeField]
     protected Transform _transform;
     [SerializeField]
-    protected Vector3 _unitPosition;
+    protected Vector3 _unitPosition = Vector3.one;
     [SerializeField]
-    protected Vector3 _unitRotation;
+    protected Vector3 _unitRotation = Vector3.one;
     [SerializeField]
-    protected Vector3 _unitScale;
+    protected Vector3 _unitScale = Vector3.one;
 
     [SerializeField, Header("基本色")]
     protected Color _normalColor = new Color(0.8823529f, 0.8823529f, 0.8823529f, 1f);
@@ -238,6 +238,42 @@ public class UISystem_Gabu : ColorSystem
         UpdateAnimation((int)newStatu);
     }
 
+    public virtual void UpdateSettings(UISystem_Gabu uiSystem)
+    {
+        _animator = uiSystem._animator ?? _animator;    // null合体演算子、nullの場合は代入されない
+        _transform = uiSystem._transform ?? _transform;
+        _unitPosition = uiSystem._unitPosition;
+        _unitRotation = uiSystem._unitRotation;
+        _unitScale = uiSystem._unitScale == Vector3.zero ? _unitScale : uiSystem._unitScale;
+        _normalColor = uiSystem._normalColor;
+        _highlightedColor = uiSystem._highlightedColor;
+        _pressedColor = uiSystem._pressedColor;
+        _selectedColor = uiSystem._selectedColor;
+        _disabledColor = uiSystem._disabledColor;
+        _isGetColor = uiSystem._isGetColor;
+        _isAutoColor = uiSystem._isAutoColor;
+        _isLockHue = uiSystem._isLockHue;
+        _isLockSaturation = uiSystem._isLockSaturation;
+        _isLockValue = uiSystem._isLockValue;
+        _disabledImage = uiSystem._disabledImage ?? _disabledImage;
+        _isReset = uiSystem._isReset;
+        _normalScaleDuration = uiSystem._normalScaleDuration;
+        _highlightedScaleDuration = uiSystem._highlightedScaleDuration;
+        _pressedScaleDuration = uiSystem._pressedScaleDuration;
+        _selectedScaleDuration = uiSystem._selectedScaleDuration;
+        _disabledScaleDuration = uiSystem._disabledScaleDuration;
+        _normalEase = uiSystem._normalEase;
+        _highlightedEase = uiSystem._highlightedEase;
+        _pressedEase = uiSystem._pressedEase;
+        _selectedEase = uiSystem._selectedEase;
+        _disabledEase = uiSystem._disabledEase;
+        _normalScaleMultiplier = uiSystem._normalScaleMultiplier;
+        _highlightedScaleMultiplier = uiSystem._highlightedScaleMultiplier;
+        _pressedScaleMultiplier = uiSystem._pressedScaleMultiplier;
+        _selectedScaleMultiplier = uiSystem._selectedScaleMultiplier;
+        _disabledScaleMultiplier = uiSystem._disabledScaleMultiplier;
+    }
+
     #endregion
 
     protected virtual void Start()
@@ -303,12 +339,12 @@ public class UISystem_Gabu : ColorSystem
 
     protected virtual void Update()
     {
-        if (_animator == null) 
+        if (_animator == null)
         {
             return;
         }
 
-        if(IsChangeable)
+        if (IsChangeable)
         {
             return;
         }
