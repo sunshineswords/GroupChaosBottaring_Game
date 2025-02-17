@@ -146,11 +146,20 @@ MonoBehaviour:
   Player: 0
   Boss: 1
   Undet: 0
+  DamageSE:
+    Clip: {fileID: 8300000, guid: 7cd63e639f4973b498967b60f8e87838, type: 3}
+    Volume: 75
+    Pitch: 200
+  DeathSE:
+    Clip: {fileID: 0}
+    Volume: 100
+    Pitch: 100
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
   MHP: 10000000
-  HPRegene: 250000
+  HPRegene: 0
   MMP: 0
   MPRegene: 0
+  SPRegene: 10
   Atk: 50000
   Def: 20
   HP: 0
@@ -174,6 +183,7 @@ MonoBehaviour:
   NGravity: 0
   Anim_MoveID: 0
   Anim_AtkID: 0
+  Anim_AtkSpeed: 0
   Anim_OtherID: 0
 --- !u!65 &5206309696311436553
 BoxCollider:
@@ -210,6 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sta: {fileID: 2049415607464157120}
   SpeedRem: 5
+  NearDis: {x: 4, y: 5}
   MoveSpeed: 20
   LerpSpeed: 1
 --- !u!1 &4063638381043877865

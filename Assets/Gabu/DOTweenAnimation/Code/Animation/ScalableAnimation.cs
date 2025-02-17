@@ -24,71 +24,51 @@ public class ScalableAnimation : UISystem_Gabu
     #region 関数
     protected override void NormalAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         if (_disabledImage != null)
         {
             _disabledImage.color = new Color(0f, 0f, 0f, 0f);
         }
-
+        _transform.localScale = Vector3.one;
         _transform.DOScale(new Vector3(_unitScale.x * _normalScale.x, _unitScale.y * _normalScale.y, _unitScale.z * _normalScale.z), _normalScaleDuration).SetEase(_normalEase);
         image.DOColor(_normalColor, _normalScaleDuration);
     }
 
     protected override void HighlightedAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         if (_disabledImage != null)
         {
             _disabledImage.color = new Color(0f, 0f, 0f, 0f);
         }
-
+        _transform.localScale = Vector3.one;
         _transform.DOScale(new Vector3(_unitScale.x * _highlightedScale.x, _unitScale.y * _highlightedScale.y, _unitScale.z * _highlightedScale.z), _highlightedScaleDuration).SetEase(_highlightedEase);
         image.DOColor(_highlightedColor, _highlightedScaleDuration);
     }
 
     protected override void PressedAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         if (_disabledImage != null)
         {
             _disabledImage.color = new Color(0f, 0f, 0f, 0f);
         }
-
+        _transform.localScale = Vector3.one;
         _transform.DOScale(new Vector3(_unitScale.x * _pressedScale.x, _unitScale.y * _pressedScale.y, _unitScale.z * _pressedScale.z), _pressedScaleDuration).SetEase(_pressedEase);
         image.DOColor(_pressedColor, _pressedScaleDuration);
     }
 
     protected override void SelectedAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         if (_disabledImage != null)
         {
             _disabledImage.color = new Color(0f, 0f, 0f, 0f);
         }
-
+        _transform.localScale = Vector3.one;
         _transform.DOScale(new Vector3(_unitScale.x * _selectedScale.x, _unitScale.y * _selectedScale.y, _unitScale.z * _selectedScale.z), _selectedScaleDuration).SetEase(_selectedEase);
         image.DOColor(_selectedColor, _selectedScaleDuration);
     }
 
     protected override void DisabledAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
-
+        _transform.localScale = Vector3.one;
         _transform.DOScale(new Vector3(_unitScale.x * _disabledScale.x, _unitScale.y * _disabledScale.y, _unitScale.z * _disabledScale.z), _disabledScaleDuration).SetEase(_disabledEase);
         image.DOColor(_disabledColor, _disabledScaleDuration);
 

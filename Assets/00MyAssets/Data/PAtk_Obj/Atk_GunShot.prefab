@@ -313,9 +313,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   USta: {fileID: 0}
+  Rig: {fileID: 0}
   RemTime: 60
   HitRem: 1
+  DelAddShots: []
+  SepParticles: []
+  SepTrails:
+  - {fileID: 106153526347216266}
   Times: 0
+  BranchNum: 0
 --- !u!114 &2647640555106031623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,3 +335,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
+  WallRem: 0

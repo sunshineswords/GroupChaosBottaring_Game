@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: DataBase
   m_EditorClassIdentifier: 
   DamageObjs: {fileID: 2133383468784159366, guid: d9a10580db32dc449af2d44e7449845c, type: 3}
-  PlayerHitEffect: {fileID: 104953593097573077, guid: c1eddefba415daf40ba9262312403e13, type: 3}
-  EnemyHitEffect: {fileID: 104953593097573077, guid: d4b2116be55691941987471b228b1dd9, type: 3}
+  SEObj: {fileID: 8436453900115658746, guid: 582ceb1877fd16b44b1c4927b0e584c2, type: 3}
+  HitEffects:
+  - {fileID: 104953593097573077, guid: c1eddefba415daf40ba9262312403e13, type: 3}
+  - {fileID: 104953593097573077, guid: d4b2116be55691941987471b228b1dd9, type: 3}
+  HealEffects:
+  - {fileID: 104953593097573077, guid: 9b06eee8eb04de8448ea200973c601e9, type: 3}
+  - {fileID: 104953593097573077, guid: 70f6162ee7145964fbd1078dc9c238d2, type: 3}
   Charas:
   - {fileID: 11400000, guid: 07821d065f745214395a81df54ff17ce, type: 2}
   - {fileID: 11400000, guid: a7854d6c44cf2e94d898f0a5ac93e7aa, type: 2}
@@ -47,6 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da22a7279bdef4547b197610c86c8ba1, type: 2}
   - {fileID: 11400000, guid: 352e9c4e2aa5e3940acb8572fbf6f984, type: 2}
   - {fileID: 11400000, guid: 719586dd196f4a546b1b4bce90de6d30, type: 2}
+  - {fileID: 11400000, guid: 4cbbe9f9dbdcc8541a72f75b390b9122, type: 2}
   Wepons:
   - {fileID: 6293833836109196858, guid: 93808f716b8dfec41a3316c3ae98591c, type: 3}
   - {fileID: 6293833836109196858, guid: fdcd55e0466b77c4a87c0528646b8a6a, type: 3}
@@ -55,6 +61,20 @@ MonoBehaviour:
   - {fileID: 6293833836109196858, guid: 3d11648eb48e09e46abbed22b097c343, type: 3}
   - {fileID: 6293833836109196858, guid: 34999135b8ab0a14c88341df51f2f4f3, type: 3}
   - {fileID: 6293833836109196858, guid: 79ddd92fee3f8294598064cd47154545, type: 3}
+  SEs:
+  - {fileID: 8300000, guid: 0ef0e1917edf7bd4693f975b0c0e18d9, type: 3}
+  - {fileID: 8300000, guid: 26f4cccbaa1a7814ebf9e026338e23fb, type: 3}
+  - {fileID: 8300000, guid: eb82b7b629006474dacffc75634a33d3, type: 3}
+  - {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
+  - {fileID: 8300000, guid: 6791451c594fab44fac46b35c74d67b0, type: 3}
+  - {fileID: 8300000, guid: 54a4a1310c1547b4f9fca1a88484bfdf, type: 3}
+  - {fileID: 8300000, guid: 300c9f52eee2ad040bc9d8318e7a9561, type: 3}
+  - {fileID: 8300000, guid: 249f21eb41173054999b4f91d31d3c41, type: 3}
+  - {fileID: 8300000, guid: 7cd63e639f4973b498967b60f8e87838, type: 3}
+  - {fileID: 8300000, guid: 8aae3bda30b8dce4ea0797c9b832fbdf, type: 3}
+  - {fileID: 8300000, guid: 7fb4c41cc4d25f74e990ac5e0ca081ec, type: 3}
+  - {fileID: 8300000, guid: c5f203541c7d96c439f2bf8f597b3200, type: 3}
+  - {fileID: 8300000, guid: 9c8ec50697cd0b54e85df323e7b62570, type: 3}
   Stages:
   - {fileID: 11400000, guid: 632b57d86c62ed6439b96f12aeb840a2, type: 2}
   - {fileID: 11400000, guid: 07c8d87946b505d4484d0d663a5c7a9d, type: 2}

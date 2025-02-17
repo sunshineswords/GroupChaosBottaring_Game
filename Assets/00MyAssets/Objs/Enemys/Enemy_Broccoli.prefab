@@ -166,7 +166,15 @@ MonoBehaviour:
     OtherIfs: []
     AtkSlot: 2
     AtkD: {fileID: 11400000, guid: 719586dd196f4a546b1b4bce90de6d30, type: 2}
-  TimerLim: 800
+  - TimeIf: {x: 1100, y: 1150}
+    OtherIfs: []
+    AtkSlot: 3
+    AtkD: {fileID: 11400000, guid: 002a7df2f2de31442898ac74c2e651e0, type: 2}
+  - TimeIf: {x: 1350, y: 1600}
+    OtherIfs: []
+    AtkSlot: 4
+    AtkD: {fileID: 11400000, guid: da3ec92c23376564383a70e1faa57919, type: 2}
+  TimerLim: 1700
   NoTargetResetTime: 0
 --- !u!1 &6754717574664688524
 GameObject:
@@ -408,11 +416,20 @@ MonoBehaviour:
   Player: 0
   Boss: 1
   Undet: 0
+  DamageSE:
+    Clip: {fileID: 8300000, guid: 7cd63e639f4973b498967b60f8e87838, type: 3}
+    Volume: 75
+    Pitch: 200
+  DeathSE:
+    Clip: {fileID: 8300000, guid: 26f4cccbaa1a7814ebf9e026338e23fb, type: 3}
+    Volume: 300
+    Pitch: 50
   DeathEffect: {fileID: 0}
   MHP: 8652100
   HPRegene: 0
   MMP: 0
   MPRegene: 0
+  SPRegene: 10
   Atk: 200000
   Def: 50
   HP: 0
@@ -436,6 +453,7 @@ MonoBehaviour:
   NGravity: 0
   Anim_MoveID: 0
   Anim_AtkID: 0
+  Anim_AtkSpeed: 0
   Anim_OtherID: 0
 --- !u!114 &7598547461402963404
 MonoBehaviour:
@@ -451,6 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
   SpeedRem: 0
+  NearDis: {x: 6, y: 15}
   MoveSpeed: 15
   LerpSpeed: 5
 --- !u!1 &7801158436413557424
@@ -542,18 +561,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2758125950921923790}
     - target: {fileID: 7338699090716222000, guid: 94117571af86b9540855ce96ba549e79, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338699090716222000, guid: 94117571af86b9540855ce96ba549e79, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338699090716222000, guid: 94117571af86b9540855ce96ba549e79, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338699090716222000, guid: 94117571af86b9540855ce96ba549e79, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -592,10 +599,6 @@ PrefabInstance:
     - target: {fileID: 7338699090716222000, guid: 94117571af86b9540855ce96ba549e79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7338699090716222000, guid: 94117571af86b9540855ce96ba549e79, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
-
+using static Statics;
 public class Shot_Obj : MonoBehaviourPun
 {
     public State_Base USta;
@@ -12,6 +11,8 @@ public class Shot_Obj : MonoBehaviourPun
     [SerializeField] bool HitRem;
     [System.NonSerialized] public Data_Atk.ShotC_Base ShotD;
     public Data_AddShot[] DelAddShots;
+    public ParticleSystem[] SepParticles;
+    public TrailRenderer[] SepTrails;
 
     public int Times = 0;
     public int BranchNum;
@@ -36,25 +37,29 @@ public class Shot_Obj : MonoBehaviourPun
     {
         if (HitList.ContainsKey(HitState.Sta)) return;
         HitList.Add(HitState.Sta, ShotD.HitCT);
-        if(HitState.Sta.DashTime > 0)
-        {
-            DamageObj.DamageSet(HitPos, "Miss", Color.gray);
-            return;
-        }
+        bool HitCh = false;
         for(int i=0;i< ShotD.Hits.Length; i++)
         {
+
             var Hit = ShotD.Hits[i];
             if (BranchNum != Hit.BranchNum) continue;
+            if (!TeamCheck(USta, HitState.Sta, Hit.EHit, Hit.FHit, Hit.MHit)) continue;
+            if (HitState.Sta.DashTime > 0)
+            {
+                DamageObj.DamageSet(HitPos, "Miss", Color.gray);
+                return;
+            }
+            HitCh = true;
             float Dam = Hit.BaseDam;
             Dam += USta.Atk * Hit.AtkDamPer * 0.01f;
             Dam += USta.Def * Hit.DefDamPer * 0.01f;
             Dam -= HitState.Sta.Def * Hit.DefRemPer * 0.01f;
             Dam *= 1f + HitState.DamAdds * 0.01f;
             if (Dam < 1) Dam = 1;
-            HitState.Sta.Damage(HitPos, Mathf.RoundToInt(Dam));
+            HitState.Sta.Damage(HitPos, Mathf.RoundToInt(Dam) * (Hit.Heals ? -1 : 1));
             USta.SP += Hit.SPAdd;
         }
-        if (HitRem) ShotDel();
+        if (HitRem && HitCh) ShotDel();
     }
     public void ShotDel()
     {
@@ -64,10 +69,30 @@ public class Shot_Obj : MonoBehaviourPun
             if (DelAddShots != null)
                 for (int i = 0; i < DelAddShots.Length; i++)
                 {
-                    State_Atk.ShotAdd(USta, DelAddShots[i],Times, transform.position, transform.eulerAngles);
+                    State_Atk.ShotAdd(USta, DelAddShots[i], Times, transform.position, transform.eulerAngles);
+                    State_Atk.SEPlayAdd(DelAddShots[i], transform.position);
                 }
+            photonView.RPC(nameof(RPC_SepObj), RpcTarget.All);
         }
-
         PhotonNetwork.Destroy(gameObject);
+    }
+    [PunRPC]
+    void RPC_SepObj()
+    {
+        if (SepParticles != null)
+            for (int i = 0; i < SepParticles.Length; i++)
+            {
+                SepParticles[i].transform.parent = null;
+                var ParMain = SepParticles[i].main;
+                ParMain.loop = false;
+                ParMain.stopAction = ParticleSystemStopAction.Destroy;
+            }
+        if(SepTrails!=null)
+            for (int i = 0; i < SepTrails.Length; i++)
+            {
+                SepTrails[i].transform.parent = null;
+                SepTrails[i].autodestruct = true;
+            }
+
     }
 }

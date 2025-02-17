@@ -137,15 +137,7 @@ public class UISystem_Gabu : ColorSystem
         {
             return;
         }
-
-        if (_isLockSaturation)
-        {
-            _transform.DOScale(_unitScale * _highlightedScaleMultiplier, _highlightedScaleDuration).SetEase(_highlightedEase);
-        }
-        else
-        {
-            _transform.DOScale(_unitScale * _highlightedScaleMultiplier, _highlightedScaleDuration).SetEase(_highlightedEase);
-        }
+        _transform.DOScale(_unitScale * _highlightedScaleMultiplier, _highlightedScaleDuration).SetEase(_highlightedEase);
     }
 
     protected virtual void PressedAnimation()
@@ -154,15 +146,7 @@ public class UISystem_Gabu : ColorSystem
         {
             return;
         }
-
-        if (_isLockSaturation)
-        {
-            _transform.DOScale(_unitScale * _pressedScaleMultiplier, _pressedScaleDuration).SetEase(_pressedEase);
-        }
-        else
-        {
-            _transform.DOScale(_unitScale * _pressedScaleMultiplier, _pressedScaleDuration).SetEase(_pressedEase);
-        }
+        _transform.DOScale(_unitScale * _pressedScaleMultiplier, _pressedScaleDuration).SetEase(_pressedEase);
     }
 
     protected virtual void SelectedAnimation()
@@ -171,15 +155,8 @@ public class UISystem_Gabu : ColorSystem
         {
             return;
         }
-
-        if (_isLockSaturation)
-        {
-            _transform.DOScale(_unitScale * _selectedScaleMultiplier, _selectedScaleDuration).SetEase(_selectedEase);
-        }
-        else
-        {
-            _transform.DOScale(_unitScale * _selectedScaleMultiplier, _selectedScaleDuration).SetEase(_selectedEase);
-        }
+        _transform.DOScale(_unitScale * _selectedScaleMultiplier, _selectedScaleDuration).SetEase(_selectedEase);
+        
     }
 
     protected virtual void DisabledAnimation()
@@ -188,19 +165,17 @@ public class UISystem_Gabu : ColorSystem
         {
             return;
         }
-
-        if (_isLockSaturation)
-        {
-            _transform.DOScale(_unitScale, _disabledScaleDuration).SetEase(_disabledEase);
-        }
-        else
-        {
-            _transform.DOScale(_unitScale, _disabledScaleDuration).SetEase(_disabledEase);
-        }
+        _transform.DOScale(_unitScale, _disabledScaleDuration).SetEase(_disabledEase);
+        
     }
 
     public void UpdateAnimation(int _i_currentAnimation)
     {
+        Debug.Log("Last" + _i_lastAnimation);
+        Debug.Log("currentAnimation" + _i_currentAnimation);
+        if (_i_lastAnimation == _i_currentAnimation)return;
+        
+        Debug.Log("Update");
         switch (_i_currentAnimation)
         {
             case (int)AnimatorStatu.Normal:
@@ -335,10 +310,12 @@ public class UISystem_Gabu : ColorSystem
         {
             _unitScale = _transform.localScale;
         }
+        _i_lastAnimation = -1;
     }
 
     protected virtual void Update()
     {
+
         if (_animator == null)
         {
             return;

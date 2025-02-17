@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using static DataBase;
 public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
 {
     static public BattleManager BTManager;
@@ -72,11 +72,34 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     {
         photonView.RPC(nameof(RPC_DeathAdd), RpcTarget.All);
     }
+    public void SEPlay(AudioClip SEClip, Vector3 Pos, float Volume, float Pitch,bool Local=false)
+    {
+        var SEID = DB.SEs.IndexOf(SEClip);
+        if (SEID < 0) return;
+        if (!Local) photonView.RPC(nameof(RPC_SEPlay), RpcTarget.All, SEID, Pos, Volume, Pitch);
+        else RPC_SEPlay(SEID, Pos, Volume, Pitch);
+    }
     [PunRPC]
     void RPC_DeathAdd()
     {
         if (!photonView.IsMine) return;
         DeathCount++;
+    }
+    [PunRPC]
+    void RPC_SEPlay(int SEID, Vector3 Pos, float Volume, float Pitch)
+    {
+        int VCount = Mathf.CeilToInt(Volume / 100f);
+        for (int i = 0; i < VCount; i++)
+        {
+            var SEObj = Instantiate(DB.SEObj, Pos, Quaternion.identity);
+            SEObj.clip = DB.SEs[SEID];
+            if (i == VCount - 1) SEObj.volume = (Volume * 0.01f) % 1f;
+            else SEObj.volume = 1f;
+            SEObj.pitch = Pitch / 100f;
+            if (Pitch < 0) SEObj.time = DB.SEs[SEID].length - 0.01f;
+            SEObj.Play();
+            Destroy(SEObj.gameObject, 10f);
+        }
     }
     void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info)
     {

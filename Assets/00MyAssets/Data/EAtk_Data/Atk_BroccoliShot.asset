@@ -31,7 +31,7 @@ MonoBehaviour:
       Speed: {x: 2400, y: 2400}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
+        PosChange: {x: 0, y: 1.5, z: 0}
         PosRand: {x: 0, y: 0, z: 0}
         PosWay: {x: 0, y: 0, z: 0}
         PosTime: {x: 0, y: 0, z: 0}
@@ -50,9 +50,17 @@ MonoBehaviour:
       SPAdd: 0
     HitCT: 0
   Moves: []
+  States: []
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 35)ID:1'
     BranchNum: 0
     Times: {x: 0, y: 35}
     ID: 1
+    Speed: 0
+  SEPlays:
+  - BranchNum: 0
+    Times: {x: 35, y: 35, z: 0}
+    Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
+    Volume: 60
+    Pitch: 100

@@ -42,6 +42,9 @@ MonoBehaviour:
   - RPC_Damage
   - RPC_DeathAdd
   - RPC_DeathEffect
+  - RPC_SepObj
+  - RPC_SEPlays
+  - RPC_SEPlay
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

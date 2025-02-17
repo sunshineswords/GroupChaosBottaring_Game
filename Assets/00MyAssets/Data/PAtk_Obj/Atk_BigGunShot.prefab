@@ -299,6 +299,10 @@ MonoBehaviour:
   Rig: {fileID: 8710933915686848093}
   RemTime: 30
   HitRem: 1
+  DelAddShots: []
+  SepParticles: []
+  SepTrails:
+  - {fileID: 106153526347216266}
   Times: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
@@ -314,6 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
+  WallRem: 0
 --- !u!114 &7113825387618192703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,9 +333,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
   Moves:
-  - Times: {x: 5, y: 999, z: 0}
+  - Times: {x: 5, y: 10, z: 0}
     MoveMode: 11
     Pow: 25
+    TargetMode: 1
+    TargetCT: 999
+    Target: {fileID: 0}
+    TargetHit: {fileID: 0}
+    TCT: 0
+  - Times: {x: 10, y: 999, z: 0}
+    MoveMode: 11
+    Pow: 50
     TargetMode: 1
     TargetCT: 999
     Target: {fileID: 0}

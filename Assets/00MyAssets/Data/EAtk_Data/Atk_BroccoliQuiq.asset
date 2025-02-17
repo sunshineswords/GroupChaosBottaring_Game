@@ -15,28 +15,29 @@ MonoBehaviour:
   Name: "\u30AF\u30A4\u30C3\u30AF\u30D6\u30ED\u30C3\u30B3\u30EA\u30FC"
   Info: 
   Icon: {fileID: 0}
-  EndTime: 75
+  EndTime: 200
   CT: 8
   SPUse: 0
   BranchInfos: []
+  Branchs: []
   Fixeds: []
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: f5974f404649ca64bb7daed5fdc00e7e, type: 3}
     Fires:
-    - EditDisp: '[0]BNum:0,Time:(35, 75, 8),Count:1,Speed:(1400.00, 1400.00)'
+    - EditDisp: '[0]BNum:0,Time:(50, 200, 8),Count:1,Speed:(3500.00, 3500.00)'
       BranchNum: 0
-      Times: {x: 35, y: 75, z: 8}
+      Times: {x: 50, y: 200, z: 8}
       Count: 1
-      Speed: {x: 1400, y: 1400}
+      Speed: {x: 3500, y: 3500}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
+        PosChange: {x: 0, y: 2, z: 0}
         PosRand: {x: 0, y: 0, z: 0}
         PosWay: {x: 0, y: 0, z: 0}
         PosTime: {x: 0, y: 0, z: 0}
         RotBase: 0
         RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 5, y: 5, z: 5}
+        RotRand: {x: 25, y: 25, z: 25}
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
@@ -48,9 +49,18 @@ MonoBehaviour:
       DefRemPer: 0
       SPAdd: 0
     HitCT: 0
-  Branchs: []
+  Moves: []
+  States: []
+  WeponSets: []
   Anims:
-  - EditDisp: '[0]BNum:0Time:(0, 35)ID:2'
+  - EditDisp: '[0]BNum:0Time:(0, 200)ID:2'
     BranchNum: 0
-    Times: {x: 0, y: 35}
+    Times: {x: 0, y: 200}
     ID: 2
+    Speed: 0
+  SEPlays:
+  - BranchNum: 0
+    Times: {x: 50, y: 200, z: 8}
+    Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
+    Volume: 35
+    Pitch: 100

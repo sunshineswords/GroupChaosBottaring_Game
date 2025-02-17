@@ -40,3 +40,9 @@ MonoBehaviour:
       DefRemPer: 0
       SPAdd: 0
     HitCT: 0
+  SEPlays:
+  - BranchNum: 0
+    Times: {x: 0, y: 0, z: 0}
+    Clip: {fileID: 8300000, guid: 26f4cccbaa1a7814ebf9e026338e23fb, type: 3}
+    Volume: 300
+    Pitch: 50

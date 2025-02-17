@@ -20,6 +20,7 @@ public class Data_Atk : ScriptableObject
     [Header("ステータス変化")] public StateC[] States;
     [Header("武器表示")] public WeponSetC[] WeponSets;
     [Header("アニメーション")] public AnimC[] Anims;
+    [Header("効果音再生")] public SEPlayC[] SEPlays;
     [System.Serializable]
     public class BranchInfoC
     {
@@ -82,7 +83,11 @@ public class Data_Atk : ScriptableObject
             {
                 var Hit = Hits[i];
                 Hit.EditDisp = "[" + i + "]";
-                Hit.EditDisp += "BNum:" + Hit.BranchNum;
+                Hit.EditDisp += "BNum:" + Hit.BranchNum+"|";
+                if (Hit.BaseDam != 0) Hit.EditDisp += Hit.BaseDam;
+                if (Hit.AtkDamPer != 0) Hit.EditDisp += "攻撃力" + Hit.AtkDamPer + "%";
+                if (Hit.DefDamPer != 0) Hit.EditDisp += "防御力" + Hit.DefDamPer + "%";
+                if (Hit.DefRemPer != 0) Hit.EditDisp += "防御影響" + Hit.DefRemPer + "%";
             }
 
         }
@@ -152,6 +157,10 @@ public class Data_Atk : ScriptableObject
     {
         [HideInInspector] public string EditDisp;
         [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip("敵命中")] public bool EHit = true;
+        [Tooltip("味方命中")] public bool FHit = false;
+        [Tooltip("自己命中")] public bool MHit = false;
+        [Tooltip("回復")] public bool Heals;
         [Tooltip("基礎ダメージ")] public int BaseDam;
         [Tooltip("使用者攻撃力依存%")] public float AtkDamPer;
         [Tooltip("使用者防御力依存%")] public float DefDamPer;
@@ -208,19 +217,32 @@ public class Data_Atk : ScriptableObject
         [Tooltip(Ttp_BID)] public int BranchNum;
         [Tooltip(Ttp_Times)] public Vector2Int Times;
         [Tooltip("アニメーションID")] public int ID;
+        [Tooltip("アニメーション速度加算%")] public float Speed;
+    }
+    [System.Serializable]
+    public class SEPlayC
+    {
+        [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip(Ttp_Times)] public Vector3Int Times;
+        [Tooltip("SEファイル")] public AudioClip Clip;
+        [Tooltip("音量")] public float Volume = 100f;
+        [Tooltip("音程-300～300"), Range(-300f, 300f)] public float Pitch = 100f;
     }
 
     public string InfoGets()
     {
         string Str = "";
         if (Info != "") Str = Info;
+        if (Str != "") Str += "\n";
+        Str += "CT" + CT+"秒";
+        if (SPUse > 0)Str += "\nSP" + SPUse;
+        
         if (BranchInfos.Count > 0)
         {
             for (int i = 0; i < BranchInfos.Count; i++)
             {
                 var BInfo = BranchInfos[i];
-                if (Str != "") Str += "\n";
-                Str += BInfo.Name;
+                Str += "\n" + BInfo.Name;
                 for (int j = 0; j < Shots.Length; j++)
                 {
                     var Shot = Shots[j];
@@ -233,7 +255,7 @@ public class Data_Atk : ScriptableObject
             for (int j = 0; j < Shots.Length; j++)
             {
                 var Shot = Shots[j];
-                Str += Shot.OtherStrGet(0);
+                Str += "\n" + Shot.OtherStrGet(0);
             }
         }
         return Str;

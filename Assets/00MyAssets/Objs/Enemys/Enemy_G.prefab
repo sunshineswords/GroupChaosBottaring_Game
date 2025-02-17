@@ -107,8 +107,8 @@ Transform:
   - {fileID: 2758655250168690552}
   - {fileID: 4421319564007628912}
   - {fileID: 981339803735981756}
-  - {fileID: 4771423146545183970}
   - {fileID: 8823589140426962884}
+  - {fileID: 4771423146545183970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6544934709698599726
@@ -215,11 +215,20 @@ MonoBehaviour:
   Player: 0
   Boss: 0
   Undet: 0
+  DamageSE:
+    Clip: {fileID: 8300000, guid: 7cd63e639f4973b498967b60f8e87838, type: 3}
+    Volume: 75
+    Pitch: 200
+  DeathSE:
+    Clip: {fileID: 0}
+    Volume: 100
+    Pitch: 100
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
   MHP: 1000000
-  HPRegene: 100000000
+  HPRegene: 1000000
   MMP: 0
   MPRegene: 0
+  SPRegene: 10
   Atk: 150000
   Def: 20
   HP: 0
@@ -243,6 +252,7 @@ MonoBehaviour:
   NGravity: 0
   Anim_MoveID: 0
   Anim_AtkID: 0
+  Anim_AtkSpeed: 0
   Anim_OtherID: 0
 --- !u!65 &5206309696311436553
 BoxCollider:
@@ -279,8 +289,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sta: {fileID: 2049415607464157120}
   SpeedRem: 0
-  MoveSpeed: 100
-  LerpSpeed: 1
+  NearDis: {x: 10, y: 12}
+  MoveSpeed: 50
+  LerpSpeed: 60
 --- !u!1 &4350126102488607792
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,11 +407,9 @@ MonoBehaviour:
   Sta: {fileID: 2049415607464157120}
   AtkAIs:
   - TimeIf: {x: 0, y: 0}
-    OtherIfs:
-    - Ifs: 10
-      Val: {x: 4, y: 0}
+    OtherIfs: []
     AtkSlot: 0
-    AtkD: {fileID: 11400000, guid: a4008368ed4518b4e8ad9b5023383b94, type: 2}
+    AtkD: {fileID: 11400000, guid: 7a51e3bcf99676345b060ce3c22000dc, type: 2}
   TimerLim: 0
   NoTargetResetTime: 0
 --- !u!1001 &1544550461700310150

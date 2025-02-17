@@ -15,19 +15,20 @@ MonoBehaviour:
   Name: "\u30D6\u30ED\u30C3\u30B3\u30EA\u30FC\u30B9\u30D7\u30EC\u30C3\u30C9"
   Info: 
   Icon: {fileID: 0}
-  EndTime: 45
+  EndTime: 90
   CT: 8
   SPUse: 0
   BranchInfos: []
+  Branchs: []
   Fixeds: []
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: f5974f404649ca64bb7daed5fdc00e7e, type: 3}
     Fires:
-    - EditDisp: '[0]BNum:0,Time:(35, 35, 0),Count:8,Speed:(1400.00, 1400.00)'
+    - EditDisp: '[0]BNum:0,Time:(70, 70, 0),Count:8,Speed:(3000.00, 3000.00)'
       BranchNum: 0
-      Times: {x: 35, y: 35, z: 0}
+      Times: {x: 70, y: 70, z: 0}
       Count: 8
-      Speed: {x: 1400, y: 1400}
+      Speed: {x: 3000, y: 3000}
       Trans:
         PosBase: 0
         PosChange: {x: 0, y: 0, z: 0}
@@ -48,9 +49,18 @@ MonoBehaviour:
       DefRemPer: 0
       SPAdd: 0
     HitCT: 0
-  Branchs: []
+  Moves: []
+  States: []
+  WeponSets: []
   Anims:
-  - EditDisp: '[0]BNum:0Time:(0, 35)ID:2'
+  - EditDisp: '[0]BNum:0Time:(0, 70)ID:2'
     BranchNum: 0
-    Times: {x: 0, y: 35}
+    Times: {x: 0, y: 70}
     ID: 2
+    Speed: -50
+  SEPlays:
+  - BranchNum: 0
+    Times: {x: 70, y: 70, z: 0}
+    Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
+    Volume: 100
+    Pitch: 150
