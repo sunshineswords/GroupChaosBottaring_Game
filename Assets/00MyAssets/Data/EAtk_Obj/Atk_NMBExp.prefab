@@ -141,6 +141,7 @@ MonoBehaviour:
   DelAddShots: []
   SepParticles:
   - {fileID: 3717273776355800065}
+  SepTrails: []
   Times: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623

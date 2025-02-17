@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using static Statics;
 public class Shot_Obj : MonoBehaviourPun
 {
     public State_Base USta;
@@ -37,22 +37,25 @@ public class Shot_Obj : MonoBehaviourPun
     {
         if (HitList.ContainsKey(HitState.Sta)) return;
         HitList.Add(HitState.Sta, ShotD.HitCT);
-        if(HitState.Sta.DashTime > 0)
-        {
-            DamageObj.DamageSet(HitPos, "Miss", Color.gray);
-            return;
-        }
+
         for(int i=0;i< ShotD.Hits.Length; i++)
         {
+
             var Hit = ShotD.Hits[i];
             if (BranchNum != Hit.BranchNum) continue;
+            if (!TeamCheck(USta, HitState.Sta, Hit.EHit, Hit.FHit, Hit.MHit)) continue;
+            if (HitState.Sta.DashTime > 0)
+            {
+                DamageObj.DamageSet(HitPos, "Miss", Color.gray);
+                return;
+            }
             float Dam = Hit.BaseDam;
             Dam += USta.Atk * Hit.AtkDamPer * 0.01f;
             Dam += USta.Def * Hit.DefDamPer * 0.01f;
             Dam -= HitState.Sta.Def * Hit.DefRemPer * 0.01f;
             Dam *= 1f + HitState.DamAdds * 0.01f;
             if (Dam < 1) Dam = 1;
-            HitState.Sta.Damage(HitPos, Mathf.RoundToInt(Dam));
+            HitState.Sta.Damage(HitPos, Mathf.RoundToInt(Dam) * (Hit.Heals ? -1 : 1));
             USta.SP += Hit.SPAdd;
         }
         if (HitRem) ShotDel();

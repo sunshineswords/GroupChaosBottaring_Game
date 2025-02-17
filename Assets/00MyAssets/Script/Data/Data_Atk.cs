@@ -83,7 +83,11 @@ public class Data_Atk : ScriptableObject
             {
                 var Hit = Hits[i];
                 Hit.EditDisp = "[" + i + "]";
-                Hit.EditDisp += "BNum:" + Hit.BranchNum;
+                Hit.EditDisp += "BNum:" + Hit.BranchNum+"|";
+                if (Hit.BaseDam != 0) Hit.EditDisp += Hit.BaseDam;
+                if (Hit.AtkDamPer != 0) Hit.EditDisp += "攻撃力" + Hit.AtkDamPer + "%";
+                if (Hit.DefDamPer != 0) Hit.EditDisp += "防御力" + Hit.DefDamPer + "%";
+                if (Hit.DefRemPer != 0) Hit.EditDisp += "防御影響" + Hit.DefRemPer + "%";
             }
 
         }
@@ -153,6 +157,10 @@ public class Data_Atk : ScriptableObject
     {
         [HideInInspector] public string EditDisp;
         [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip("敵命中")] public bool EHit = true;
+        [Tooltip("味方命中")] public bool FHit = false;
+        [Tooltip("自己命中")] public bool MHit = false;
+        [Tooltip("回復")] public bool Heals;
         [Tooltip("基礎ダメージ")] public int BaseDam;
         [Tooltip("使用者攻撃力依存%")] public float AtkDamPer;
         [Tooltip("使用者防御力依存%")] public float DefDamPer;
