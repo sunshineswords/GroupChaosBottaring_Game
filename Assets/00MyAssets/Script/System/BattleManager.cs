@@ -14,12 +14,13 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     public int Time;
     public int DeathCount;
     public int Star;
-    public bool BossCheck;
+    public bool Win;
     public bool End;
     [System.NonSerialized] public List<State_Base> StateList = new List<State_Base>();
     [System.NonSerialized] public List<State_Hit> HitList = new List<State_Hit>();
     [System.NonSerialized] public List<State_Base> PlayerList = new List<State_Base>();
     [System.NonSerialized] public List<State_Base> BossList = new List<State_Base>();
+    [System.NonSerialized] public List<Enemy_WaveSpawne> WaveSpList = new List<Enemy_WaveSpawne>();
 
     void Start()
     {
@@ -41,12 +42,26 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
         if (!End)
         {
             if (Time > 0) Time--;
-            BossCheck = BossList.Count > 0;
-            for (int i = 0; i < BossList.Count; i++)
+            if (WaveSpList.Count <= 0)
             {
-                if (BossList[i].HP > 0) BossCheck = false;
+                var BossCheck = BossList.Count > 0;
+                for (int i = 0; i < BossList.Count; i++)
+                {
+                    if (BossList[i].HP > 0) BossCheck = false;
+                }
+                Win = BossCheck;
+                if (BossCheck || Time <= 0) End = true;
             }
-            if (BossCheck || Time <= 0) End = true;
+            else
+            {
+                var WaveCheck = true;
+                for(int i = 0; i < WaveSpList.Count; i++)
+                {
+                    if (!WaveSpList[i].Clear) WaveCheck = false;
+                }
+                Win = WaveCheck;
+                if(WaveCheck)End = true;
+            }
             if (TimeLimSec < 0) End = false;
             Star = 3;
             if (Time <= TimeStar * 60) Star--;
@@ -59,6 +74,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     {
         HitList = FindObjectsByType<State_Hit>(FindObjectsSortMode.None).OrderBy(x => x.Sta.photonView.ViewID).ToList();
         StateList = FindObjectsByType<State_Base>(FindObjectsSortMode.None).OrderBy(x => x.photonView.ViewID).ToList();
+        WaveSpList = FindObjectsByType<Enemy_WaveSpawne>(FindObjectsSortMode.None).OrderBy(x => x.photonView.ViewID).ToList();
         PlayerList.Clear();
         BossList.Clear();
         for (int i = 0; i < StateList.Count; i++)
@@ -108,7 +124,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
             stream.SendNext(Time);
             stream.SendNext(DeathCount);
             stream.SendNext(Star);
-            stream.SendNext(BossCheck);
+            stream.SendNext(Win);
             stream.SendNext(End);
         }
         else
@@ -116,7 +132,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
             Time = (int)stream.ReceiveNext();
             DeathCount = (int)stream.ReceiveNext();
             Star = (int)stream.ReceiveNext();
-            BossCheck = (bool)stream.ReceiveNext();
+            Win = (bool)stream.ReceiveNext();
             End = (bool)stream.ReceiveNext();
         }
     }

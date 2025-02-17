@@ -53,6 +53,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 352e9c4e2aa5e3940acb8572fbf6f984, type: 2}
   - {fileID: 11400000, guid: 719586dd196f4a546b1b4bce90de6d30, type: 2}
   - {fileID: 11400000, guid: 4cbbe9f9dbdcc8541a72f75b390b9122, type: 2}
+  Passives:
+  - {fileID: 11400000, guid: b5532d1c59d3fcb41addafe27aff6e3b, type: 2}
+  - {fileID: 11400000, guid: 5466b9ed40ddaa14bae820559fdba7ca, type: 2}
+  - {fileID: 11400000, guid: baf12542a41191a48888abe323569008, type: 2}
+  - {fileID: 11400000, guid: 4a11c9843b25b2449b94bc089e750dd6, type: 2}
+  - {fileID: 11400000, guid: 2af77bab773ad63468b31065fc8af6d8, type: 2}
+  - {fileID: 11400000, guid: 65adf59ce24035c4f916ef538f3d630b, type: 2}
+  - {fileID: 11400000, guid: 2eb2c05bb18d8fe4bb0dc26ff32beb10, type: 2}
+  - {fileID: 11400000, guid: 50ddf25c135a0a544b2311187137dc9d, type: 2}
+  - {fileID: 11400000, guid: 803ac4b209ff46046a07cc1a7b360634, type: 2}
+  - {fileID: 11400000, guid: be95f58ed23374b46ad1a31045db13ad, type: 2}
+  - {fileID: 11400000, guid: 85e2b0e850f74b144a6e8b7c0dc3c3b9, type: 2}
+  - {fileID: 11400000, guid: 230c2ed1238e6794a9270109b34828c7, type: 2}
+  - {fileID: 11400000, guid: 6512a4fa07fd9af49bd2bfe33b0382ac, type: 2}
+  - {fileID: 11400000, guid: 7488b0878aacb784aa2c04c9f5717dad, type: 2}
   Wepons:
   - {fileID: 6293833836109196858, guid: 93808f716b8dfec41a3316c3ae98591c, type: 3}
   - {fileID: 6293833836109196858, guid: fdcd55e0466b77c4a87c0528646b8a6a, type: 3}
@@ -80,3 +95,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07c8d87946b505d4484d0d663a5c7a9d, type: 2}
   - {fileID: 11400000, guid: fa020ce2b68dc2f4d88c0491add5409f, type: 2}
   - {fileID: 11400000, guid: df83f23cba6d833468299782c594175d, type: 2}
+  - {fileID: 11400000, guid: 6ed5000d66633b74f9eda8ec5f4c8d59, type: 2}

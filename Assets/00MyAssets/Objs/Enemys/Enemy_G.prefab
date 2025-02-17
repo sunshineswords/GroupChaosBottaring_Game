@@ -225,7 +225,7 @@ MonoBehaviour:
     Pitch: 100
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
   MHP: 1000000
-  HPRegene: 1000000
+  HPRegene: 100000
   MMP: 0
   MPRegene: 0
   SPRegene: 10

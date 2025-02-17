@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 using static Statics;
-public class Enemy_Spawner : MonoBehaviour
+public class Enemy_Spawner : MonoBehaviourPun
 {
     [SerializeField] GameObject EnemyObj;
     [SerializeField] Vector2Int Counts;
@@ -11,7 +11,7 @@ public class Enemy_Spawner : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!PhotonNetwork.IsMasterClient) return;
+        if (!photonView.IsMine) return;
         CT--;
         if (CT <= 0)
         {

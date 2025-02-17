@@ -1,6 +1,7 @@
 ﻿using Photon.Pun;
 using UnityEngine;
-
+using static PlayerValue;
+using static DataBase;
 public class Player_Move : MonoBehaviourPun
 {
     public State_Base Sta;
@@ -28,7 +29,12 @@ public class Player_Move : MonoBehaviourPun
     Vector3 PosBase;
     private void Start()
     {
+        if (!photonView.IsMine) return;
         PosBase = CamPosTrans.localPosition;
+        float SpeedAdd = 1f + PriSetGet.PassiveLVGet(PassiveE.速度増加) * 10f;
+        MoveSpeed *= SpeedAdd;
+        DashSpeed *= SpeedAdd;
+
     }
     private void Update()
     {

@@ -17,7 +17,7 @@ public class UI_EndResult : MonoBehaviour
         if (!BTManager.End) return;
         Color BackCol;
         float Alpha = BackImage.color.a;
-        if (BTManager.BossCheck)
+        if (BTManager.Win)
         {
             BackCol = Color.gray;
             WinsTx.text = "勝利";

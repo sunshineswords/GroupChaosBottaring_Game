@@ -5,7 +5,7 @@ using static Statics;
 using static BattleManager;
 using System.Collections.Generic;
 using System.Linq;
-
+using static PlayerValue;
 public class State_Base : MonoBehaviourPun,IPunObservable
 {
     [Header("設定")]
@@ -40,6 +40,42 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public bool GroundB;
     public bool Ground;
 
+    public int FMHP
+    {
+        get
+        {
+            float FVal = MHP;
+            FVal *= 1f + BufPowGet(BufsE.HP増加) * 0.01f;
+            return Mathf.RoundToInt(FVal);
+        }
+    }
+    public int FMMP
+    {
+        get
+        {
+            float FVal = MMP;
+            return Mathf.RoundToInt(FVal);
+        }
+    }
+    public int FAtk
+    {
+        get
+        {
+            float FVal = Atk;
+            FVal *= 1f + BufPowGet(BufsE.攻撃増加) * 0.01f;
+            return Mathf.RoundToInt(FVal);
+        }
+    }
+    public int FDef
+    {
+        get
+        {
+            float FVal = Def;
+            FVal *= 1f + BufPowGet(BufsE.防御増加) * 0.01f;
+            return Mathf.RoundToInt(FVal);
+        }
+    }
+
     public State_Base Target;
     public State_Hit TargetHit;
 
@@ -64,17 +100,37 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public int Anim_OtherID;
 
     public Dictionary<int,AtkCTC> AtkCTs = new Dictionary<int,AtkCTC>();
+    public List<BufInfoC> Bufs = new List<BufInfoC>();
     [System.Serializable]
     public class AtkCTC
     {
         public int CT;
         public int CTMax;
     }
-    
+    [System.Serializable]
+    public class BufInfoC
+    {
+        public int ID;
+        public int Index;
+        public int Time;
+        public int TimeMax;
+        public int Pow;
+    }
     private void Start()
     {
-        HP = MHP;
-        MP = MMP;
+        if (!photonView.IsMine) return;
+        if (Player)
+        {
+            MHP = Mathf.RoundToInt(MHP * (1f + PriSetGet.PassiveLVGet(PassiveE.HP増加) * 0.25f));
+            HPRegene = Mathf.RoundToInt(HPRegene * (1f + PriSetGet.PassiveLVGet(PassiveE.自然再生) * 0.5f));
+            MMP = Mathf.RoundToInt(MMP * (1f + PriSetGet.PassiveLVGet(PassiveE.MP増加) * 0.1f));
+            MPRegene = Mathf.RoundToInt(MPRegene * (1f + PriSetGet.PassiveLVGet(PassiveE.気力増幅) * 0.05f));
+            SPRegene = Mathf.RoundToInt(SPRegene * (1f + PriSetGet.PassiveLVGet(PassiveE.SPブースト) * 0.2f));
+            Atk = Mathf.RoundToInt(Atk * (1f + PriSetGet.PassiveLVGet(PassiveE.攻撃力増加) * 0.1f));
+            Def = Mathf.RoundToInt(Def * (1f + PriSetGet.PassiveLVGet(PassiveE.防御力増加) * 0.1f));
+        }
+        HP = FMHP;
+        MP = FMMP;
         if (!PhotonNetwork.OfflineMode)
         {
             if (Player) Name = photonView.Owner.NickName;
@@ -95,8 +151,8 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             LowMP = true;
         }
         if(Ground)MP += MPRegene / 60f;
-        MP = Mathf.Min(MP, MMP);
-        if (LowMP && MP >= MMP * 0.2f) LowMP = false;
+        MP = Mathf.Min(MP, FMMP);
+        if (LowMP && MP >= FMMP * 0.2f) LowMP = false;
         if (HP <= 0)
         {
 
@@ -107,11 +163,11 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                     BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
                     BTManager.DeathAdd();
                 }
-                if(DeathTime >= 300)HP = MHP;
+                if(DeathTime >= 300)HP = FMHP;
             }
             else if (Undet)
             {
-                if (DeathTime >= 300)HP = MHP;
+                if (DeathTime >= 300)HP = FMHP;
             }
             else if (!Boss)
             {
@@ -131,13 +187,14 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         else
         {
             HP += HPRegene / 60f;
-            HP = Mathf.Min(HP, MHP);
+            HP -= BufPowGet(BufsE.毒) / 60f;
+            HP = Mathf.Min(HP, FMHP);
             SP += SPRegene / 60f;
             DeathTime = 0;
         }
         if (!Player && Team != 0 && BTManager.End) Deletes();
         DashTime--;
-
+        BufRems();
         AtkPlays(CamTrans.eulerAngles);
         if (Rig) Rig.useGravity = !NGravity;
     }
@@ -180,6 +237,10 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             if (AtkCTs.ContainsKey(UseAtkSlot)) return;
             if (SP < UseAtkD.SPUse) return;
             int CTs = Mathf.RoundToInt(UseAtkD.CT * 60);
+            if (Player)
+            {
+                CTs = Mathf.RoundToInt(CTs * (1f - PriSetGet.PassiveLVGet(PassiveE.CTカット) * 0.10f));
+            }
             AtkCTs.Add(UseAtkSlot, new AtkCTC { CT = CTs, CTMax = CTs });
             if(UseAtkD.SPUse>0)SP = 0;
 
@@ -195,7 +256,23 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
 
     }
-
+    public void BufSets(BufSetC BufSet)
+    {
+        BufSets(BufSet.Buf, BufSet.Index,BufSet.Set, BufSet.Time.x, BufSet.Pow.x, BufSet.Time.y, BufSet.Pow.y);
+    }
+    public void BufSets(BufsE BufID, int Index, BufSetE Sets, int Time, int Pow, int TMax, int PMax)
+    {
+        photonView.RPC(nameof(RPC_BufSet), RpcTarget.All, (int)BufID, Index, (int)Sets, Time, Pow, TMax, PMax);
+    }
+    public int BufPowGet(BufsE BufID)
+    {
+        int Pow = 0;
+        for(int i = 0; i < Bufs.Count; i++)
+        {
+            if (Bufs[i].ID == (int)BufID) Pow += Bufs[i].Pow;
+        }
+        return Pow;
+    }
     void Deletes()
     {
         photonView.RPC(nameof(RPC_DeathEffect), RpcTarget.All);
@@ -204,6 +281,10 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [PunRPC]
     void RPC_Damage(Vector3 HitPos, int Val)
     {
+        if (HP <= 0) return;
+        int Healm = FMHP - (int)HP;
+        if (Val < 0) Val = -Mathf.Min(-Val, Healm);
+        if (Val == 0) return;
         Color DamCol = Val >= 0 ? Color.white : Color.magenta;
         GameObject HitEffect = Val >= 0 ? DB.HitEffects[1] : DB.HealEffects[1];
         switch (Team)
@@ -225,6 +306,47 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     {
         if (DeathEffect != null) Instantiate(DeathEffect, PosGet(), Quaternion.identity);
     }
+    [PunRPC]
+    void RPC_BufSet(int BufID, int Index, int Sets, int Time, int Pow, int TMax, int PMax)
+    {
+        if (!photonView.IsMine) return;
+        BufInfoC Bufi = null;
+        for (int i = 0; i < Bufs.Count; i++)
+        {
+            var Bufd = Bufs[i];
+            if(Bufd.ID == BufID && Bufd.Index == Index)
+            {
+                Bufi = Bufd;
+                break;
+            }
+        }
+        if (Sets != (int)BufSetE.消去)
+        {
+            if (Bufi != null && Sets == (int)BufSetE.切り替え) Bufs.Remove(Bufi);
+            else
+            {
+                if (Bufi == null && Sets == (int)BufSetE.不付与増加) return;
+                if (Bufi == null)
+                {
+                    Bufi = new BufInfoC { ID = BufID, Index = Index, Time = 0, Pow = 0, TimeMax = 0 };
+                    Bufs.Add(Bufi);
+                }
+                if (Sets == (int)BufSetE.付与 || Sets == (int)BufSetE.切り替え)
+                {
+                    Bufi.Time = Mathf.Max(Bufi.Time, Time);
+                    Bufi.Pow = Mathf.Max(Bufi.Pow, Pow);
+                }
+                else
+                {
+                    Bufi.Time = Mathf.Min(Bufi.Time + Time,TMax);
+                    Bufi.Pow = Mathf.Min(Bufi.Pow + Pow, PMax);
+                }
+                Bufi.TimeMax = Mathf.Max(Bufi.Time, Bufi.TimeMax);
+            }
+        }
+        else if (Bufi != null) Bufs.Remove(Bufi);
+    }
+
 
     void AtkPlays(Vector3 CamRot)
     {
@@ -266,6 +388,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (AtkTime > AtkD.EndTime) AtkD = null;
         #endregion
     }
+    void BufRems()
+    {
+        for(int i = Bufs.Count - 1; i >= 0; i--)
+        {
+            var Bufi = Bufs[i];
+            Bufi.Time--;
+            if (Bufi.Time <= 0) Bufs.RemoveAt(i);
+        }
+    }
 
     void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info)
     {
@@ -289,6 +420,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             stream.SendNext(Anim_AtkID);
             stream.SendNext(Anim_AtkSpeed);
             stream.SendNext(Anim_OtherID);
+
 
         }
         else

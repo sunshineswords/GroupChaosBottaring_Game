@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static DataBase;
@@ -17,8 +18,9 @@ public class UI_Player : MonoBehaviour
     [SerializeField] Image MPFill;
     [SerializeField] TextMeshProUGUI AtkFBTx;
     [SerializeField] UI_Sin_Atk[] AtkUIs;
-    [SerializeField] TextMeshProUGUI AtkInfoTx;
+    [SerializeField] TextMeshProUGUI StateInfoTx;
     [SerializeField] BinaryUIAnimationo binaryUIAnimationo;
+    [SerializeField] List<UI_Sin_Buf> BufUIs;
     float CHPPer;
 
     #region 関数
@@ -92,7 +94,7 @@ public class UI_Player : MonoBehaviour
     void LateUpdate()
     {
         float ChangeSpeed = 0.01f;
-        float HPPer = Sta.HP / Mathf.Max(1, Sta.MHP);
+        float HPPer = Sta.HP / Mathf.Max(1, Sta.FMHP);
         if (HPPer < CHPPer)
         {
             HPBackBar.fillAmount = CHPPer;
@@ -109,7 +111,7 @@ public class UI_Player : MonoBehaviour
             HPFrontFill.color = Color.green;
             CHPPer = Mathf.Min(CHPPer + ChangeSpeed, HPPer);
         }
-        MPBar.fillAmount = Sta.MP / Mathf.Max(1, Sta.MMP);
+        MPBar.fillAmount = Sta.MP / Mathf.Max(1, Sta.FMMP);
         MPFill.color = Sta.LowMP ? Color.red : Color.white;
         for (int i = 0; i < AtkUIs.Length; i++)
         {
@@ -151,9 +153,21 @@ public class UI_Player : MonoBehaviour
             Sta.AtkCTs.TryGetValue(Slot, out var AtkCTs);
             UpdateStatus(i, AtkD, AtkCTs);
         }
-        AtkInfoTx.text = "S" + Sta.AtkSlot;
-        AtkInfoTx.text += "\nT" + Sta.AtkTime;
-        AtkInfoTx.text += "\nB" + Sta.AtkBranch;
-
+        for(int i = 0; i < Mathf.Max(BufUIs.Count, Sta.Bufs.Count); i++)
+        {
+            if(i < Sta.Bufs.Count)
+            {
+                if (BufUIs.Count <= i) BufUIs.Add(Instantiate(BufUIs[0], BufUIs[0].transform.parent));
+                var Bufi = Sta.Bufs[i];
+                BufUIs[i].NameTx.text = ((BufsE)Bufi.ID).ToString();
+                BufUIs[i].PowTx.text = Bufi.Pow.ToString();
+                BufUIs[i].TimeImage.fillAmount = (float)Bufi.Time / Bufi.TimeMax;
+            }
+            BufUIs[i].gameObject.SetActive(i < Sta.Bufs.Count);
+        }
+        StateInfoTx.text = "MHP:" + Sta.FMHP;
+        StateInfoTx.text += "\nMMP:" + Sta.FMMP;
+        StateInfoTx.text += "\nAtk:" + Sta.FAtk;
+        StateInfoTx.text += "\nDef:" + Sta.FDef;
     }
 }

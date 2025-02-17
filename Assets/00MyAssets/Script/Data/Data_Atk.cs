@@ -18,6 +18,7 @@ public class Data_Atk : ScriptableObject
     [Header("弾発射")] public ShotC_Base[] Shots;
     [Header("移動")] public MoveC[] Moves;
     [Header("ステータス変化")] public StateC[] States;
+    [Header("状態変化")] public BufC[] Bufs;
     [Header("武器表示")] public WeponSetC[] WeponSets;
     [Header("アニメーション")] public AnimC[] Anims;
     [Header("効果音再生")] public SEPlayC[] SEPlays;
@@ -162,10 +163,13 @@ public class Data_Atk : ScriptableObject
         [Tooltip("自己命中")] public bool MHit = false;
         [Tooltip("回復")] public bool Heals;
         [Tooltip("基礎ダメージ")] public int BaseDam;
+        [Tooltip("使用者最大HP依存%")] public float MHPDamPer;
+        [Tooltip("使用者HP依存%")] public float HPDamPer;
         [Tooltip("使用者攻撃力依存%")] public float AtkDamPer;
         [Tooltip("使用者防御力依存%")] public float DefDamPer;
         [Tooltip("対象防御軽減%")] public float DefRemPer;
         [Tooltip("命中時SP増加量")] public int SPAdd;
+        [Tooltip("状態付与")] public DataBase.BufSetC[] BufSets;
     }
     [System.Serializable]
     public class MoveC
@@ -183,6 +187,13 @@ public class Data_Atk : ScriptableObject
         [Tooltip(Ttp_Times)] public Vector3Int Times;
         public StateE State;
         public float Adds;
+    }
+    [System.Serializable]
+    public class BufC
+    {
+        [Tooltip(Ttp_BID)] public int BranchNum;
+        [Tooltip(Ttp_Times)] public Vector3Int Times;
+        public DataBase.BufSetC[] BufSets;
     }
     public enum StateE
     {
@@ -228,6 +239,7 @@ public class Data_Atk : ScriptableObject
         [Tooltip("音量")] public float Volume = 100f;
         [Tooltip("音程-300～300"), Range(-300f, 300f)] public float Pitch = 100f;
     }
+
 
     public string InfoGets()
     {

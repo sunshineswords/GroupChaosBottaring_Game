@@ -226,6 +226,18 @@ public class State_Atk
             }
         }
     }
+    static public void Buf(State_Base USta)
+    {
+        var AtkD = USta.AtkD;
+        if (AtkD.Bufs == null) return;
+        for (int i = 0; i < AtkD.Bufs.Length; i++)
+        {
+            var Buf = AtkD.Bufs[i];
+            if (Buf.BranchNum != USta.AtkBranch) continue;
+            if (!V3IntTimeCheck(USta.AtkTime, Buf.Times)) continue;
+            for (int j = 0; j < Buf.BufSets.Length; j++) USta.BufSets(Buf.BufSets[j]);
+        }
+    }
     static public void WeponSet(State_Base USta)
     {
         var AtkD = USta.AtkD;
