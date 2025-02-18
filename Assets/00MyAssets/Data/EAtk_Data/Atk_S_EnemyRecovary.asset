@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c22cee1cabc9b84f92975ed946ab97c, type: 3}
-  m_Name: Atk_EnemyRecovary
+  m_Name: Atk_S_EnemyRecovary
   m_EditorClassIdentifier: 
   Name: "\u30A8\u30CD\u30DF\u30FC\u30EA\u30AB\u30D0\u30EA\u30FC"
   Info: 
   Icon: {fileID: 0}
+  AtkType: 1
   EndTime: 60
   CT: 0
   SPUse: 0
@@ -28,6 +29,7 @@ MonoBehaviour:
     Times: {x: 50, y: 50, z: 0}
     State: 0
     Adds: 1000000
+  Bufs: []
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 60)ID:20'

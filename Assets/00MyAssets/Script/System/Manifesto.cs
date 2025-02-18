@@ -3,8 +3,8 @@ using static Manifesto;
 static public class Manifesto
 {
     #region Const
-    const string Const_Ttp_BID = "分岐ID条件";
-    const string Const_Ttp_Times = "時間条件\n攻撃時間がx～yフレームの間\nzフレーム間隔";
+    public const string Const_Ttp_BID = "分岐ID条件\n-だと無条件";
+    public const string Const_Ttp_Times = "時間条件\n攻撃時間がx～yフレームの間\nzフレーム間隔";
     #endregion
 
     #region Class
@@ -19,11 +19,12 @@ static public class Manifesto
     public class Class_Base_BufSet
     {
         public Enum_Bufs Buf;
-        public int Index;
-        public Enum_BufSet Set;
-        public Vector2Int Time;
-        public Vector2Int Pow;
+        [Tooltip("状態番号")] public int Index;
+        [Tooltip("付与処理")]public Enum_BufSet Set;
+        [Tooltip("付与時間フレーム\nx=0以下だと永続\ny=上限,0以下は上限無し")] public Vector2Int Time;
+        [Tooltip("付与段階\nx=0以下だと段階表示なし\ny=上限,0以下は上限無し")] public Vector2Int Pow;
     }
+
     [System.Serializable]
     public class Class_Atk_BranchInfo
     {
@@ -34,7 +35,7 @@ static public class Manifesto
     public class Class_Atk_Branch
     {
         [HideInInspector] public string EditDisp;
-        [Tooltip(Const_Ttp_BID + "いずれか")] public int[] BranchNums;
+        [Tooltip("分岐ID条件いずれか")] public int[] BranchNums;
         [Tooltip(Const_Ttp_Times)] public Vector2Int Times;
         [Tooltip("追加条件")] public Enum_AtkIf[] Ifs;
         [Tooltip("MP消費")] public float UseMP;
@@ -75,7 +76,10 @@ static public class Manifesto
             {
                 var Hit = Hits[i];
                 Hit.EditDisp = "[" + i + "]";
-                Hit.EditDisp += "BNum:" + Hit.BranchNum + "|";
+                Hit.EditDisp += "BNum:" + Hit.BranchNum + "|(";
+                Hit.EditDisp += Hit.DamageType+",";
+                Hit.EditDisp += Hit.ShortAtk ? "近距離" : "遠距離";
+                Hit.EditDisp += ")";
                 if (Hit.BaseDam != 0) Hit.EditDisp += Hit.BaseDam;
                 if (Hit.AtkDamPer != 0) Hit.EditDisp += "攻撃力" + Hit.AtkDamPer + "%";
                 if (Hit.DefDamPer != 0) Hit.EditDisp += "防御力" + Hit.DefDamPer + "%";
@@ -141,6 +145,8 @@ static public class Manifesto
         [Tooltip("味方命中")] public bool FHit = false;
         [Tooltip("自己命中")] public bool MHit = false;
         [Tooltip("回復")] public bool Heals;
+        [Tooltip("ダメージタイプ")]public Enum_DamageType DamageType;
+        [Tooltip("近距離攻撃")] public bool ShortAtk;
         [Tooltip("基礎ダメージ")] public int BaseDam;
         [Tooltip("使用者最大HP依存%")] public float MHPDamPer;
         [Tooltip("使用者HP依存%")] public float HPDamPer;
@@ -338,6 +344,16 @@ static public class Manifesto
         タルタル,
         根性,
         死に力,
+        追斬,
+        メイン強化,
+        通常強化,
+        重落強化,
+        スキル強化,
+        必殺強化,
+        近距離強化,
+        遠距離強化,
+        Wシステム,
+        生命の振動,
     }
     public enum Enum_Bufs
     {
@@ -347,6 +363,13 @@ static public class Manifesto
 
         毒 = 1000,
         HP再生 = 2000,
+        シールド=2010,
+        根性=2100,
+        根性CT=2101,
+
+        与ダメージ増加=2200,
+        近距離強化=2201,
+        遠距離強化=2202,
     }
     public enum Enum_BufSet
     {
@@ -420,6 +443,61 @@ static public class Manifesto
         左足 = 11,
         胴体 = 20,
         頭 = 30,
+    }
+    public enum Enum_PassiveAtk
+    {
+        タルタル,
+        追斬,
+        Wシステム,
+        生命の振動,
+    }
+    public enum Enum_AtkType
+    {
+        通常,
+        スキル,
+        必殺,
+    }
+    public enum Enum_DamageType
+    {
+        通常,
+        重撃,
+        落下,
+        スキル,
+        必殺,
+        パッシブ,
+    }
+    public enum Enum_AtkFilter
+    {
+        攻撃,
+        移動,
+        バフ,
+        デバフ,
+        回復,
+        召喚,
+        特殊,
+        近距離=100,
+        遠距離,
+        照準,
+        自己 =110,
+        味方=111,
+        複数=200,
+        多段=201,
+        高頻度=202,
+        追加攻撃=203,
+        攻撃強化=300,
+        防御強化=301,
+    }
+    public enum Enum_PassiveFilter
+    {
+        基礎ステータス,
+        攻撃強化,
+        防御強化,
+        回復,
+        追撃=10,
+        条件,
+        メイン=20,
+        スキル,
+        必殺,
     }
     #endregion
 }

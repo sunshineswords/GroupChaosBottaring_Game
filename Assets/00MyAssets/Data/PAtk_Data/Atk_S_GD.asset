@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Atk_S_GD
   m_EditorClassIdentifier: 
   Name: "\u30AC\u30C8\u30EA\u30F3\u30B0"
-  Info: 
+  Info: "\u7167\u6E96\u72B6\u614B\u306B\u306A\u308A\n\u5F3E\u4E38\u3092\u9023\u5C04\u3059\u308B"
   Icon: {fileID: 2800000, guid: 6914da7c4ef8bf64da2506deb67c6a29, type: 3}
+  AtkType: 1
+  Filters: 000000006500000066000000c8000000
   EndTime: 180
   CT: 8
   SPUse: 0
@@ -49,16 +51,26 @@ MonoBehaviour:
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: '[0]BNum:0'
+    - EditDisp: "[0]BNum:0|(\u30B9\u30AD\u30EB,\u9060\u8DDD\u96E2)\u653B\u6483\u529B25%"
       BranchNum: 0
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 3
+      ShortAtk: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 25
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 0
+      BufSets: []
     HitCT: 0
   Moves: []
   States: []
+  Bufs: []
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 180)ID:101'

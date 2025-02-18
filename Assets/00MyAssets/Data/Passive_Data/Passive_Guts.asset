@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: "\u6839\u6027"
   Info: "HP1\u3067\u8010\u3048\u308B\u3053\u3068\u304C\u3067\u304D\u308B\nCT15\u79D2"
   Icon: {fileID: 0}
+  Filters: 02000000

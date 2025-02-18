@@ -16,8 +16,8 @@ MonoBehaviour:
   - Obj: {fileID: 5905403385281065886, guid: 5512d69dfb502ac42ac1e783de55ca9a, type: 3}
     Fires:
     - EditDisp: 
-      BranchNum: 0
-      Times: {x: 0, y: 0, z: 0}
+      BranchNum: -1
+      Times: {x: 0, y: 999, z: 0}
       Count: 1
       Speed: {x: 0, y: 0}
       Trans:
@@ -33,11 +33,13 @@ MonoBehaviour:
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
     - EditDisp: 
-      BranchNum: 0
+      BranchNum: -1
       EHit: 1
       FHit: 0
       MHit: 0
       Heals: 0
+      DamageType: 0
+      ShortAtk: 0
       BaseDam: 0
       MHPDamPer: 0
       HPDamPer: 0
@@ -53,7 +55,7 @@ MonoBehaviour:
         Pow: {x: 99999, y: 999999}
     HitCT: 0
   SEPlays:
-  - BranchNum: 0
+  - BranchNum: -1
     Times: {x: 0, y: 0, z: 0}
     Clip: {fileID: 8300000, guid: 26f4cccbaa1a7814ebf9e026338e23fb, type: 3}
     Volume: 300

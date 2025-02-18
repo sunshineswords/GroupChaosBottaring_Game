@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Atk_E_Killer
   m_EditorClassIdentifier: 
   Name: "\u30AD\u30E9\u30FC"
-  Info: 
+  Info: "\u8D85\u9023\u5C04\u529B\u3092\u6301\u3064"
   Icon: {fileID: 2800000, guid: f0b1c60b0227e4e1fa89a56252ded127, type: 3}
+  AtkType: 2
+  Filters: 0000000065000000ca000000
   EndTime: 35
   CT: 1
   SPUse: 0
@@ -55,19 +57,31 @@ MonoBehaviour:
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: '[0]BNum:0'
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)40400"
       BranchNum: 0
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 4
+      ShortAtk: 0
       BaseDam: 40400
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 0
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 0
+      BufSets: []
     HitCT: 0
   Moves: []
   States: []
+  Bufs: []
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 35)ID:20'
     BranchNum: 0
     Times: {x: 0, y: 35}
     ID: 20
+    Speed: 0
+  SEPlays: []

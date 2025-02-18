@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Atk_N_Wand
   m_EditorClassIdentifier: 
   Name: "\u30EF\u30F3\u30C9"
-  Info: 
+  Info: "\u9060\u8DDD\u96E2\u304B\u3089\u9B54\u6CD5\u5F3E\u3092\u653E\u3064\n\u9577\u62BC\u3057\u306F\u5F3E\u3092\u6563\u3089\u3070\u305B\u308B"
   Icon: {fileID: 2800000, guid: ae6e9da44c1e6e440a0ce4baf0e83244, type: 3}
+  AtkType: 0
+  Filters: 0000000065000000
   EndTime: 60
   CT: 0
   SPUse: 0
@@ -82,50 +84,10 @@ MonoBehaviour:
     FutureNum: 0
     FutureTime: 0
   Fixeds:
-  - EditDisp: '[0]BNum:0Time:(0, 999)'
-    BranchNum: 0
+  - EditDisp: '[0]BNum:-1Time:(0, 999)'
+    BranchNum: -1
     Times: {x: 0, y: 999}
     SpeedRem: 80
-    NoJump: 0
-    NoDash: 0
-    Aiming: 0
-    NGravity: 0
-  - EditDisp: '[1]BNum:1Time:(0, 999)'
-    BranchNum: 1
-    Times: {x: 0, y: 999}
-    SpeedRem: 100
-    NoJump: 0
-    NoDash: 0
-    Aiming: 0
-    NGravity: 0
-  - EditDisp: '[2]BNum:2Time:(0, 999)'
-    BranchNum: 2
-    Times: {x: 0, y: 999}
-    SpeedRem: 100
-    NoJump: 0
-    NoDash: 0
-    Aiming: 0
-    NGravity: 0
-  - EditDisp: '[3]BNum:3Time:(0, 999)'
-    BranchNum: 3
-    Times: {x: 0, y: 999}
-    SpeedRem: 100
-    NoJump: 0
-    NoDash: 0
-    Aiming: 0
-    NGravity: 0
-  - EditDisp: '[4]BNum:4Time:(0, 999)'
-    BranchNum: 4
-    Times: {x: 0, y: 999}
-    SpeedRem: 100
-    NoJump: 0
-    NoDash: 0
-    Aiming: 0
-    NGravity: 0
-  - EditDisp: '[5]BNum:10Time:(0, 999)'
-    BranchNum: 10
-    Times: {x: 0, y: 999}
-    SpeedRem: 100
     NoJump: 0
     NoDash: 0
     Aiming: 0
@@ -230,84 +192,109 @@ MonoBehaviour:
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: '[0]BNum:0'
+    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2)\u653B\u6483\u529B100%"
       BranchNum: 0
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 0
+      ShortAtk: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 100
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 3
-    - EditDisp: '[1]BNum:1'
+      BufSets: []
+    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u9060\u8DDD\u96E2)\u653B\u6483\u529B110%"
       BranchNum: 1
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 0
+      ShortAtk: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 110
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 4
-    - EditDisp: '[2]BNum:2'
+      BufSets: []
+    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u9060\u8DDD\u96E2)\u653B\u6483\u529B125%"
       BranchNum: 2
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 0
+      ShortAtk: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 125
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 5
-    - EditDisp: '[3]BNum:3'
+      BufSets: []
+    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u9060\u8DDD\u96E2)\u653B\u6483\u529B70%"
       BranchNum: 3
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 0
+      ShortAtk: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 70
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 6
-    - EditDisp: '[4]BNum:4'
+      BufSets: []
+    - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u9060\u8DDD\u96E2)\u653B\u6483\u529B160%"
       BranchNum: 4
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 0
+      ShortAtk: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 160
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 15
-    - EditDisp: '[5]BNum:10'
+      BufSets: []
+    - EditDisp: "[5]BNum:10|(\u91CD\u6483,\u9060\u8DDD\u96E2)\u653B\u6483\u529B45%"
       BranchNum: 10
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 1
+      ShortAtk: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 45
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 2
+      BufSets: []
     HitCT: 0
   Moves: []
   States: []
+  Bufs: []
   WeponSets:
-  - BranchNum: 0
-    Times: {x: 0, y: 50}
-    Obj: {fileID: 6293833836109196858, guid: 34999135b8ab0a14c88341df51f2f4f3, type: 3}
-    Set: 0
-    PosChange: {x: 0, y: 0, z: 0}
-    RotChange: {x: 0, y: 0, z: 0}
-  - BranchNum: 1
-    Times: {x: 0, y: 50}
-    Obj: {fileID: 6293833836109196858, guid: 34999135b8ab0a14c88341df51f2f4f3, type: 3}
-    Set: 0
-    PosChange: {x: 0, y: 0, z: 0}
-    RotChange: {x: 0, y: 0, z: 0}
-  - BranchNum: 2
-    Times: {x: 0, y: 50}
-    Obj: {fileID: 6293833836109196858, guid: 34999135b8ab0a14c88341df51f2f4f3, type: 3}
-    Set: 0
-    PosChange: {x: 0, y: 0, z: 0}
-    RotChange: {x: 0, y: 0, z: 0}
-  - BranchNum: 3
-    Times: {x: 0, y: 50}
-    Obj: {fileID: 6293833836109196858, guid: 34999135b8ab0a14c88341df51f2f4f3, type: 3}
-    Set: 0
-    PosChange: {x: 0, y: 0, z: 0}
-    RotChange: {x: 0, y: 0, z: 0}
-  - BranchNum: 4
-    Times: {x: 0, y: 50}
-    Obj: {fileID: 6293833836109196858, guid: 34999135b8ab0a14c88341df51f2f4f3, type: 3}
-    Set: 0
-    PosChange: {x: 0, y: 0, z: 0}
-    RotChange: {x: 0, y: 0, z: 0}
-  - BranchNum: 10
-    Times: {x: 0, y: 50}
+  - BranchNum: -1
+    Times: {x: 0, y: 999}
     Obj: {fileID: 6293833836109196858, guid: 34999135b8ab0a14c88341df51f2f4f3, type: 3}
     Set: 0
     PosChange: {x: 0, y: 0, z: 0}

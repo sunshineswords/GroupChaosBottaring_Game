@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Passive_SPBoost
   m_EditorClassIdentifier: 
   Name: "SP\u30D6\u30FC\u30B9\u30C8"
-  Info: "SP\u5897\u52A0\u91CF+20%"
+  Info: "SP\u5897\u52A0\u91CF+25%"
   Icon: {fileID: 0}
+  Filters: 00000000

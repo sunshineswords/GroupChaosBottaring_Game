@@ -140,8 +140,7 @@ MonoBehaviour:
   HitRem: 0
   DelAddShots: []
   SepParticles: []
-  SepTrails:
-  - {fileID: 0}
+  SepTrails: []
   Times: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
@@ -177,7 +176,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 12.5
   m_Height: 100
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -235,5 +234,5 @@ MonoBehaviour:
   m_DecalLayerMask: 2
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 50}
-  m_Size: {x: 10, y: 10, z: 100}
+  m_Size: {x: 25, y: 25, z: 100}
   m_FadeFactor: 1

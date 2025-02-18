@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Atk_S_SpelShoot
   m_EditorClassIdentifier: 
   Name: "\u30B9\u30DA\u30EB\u30B7\u30E5\u30FC\u30C8"
-  Info: 
+  Info: "\u9B54\u6CD5\u5F3E\u3092\u9023\u7D9A\u3067\u6483\u3061\u8FBC\u3080"
   Icon: {fileID: 2800000, guid: ae6e9da44c1e6e440a0ce4baf0e83244, type: 3}
+  AtkType: 1
+  Filters: 0000000065000000c8000000
   EndTime: 60
   CT: 7
   SPUse: 0
@@ -41,16 +43,26 @@ MonoBehaviour:
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: '[0]BNum:0'
+    - EditDisp: "[0]BNum:0|(\u30B9\u30AD\u30EB,\u9060\u8DDD\u96E2)\u653B\u6483\u529B70%"
       BranchNum: 0
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 3
+      ShortAtk: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 70
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 0
+      BufSets: []
     HitCT: 0
   Moves: []
   States: []
+  Bufs: []
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 60)ID:20'

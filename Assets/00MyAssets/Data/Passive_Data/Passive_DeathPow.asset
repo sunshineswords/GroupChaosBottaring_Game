@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Passive_DeathPow
   m_EditorClassIdentifier: 
   Name: "\u6B7B\u306B\u529B"
-  Info: "\u6B7B\u4EA1\u3059\u308B\u3068\u653B\u6483\u529B+5%"
+  Info: "\u6B7B\u4EA1\u3059\u308B\u3068\u653B\u6483\u529B+5%\n\u91CD\u306D\u639B\u3051\u53EF\u80FD"
   Icon: {fileID: 0}
+  Filters: 010000000b000000

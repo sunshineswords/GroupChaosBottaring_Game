@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c22cee1cabc9b84f92975ed946ab97c, type: 3}
-  m_Name: Atk_BroccoliQuiq
+  m_Name: Atk_S_BroccoliSpred
   m_EditorClassIdentifier: 
-  Name: "\u30AF\u30A4\u30C3\u30AF\u30D6\u30ED\u30C3\u30B3\u30EA\u30FC"
+  Name: "\u30D6\u30ED\u30C3\u30B3\u30EA\u30FC\u30B9\u30D7\u30EC\u30C3\u30C9"
   Info: 
   Icon: {fileID: 0}
-  EndTime: 200
+  AtkType: 1
+  EndTime: 90
   CT: 8
   SPUse: 0
   BranchInfos: []
@@ -24,43 +25,51 @@ MonoBehaviour:
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: f5974f404649ca64bb7daed5fdc00e7e, type: 3}
     Fires:
-    - EditDisp: '[0]BNum:0,Time:(50, 200, 8),Count:1,Speed:(3500.00, 3500.00)'
+    - EditDisp: '[0]BNum:0,Time:(70, 70, 0),Count:8,Speed:(3000.00, 3000.00)'
       BranchNum: 0
-      Times: {x: 50, y: 200, z: 8}
-      Count: 1
-      Speed: {x: 3500, y: 3500}
+      Times: {x: 70, y: 70, z: 0}
+      Count: 8
+      Speed: {x: 3000, y: 3000}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 2, z: 0}
+        PosChange: {x: 0, y: 0, z: 0}
         PosRand: {x: 0, y: 0, z: 0}
         PosWay: {x: 0, y: 0, z: 0}
         PosTime: {x: 0, y: 0, z: 0}
         RotBase: 0
         RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 25, y: 25, z: 25}
-        RotWay: {x: 0, y: 0, z: 0}
+        RotRand: {x: 0, y: 0, z: 0}
+        RotWay: {x: 0, y: 45, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: '[0]BNum:0'
+    - EditDisp: "[0]BNum:0|\u653B\u6483\u529B100%"
       BranchNum: 0
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 100
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 0
+      BufSets: []
     HitCT: 0
   Moves: []
   States: []
+  Bufs: []
   WeponSets: []
   Anims:
-  - EditDisp: '[0]BNum:0Time:(0, 200)ID:2'
+  - EditDisp: '[0]BNum:0Time:(0, 70)ID:2'
     BranchNum: 0
-    Times: {x: 0, y: 200}
+    Times: {x: 0, y: 70}
     ID: 2
-    Speed: 0
+    Speed: -50
   SEPlays:
   - BranchNum: 0
-    Times: {x: 50, y: 200, z: 8}
+    Times: {x: 70, y: 70, z: 0}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 35
-    Pitch: 100
+    Volume: 100
+    Pitch: 150

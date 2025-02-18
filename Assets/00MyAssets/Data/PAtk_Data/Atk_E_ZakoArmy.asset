@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Atk_E_ZakoArmy
   m_EditorClassIdentifier: 
   Name: "\u30B6\u30B3\u30A2\u30FC\u30DF\u30FC"
-  Info: 
+  Info: "\u30B6\u30B3\u3092\u524D\u65B9\u306B\u6CA2\u5C71\u53EC\u559A\u3059\u308B"
   Icon: {fileID: 2800000, guid: b442fd7ae2ec93c4b9b9eda0c032960c, type: 3}
+  AtkType: 2
+  Filters: 05000000c8000000
   EndTime: 60
   CT: 15
   SPUse: 250
@@ -48,17 +50,11 @@ MonoBehaviour:
         RotRand: {x: 0, y: 0, z: 0}
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
-    Hits:
-    - EditDisp: '[0]BNum:0'
-      BranchNum: 0
-      BaseDam: 0
-      AtkDamPer: 75
-      DefDamPer: 0
-      DefRemPer: 0
-      SPAdd: 0
+    Hits: []
     HitCT: 0
   Moves: []
   States: []
+  Bufs: []
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 60)ID:3'

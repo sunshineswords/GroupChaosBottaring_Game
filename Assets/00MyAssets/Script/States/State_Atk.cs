@@ -72,7 +72,7 @@ public class State_Atk
         for(int i = 0; i < AtkD.Fixeds.Length; i++)
         {
             var MFixed = AtkD.Fixeds[i];
-            if (USta.AtkBranch != MFixed.BranchNum) continue;
+            if (MFixed.BranchNum >= 0 && USta.AtkBranch != MFixed.BranchNum) continue;
             if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)MFixed.Times))
             {
                 USta.SpeedRem = MFixed.SpeedRem;
@@ -83,6 +83,7 @@ public class State_Atk
             }
         }
     }
+
     static public void Shot(State_Base USta, Vector3 BasePos, Vector3 BaseRot,Vector3 CamRot)
     {
         var AtkD = USta.AtkD;
@@ -93,7 +94,7 @@ public class State_Atk
             for (int j = 0; j < AtShot.Fires.Length; j++)
             {
                 var AtFire = AtShot.Fires[j];
-                if (USta.AtkBranch != AtFire.BranchNum) continue;
+                if (AtFire.BranchNum >= 0 && USta.AtkBranch != AtFire.BranchNum) continue;
                 if (!V3IntTimeCheck(USta.AtkTime, AtFire.Times)) continue;
 
                 for (int k = 0; k < AtFire.Count; k++)
@@ -101,12 +102,12 @@ public class State_Atk
                     float WaySet = k - ((AtFire.Count - 1) / 2f);
                     var Pos = PosGet(USta, AtFire, BasePos, BaseRot, WaySet,USta.AtkTime);
                     var Rot = RotGet(USta, AtFire, Pos, BaseRot, CamRot, WaySet, USta.AtkTime);
-                    Shots(USta, AtShot, AtFire.Speed, Pos, Rot);
+                    Shots(USta, AtShot,USta.AtkBranch, AtFire.Speed, Pos, Rot);
                 }
             }
         }
     }
-    static public void ShotAdd(State_Base USta,Data_AddShot AddShotD,int Times, Vector3 BasePos, Vector3 BaseRot)
+    static public void ShotAdd(State_Base USta,int BranchID,Data_AddShot AddShotD,int Times, Vector3 BasePos, Vector3 BaseRot)
     {
         for (int i = 0; i < AddShotD.Shots.Length; i++)
         {
@@ -114,12 +115,14 @@ public class State_Atk
             for (int j = 0; j < AtShot.Fires.Length; j++)
             {
                 var AtFire = AtShot.Fires[j];
+                if (AtFire.BranchNum >= 0 && BranchID != AtFire.BranchNum) continue;
+                if (!V3IntTimeCheck(Times, AtFire.Times)) continue;
                 for (int k = 0; k < AtFire.Count; k++)
                 {
                     float WaySet = k - ((AtFire.Count - 1) / 2f);
                     var Pos = PosGet(USta, AtFire, BasePos, BaseRot, WaySet,Times);
                     var Rot = RotGet(USta, AtFire, Pos, BaseRot,BaseRot, WaySet, Times);
-                    Shots(USta, AtShot, AtFire.Speed, Pos, Rot);
+                    Shots(USta, AtShot,BranchID, AtFire.Speed, Pos, Rot);
                 }
 
             }
@@ -174,7 +177,7 @@ public class State_Atk
         }
         return Rot;
     }
-    static public void Shots(State_Base USta, Class_Atk_Shot_Base Shot,Vector2 Speed,Vector3 Pos,Vector3 Rot)
+    static public void Shots(State_Base USta, Class_Atk_Shot_Base Shot,int BranchID,Vector2 Speed,Vector3 Pos,Vector3 Rot)
     {
         var ShotIns = PhotonNetwork.Instantiate(Shot.Obj.name, Pos, Quaternion.Euler(Rot));
         var ShotRig = ShotIns.GetComponent<Rigidbody>();
@@ -184,7 +187,7 @@ public class State_Atk
         {
             SObj.USta = USta;
             SObj.ShotD = Shot;
-            SObj.BranchNum = USta.AtkBranch;
+            SObj.BranchNum = BranchID;
         }
         var Sta = ShotIns.GetComponent<State_Base>();
         if (Sta != null)
@@ -200,7 +203,7 @@ public class State_Atk
         for (int i = 0; i < AtkD.Moves.Length; i++)
         {
             var Move = AtkD.Moves[i];
-            if (USta.AtkBranch != Move.BranchNum) continue;
+            if (Move.BranchNum >= 0 && USta.AtkBranch != Move.BranchNum) continue;
             if (!V3IntTimeCheck(USta.AtkTime, Move.Times)) continue;
             var RigVect = USta.Rig.linearVelocity;
             var Rot = RotBaseGet(USta, Move.Base,USta.PosGet(), USta.RotGet(), CamRot);
@@ -216,7 +219,7 @@ public class State_Atk
         for (int i = 0; i < AtkD.States.Length; i++)
         {
             var State = AtkD.States[i];
-            if (State.BranchNum != USta.AtkBranch) continue;
+            if (State.BranchNum >= 0 && USta.AtkBranch != State.BranchNum) continue;
             if (!V3IntTimeCheck(USta.AtkTime, State.Times)) continue;
             switch (State.State)
             {
@@ -233,7 +236,7 @@ public class State_Atk
         for (int i = 0; i < AtkD.Bufs.Length; i++)
         {
             var Buf = AtkD.Bufs[i];
-            if (Buf.BranchNum != USta.AtkBranch) continue;
+            if (Buf.BranchNum >= 0 && USta.AtkBranch != Buf.BranchNum) continue;
             if (!V3IntTimeCheck(USta.AtkTime, Buf.Times)) continue;
             for (int j = 0; j < Buf.BufSets.Length; j++) USta.BufSets(Buf.BufSets[j]);
         }
@@ -245,7 +248,7 @@ public class State_Atk
         for (int i = 0; i < AtkD.WeponSets.Length; i++)
         {
             var AtWep = AtkD.WeponSets[i];
-            if (USta.AtkBranch != AtWep.BranchNum) continue;
+            if (AtWep.BranchNum >= 0 && USta.AtkBranch != AtWep.BranchNum) continue;
             if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)AtWep.Times))
             {
                 USta.WeponSets.TryAdd((int)AtWep.Set, -1);
@@ -265,7 +268,7 @@ public class State_Atk
         for (int i = 0; i < AtkD.Anims.Length; i++)
         {
             var AtAnim = AtkD.Anims[i];
-            if (USta.AtkBranch != AtAnim.BranchNum) continue;
+            if (AtAnim.BranchNum >= 0 && USta.AtkBranch != AtAnim.BranchNum) continue;
             if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)AtAnim.Times))
             {
                 if (AtAnim.ID != 0)
@@ -283,7 +286,7 @@ public class State_Atk
         for(int i = 0; i < AtkD.SEPlays.Length; i++)
         {
             var SEPlay = AtkD.SEPlays[i];
-            if (USta.AtkBranch != SEPlay.BranchNum) continue;
+            if (SEPlay.BranchNum >= 0 && USta.AtkBranch != SEPlay.BranchNum) continue;
             if (!V3IntTimeCheck(USta.AtkTime, SEPlay.Times)) continue;
             BTManager.SEPlay(SEPlay.Clip, USta.PosGet(), SEPlay.Volume, SEPlay.Pitch);
         }

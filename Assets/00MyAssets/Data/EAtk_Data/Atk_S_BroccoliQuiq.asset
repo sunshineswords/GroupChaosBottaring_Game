@@ -10,57 +10,66 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c22cee1cabc9b84f92975ed946ab97c, type: 3}
-  m_Name: Atk_GTacle
+  m_Name: Atk_S_BroccoliQuiq
   m_EditorClassIdentifier: 
-  Name: "G\u30BF\u30C3\u30AF\u30EB"
+  Name: "\u30AF\u30A4\u30C3\u30AF\u30D6\u30ED\u30C3\u30B3\u30EA\u30FC"
   Info: 
   Icon: {fileID: 0}
-  EndTime: 110
-  CT: 6
+  AtkType: 1
+  EndTime: 200
+  CT: 8
   SPUse: 0
   BranchInfos: []
   Branchs: []
   Fixeds: []
   Shots:
-  - Obj: {fileID: 5905403385281065886, guid: 34732681e4ad21541b3e0de1ac240a4e, type: 3}
+  - Obj: {fileID: 5905403385281065886, guid: f5974f404649ca64bb7daed5fdc00e7e, type: 3}
     Fires:
-    - EditDisp: '[0]BNum:0,Time:(65, 95, 10),Count:1,Speed:(0.00, 0.00)'
+    - EditDisp: '[0]BNum:0,Time:(50, 200, 8),Count:1,Speed:(3500.00, 3500.00)'
       BranchNum: 0
-      Times: {x: 65, y: 95, z: 10}
+      Times: {x: 50, y: 200, z: 8}
       Count: 1
-      Speed: {x: 0, y: 0}
+      Speed: {x: 3500, y: 3500}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
+        PosChange: {x: 0, y: 2, z: 0}
         PosRand: {x: 0, y: 0, z: 0}
         PosWay: {x: 0, y: 0, z: 0}
         PosTime: {x: 0, y: 0, z: 0}
-        RotBase: -1
+        RotBase: 0
         RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
+        RotRand: {x: 25, y: 25, z: 25}
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: '[0]BNum:0'
+    - EditDisp: "[0]BNum:0|\u653B\u6483\u529B100%"
       BranchNum: 0
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 100
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 0
+      BufSets: []
     HitCT: 0
-  Moves:
-  - BranchNum: 0
-    Times: {x: 70, y: 100, z: 10}
-    Base: 0
-    Vect: {x: 0, y: 0, z: 5000}
-    SetSpeed: 1
+  Moves: []
   States: []
+  Bufs: []
   WeponSets: []
   Anims:
-  - EditDisp: '[0]BNum:0Time:(25, 100)ID:1'
+  - EditDisp: '[0]BNum:0Time:(0, 200)ID:2'
     BranchNum: 0
-    Times: {x: 25, y: 100}
-    ID: 1
+    Times: {x: 0, y: 200}
+    ID: 2
     Speed: 0
-  SEPlays: []
+  SEPlays:
+  - BranchNum: 0
+    Times: {x: 50, y: 200, z: 8}
+    Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
+    Volume: 35
+    Pitch: 100

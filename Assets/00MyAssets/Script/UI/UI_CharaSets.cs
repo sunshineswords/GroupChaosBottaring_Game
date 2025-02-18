@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using static DataBase;
 using static PlayerValue;
+using static Manifesto;
+using System.Linq;
+
 public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
 {
     [SerializeField] List<UI_Sin_Set> PriSet_Sin_UIs;
@@ -14,12 +18,16 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
     [SerializeField] GameObject PassiveUIs;
     [SerializeField] UI_Sin_Set[] SetSelectUIs;
     [SerializeField] List<UI_Sin_Set> Set_Sin_UIs;
+    [SerializeField] TMP_Dropdown FilterDr;
     int TypeID = 0;
     int SelectID = 0;
+    int FilterID = -1;
+    private void Start()
+    {
+        FilterUpdate();
+    }
     void Update()
     {
-
-
         for (int i = 0; i < PriSets.Length; i++)
         {
             if (PriSet_Sin_UIs.Count <= i) PriSet_Sin_UIs.Add(Instantiate(PriSet_Sin_UIs[0], PriSet_Sin_UIs[0].transform.parent));
@@ -134,6 +142,7 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
         }
         for (int i=0;i < Mathf.Max(DataCount,Set_Sin_UIs.Count); i++)
         {
+            bool Disp = true;
             if (i < DataCount)
             {
                 if (Set_Sin_UIs.Count <= i)
@@ -158,6 +167,11 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
                         SinUI.BackImage.color = i == Atks.N_AtkID ? Color.yellow : Color.white;
                         SinUI.Name.text = NAtkData.Name;
                         SinUI.Icon.texture = NAtkData.Icon;
+                        if (FilterDr.value > 0)
+                        {
+                            var AtkKeys = Enum.GetValues(typeof(Enum_AtkFilter));
+                            if (!NAtkData.Filters.Contains((Enum_AtkFilter)AtkKeys.GetValue(FilterDr.value - 1)))Disp = false;
+                        }
                         break;
                     case 11:
                     case 12:
@@ -174,6 +188,11 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
                         }
                         SinUI.Name.text = SAtkData.Name;
                         SinUI.Icon.texture = SAtkData.Icon;
+                        if (FilterDr.value > 0)
+                        {
+                            var AtkKeys = Enum.GetValues(typeof(Enum_AtkFilter));
+                            if (!SAtkData.Filters.Contains((Enum_AtkFilter)AtkKeys.GetValue(FilterDr.value - 1))) Disp = false;
+                        }
                         break;
                     case 20:
                         var EAtkData = DB.E_Atks[i];
@@ -181,6 +200,11 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
                         SinUI.BackImage.color = i == Atks.E_AtkID ? Color.yellow : Color.white;
                         SinUI.Name.text = EAtkData.Name;
                         SinUI.Icon.texture = EAtkData.Icon;
+                        if (FilterDr.value > 0)
+                        {
+                            var AtkKeys = Enum.GetValues(typeof(Enum_AtkFilter));
+                            if (!EAtkData.Filters.Contains((Enum_AtkFilter)AtkKeys.GetValue(FilterDr.value - 1))) Disp = false;
+                        }
                         break;
                     case 30:
                     case 31:
@@ -208,13 +232,53 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
                         }
                         SinUI.Name.text = PassData.Name;
                         SinUI.Icon.texture = PassData.Icon;
+                        if (FilterDr.value > 0)
+                        {
+                            var AtkKeys = Enum.GetValues(typeof(Enum_PassiveFilter));
+                            if (!PassData.Filters.Contains((Enum_PassiveFilter)AtkKeys.GetValue(FilterDr.value - 1))) Disp = false;
+                        }
                         break;
                 }
 
             }
-            Set_Sin_UIs[i].gameObject.SetActive(i < DataCount);
+            Set_Sin_UIs[i].gameObject.SetActive(i < DataCount && Disp);
         }
 
+
+
+    }
+    void FilterUpdate()
+    {
+        FilterDr.options.Clear();
+        FilterDr.options.Add(new TMP_Dropdown.OptionData { text = "無" });
+        int FID = -1;
+        switch (SelectID)
+        {
+            case 10:
+            case 11:
+            case 12:
+            case 20:
+                var AtkKeys = Enum.GetValues(typeof(Enum_AtkFilter));
+                for (int i = 0; i < AtkKeys.Length; i++)
+                {
+                    FilterDr.options.Add(new TMP_Dropdown.OptionData { text = AtkKeys.GetValue(i).ToString() });
+                }
+                FID = 0;
+                break;
+            case 30:
+            case 31:
+            case 32:
+            case 33:
+                var PassKeys = Enum.GetValues(typeof(Enum_PassiveFilter));
+                for (int i = 0; i < PassKeys.Length; i++)
+                {
+                    FilterDr.options.Add(new TMP_Dropdown.OptionData { text = PassKeys.GetValue(i).ToString() });
+                }
+                FID = 1;
+                break;
+        }
+        if (FilterID != FID) FilterDr.value = 0;
+        FilterID = FID;
     }
     void UI_Sin_Set.SetReturn.ReturnID(string Type, int ID)
     {
@@ -229,6 +293,7 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
                 break;
             case "SelectChange":
                 SelectID = ID;
+                FilterUpdate();
                 break;
             case "Chara":
                 PriSetGet.CharaID = ID;

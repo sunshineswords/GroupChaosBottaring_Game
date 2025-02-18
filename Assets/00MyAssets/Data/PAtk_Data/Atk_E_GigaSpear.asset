@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Atk_E_GigaSpear
   m_EditorClassIdentifier: 
   Name: "\u30AE\u30AC\u30B9\u30D4\u30A2"
-  Info: 
+  Info: "\u30C7\u30AB\u3044\u69CD\u3092\u53EC\u559A\u3057\n\u6575\u306B\u7A81\u304D\u523A\u3059"
   Icon: {fileID: 2800000, guid: a11b5cd25dbda644ebdaaa5836c2ddd4, type: 3}
+  AtkType: 2
+  Filters: 0000000064000000c9000000
   EndTime: 35
   CT: 12
   SPUse: 100
@@ -41,16 +43,26 @@ MonoBehaviour:
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: '[0]BNum:0'
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u8FD1\u8DDD\u96E2)\u653B\u6483\u529B100%"
       BranchNum: 0
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 4
+      ShortAtk: 1
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 100
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 0
+      BufSets: []
     HitCT: 60
   Moves: []
   States: []
+  Bufs: []
   WeponSets:
   - BranchNum: 0
     Times: {x: 0, y: 50}

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c22cee1cabc9b84f92975ed946ab97c, type: 3}
-  m_Name: Atk_BroccoliShock
+  m_Name: Atk_S_BroccoliShock
   m_EditorClassIdentifier: 
   Name: "\u30D6\u30ED\u30C3\u30B3\u30EA\u30FC\u30B7\u30E7\u30C3\u30AF"
   Info: 
   Icon: {fileID: 0}
+  AtkType: 1
   EndTime: 80
   CT: 8
   SPUse: 0
@@ -73,16 +74,24 @@ MonoBehaviour:
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: '[0]BNum:0'
+    - EditDisp: "[0]BNum:0|\u653B\u6483\u529B100%"
       BranchNum: 0
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 100
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 0
+      BufSets: []
     HitCT: 0
   Moves: []
   States: []
+  Bufs: []
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 80)ID:3'

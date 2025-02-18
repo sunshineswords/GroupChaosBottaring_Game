@@ -8,6 +8,8 @@ public class Data_Atk : ScriptableObject
     public string Name;
     [TextArea]public string Info;
     public Texture Icon;
+    [Tooltip("タイプ")] public Enum_AtkType AtkType;
+    [Tooltip("フィルター")] public List<Enum_AtkFilter> Filters;
     [Tooltip("終了時間(フレーム)")] public int EndTime;
     [Tooltip("CT(秒)")] public float CT;
     [Tooltip("SP消費")] public int SPUse;

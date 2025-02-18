@@ -824,6 +824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea188d09e84c38d469ff18cf21cbd98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BackImage: {fileID: 4230377141885340823}
   Icon: {fileID: 974211538148263606}
   NameTx: {fileID: 3365885023997661596}
   PowTx: {fileID: 898255272897228918}

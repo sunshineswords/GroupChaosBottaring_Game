@@ -15,3 +15,4 @@ MonoBehaviour:
   Name: "\u5FC5\u6BBA\u518D\u751F"
   Info: "\u5FC5\u6BBA\u3092\u4F7F\u3046\u3068HP\u304C15%\u56DE\u5FA9"
   Icon: {fileID: 0}
+  Filters: 030000000b00000016000000

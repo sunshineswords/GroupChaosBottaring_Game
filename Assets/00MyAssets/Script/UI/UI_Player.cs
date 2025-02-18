@@ -160,9 +160,22 @@ public class UI_Player : MonoBehaviour
             {
                 if (BufUIs.Count <= i) BufUIs.Add(Instantiate(BufUIs[0], BufUIs[0].transform.parent));
                 var Bufi = Sta.Bufs[i];
+                var BufD = DB.Bufs.Find(x => (int)x.Buf == Bufi.ID);
+                if (BufD != null)
+                {
+                    BufUIs[i].BackImage.color = BufD.Col;
+                    BufUIs[i].Icon.texture = BufD.Icon;
+                    BufUIs[i].Icon.color = BufUIs[i].Icon.texture != null ? Color.white : Color.clear;
+                }
+                else
+                {
+                    BufUIs[i].BackImage.color = Color.white;
+                    BufUIs[i].Icon.color = Color.clear;
+                }
                 BufUIs[i].NameTx.text = ((Enum_Bufs)Bufi.ID).ToString();
-                BufUIs[i].PowTx.text = Bufi.Pow.ToString();
-                BufUIs[i].TimeImage.fillAmount = (float)Bufi.Time / Bufi.TimeMax;
+                BufUIs[i].PowTx.text = Bufi.Pow > 0 ? Bufi.Pow.ToString() : "";
+                if (Bufi.TimeMax > 0) BufUIs[i].TimeImage.fillAmount = 1f - ((float)Bufi.Time / Bufi.TimeMax);
+                else BufUIs[i].TimeImage.fillAmount = 0;
             }
             BufUIs[i].gameObject.SetActive(i < Sta.Bufs.Count);
         }

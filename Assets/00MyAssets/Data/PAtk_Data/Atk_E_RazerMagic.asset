@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Atk_E_RazerMagic
   m_EditorClassIdentifier: 
   Name: "\u30EC\u30FC\u30B6\u30FC\u30DE\u30B8\u30C3\u30AF"
-  Info: 
+  Info: "\u76F4\u7DDA\u72B6\u306B\u5149\u7DDA\u3092\u653E\u3061\n\u9023\u7D9A\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B"
   Icon: {fileID: 2800000, guid: ae6e9da44c1e6e440a0ce4baf0e83244, type: 3}
+  AtkType: 2
+  Filters: 0000000065000000
   EndTime: 125
   CT: 20
   SPUse: 200
@@ -41,16 +43,26 @@ MonoBehaviour:
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: '[0]BNum:0'
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)\u653B\u6483\u529B35%"
       BranchNum: 0
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 4
+      ShortAtk: 0
       BaseDam: 0
+      MHPDamPer: 0
+      HPDamPer: 0
       AtkDamPer: 35
       DefDamPer: 0
       DefRemPer: 0
       SPAdd: 0
+      BufSets: []
     HitCT: 2
   Moves: []
   States: []
+  Bufs: []
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 60)ID:20'

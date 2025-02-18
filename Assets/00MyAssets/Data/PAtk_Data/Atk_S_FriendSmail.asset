@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Atk_S_FriendSmail
   m_EditorClassIdentifier: 
   Name: "\u30D5\u30EC\u30F3\u30C9\u30B9\u30DE\u30A4\u30EB"
-  Info: 
+  Info: "\u5473\u65B9\u306E\u30D5\u30EC\u30F3\u30C9\u30B9\u30DE\u30A4\u30EB\n\u3092\u51FA\u3057\u6295\u3052\u3064\u3051\u308B"
   Icon: {fileID: 2800000, guid: 5fff334c68a72a44aa6e38104d36d292, type: 3}
+  AtkType: 1
+  Filters: 05000000
   EndTime: 45
   CT: 15
   SPUse: 0
@@ -52,6 +54,7 @@ MonoBehaviour:
     HitCT: 0
   Moves: []
   States: []
+  Bufs: []
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 60)ID:1'
