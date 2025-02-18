@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static Statics;
+using static Manifesto;
 public class Shot_Obj : MonoBehaviourPun
 {
     public State_Base USta;
     public Rigidbody Rig;
     [SerializeField] int RemTime;
     [SerializeField] bool HitRem;
-    [System.NonSerialized] public Data_Atk.ShotC_Base ShotD;
+    [System.NonSerialized] public Class_Atk_Shot_Base ShotD;
     public Data_AddShot[] DelAddShots;
     public ParticleSystem[] SepParticles;
     public TrailRenderer[] SepTrails;
@@ -58,6 +59,7 @@ public class Shot_Obj : MonoBehaviourPun
             Dam *= 1f + HitState.DamAdds * 0.01f;
             if (Dam < 1) Dam = 1;
             HitState.Sta.Damage(HitPos, Mathf.RoundToInt(Dam) * (Hit.Heals ? -1 : 1));
+            if(Hit.BufSets!=null)
             for (int j = 0; j < Hit.BufSets.Length; j++) HitState.Sta.BufSets(Hit.BufSets[j]);
             USta.SP += Hit.SPAdd;
         }

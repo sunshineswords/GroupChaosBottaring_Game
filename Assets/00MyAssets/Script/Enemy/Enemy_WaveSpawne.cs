@@ -1,18 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Photon.Pun;
-
+using static Manifesto;
 public class Enemy_WaveSpawne : MonoBehaviourPun,IPunObservable
 {
     public bool Clear;
     [SerializeField]int Wave;
-    [SerializeField]WaveC[] Waves;
-    [System.Serializable]
-    class WaveC
-    {
-        public GameObject[] Enemys;
-        public Vector3[] Pos;
-    }
+    [SerializeField]Class_Wave[] Waves;
+
     List<State_Base> Enemys = new List<State_Base>();
     private void Start()
     {

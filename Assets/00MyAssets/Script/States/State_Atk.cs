@@ -6,7 +6,7 @@ using static Statics;
 using static DataBase;
 using static Data_Atk;
 using static BattleManager;
-
+using static Manifesto;
 
 public class State_Atk
 {
@@ -29,28 +29,28 @@ public class State_Atk
             {
                 switch (BranchD.Ifs[j])
                 {
-                    case Data_Atk.AtkIfE.攻撃単入力:
+                    case Enum_AtkIf.攻撃単入力:
                         if (!Enter) Check = false;
                         break;
-                    case Data_Atk.AtkIfE.攻撃長入力:
+                    case Enum_AtkIf.攻撃長入力:
                         if (!Stay) Check = false;
                         break;
-                    case Data_Atk.AtkIfE.攻撃未入力:
+                    case Enum_AtkIf.攻撃未入力:
                         if (Enter || Stay) Check = false;
                         break;
-                    case Data_Atk.AtkIfE.攻撃未長入力:
+                    case Enum_AtkIf.攻撃未長入力:
                         if (Stay) Check = false;
                         break;
-                    case AtkIfE.地上:
+                    case Enum_AtkIf.地上:
                         if(!USta.Ground) Check = false;
                         break;
-                    case AtkIfE.空中:
+                    case Enum_AtkIf.空中:
                         if (USta.Ground) Check = false;
                         break;
-                    case AtkIfE.MP有り:
+                    case Enum_AtkIf.MP有り:
                         if (USta.LowMP) Check = false;
                         break;
-                    case AtkIfE.MP無し:
+                    case Enum_AtkIf.MP無し:
                         if(!USta.LowMP)Check = false;
                         break;
                 }
@@ -126,12 +126,12 @@ public class State_Atk
         }
     }
 
-    static public Vector3 PosGet(State_Base USta, ShotC_Fire Fire, Vector3 BasePos, Vector3 BaseRot, float Way,int Times)
+    static public Vector3 PosGet(State_Base USta, Class_Atk_Shot_Fire Fire, Vector3 BasePos, Vector3 BaseRot, float Way,int Times)
     {
         var Pos = BasePos;
         switch (Fire.Trans.PosBase)
         {
-            case Data_Atk.PosBaseE.ターゲット位置:
+            case Enum_PosBase.ターゲット位置:
                 if (USta.Target != null) Pos = USta.Target.PosGet();
                 break;
         }
@@ -145,7 +145,7 @@ public class State_Atk
         Pos += Quaternion.Euler(BaseRot) * RPos;
         return Pos;
     }
-    static public Vector3 RotGet(State_Base USta, ShotC_Fire Fire, Vector3 BasePos, Vector3 BaseRot, Vector3 CamRot, float Way, int Times)
+    static public Vector3 RotGet(State_Base USta, Class_Atk_Shot_Fire Fire, Vector3 BasePos, Vector3 BaseRot, Vector3 CamRot, float Way, int Times)
     {
         var Rot = RotBaseGet(USta, Fire.Trans.RotBase, BasePos, BaseRot, CamRot);
         Rot += Fire.Trans.RotChange;
@@ -156,12 +156,12 @@ public class State_Atk
         Rot.z += Float_NegRand(Fire.Trans.RotRand.z);
         return Rot;
     }
-    static public Vector3 RotBaseGet(State_Base USta, RotBaseE RotBase,Vector3 Pos,Vector3 Rot,Vector3 CamRot)
+    static public Vector3 RotBaseGet(State_Base USta, Enum_RotBase RotBase,Vector3 Pos,Vector3 Rot,Vector3 CamRot)
     {
         switch (RotBase)
         {
-            case RotBaseE.固定:return Vector3.zero;
-            case RotBaseE.ターゲット方向:
+            case Enum_RotBase.固定:return Vector3.zero;
+            case Enum_RotBase.ターゲット方向:
                 if (USta.Target != null || USta.TargetHit != null)
                 {
                     var TVect = (USta.Target != null ? USta.Target.PosGet() : USta.TargetHit.PosGet()) - Pos;
@@ -170,11 +170,11 @@ public class State_Atk
                     return Quaternion.LookRotation(TVect, Vector3.forward).eulerAngles;
                 }
                 break;
-            case RotBaseE.使用者カメラ方向: return CamRot;
+            case Enum_RotBase.使用者カメラ方向: return CamRot;
         }
         return Rot;
     }
-    static public void Shots(State_Base USta,ShotC_Base Shot,Vector2 Speed,Vector3 Pos,Vector3 Rot)
+    static public void Shots(State_Base USta, Class_Atk_Shot_Base Shot,Vector2 Speed,Vector3 Pos,Vector3 Rot)
     {
         var ShotIns = PhotonNetwork.Instantiate(Shot.Obj.name, Pos, Quaternion.Euler(Rot));
         var ShotRig = ShotIns.GetComponent<Rigidbody>();
@@ -220,9 +220,9 @@ public class State_Atk
             if (!V3IntTimeCheck(USta.AtkTime, State.Times)) continue;
             switch (State.State)
             {
-                case StateE.HP:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(State.Adds)); break;
-                case StateE.MP:USta.MP += State.Adds;break;
-                case StateE.SP:USta.SP += State.Adds;break;
+                case Enum_State.HP:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(State.Adds)); break;
+                case Enum_State.MP:USta.MP += State.Adds;break;
+                case Enum_State.SP:USta.SP += State.Adds;break;
             }
         }
     }

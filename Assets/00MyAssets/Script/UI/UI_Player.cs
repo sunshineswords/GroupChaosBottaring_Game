@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static DataBase;
 using static PlayerValue;
+using static Manifesto;
 
 public class UI_Player : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class UI_Player : MonoBehaviour
     /// <param name="index"></param>
     /// <param name="AtkD"></param>
     /// <param name="AtkCTs"></param>
-    private void UpdateStatus(int index, Data_Atk AtkD, State_Base.AtkCTC AtkCTs)
+    private void UpdateStatus(int index, Data_Atk AtkD, Class_Sta_AtkCT AtkCTs)
     {
         // AtkUIs[index] の UI 更新処理
         for (int j = 0; j < AtkUIs[j].ChengedImages.Length; j++)
@@ -159,7 +160,7 @@ public class UI_Player : MonoBehaviour
             {
                 if (BufUIs.Count <= i) BufUIs.Add(Instantiate(BufUIs[0], BufUIs[0].transform.parent));
                 var Bufi = Sta.Bufs[i];
-                BufUIs[i].NameTx.text = ((BufsE)Bufi.ID).ToString();
+                BufUIs[i].NameTx.text = ((Enum_Bufs)Bufi.ID).ToString();
                 BufUIs[i].PowTx.text = Bufi.Pow.ToString();
                 BufUIs[i].TimeImage.fillAmount = (float)Bufi.Time / Bufi.TimeMax;
             }

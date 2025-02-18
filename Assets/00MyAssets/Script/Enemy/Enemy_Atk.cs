@@ -1,35 +1,16 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 using static Statics;
+using static Manifesto;
 public class Enemy_Atk : MonoBehaviourPun
 {
     [SerializeField] State_Base Sta;
-    [SerializeField] AtkAIC[] AtkAIs;
+    [SerializeField] Class_Enemy_AtkAI[] AtkAIs;
     [SerializeField] int TimerLim;
     [SerializeField] bool NoTargetResetTime;
     int timer;
-    [System.Serializable]
-    class AtkAIC
-    {
-        public Vector2Int TimeIf;
-        public OtherIfsC[] OtherIfs;
-        public int AtkSlot;
-        public Data_Atk AtkD;
-    }
-    [System.Serializable]
-    class OtherIfsC
-    {
-        public OtherIfsE Ifs;
-        public Vector2 Val;
-    }
-    enum OtherIfsE
-    {
-        無=-1,
-        HP割合_x以下 = 0,
-        HP割合_x以上,
-        ターゲット距離_x以下=10,
-        ターゲット距離_x以上,
-    }
+
+
 
     void FixedUpdate()
     {
@@ -52,17 +33,17 @@ public class Enemy_Atk : MonoBehaviourPun
                 float Vals;
                 switch (OtherIf.Ifs)
                 {
-                    case OtherIfsE.HP割合_x以下:
+                    case Enum_OtherIfs.HP割合_x以下:
                         if ((float)Sta.HP/ Sta.MHP > OtherIf.Val.x * 0.01f) OIf = false;
                         break;
-                    case OtherIfsE.HP割合_x以上:
+                    case Enum_OtherIfs.HP割合_x以上:
                         if ((float)Sta.HP / Sta.MHP > OtherIf.Val.x * 0.01f) OIf = false;
                         break;
-                    case OtherIfsE.ターゲット距離_x以上:
+                    case Enum_OtherIfs.ターゲット距離_x以上:
                         Vals = Vector3.Distance(Sta.PosGet(), Sta.Target.PosGet());
                         if (Vals < OtherIf.Val.x) OIf = false;
                         break;
-                    case OtherIfsE.ターゲット距離_x以下:
+                    case Enum_OtherIfs.ターゲット距離_x以下:
                         Vals = Vector3.Distance(Sta.PosGet(), Sta.Target.PosGet());
                         if (Vals > OtherIf.Val.x) OIf = false;
                         break;

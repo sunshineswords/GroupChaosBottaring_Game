@@ -6,6 +6,7 @@ using static BattleManager;
 using System.Collections.Generic;
 using System.Linq;
 using static PlayerValue;
+using static Manifesto;
 public class State_Base : MonoBehaviourPun,IPunObservable
 {
     [Header("設定")]
@@ -17,8 +18,8 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [Tooltip("プレイヤー")] public bool Player;
     [Tooltip("ボス")] public bool Boss;
     [Tooltip("不死")] public bool Undet;
-    public SEPlayC DamageSE;
-    public SEPlayC DeathSE;
+    public Class_Base_SEPlay DamageSE;
+    public Class_Base_SEPlay DeathSE;
     [Tooltip("死亡エフェクト")] public GameObject DeathEffect;
     [Header("ステータス")]
     [Tooltip("最大HP")]public int MHP;
@@ -45,7 +46,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         get
         {
             float FVal = MHP;
-            FVal *= 1f + BufPowGet(BufsE.HP増加) * 0.01f;
+            FVal *= 1f + BufPowGet(Enum_Bufs.HP増加) * 0.01f;
             return Mathf.RoundToInt(FVal);
         }
     }
@@ -62,7 +63,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         get
         {
             float FVal = Atk;
-            FVal *= 1f + BufPowGet(BufsE.攻撃増加) * 0.01f;
+            FVal *= 1f + BufPowGet(Enum_Bufs.攻撃増加) * 0.01f;
             return Mathf.RoundToInt(FVal);
         }
     }
@@ -71,7 +72,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         get
         {
             float FVal = Def;
-            FVal *= 1f + BufPowGet(BufsE.防御増加) * 0.01f;
+            FVal *= 1f + BufPowGet(Enum_Bufs.防御増加) * 0.01f;
             return Mathf.RoundToInt(FVal);
         }
     }
@@ -99,35 +100,21 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public float Anim_AtkSpeed;
     public int Anim_OtherID;
 
-    public Dictionary<int,AtkCTC> AtkCTs = new Dictionary<int,AtkCTC>();
-    public List<BufInfoC> Bufs = new List<BufInfoC>();
-    [System.Serializable]
-    public class AtkCTC
-    {
-        public int CT;
-        public int CTMax;
-    }
-    [System.Serializable]
-    public class BufInfoC
-    {
-        public int ID;
-        public int Index;
-        public int Time;
-        public int TimeMax;
-        public int Pow;
-    }
+    public Dictionary<int,Class_Sta_AtkCT> AtkCTs = new Dictionary<int,Class_Sta_AtkCT>();
+    public List<Class_Sta_BufInfo> Bufs = new List<Class_Sta_BufInfo>();
+
     private void Start()
     {
         if (!photonView.IsMine) return;
         if (Player)
         {
-            MHP = Mathf.RoundToInt(MHP * (1f + PriSetGet.PassiveLVGet(PassiveE.HP増加) * 0.25f));
-            HPRegene = Mathf.RoundToInt(HPRegene * (1f + PriSetGet.PassiveLVGet(PassiveE.自然再生) * 0.5f));
-            MMP = Mathf.RoundToInt(MMP * (1f + PriSetGet.PassiveLVGet(PassiveE.MP増加) * 0.1f));
-            MPRegene = Mathf.RoundToInt(MPRegene * (1f + PriSetGet.PassiveLVGet(PassiveE.気力増幅) * 0.05f));
-            SPRegene = Mathf.RoundToInt(SPRegene * (1f + PriSetGet.PassiveLVGet(PassiveE.SPブースト) * 0.2f));
-            Atk = Mathf.RoundToInt(Atk * (1f + PriSetGet.PassiveLVGet(PassiveE.攻撃力増加) * 0.1f));
-            Def = Mathf.RoundToInt(Def * (1f + PriSetGet.PassiveLVGet(PassiveE.防御力増加) * 0.1f));
+            MHP = Mathf.RoundToInt(MHP * (1f + PriSetGet.PassiveLVGet(Enum_Passive.HP増加) * 0.25f));
+            HPRegene = Mathf.RoundToInt(HPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.自然再生) * 0.5f));
+            MMP = Mathf.RoundToInt(MMP * (1f + PriSetGet.PassiveLVGet(Enum_Passive.MP増加) * 0.1f));
+            MPRegene = Mathf.RoundToInt(MPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.気力増幅) * 0.05f));
+            SPRegene = Mathf.RoundToInt(SPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.SPブースト) * 0.2f));
+            Atk = Mathf.RoundToInt(Atk * (1f + PriSetGet.PassiveLVGet(Enum_Passive.攻撃力増加) * 0.1f));
+            Def = Mathf.RoundToInt(Def * (1f + PriSetGet.PassiveLVGet(Enum_Passive.防御力増加) * 0.1f));
         }
         HP = FMHP;
         MP = FMMP;
@@ -187,7 +174,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         else
         {
             HP += HPRegene / 60f;
-            HP -= BufPowGet(BufsE.毒) / 60f;
+            HP -= BufPowGet(Enum_Bufs.毒) / 60f;
             HP = Mathf.Min(HP, FMHP);
             SP += SPRegene / 60f;
             DeathTime = 0;
@@ -239,9 +226,9 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             int CTs = Mathf.RoundToInt(UseAtkD.CT * 60);
             if (Player)
             {
-                CTs = Mathf.RoundToInt(CTs * (1f - PriSetGet.PassiveLVGet(PassiveE.CTカット) * 0.10f));
+                CTs = Mathf.RoundToInt(CTs * (1f - PriSetGet.PassiveLVGet(Enum_Passive.CTカット) * 0.10f));
             }
-            AtkCTs.Add(UseAtkSlot, new AtkCTC { CT = CTs, CTMax = CTs });
+            AtkCTs.Add(UseAtkSlot, new Class_Sta_AtkCT { CT = CTs, CTMax = CTs });
             if(UseAtkD.SPUse>0)SP = 0;
 
             AtkD = UseAtkD;
@@ -256,15 +243,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
 
     }
-    public void BufSets(BufSetC BufSet)
+    public void BufSets(Class_Base_BufSet BufSet)
     {
         BufSets(BufSet.Buf, BufSet.Index,BufSet.Set, BufSet.Time.x, BufSet.Pow.x, BufSet.Time.y, BufSet.Pow.y);
     }
-    public void BufSets(BufsE BufID, int Index, BufSetE Sets, int Time, int Pow, int TMax, int PMax)
+    public void BufSets(Enum_Bufs BufID, int Index, Enum_BufSet Sets, int Time, int Pow, int TMax, int PMax)
     {
         photonView.RPC(nameof(RPC_BufSet), RpcTarget.All, (int)BufID, Index, (int)Sets, Time, Pow, TMax, PMax);
     }
-    public int BufPowGet(BufsE BufID)
+    public int BufPowGet(Enum_Bufs BufID)
     {
         int Pow = 0;
         for(int i = 0; i < Bufs.Count; i++)
@@ -310,7 +297,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     void RPC_BufSet(int BufID, int Index, int Sets, int Time, int Pow, int TMax, int PMax)
     {
         if (!photonView.IsMine) return;
-        BufInfoC Bufi = null;
+        Class_Sta_BufInfo Bufi = null;
         for (int i = 0; i < Bufs.Count; i++)
         {
             var Bufd = Bufs[i];
@@ -320,18 +307,18 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 break;
             }
         }
-        if (Sets != (int)BufSetE.消去)
+        if (Sets != (int)Enum_BufSet.消去)
         {
-            if (Bufi != null && Sets == (int)BufSetE.切り替え) Bufs.Remove(Bufi);
+            if (Bufi != null && Sets == (int)Enum_BufSet.切り替え) Bufs.Remove(Bufi);
             else
             {
-                if (Bufi == null && Sets == (int)BufSetE.不付与増加) return;
+                if (Bufi == null && Sets == (int)Enum_BufSet.不付与増加) return;
                 if (Bufi == null)
                 {
-                    Bufi = new BufInfoC { ID = BufID, Index = Index, Time = 0, Pow = 0, TimeMax = 0 };
+                    Bufi = new Class_Sta_BufInfo { ID = BufID, Index = Index, Time = 0, Pow = 0, TimeMax = 0 };
                     Bufs.Add(Bufi);
                 }
-                if (Sets == (int)BufSetE.付与 || Sets == (int)BufSetE.切り替え)
+                if (Sets == (int)Enum_BufSet.付与 || Sets == (int)Enum_BufSet.切り替え)
                 {
                     Bufi.Time = Mathf.Max(Bufi.Time, Time);
                     Bufi.Pow = Mathf.Max(Bufi.Pow, Pow);
