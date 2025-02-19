@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using static Manifesto;
+using static Calculation;
+using NaughtyAttributes;
 static public class Manifesto
 {
     #region Const
@@ -20,9 +22,11 @@ static public class Manifesto
     {
         public Enum_Bufs Buf;
         [Tooltip("状態番号")] public int Index;
-        [Tooltip("付与処理")]public Enum_BufSet Set;
-        [Tooltip("付与時間フレーム\nx=0以下だと永続\ny=上限,0以下は上限無し")] public Vector2Int Time;
-        [Tooltip("付与段階\nx=0以下だと段階表示なし\ny=上限,0以下は上限無し")] public Vector2Int Pow;
+        [Tooltip("付与処理")] public Enum_BufSet Set;
+        [Tooltip("時間付与フレーム式\n0以下だと永続\n" + TooltipStr), TextArea(1, 3)] public string TimeVal;
+        [Tooltip("段階付与式\n0以下だと段階表示なし\n" + TooltipStr), TextArea(1, 3)] public string PowVal;
+        [Tooltip("時間上限フレーム式\n0以下は上限無し\n" + TooltipStr), TextArea(1, 3)] public string TimeMax;
+        [Tooltip("段階上限上限式\n0以下は上限無し\n" + TooltipStr), TextArea(1, 3)] public string PowMax;
     }
 
     [System.Serializable]
@@ -80,10 +84,7 @@ static public class Manifesto
                 Hit.EditDisp += Hit.DamageType+",";
                 Hit.EditDisp += Hit.ShortAtk ? "近距離" : "遠距離";
                 Hit.EditDisp += ")";
-                if (Hit.BaseDam != 0) Hit.EditDisp += Hit.BaseDam;
-                if (Hit.AtkDamPer != 0) Hit.EditDisp += "攻撃力" + Hit.AtkDamPer + "%";
-                if (Hit.DefDamPer != 0) Hit.EditDisp += "防御力" + Hit.DefDamPer + "%";
-                if (Hit.DefRemPer != 0) Hit.EditDisp += "防御影響" + Hit.DefRemPer + "%";
+                if (Hit.DamCalc != "") Hit.EditDisp += CalStr(Hit.DamCalc);
             }
 
         }
@@ -103,10 +104,7 @@ static public class Manifesto
                 var Hit = Hits[i];
                 if (Hit.BranchNum != BNum) continue;
                 if (Str != "") Str += "\n";
-                if (Hit.BaseDam != 0) Str += Hit.BaseDam;
-                if (Hit.AtkDamPer != 0) Str += "攻撃力" + Hit.AtkDamPer + "%";
-                if (Hit.DefDamPer != 0) Str += "防御力" + Hit.DefDamPer + "%";
-                if (Hit.DefRemPer != 0) Str += "防御影響" + Hit.DefRemPer + "%";
+                if (Hit.DamCalc != "") Str += CalStr(Hit.DamCalc);
                 if (ShotCounts != 1) Str += "×" + ShotCounts;
             }
             return Str;
@@ -147,12 +145,7 @@ static public class Manifesto
         [Tooltip("回復")] public bool Heals;
         [Tooltip("ダメージタイプ")]public Enum_DamageType DamageType;
         [Tooltip("近距離攻撃")] public bool ShortAtk;
-        [Tooltip("基礎ダメージ")] public int BaseDam;
-        [Tooltip("使用者最大HP依存%")] public float MHPDamPer;
-        [Tooltip("使用者HP依存%")] public float HPDamPer;
-        [Tooltip("使用者攻撃力依存%")] public float AtkDamPer;
-        [Tooltip("使用者防御力依存%")] public float DefDamPer;
-        [Tooltip("対象防御軽減%")] public float DefRemPer;
+        [Tooltip("ダメージ式\n"+TooltipStr),TextArea(1,3)] public string DamCalc;
         [Tooltip("命中時SP増加量")] public int SPAdd;
         [Tooltip("状態付与")] public Class_Base_BufSet[] BufSets;
     }
@@ -171,7 +164,7 @@ static public class Manifesto
         [Tooltip(Const_Ttp_BID)] public int BranchNum;
         [Tooltip(Const_Ttp_Times)] public Vector3Int Times;
         public Enum_State State;
-        public float Adds;
+        [Tooltip("増値式\n"+TooltipStr), TextArea(1, 3)] public string Adds;
     }
     [System.Serializable]
     public class Class_Atk_Buf

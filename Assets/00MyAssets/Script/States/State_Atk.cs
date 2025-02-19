@@ -4,10 +4,9 @@ using UnityEngine;
 using System.Linq;
 using static Statics;
 using static DataBase;
-using static Data_Atk;
 using static BattleManager;
 using static Manifesto;
-
+using static Calculation;
 public class State_Atk
 {
     static public void Branch(State_Base USta, bool Enter, bool Stay)
@@ -221,11 +220,12 @@ public class State_Atk
             var State = AtkD.States[i];
             if (State.BranchNum >= 0 && USta.AtkBranch != State.BranchNum) continue;
             if (!V3IntTimeCheck(USta.AtkTime, State.Times)) continue;
+            var Val = (float)Cal(State.Adds,USta,USta);
             switch (State.State)
             {
-                case Enum_State.HP:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(State.Adds)); break;
-                case Enum_State.MP:USta.MP += State.Adds;break;
-                case Enum_State.SP:USta.SP += State.Adds;break;
+                case Enum_State.HP:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(Val)); break;
+                case Enum_State.MP:USta.MP += Val;break;
+                case Enum_State.SP:USta.SP += Val;break;
             }
         }
     }
@@ -238,7 +238,7 @@ public class State_Atk
             var Buf = AtkD.Bufs[i];
             if (Buf.BranchNum >= 0 && USta.AtkBranch != Buf.BranchNum) continue;
             if (!V3IntTimeCheck(USta.AtkTime, Buf.Times)) continue;
-            for (int j = 0; j < Buf.BufSets.Length; j++) USta.BufSets(Buf.BufSets[j]);
+            for (int j = 0; j < Buf.BufSets.Length; j++) USta.BufSets(Buf.BufSets[j], USta);
         }
     }
     static public void WeponSet(State_Base USta)

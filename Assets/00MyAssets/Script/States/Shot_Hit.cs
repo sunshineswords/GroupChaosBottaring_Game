@@ -10,6 +10,7 @@ public class Shot_Hit : MonoBehaviourPun
     private void OnTriggerStay(Collider other)
     {
         if (!photonView.IsMine) return;
+        if (SObj.USta == null) return;
         if (HitTime.x != 0 && HitTime.y != 0 && !V3IntTimeCheck(SObj.Times, HitTime)) return;
         var Hit = other.GetComponent<State_Hit>();
         if (Hit != null)

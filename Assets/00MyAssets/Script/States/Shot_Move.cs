@@ -2,14 +2,18 @@
 using static Statics;
 using static BattleManager;
 using static Manifesto;
-public class Shot_Move : MonoBehaviour
+using Photon.Pun;
+
+public class Shot_Move : MonoBehaviourPun
 {
     [SerializeField] Shot_Obj SObj;
     [SerializeField] Class_Shot_Move[] Moves;
 
     void FixedUpdate()
     {
-        for(int i = 0; i < Moves.Length; i++)
+        if (!photonView.IsMine) return;
+        if (SObj.USta == null) return;
+        for (int i = 0; i < Moves.Length; i++)
         {
             var Moved = Moves[i];
             Moved.TCT--;
@@ -66,8 +70,8 @@ public class Shot_Move : MonoBehaviour
             Moved.TCT = Moved.TargetCT;
             if(Moved.TargetMode == Enum_TargetMode.ターゲット || Moved.TargetMode == Enum_TargetMode.近敵ターゲット優先)
             {
-                Moved.Target = SObj.USta.Target;
-                Moved.TargetHit = SObj.USta.TargetHit;
+                    Moved.Target = SObj.USta.Target;
+                    Moved.TargetHit = SObj.USta.TargetHit;
             }
             if (Moved.TargetMode == Enum_TargetMode.自身) Moved.Target = SObj.USta;
             if (Moved.Target != null || Moved.TargetHit!=null) return;

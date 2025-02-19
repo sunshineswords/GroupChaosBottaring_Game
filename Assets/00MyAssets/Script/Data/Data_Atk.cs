@@ -44,7 +44,8 @@ public class Data_Atk : ScriptableObject
                 for (int j = 0; j < Shots.Length; j++)
                 {
                     var Shot = Shots[j];
-                    Str += "\n" + Shot.OtherStrGet(BInfo.BID);
+                    var OStr = Shot.OtherStrGet(BInfo.BID);
+                    if (OStr != "") Str += "\n" + OStr;
                 }
             }
         }

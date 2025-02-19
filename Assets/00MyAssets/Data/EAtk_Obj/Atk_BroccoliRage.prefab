@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
+  HitTime: {x: 0, y: 0, z: 0}
   WallRem: 0
 --- !u!135 &1096604114630377537
 SphereCollider:
@@ -197,7 +198,7 @@ MonoBehaviour:
   Moves:
   - Times: {x: 0, y: 999, z: 0}
     MoveMode: 11
-    Pow: 4
+    Pow: 6
     TargetMode: 1
     TargetCT: 50
     Target: {fileID: 0}
@@ -373,4 +374,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
+  HitTime: {x: 0, y: 0, z: 0}
   WallRem: 1

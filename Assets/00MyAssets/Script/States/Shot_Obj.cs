@@ -5,6 +5,7 @@ using UnityEngine;
 using static Statics;
 using static Manifesto;
 using static PlayerValue;
+using static Calculation;
 public class Shot_Obj : MonoBehaviourPun
 {
     public State_Base USta;
@@ -23,6 +24,7 @@ public class Shot_Obj : MonoBehaviourPun
     private void FixedUpdate()
     {
         if (!photonView.IsMine) return;
+        if (USta == null) ShotDel();
         Times++;
         if (ShotD.HitCT > 0)
         {
@@ -35,44 +37,15 @@ public class Shot_Obj : MonoBehaviourPun
         }
         if (Times >= RemTime) ShotDel();
     }
-    public void Hits(State_Hit HitState,Vector3 HitPos)
-    {
-        if (HitList.ContainsKey(HitState.Sta)) return;
-        HitList.Add(HitState.Sta, ShotD.HitCT);
-        bool HitCh = false;
-        for(int i=0;i< ShotD.Hits.Length; i++)
-        {
-            var Hit = ShotD.Hits[i];
-            if (BranchNum != Hit.BranchNum) continue;
-            if (!TeamCheck(USta, HitState.Sta, Hit.EHit, Hit.FHit, Hit.MHit)) continue;
-            if (HitState.Sta.DashTime > 0)
-            {
-                DamageObj.DamageSet(HitPos, "Miss", Color.gray);
-                return;
-            }
-            HitCh = true;
-            int Damamge = DamSets(HitState, Hit);
-            HitState.Sta.Damage(HitPos, Damamge);
-            if (Hit.BufSets!=null)
-            for (int j = 0; j < Hit.BufSets.Length; j++) HitState.Sta.BufSets(Hit.BufSets[j]);
-            if (USta.Player)
-            {
-                USta.SP += Hit.SPAdd * 1f + PriSetGet.PassiveLVGet(Enum_Passive.SPブースト) * 0.25f;
-            }
-            else USta.SP += Hit.SPAdd;
-            if(Damamge>0) USta.HitEvents(HitState.Sta,HitPos,Hit.DamageType,Hit.ShortAtk);
-        }
-        if (HitRem && HitCh) ShotDel();
-    }
     public void ShotDel()
     {
         if (!Dels)
         {
             Dels = true;
-            if (DelAddShots != null)
+            if (DelAddShots != null && USta != null)
                 for (int i = 0; i < DelAddShots.Length; i++)
                 {
-                    State_Atk.ShotAdd(USta,BranchNum, DelAddShots[i], Times, transform.position, transform.eulerAngles);
+                    State_Atk.ShotAdd(USta, BranchNum, DelAddShots[i], Times, transform.position, transform.eulerAngles);
                     State_Atk.SEPlayAdd(DelAddShots[i], transform.position);
                 }
             photonView.RPC(nameof(RPC_SepObj), RpcTarget.All);
@@ -91,7 +64,7 @@ public class Shot_Obj : MonoBehaviourPun
                 ParMain.loop = false;
                 ParMain.stopAction = ParticleSystemStopAction.Destroy;
             }
-        if(SepTrails!=null)
+        if (SepTrails != null)
             for (int i = 0; i < SepTrails.Length; i++)
             {
                 if (SepTrails[i] == null) continue;
@@ -100,16 +73,40 @@ public class Shot_Obj : MonoBehaviourPun
             }
 
     }
-
+    public void Hits(State_Hit HitState,Vector3 HitPos)
+    {
+        if (HitList.ContainsKey(HitState.Sta)) return;
+        HitList.Add(HitState.Sta, ShotD.HitCT);
+        bool HitCh = false;
+        for(int i=0;i< ShotD.Hits.Length; i++)
+        {
+            var Hit = ShotD.Hits[i];
+            if (Hit.BranchNum >= 0 && BranchNum != Hit.BranchNum) continue;
+            if (!TeamCheck(USta, HitState.Sta, Hit.EHit, Hit.FHit, Hit.MHit)) continue;
+            if (HitState.Sta.DashTime > 0)
+            {
+                DamageObj.DamageSet(HitPos, "Miss", Color.gray);
+                return;
+            }
+            HitCh = true;
+            int Damamge = DamSets(HitState, Hit);
+            HitState.Sta.Damage(HitPos, Damamge);
+            if (Hit.BufSets!=null)
+            for (int j = 0; j < Hit.BufSets.Length; j++) HitState.Sta.BufSets(Hit.BufSets[j],USta);
+            if (USta.Player)
+            {
+                USta.SP += Hit.SPAdd * 1f + PriSetGet.PassiveLVGet(Enum_Passive.SPブースト) * 0.25f;
+            }
+            else USta.SP += Hit.SPAdd;
+            if(Damamge>0) USta.HitEvents(HitState.Sta,HitPos,Hit.DamageType,Hit.ShortAtk);
+        }
+        if (HitRem && HitCh) ShotDel();
+    }
     int DamSets(State_Hit HitState, Class_Atk_Shot_Hit AtkHit)
     {
-        float Dam = AtkHit.BaseDam;
-        Dam += USta.MHP * AtkHit.MHPDamPer * 0.01f;
-        Dam += USta.HP * AtkHit.HPDamPer * 0.01f;
-        Dam += USta.FAtk * AtkHit.AtkDamPer * 0.01f;
-        Dam += USta.FDef * AtkHit.DefDamPer * 0.01f;
-        Dam -= HitState.Sta.FDef * AtkHit.DefRemPer * 0.01f;
+        float Dam = (float)Cal(AtkHit.DamCalc, USta, HitState.Sta);
         Dam *= 1f + HitState.DamAdds * 0.01f;
+        if (AtkHit.DamCalc != "" && Dam < 1) Dam = 1;
         float DamAdd = 0;
         if (USta.Player)
         {
@@ -140,9 +137,8 @@ public class Shot_Obj : MonoBehaviourPun
         DamAdd += USta.BufPowGet(Enum_Bufs.与ダメージ増加) * 1;
         if (AtkHit.ShortAtk) DamAdd += USta.BufPowGet(Enum_Bufs.近距離強化) * 1;
         else DamAdd += USta.BufPowGet(Enum_Bufs.遠距離強化) * 1;
-
         Dam *= 1f + DamAdd * 0.01f;
-        if (Dam < 1) Dam = 1;
+        if (AtkHit.DamCalc != "" && Dam < 1) Dam = 1;
         return Mathf.RoundToInt(Dam) * (AtkHit.Heals ? -1 : 1);
     }
 }

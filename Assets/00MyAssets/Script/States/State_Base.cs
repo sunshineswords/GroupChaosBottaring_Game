@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using static PlayerValue;
 using static Manifesto;
+using static Calculation;
 public class State_Base : MonoBehaviourPun,IPunObservable
 {
     [Header("設定")]
@@ -118,6 +119,10 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             Atk = Mathf.RoundToInt(Atk * (1f + PriSetGet.PassiveLVGet(Enum_Passive.攻撃力増加) * 0.1f));
             Def = Mathf.RoundToInt(Def * (1f + PriSetGet.PassiveLVGet(Enum_Passive.防御力増加) * 0.1f));
         }
+        if (Team != 0)
+        {
+            MHP = Mathf.RoundToInt(MHP * BTManager.EStaMults);
+        }
         HP = FMHP;
         MP = FMMP;
         if (!PhotonNetwork.OfflineMode)
@@ -224,9 +229,13 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
 
     }
-    public void BufSets(Class_Base_BufSet BufSet)
+    public void BufSets(Class_Base_BufSet BufSet,State_Base AddSta)
     {
-        BufSets(BufSet.Buf, BufSet.Index,BufSet.Set, BufSet.Time.x, BufSet.Pow.x, BufSet.Time.y, BufSet.Pow.y);
+        var TimeVal = Mathf.RoundToInt((float)Cal(BufSet.TimeVal,AddSta,this));
+        var PowVal = Mathf.RoundToInt((float)Cal(BufSet.PowVal, AddSta, this));
+        var TimeMax = Mathf.RoundToInt((float)Cal(BufSet.TimeMax, AddSta, this));
+        var PowMax = Mathf.RoundToInt((float)Cal(BufSet.PowMax, AddSta, this));
+        BufSets(BufSet.Buf, BufSet.Index,BufSet.Set,TimeVal, PowVal, TimeMax, PowMax);
     }
     public void BufSets(Enum_Bufs BufID, int Index, Enum_BufSet Sets, int Time, int Pow, int TMax=0, int PMax=0)
     {
@@ -249,7 +258,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
         return false;
     }
-
+    public float BufTPMultGet(Enum_Bufs BufID)
+    {
+        float Val = 0;
+        for (int i = 0; i < Bufs.Count; i++)
+        {
+            if (Bufs[i].ID == (int)BufID) Val += Bufs[i].Time * Bufs[i].Pow;
+        }
+        return Val;
+    }
     public void HitEvents(State_Base HitSta,Vector3 Pos, Enum_DamageType DamType, bool ShortAtk)
     {
         if (Player)
