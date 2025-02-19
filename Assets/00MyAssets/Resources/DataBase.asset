@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CamLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
   DamageObjs: {fileID: 2133383468784159366, guid: d9a10580db32dc449af2d44e7449845c, type: 3}
   SEObj: {fileID: 8436453900115658746, guid: 582ceb1877fd16b44b1c4927b0e584c2, type: 3}
   HitEffects:

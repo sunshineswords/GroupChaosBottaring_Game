@@ -257,6 +257,7 @@ static public class Manifesto
         public float BGMVol = 1;
         public float SEVol = 1;
         public float SystemVol = 1;
+        public int QualityLV = 4;
         public int PriSetID;
         public Class_Save_PSaves()
         {
@@ -264,6 +265,7 @@ static public class Manifesto
             BGMVol = 1;
             SEVol = 1;
             SystemVol = 1;
+            QualityLV = 4;
             PriSetID = 0;
         }
     }

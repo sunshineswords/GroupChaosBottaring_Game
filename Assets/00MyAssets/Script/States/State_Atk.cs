@@ -167,8 +167,6 @@ public class State_Atk
                 if (USta.Target != null || USta.TargetHit != null)
                 {
                     var TVect = (USta.Target != null ? USta.Target.PosGet() : USta.TargetHit.PosGet()) - Pos;
-                    Debug.Log(TVect);
-                    Debug.Log(Quaternion.LookRotation(TVect,Vector3.forward).eulerAngles);
                     return Quaternion.LookRotation(TVect, Vector3.forward).eulerAngles;
                 }
                 break;
