@@ -253,9 +253,17 @@ static public class Manifesto
     [System.Serializable]
     public class Class_Save_PSaves
     {
+        public float MasterVol = 1;
+        public float BGMVol = 1;
+        public float SEVol = 1;
+        public float SystemVol = 1;
         public int PriSetID;
         public Class_Save_PSaves()
         {
+            MasterVol = 1;
+            BGMVol = 1;
+            SEVol = 1;
+            SystemVol = 1;
             PriSetID = 0;
         }
     }
