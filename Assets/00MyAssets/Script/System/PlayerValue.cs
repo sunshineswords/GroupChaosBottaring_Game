@@ -12,9 +12,17 @@ public class PlayerValue
     [System.Serializable]
     public class PSavesC
     {
+        public float MasterVol = 1;
+        public float BGMVol = 1;
+        public float SEVol = 1;
+        public float SystemVol = 1;
         public int PriSetID;
         public PSavesC()
         {
+            MasterVol = 1;
+            BGMVol = 1;
+            SEVol = 1;
+            SystemVol = 1;
             PriSetID = 0;
         }
     }

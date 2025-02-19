@@ -23,7 +23,7 @@ public class Net_BaseUI : MonoBehaviourPunCallbacks
     [Tooltip("ロビー用サブUI"), SerializeField] List<SinsUI_LobbyRoomUIs> LobbySinUIs;
     [Tooltip("ルーム内UI"), SerializeField] GameObject InRoomUI;
 
-    private void Start()
+    private void Awake()
     {
         Prefabs.PrefabPoolSet();
         Net_MyCustomTypes.Register();

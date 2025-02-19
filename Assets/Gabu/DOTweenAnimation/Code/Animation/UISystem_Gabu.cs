@@ -171,11 +171,8 @@ public class UISystem_Gabu : ColorSystem
 
     public void UpdateAnimation(int _i_currentAnimation)
     {
-        Debug.Log("Last" + _i_lastAnimation);
-        Debug.Log("currentAnimation" + _i_currentAnimation);
         if (_i_lastAnimation == _i_currentAnimation)return;
         
-        Debug.Log("Update");
         switch (_i_currentAnimation)
         {
             case (int)AnimatorStatu.Normal:

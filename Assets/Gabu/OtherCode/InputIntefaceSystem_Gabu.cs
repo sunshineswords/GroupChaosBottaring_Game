@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
-using static UnityEngine.UI.Button;
 using UnityEngine.Serialization;
+using static UnityEngine.UI.Button;
 
-public class UIInputSystem_Gabu : MonoBehaviour
+public class InputIntefaceSystem_Gabu : MonoBehaviour
 {
     #region 変数
 
@@ -13,9 +12,17 @@ public class UIInputSystem_Gabu : MonoBehaviour
     [SerializeField] string actionName;
 
     // Event delegates triggered on click.
-    [FormerlySerializedAs("onPressed")]
+    [FormerlySerializedAs("onStarted")]
     [SerializeField]
-    private ButtonClickedEvent m_OnClick = new ButtonClickedEvent();
+    private ButtonClickedEvent m_OnStardedClick = new ButtonClickedEvent();
+    // Event delegates triggered on click.
+    [FormerlySerializedAs("onStarted")]
+    [SerializeField]
+    private ButtonClickedEvent m_OnPreformedClick = new ButtonClickedEvent();
+    // Event delegates triggered on click.
+    [FormerlySerializedAs("onStarted")]
+    [SerializeField]
+    private ButtonClickedEvent m_OnCanceledClick = new ButtonClickedEvent();
 
     #endregion
     #region 関数
@@ -25,17 +32,26 @@ public class UIInputSystem_Gabu : MonoBehaviour
         if (context.started)
         {
             UISystemProfilerApi.AddMarker("Button.onClick", this);
-            m_OnClick.Invoke();
+            if (m_OnStardedClick is not null)
+            {
+                m_OnStardedClick.Invoke();
+            }
         }
         if (context.performed)
         {
             UISystemProfilerApi.AddMarker("Button.onClick", this);
-            m_OnClick.Invoke();
+            if (m_OnPreformedClick is not null)
+            {
+                m_OnPreformedClick.Invoke();
+            }
         }
         if (context.canceled)
         {
             UISystemProfilerApi.AddMarker("Button.onClick", this);
-            m_OnClick.Invoke();
+            if (m_OnCanceledClick is not null)
+            {
+                m_OnCanceledClick.Invoke();
+            }
         }
     }
 
