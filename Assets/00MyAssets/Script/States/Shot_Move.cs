@@ -1,44 +1,19 @@
 ﻿using UnityEngine;
 using static Statics;
 using static BattleManager;
-public class Shot_Move : MonoBehaviour
+using static Manifesto;
+using Photon.Pun;
+
+public class Shot_Move : MonoBehaviourPun
 {
     [SerializeField] Shot_Obj SObj;
-    [SerializeField] MoveC[] Moves;
-    enum MoveModeE
-    {
-        重力落下 = -2,
-        速度向き = -1,
-        加速 = 0,
-        速度変化=1,
-        直線補間ホーミング = 10,
-        曲線補間ホーミング = 11,
-        瞬間移動 = 12,
-    }
-    enum TargetModeE
-    {
-        ターゲット,
-        近敵ターゲット優先,
-        近敵,
-        自身=10,
-        味方=20,
-    }
-    [System.Serializable]
-    class MoveC
-    {
-        public Vector3Int Times;
-        public MoveModeE MoveMode;
-        public float Pow;
-        public TargetModeE TargetMode;
-        public int TargetCT;
-        [HideInInspector]public State_Base Target;
-        [HideInInspector] public State_Hit TargetHit;
-        [HideInInspector]public int TCT;
-    }
+    [SerializeField] Class_Shot_Move[] Moves;
 
     void FixedUpdate()
     {
-        for(int i = 0; i < Moves.Length; i++)
+        if (!photonView.IsMine) return;
+        if (SObj.USta == null) return;
+        for (int i = 0; i < Moves.Length; i++)
         {
             var Moved = Moves[i];
             Moved.TCT--;
@@ -46,19 +21,19 @@ public class Shot_Move : MonoBehaviour
             var RigVect = SObj.Rig.linearVelocity;
             switch (Moved.MoveMode)
             {
-                case MoveModeE.重力落下:
+                case Enum_MoveMode.重力落下:
                     RigVect += Physics.gravity * 0.01f;
                     break;
-                case MoveModeE.速度向き:
+                case Enum_MoveMode.速度向き:
                     SObj.transform.LookAt(SObj.transform.position + RigVect);
                     break;
-                case MoveModeE.加速:
+                case Enum_MoveMode.加速:
                     RigVect += RigVect.normalized * Moved.Pow * 0.01f;
                     break;
-                case MoveModeE.速度変化:
+                case Enum_MoveMode.速度変化:
                     RigVect = RigVect.normalized * Moved.Pow * 0.01f;
                     break;
-                case MoveModeE.直線補間ホーミング:
+                case Enum_MoveMode.直線補間ホーミング:
                     TargetSet(Moved);
                     if (Moved.Target != null || Moved.TargetHit != null)
                     {
@@ -66,7 +41,7 @@ public class Shot_Move : MonoBehaviour
                         RigVect = Vector3.Lerp(RigVect.normalized, TVect.normalized, Moved.Pow * 0.01f).normalized * RigVect.magnitude;
                     }
                     break;
-                case MoveModeE.曲線補間ホーミング:
+                case Enum_MoveMode.曲線補間ホーミング:
                     TargetSet(Moved);
                     if (Moved.Target != null || Moved.TargetHit != null)
                     {
@@ -74,7 +49,7 @@ public class Shot_Move : MonoBehaviour
                         RigVect = Vector3.Slerp(RigVect.normalized, TVect.normalized, Moved.Pow * 0.01f).normalized * RigVect.magnitude;
                     }
                     break;
-                case MoveModeE.瞬間移動:
+                case Enum_MoveMode.瞬間移動:
                     TargetSet(Moved);
                     if (Moved.Target != null || Moved.TargetHit != null)
                     {
@@ -86,19 +61,19 @@ public class Shot_Move : MonoBehaviour
             SObj.Rig.linearVelocity = RigVect;
         }
     }
-    void TargetSet(MoveC Moved)
+    void TargetSet(Class_Shot_Move Moved)
     {
         if (Moved.TCT <= 0)
         {
             Moved.Target = null;
             Moved.TargetHit = null;
             Moved.TCT = Moved.TargetCT;
-            if(Moved.TargetMode == TargetModeE.ターゲット || Moved.TargetMode == TargetModeE.近敵ターゲット優先)
+            if(Moved.TargetMode == Enum_TargetMode.ターゲット || Moved.TargetMode == Enum_TargetMode.近敵ターゲット優先)
             {
-                Moved.Target = SObj.USta.Target;
-                Moved.TargetHit = SObj.USta.TargetHit;
+                    Moved.Target = SObj.USta.Target;
+                    Moved.TargetHit = SObj.USta.TargetHit;
             }
-            if (Moved.TargetMode == TargetModeE.自身) Moved.Target = SObj.USta;
+            if (Moved.TargetMode == Enum_TargetMode.自身) Moved.Target = SObj.USta;
             if (Moved.Target != null || Moved.TargetHit!=null) return;
             float NearDis = -1;
             foreach(var THit in BTManager.HitList)
@@ -107,11 +82,11 @@ public class Shot_Move : MonoBehaviour
                 bool Flend = false;
                 switch (Moved.TargetMode)
                 {
-                    case TargetModeE.近敵ターゲット優先:
-                    case TargetModeE.近敵:
+                    case Enum_TargetMode.近敵ターゲット優先:
+                    case Enum_TargetMode.近敵:
                         Enemy = true;
                         break;
-                    case TargetModeE.味方:
+                    case Enum_TargetMode.味方:
                         Flend = true;
                         break;
                 }

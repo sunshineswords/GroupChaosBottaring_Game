@@ -4,10 +4,9 @@ using UnityEngine;
 using System.Linq;
 using static Statics;
 using static DataBase;
-using static Data_Atk;
 using static BattleManager;
-
-
+using static Manifesto;
+using static Calculation;
 public class State_Atk
 {
     static public void Branch(State_Base USta, bool Enter, bool Stay)
@@ -29,28 +28,28 @@ public class State_Atk
             {
                 switch (BranchD.Ifs[j])
                 {
-                    case Data_Atk.AtkIfE.攻撃単入力:
+                    case Enum_AtkIf.攻撃単入力:
                         if (!Enter) Check = false;
                         break;
-                    case Data_Atk.AtkIfE.攻撃長入力:
+                    case Enum_AtkIf.攻撃長入力:
                         if (!Stay) Check = false;
                         break;
-                    case Data_Atk.AtkIfE.攻撃未入力:
+                    case Enum_AtkIf.攻撃未入力:
                         if (Enter || Stay) Check = false;
                         break;
-                    case Data_Atk.AtkIfE.攻撃未長入力:
+                    case Enum_AtkIf.攻撃未長入力:
                         if (Stay) Check = false;
                         break;
-                    case AtkIfE.地上:
+                    case Enum_AtkIf.地上:
                         if(!USta.Ground) Check = false;
                         break;
-                    case AtkIfE.空中:
+                    case Enum_AtkIf.空中:
                         if (USta.Ground) Check = false;
                         break;
-                    case AtkIfE.MP有り:
+                    case Enum_AtkIf.MP有り:
                         if (USta.LowMP) Check = false;
                         break;
-                    case AtkIfE.MP無し:
+                    case Enum_AtkIf.MP無し:
                         if(!USta.LowMP)Check = false;
                         break;
                 }
@@ -72,7 +71,7 @@ public class State_Atk
         for(int i = 0; i < AtkD.Fixeds.Length; i++)
         {
             var MFixed = AtkD.Fixeds[i];
-            if (USta.AtkBranch != MFixed.BranchNum) continue;
+            if (MFixed.BranchNum >= 0 && USta.AtkBranch != MFixed.BranchNum) continue;
             if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)MFixed.Times))
             {
                 USta.SpeedRem = MFixed.SpeedRem;
@@ -83,6 +82,7 @@ public class State_Atk
             }
         }
     }
+
     static public void Shot(State_Base USta, Vector3 BasePos, Vector3 BaseRot,Vector3 CamRot)
     {
         var AtkD = USta.AtkD;
@@ -93,7 +93,7 @@ public class State_Atk
             for (int j = 0; j < AtShot.Fires.Length; j++)
             {
                 var AtFire = AtShot.Fires[j];
-                if (USta.AtkBranch != AtFire.BranchNum) continue;
+                if (AtFire.BranchNum >= 0 && USta.AtkBranch != AtFire.BranchNum) continue;
                 if (!V3IntTimeCheck(USta.AtkTime, AtFire.Times)) continue;
 
                 for (int k = 0; k < AtFire.Count; k++)
@@ -101,12 +101,12 @@ public class State_Atk
                     float WaySet = k - ((AtFire.Count - 1) / 2f);
                     var Pos = PosGet(USta, AtFire, BasePos, BaseRot, WaySet,USta.AtkTime);
                     var Rot = RotGet(USta, AtFire, Pos, BaseRot, CamRot, WaySet, USta.AtkTime);
-                    Shots(USta, AtShot, AtFire.Speed, Pos, Rot);
+                    Shots(USta, AtShot,USta.AtkBranch, AtFire.Speed, Pos, Rot);
                 }
             }
         }
     }
-    static public void ShotAdd(State_Base USta,Data_AddShot AddShotD,int Times, Vector3 BasePos, Vector3 BaseRot)
+    static public void ShotAdd(State_Base USta,int BranchID,Data_AddShot AddShotD,int Times, Vector3 BasePos, Vector3 BaseRot)
     {
         for (int i = 0; i < AddShotD.Shots.Length; i++)
         {
@@ -114,24 +114,26 @@ public class State_Atk
             for (int j = 0; j < AtShot.Fires.Length; j++)
             {
                 var AtFire = AtShot.Fires[j];
+                if (AtFire.BranchNum >= 0 && BranchID != AtFire.BranchNum) continue;
+                if (!V3IntTimeCheck(Times, AtFire.Times)) continue;
                 for (int k = 0; k < AtFire.Count; k++)
                 {
                     float WaySet = k - ((AtFire.Count - 1) / 2f);
                     var Pos = PosGet(USta, AtFire, BasePos, BaseRot, WaySet,Times);
                     var Rot = RotGet(USta, AtFire, Pos, BaseRot,BaseRot, WaySet, Times);
-                    Shots(USta, AtShot, AtFire.Speed, Pos, Rot);
+                    Shots(USta, AtShot,BranchID, AtFire.Speed, Pos, Rot);
                 }
 
             }
         }
     }
 
-    static public Vector3 PosGet(State_Base USta, ShotC_Fire Fire, Vector3 BasePos, Vector3 BaseRot, float Way,int Times)
+    static public Vector3 PosGet(State_Base USta, Class_Atk_Shot_Fire Fire, Vector3 BasePos, Vector3 BaseRot, float Way,int Times)
     {
         var Pos = BasePos;
         switch (Fire.Trans.PosBase)
         {
-            case Data_Atk.PosBaseE.ターゲット位置:
+            case Enum_PosBase.ターゲット位置:
                 if (USta.Target != null) Pos = USta.Target.PosGet();
                 break;
         }
@@ -145,7 +147,7 @@ public class State_Atk
         Pos += Quaternion.Euler(BaseRot) * RPos;
         return Pos;
     }
-    static public Vector3 RotGet(State_Base USta, ShotC_Fire Fire, Vector3 BasePos, Vector3 BaseRot, Vector3 CamRot, float Way, int Times)
+    static public Vector3 RotGet(State_Base USta, Class_Atk_Shot_Fire Fire, Vector3 BasePos, Vector3 BaseRot, Vector3 CamRot, float Way, int Times)
     {
         var Rot = RotBaseGet(USta, Fire.Trans.RotBase, BasePos, BaseRot, CamRot);
         Rot += Fire.Trans.RotChange;
@@ -156,12 +158,12 @@ public class State_Atk
         Rot.z += Float_NegRand(Fire.Trans.RotRand.z);
         return Rot;
     }
-    static public Vector3 RotBaseGet(State_Base USta, RotBaseE RotBase,Vector3 Pos,Vector3 Rot,Vector3 CamRot)
+    static public Vector3 RotBaseGet(State_Base USta, Enum_RotBase RotBase,Vector3 Pos,Vector3 Rot,Vector3 CamRot)
     {
         switch (RotBase)
         {
-            case RotBaseE.固定:return Vector3.zero;
-            case RotBaseE.ターゲット方向:
+            case Enum_RotBase.固定:return Vector3.zero;
+            case Enum_RotBase.ターゲット方向:
                 if (USta.Target != null || USta.TargetHit != null)
                 {
                     var TVect = (USta.Target != null ? USta.Target.PosGet() : USta.TargetHit.PosGet()) - Pos;
@@ -170,11 +172,11 @@ public class State_Atk
                     return Quaternion.LookRotation(TVect, Vector3.forward).eulerAngles;
                 }
                 break;
-            case RotBaseE.使用者カメラ方向: return CamRot;
+            case Enum_RotBase.使用者カメラ方向: return CamRot;
         }
         return Rot;
     }
-    static public void Shots(State_Base USta,ShotC_Base Shot,Vector2 Speed,Vector3 Pos,Vector3 Rot)
+    static public void Shots(State_Base USta, Class_Atk_Shot_Base Shot,int BranchID,Vector2 Speed,Vector3 Pos,Vector3 Rot)
     {
         var ShotIns = PhotonNetwork.Instantiate(Shot.Obj.name, Pos, Quaternion.Euler(Rot));
         var ShotRig = ShotIns.GetComponent<Rigidbody>();
@@ -184,7 +186,7 @@ public class State_Atk
         {
             SObj.USta = USta;
             SObj.ShotD = Shot;
-            SObj.BranchNum = USta.AtkBranch;
+            SObj.BranchNum = BranchID;
         }
         var Sta = ShotIns.GetComponent<State_Base>();
         if (Sta != null)
@@ -200,7 +202,7 @@ public class State_Atk
         for (int i = 0; i < AtkD.Moves.Length; i++)
         {
             var Move = AtkD.Moves[i];
-            if (USta.AtkBranch != Move.BranchNum) continue;
+            if (Move.BranchNum >= 0 && USta.AtkBranch != Move.BranchNum) continue;
             if (!V3IntTimeCheck(USta.AtkTime, Move.Times)) continue;
             var RigVect = USta.Rig.linearVelocity;
             var Rot = RotBaseGet(USta, Move.Base,USta.PosGet(), USta.RotGet(), CamRot);
@@ -216,13 +218,14 @@ public class State_Atk
         for (int i = 0; i < AtkD.States.Length; i++)
         {
             var State = AtkD.States[i];
-            if (State.BranchNum != USta.AtkBranch) continue;
+            if (State.BranchNum >= 0 && USta.AtkBranch != State.BranchNum) continue;
             if (!V3IntTimeCheck(USta.AtkTime, State.Times)) continue;
+            var Val = (float)Cal(State.Adds,USta,USta);
             switch (State.State)
             {
-                case StateE.HP:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(State.Adds)); break;
-                case StateE.MP:USta.MP += State.Adds;break;
-                case StateE.SP:USta.SP += State.Adds;break;
+                case Enum_State.HP:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(Val)); break;
+                case Enum_State.MP:USta.MP += Val;break;
+                case Enum_State.SP:USta.SP += Val;break;
             }
         }
     }
@@ -233,9 +236,9 @@ public class State_Atk
         for (int i = 0; i < AtkD.Bufs.Length; i++)
         {
             var Buf = AtkD.Bufs[i];
-            if (Buf.BranchNum != USta.AtkBranch) continue;
+            if (Buf.BranchNum >= 0 && USta.AtkBranch != Buf.BranchNum) continue;
             if (!V3IntTimeCheck(USta.AtkTime, Buf.Times)) continue;
-            for (int j = 0; j < Buf.BufSets.Length; j++) USta.BufSets(Buf.BufSets[j]);
+            for (int j = 0; j < Buf.BufSets.Length; j++) USta.BufSets(Buf.BufSets[j], USta);
         }
     }
     static public void WeponSet(State_Base USta)
@@ -245,7 +248,7 @@ public class State_Atk
         for (int i = 0; i < AtkD.WeponSets.Length; i++)
         {
             var AtWep = AtkD.WeponSets[i];
-            if (USta.AtkBranch != AtWep.BranchNum) continue;
+            if (AtWep.BranchNum >= 0 && USta.AtkBranch != AtWep.BranchNum) continue;
             if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)AtWep.Times))
             {
                 USta.WeponSets.TryAdd((int)AtWep.Set, -1);
@@ -265,7 +268,7 @@ public class State_Atk
         for (int i = 0; i < AtkD.Anims.Length; i++)
         {
             var AtAnim = AtkD.Anims[i];
-            if (USta.AtkBranch != AtAnim.BranchNum) continue;
+            if (AtAnim.BranchNum >= 0 && USta.AtkBranch != AtAnim.BranchNum) continue;
             if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)AtAnim.Times))
             {
                 if (AtAnim.ID != 0)
@@ -283,7 +286,7 @@ public class State_Atk
         for(int i = 0; i < AtkD.SEPlays.Length; i++)
         {
             var SEPlay = AtkD.SEPlays[i];
-            if (USta.AtkBranch != SEPlay.BranchNum) continue;
+            if (SEPlay.BranchNum >= 0 && USta.AtkBranch != SEPlay.BranchNum) continue;
             if (!V3IntTimeCheck(USta.AtkTime, SEPlay.Times)) continue;
             BTManager.SEPlay(SEPlay.Clip, USta.PosGet(), SEPlay.Volume, SEPlay.Pitch);
         }

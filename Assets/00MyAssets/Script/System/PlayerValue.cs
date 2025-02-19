@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using UnityEngine;
-
+using static Manifesto;
 
 public class PlayerValue
 {
@@ -101,19 +101,19 @@ public class PlayerValue
     static public void Load()
     {
         var PSaves_Json = LoadFile("PSaves.data");
-        PSaves = new PSavesC();
+        PSaves = new Class_Save_PSaves();
         if (PSaves_Json != "")
         {
-            var PSaves_C = JsonUtility.FromJson<PSavesC>(PSaves_Json);
+            var PSaves_C = JsonUtility.FromJson<Class_Save_PSaves>(PSaves_Json);
             PSaves = PSaves_C;
         }
         for (int i = 0; i < PriSets.Length; i++)
         {
             var PriSet_Json = LoadFile("Priset_" + (i + 1) + ".data");
-            PriSets[i] = new PriSetC();
+            PriSets[i] = new Class_Save_PriSet();
             if (PriSet_Json != "")
             {
-                var PriSet_C = JsonUtility.FromJson<PriSetC>(PriSet_Json);
+                var PriSet_C = JsonUtility.FromJson<Class_Save_PriSet>(PriSet_Json);
                 PriSets[i] = PriSet_C;
             }
         }

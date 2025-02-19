@@ -47,6 +47,11 @@ public class Net_RoomUI : MonoBehaviour
         MasterOnly.SetActive(PhotonNetwork.IsMasterClient);
         NoMaster.SetActive(!PhotonNetwork.IsMasterClient);
         PrivateT.isOn = !CRoom.IsVisible;
+        var CPro = CRoom.CustomProperties;
+        if (PhotonNetwork.IsMasterClient && CPro.TryGetValue("curscn",out var oCurscn) && (int)oCurscn <= 0)
+        {
+            CRoom.IsOpen = true;
+        }
     }
 
     //ルーム退室
@@ -63,6 +68,8 @@ public class Net_RoomUI : MonoBehaviour
     //ゲーム開始
     public void Net_GameStart()
     {
+        var CRoom = PhotonNetwork.CurrentRoom;
+        CRoom.IsOpen = false;
         PhotonNetwork.LoadLevel(DB.Stages[PlayerValue.StageID].SceneID);
     }
 }

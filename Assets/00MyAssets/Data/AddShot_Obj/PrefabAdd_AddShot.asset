@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38381ae6381b89a46a73021613f5d67c, type: 3}
+  m_Name: PrefabAdd_AddShot
+  m_EditorClassIdentifier: 
+  PrefabAdds:
+  - {fileID: 5905403385281065886, guid: 74a149faca15e284ab4d55abdd68c7bf, type: 3}
+  - {fileID: 5905403385281065886, guid: 2f113fe8963bb6a41818592d614edb19, type: 3}
+  - {fileID: 5905403385281065886, guid: ffb3eae930b2a534f84d06cb793415b2, type: 3}
+  - {fileID: 5905403385281065886, guid: 5512d69dfb502ac42ac1e783de55ca9a, type: 3}

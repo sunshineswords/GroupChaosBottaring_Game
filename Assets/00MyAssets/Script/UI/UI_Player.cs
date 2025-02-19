@@ -4,24 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using static DataBase;
 using static PlayerValue;
+using static Manifesto;
 
-public class UI_Player : MonoBehaviour
+public class UI_Player : UI_State
 {
-    [SerializeField] State_Base Sta;
     [SerializeField] Player_Cont PCont;
     [SerializeField] Player_Atk PAtk;
-    [SerializeField] Image HPBackBar;
-    [SerializeField] Image HPBackFill;
-    [SerializeField] Image HPFrontBar;
-    [SerializeField] Image HPFrontFill;
     [SerializeField] Image MPBar;
     [SerializeField] Image MPFill;
     [SerializeField] TextMeshProUGUI AtkFBTx;
     [SerializeField] UI_Sin_Atk[] AtkUIs;
     [SerializeField] TextMeshProUGUI StateInfoTx;
     [SerializeField] BinaryUIAnimationo binaryUIAnimationo;
-    [SerializeField] List<UI_Sin_Buf> BufUIs;
-    float CHPPer;
 
     #region 関数
 
@@ -31,7 +25,7 @@ public class UI_Player : MonoBehaviour
     /// <param name="index"></param>
     /// <param name="AtkD"></param>
     /// <param name="AtkCTs"></param>
-    private void UpdateStatus(int index, Data_Atk AtkD, State_Base.AtkCTC AtkCTs)
+    private void UpdateStatus(int index, Data_Atk AtkD, Class_Sta_AtkCT AtkCTs)
     {
         // AtkUIs[index] の UI 更新処理
         for (int j = 0; j < AtkUIs[j].ChengedImages.Length; j++)
@@ -84,33 +78,10 @@ public class UI_Player : MonoBehaviour
         AtkUIs[index].ChengedImages[!PAtk.Backs ? 0 : 1].SetActive(true);
     }
 
-
     #endregion
-
-    private void Start()
-    {
-        CHPPer = 1f;
-    }
     void LateUpdate()
     {
-        float ChangeSpeed = 0.01f;
-        float HPPer = Sta.HP / Mathf.Max(1, Sta.FMHP);
-        if (HPPer < CHPPer)
-        {
-            HPBackBar.fillAmount = CHPPer;
-            HPBackFill.color = new Color(1f, 0.5f, 0f);
-            HPFrontBar.fillAmount = HPPer;
-            HPFrontFill.color = Color.green;
-            CHPPer = Mathf.Max(CHPPer - ChangeSpeed, HPPer);
-        }
-        else
-        {
-            HPBackBar.fillAmount = HPPer;
-            HPBackFill.color = new Color(0.5f, 1f, 0.5f);
-            HPFrontBar.fillAmount = CHPPer;
-            HPFrontFill.color = Color.green;
-            CHPPer = Mathf.Min(CHPPer + ChangeSpeed, HPPer);
-        }
+        BaseSet();
         MPBar.fillAmount = Sta.MP / Mathf.Max(1, Sta.FMMP);
         MPFill.color = Sta.LowMP ? Color.red : Color.white;
         for (int i = 0; i < AtkUIs.Length; i++)
@@ -152,18 +123,6 @@ public class UI_Player : MonoBehaviour
 
             Sta.AtkCTs.TryGetValue(Slot, out var AtkCTs);
             UpdateStatus(i, AtkD, AtkCTs);
-        }
-        for(int i = 0; i < Mathf.Max(BufUIs.Count, Sta.Bufs.Count); i++)
-        {
-            if(i < Sta.Bufs.Count)
-            {
-                if (BufUIs.Count <= i) BufUIs.Add(Instantiate(BufUIs[0], BufUIs[0].transform.parent));
-                var Bufi = Sta.Bufs[i];
-                BufUIs[i].NameTx.text = ((BufsE)Bufi.ID).ToString();
-                BufUIs[i].PowTx.text = Bufi.Pow.ToString();
-                BufUIs[i].TimeImage.fillAmount = (float)Bufi.Time / Bufi.TimeMax;
-            }
-            BufUIs[i].gameObject.SetActive(i < Sta.Bufs.Count);
         }
         StateInfoTx.text = "MHP:" + Sta.FMHP;
         StateInfoTx.text += "\nMMP:" + Sta.FMMP;

@@ -11,6 +11,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     public int TimeStar;
     public int DeathStar;
 
+    public float EStaMults;
     public int Time;
     public int DeathCount;
     public int Star;
@@ -22,7 +23,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     [System.NonSerialized] public List<State_Base> BossList = new List<State_Base>();
     [System.NonSerialized] public List<Enemy_WaveSpawne> WaveSpList = new List<Enemy_WaveSpawne>();
 
-    void Start()
+    void Awake()
     {
         BTManager = this;
         ListSet();
@@ -30,9 +31,9 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
         if (photonView.IsMine)
         {
             Time = TimeLimSec * 60;
+            EStaMults = 1f + (PhotonNetwork.CurrentRoom.PlayerCount - 1) * 0.8f;
         }
     }
-
 
     void FixedUpdate()
     {
