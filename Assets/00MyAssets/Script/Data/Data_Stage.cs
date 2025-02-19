@@ -3,7 +3,7 @@
 public class Data_Stage : ScriptableObject
 {
     public string Name;
-    public string Info;
+    [TextArea]public string Info;
     public Texture Icon;
     public int SceneID;
 }

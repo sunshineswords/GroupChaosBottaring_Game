@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -246,6 +247,15 @@ public class UISystem_Gabu : ColorSystem
         _disabledScaleMultiplier = uiSystem._disabledScaleMultiplier;
     }
 
+    protected Color SetNormalColor(Color UICol)
+    {
+        if (_isGetColor)
+        {
+            _normalColor *= UICol;
+            return _normalColor;
+        }
+        else return _normalColor;
+    }
     #endregion
 
     protected virtual void Start()

@@ -6,12 +6,13 @@ using static PlayerValue;
 using static DataBase;
 public class UI_StageSelect : MonoBehaviour,UI_Sin_Set.SetReturn
 {
-    [SerializeField] TextMeshProUGUI StageNumTx;
+    [SerializeField] TextMeshProUGUI StageInfoTx;
     [SerializeField] List<UI_Sin_Set> StageUIs;
     private void Update()
     {
-        StageNumTx.text = "Stage:" + StageID;
-        for(int i = 0; i < DB.Stages.Length; i++)
+        StageInfoTx.text = DB.Stages[StageID].Name;
+        StageInfoTx.text += "\n" + DB.Stages[StageID].Info;
+        for (int i = 0; i < DB.Stages.Length; i++)
         {
             if (StageUIs.Count <= i) StageUIs.Add(Instantiate(StageUIs[0], StageUIs[0].transform.parent));
             var StageD = DB.Stages[i];

@@ -77,9 +77,7 @@ public class TextAnimation_Gabu : UISystem_Gabu
                 return;
             }
         }
-
-        if (_isGetColor) _normalColor = tmp.color;
-        else tmp.color = _normalColor;
+        tmp.color = SetNormalColor(tmp.color);
 
         base.Start();
 

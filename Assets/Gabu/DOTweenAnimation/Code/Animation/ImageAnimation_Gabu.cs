@@ -107,8 +107,7 @@ public class ImageAnimation_Gabu : UISystem_Gabu
                 return;
             }
         }
-        if (_isGetColor) _normalColor = image.color;
-        else image.color = _normalColor;
+        image.color = SetNormalColor(image.color);
 
         base.Start();
 

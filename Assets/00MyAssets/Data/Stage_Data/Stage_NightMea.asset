@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Stage_NightMea
   m_EditorClassIdentifier: 
   Name: "\u60AA\u5922"
-  Info: 
+  Info: GGGGGGGGGGGGGGGGGGGG<color=#660000>G</color>GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
   Icon: {fileID: 2800000, guid: 0e5367b990015e24d813e5b3d270f26a, type: 3}
   SceneID: 4

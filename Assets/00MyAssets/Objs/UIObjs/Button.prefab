@@ -516,15 +516,15 @@ MonoBehaviour:
   _unitPosition: {x: 0, y: 0, z: 0}
   _unitRotation: {x: 0, y: 0, z: 0}
   _unitScale: {x: 0, y: 0, z: 0}
-  _normalColor: {r: 1, g: 0.19999999, b: 0.19999999, a: 1}
-  _highlightedColor: {r: 1, g: 0.19999999, b: 0.19999999, a: 1}
-  _pressedColor: {r: 1, g: 0, b: 0, a: 1}
-  _selectedColor: {r: 1, g: 0.19999999, b: 0.19999999, a: 1}
-  _disabledColor: {r: 0.6, g: 0.24, b: 0.24, a: 1}
+  _normalColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  _highlightedColor: {r: 1, g: 1, b: 1, a: 1}
+  _pressedColor: {r: 1, g: 1, b: 1, a: 1}
+  _selectedColor: {r: 1, g: 1, b: 1, a: 1}
+  _disabledColor: {r: 0.7019608, g: 0.7019608, b: 0.7019608, a: 1}
   _isGetColor: 1
   _isAutoColor: 1
   _isLockHue: 0
-  _isLockSaturation: 1
+  _isLockSaturation: 0
   _isLockValue: 1
   _disabledImage: {fileID: 4166350269200260300}
   _isReset: 0

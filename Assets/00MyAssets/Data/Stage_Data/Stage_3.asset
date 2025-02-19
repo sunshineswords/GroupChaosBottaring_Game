@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Stage_3
   m_EditorClassIdentifier: 
   Name: "\u30A6\u30A7\u30FC\u30D6\u5236"
-  Info: 
+  Info: "\u8907\u6570"
   Icon: {fileID: 2800000, guid: 0ae15f6078efce64db31b87c58c7678d, type: 3}
   SceneID: 5

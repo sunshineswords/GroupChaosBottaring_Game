@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Stage_1
   m_EditorClassIdentifier: 
   Name: "\u30B6\u30B3\u6575"
-  Info: 
+  Info: "\u5927\u91CF\u306E\u30B6\u30B3\u3092\u5012\u305B"
   Icon: {fileID: 0}
   SceneID: 2
