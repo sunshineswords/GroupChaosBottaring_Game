@@ -131,6 +131,22 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: m_Name
       value: Enemy_Zako (2)
@@ -192,6 +208,22 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: m_Name
       value: Enemy_Zako
@@ -252,6 +284,22 @@ PrefabInstance:
     - target: {fileID: 1925398843158275794, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: sceneViewId
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: m_Name
@@ -435,6 +483,22 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: m_Name
       value: Enemy_Zako (3)
@@ -495,6 +559,22 @@ PrefabInstance:
     - target: {fileID: 1925398843158275794, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: sceneViewId
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: m_Name
@@ -740,6 +820,22 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 29bf505f8834bba4a9df203e6bb8a887, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 29bf505f8834bba4a9df203e6bb8a887, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 29bf505f8834bba4a9df203e6bb8a887, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 29bf505f8834bba4a9df203e6bb8a887, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3138562507945577928, guid: 29bf505f8834bba4a9df203e6bb8a887, type: 3}
       propertyPath: m_Name
       value: Enemy_SuperZako
@@ -800,6 +896,22 @@ PrefabInstance:
     - target: {fileID: 1925398843158275794, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: sceneViewId
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: m_Name
@@ -971,7 +1083,7 @@ GameObject:
   - component: {fileID: 2054576386}
   - component: {fileID: 2054576385}
   - component: {fileID: 2054576384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stage
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1079,6 +1191,22 @@ PrefabInstance:
     - target: {fileID: 1925398843158275794, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: sceneViewId
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2638092130630297672, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
       propertyPath: m_Name
@@ -1240,6 +1368,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1493737609701241541, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812998679745961843, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812998679745961843, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812998679745961843, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812998679745961843, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2156027594301703700, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}

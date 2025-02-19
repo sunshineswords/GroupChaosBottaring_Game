@@ -360,7 +360,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -368,7 +368,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 23
+    m_Bits: 471
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -6973,6 +6973,8 @@ MonoBehaviour:
   HPMiddleFill: {fileID: 8490122731189156726}
   HPFrontBar: {fileID: 4489092968868411576}
   HPFrontFill: {fileID: 3718758423495644003}
+  BufUIs:
+  - {fileID: 2514000485068347389}
   PCont: {fileID: 7175417792407954925}
   PAtk: {fileID: 5549744636804749303}
   MPBar: {fileID: 2022259178224256195}
@@ -6985,8 +6987,6 @@ MonoBehaviour:
   - {fileID: 3846183794014518389}
   StateInfoTx: {fileID: 2825798815466795617}
   binaryUIAnimationo: {fileID: 7013770161110473674}
-  BufUIs:
-  - {fileID: 2514000485068347389}
 --- !u!1 &7085045261720906890
 GameObject:
   m_ObjectHideFlags: 0
@@ -7205,7 +7205,7 @@ GameObject:
   - component: {fileID: 3166254799500723666}
   - component: {fileID: 6771546477381408718}
   - component: {fileID: 3855164340141204649}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chara
   m_TagString: Untagged
   m_Icon: {fileID: 0}

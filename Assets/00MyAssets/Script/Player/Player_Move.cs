@@ -28,6 +28,7 @@ public class Player_Move : MonoBehaviourPun
   
     Vector3 DashVect;
     Vector3 PosBase;
+    Vector3 BaseCamLPos;
     private void Start()
     {
         if (!photonView.IsMine) return;
@@ -35,7 +36,7 @@ public class Player_Move : MonoBehaviourPun
         float SpeedAdd = 1f + PriSetGet.PassiveLVGet(Enum_Passive.速度増加) * 10f;
         MoveSpeed *= SpeedAdd;
         DashSpeed *= SpeedAdd;
-
+        BaseCamLPos = CamPosTrans.localPosition;
     }
     private void Update()
     {
@@ -49,6 +50,14 @@ public class Player_Move : MonoBehaviourPun
         CamRot.y += LookInput.x;
         CamRotTrans.eulerAngles = CamRot;
         CamRotTrans.position = Sta.Rig.position + (Vector3.up * CamHight);
+
+        float CamDis = BaseCamLPos.magnitude;
+        foreach(var RayHit in Physics.SphereCastAll(CamRotTrans.position,0.2f,CamPosTrans.position - CamRotTrans.position, CamDis, DB.CamLayer))
+        {
+            if (CamDis > RayHit.distance)CamDis = RayHit.distance;
+        }
+        CamPosTrans.localPosition = BaseCamLPos.normalized * CamDis;
+
         #endregion
         var RigVect = Sta.Rig.linearVelocity;
         #region ジャンプ

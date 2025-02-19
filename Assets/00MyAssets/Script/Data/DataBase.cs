@@ -13,6 +13,7 @@ public class DataBase : ScriptableObject
             return DBs;
         }
     }
+    public LayerMask CamLayer;
     public DamageObj DamageObjs;
     public AudioSource SEObj;
     public GameObject[] HitEffects;

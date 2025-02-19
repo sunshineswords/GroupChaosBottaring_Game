@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2049415607464157120}
   - component: {fileID: 5206309696311436553}
   - component: {fileID: 466128821954756127}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy_SuperZako
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,6 +185,7 @@ MonoBehaviour:
   Anim_AtkID: 0
   Anim_AtkSpeed: 0
   Anim_OtherID: 0
+  Bufs: []
 --- !u!65 &5206309696311436553
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -266,7 +267,7 @@ GameObject:
   - component: {fileID: 2758655250168690552}
   - component: {fileID: 2344853729904607893}
   - component: {fileID: 2666022391113845774}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}

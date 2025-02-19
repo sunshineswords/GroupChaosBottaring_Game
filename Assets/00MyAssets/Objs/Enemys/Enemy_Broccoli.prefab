@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5944838194380330750}
   - component: {fileID: 4775937603008535714}
   - component: {fileID: 8711960159727362399}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 2450705294629991309}
   - component: {fileID: 7685354740665631016}
   - component: {fileID: 6494036392037749160}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 6814216102208262774}
   - component: {fileID: 2758125950921923790}
   - component: {fileID: 7598547461402963404}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy_Broccoli
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,6 +455,7 @@ MonoBehaviour:
   Anim_AtkID: 0
   Anim_AtkSpeed: 0
   Anim_OtherID: 0
+  Bufs: []
 --- !u!114 &7598547461402963404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,7 +484,7 @@ GameObject:
   - component: {fileID: 927593588313463577}
   - component: {fileID: 4732664054357177134}
   - component: {fileID: 1070697434909913397}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitWeek
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2049415607464157120}
   - component: {fileID: 466128821954756127}
   - component: {fileID: 5474315860153017573}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Friends_Smail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,30 +142,50 @@ MonoBehaviour:
   Rig: {fileID: 6544934709698599726}
   CamTrans: {fileID: 8851893093483233145}
   Hight: 1
-  DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
   Team: 0
   Player: 0
   Boss: 0
   Undet: 0
+  DamageSE:
+    Clip: {fileID: 0}
+    Volume: 100
+    Pitch: 100
+  DeathSE:
+    Clip: {fileID: 0}
+    Volume: 100
+    Pitch: 100
+  DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
   MHP: 1000000
+  HPRegene: 0
+  MMP: 0
+  MPRegene: 0
+  SPRegene: 0
   Atk: 50000
   Def: 20
   HP: 0
+  MP: 0
   SP: 0
   DeathTime: 0
+  LowMP: 0
   DashTime: 0
-  SpeedRem: 0
-  NoJump: 0
-  NoDash: 0
-  Aiming: 0
+  GroundB: 0
+  Ground: 0
+  Target: {fileID: 0}
+  TargetHit: {fileID: 0}
   AtkD: {fileID: 0}
   AtkSlot: 0
   AtkTime: 0
   AtkBranch: 0
-  Target: {fileID: 0}
+  SpeedRem: 0
+  NoJump: 0
+  NoDash: 0
+  Aiming: 0
+  NGravity: 0
   Anim_MoveID: 0
   Anim_AtkID: 0
+  Anim_AtkSpeed: 0
   Anim_OtherID: 0
+  Bufs: []
 --- !u!114 &466128821954756127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sta: {fileID: 2049415607464157120}
   SpeedRem: 5
+  NearDis: {x: 0, y: 0}
   MoveSpeed: 15
   LerpSpeed: 1
 --- !u!136 &5474315860153017573
@@ -216,7 +237,7 @@ GameObject:
   - component: {fileID: 2758655250168690552}
   - component: {fileID: 2344853729904607893}
   - component: {fileID: 2178173270504931857}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
