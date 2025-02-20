@@ -20,13 +20,65 @@ static public class Manifesto
     [System.Serializable]
     public class Class_Base_BufSet
     {
+        [HideInInspector] public string EditDisp;
         public Enum_Bufs Buf;
         [Tooltip("状態番号")] public int Index;
         [Tooltip("付与処理")] public Enum_BufSet Set;
-        [Tooltip("時間付与フレーム式\n0以下だと永続\n" + TooltipStr), TextArea(1, 3)] public string TimeVal;
+        [Tooltip("時間付与フレーム\n0以下だと永続")] public int TimeVal;
         [Tooltip("段階付与式\n0以下だと段階表示なし\n" + TooltipStr), TextArea(1, 3)] public string PowVal;
-        [Tooltip("時間上限フレーム式\n0以下は上限無し\n" + TooltipStr), TextArea(1, 3)] public string TimeMax;
+        [Tooltip("時間上限フレーム\n0以下は上限無し")] public int TimeMax;
         [Tooltip("段階上限上限式\n0以下は上限無し\n" + TooltipStr), TextArea(1, 3)] public string PowMax;
+        public string InfoStr()
+        {
+            var OStr = Buf.ToString() + Set.ToString();
+            bool Adds = (Set == Enum_BufSet.付与増加 || Set == Enum_BufSet.不付与増加);
+            OStr += "時間:" + (TimeVal / 60f).ToString("F1");
+            if (Adds && TimeMax > 0) OStr += "Max" + (TimeMax / 60f).ToString("F1");
+            OStr += "秒";
+            var PowStr = CalStr(PowVal);
+            var PowVald = double.TryParse(PowStr, out var oPVal) ? oPVal : 1;
+            if (PowStr != "" && PowVald > 0)
+            {
+                OStr += ",段階:" + CalStr(PowVal);
+                if (Adds)
+                {
+                    var MaxStr = CalStr(PowMax);
+                    var MaxVal = double.TryParse(MaxStr, out var oVal) ? oVal : 1;
+                    if (MaxStr != "" && MaxVal > 0) OStr += "Max" + MaxStr;
+                }
+            }
+            return OStr;
+        }
+        public void EditDispSet()
+        {
+            EditDisp = Buf.ToString();
+            EditDisp += "[" + Index;
+            EditDisp += "," + Set.ToString() +"]";
+            var Adds = Set == Enum_BufSet.付与増加 || Set == Enum_BufSet.不付与増加;
+            if (TimeVal > 0)
+            {
+                EditDisp += "(時間:付与" + TimeVal;
+                if(Adds && TimeMax > 0) EditDisp += "Max" + TimeMax;
+                EditDisp += ")";
+            }
+            else
+            {
+                EditDisp += "(時間無限)";
+            }
+            var PowStr = CalStr(PowVal);
+            var PowVald = double.TryParse(PowStr, out var oPVal) ? oPVal : 1;
+            if (PowStr != "" && PowVald > 0)
+            {
+                EditDisp += "(段階:付与" + CalStr(PowVal);
+                if (Adds)
+                {
+                    var MaxStr = CalStr(PowMax);
+                    var MaxVal = double.TryParse(MaxStr, out var oVal) ? oVal : 1;
+                    if (MaxStr != "" && MaxVal > 0) EditDisp += "Max" + MaxStr;
+                }
+                EditDisp += ")";
+            }
+        }
     }
 
     [System.Serializable]
@@ -85,6 +137,8 @@ static public class Manifesto
                 Hit.EditDisp += Hit.ShortAtk ? "近距離" : "遠距離";
                 Hit.EditDisp += ")";
                 if (Hit.DamCalc != "") Hit.EditDisp += CalStr(Hit.DamCalc);
+                if(Hit.BufSets!=null)
+                for (int j = 0; j < Hit.BufSets.Length; j++) Hit.BufSets[j].EditDispSet();
             }
 
         }
@@ -104,8 +158,16 @@ static public class Manifesto
                 var Hit = Hits[i];
                 if (Hit.BranchNum != BNum) continue;
                 if (Str != "") Str += "\n";
+                Str += "(";
+                if (Hit.EHit) Str += "敵";
+                if (Hit.FHit) Str += "味方";
+                if (Hit.MHit) Str += "自身";
+                Str += ",";
+                Str += Hit.Heals ? "回復" : "攻撃";
+                Str += ")";
                 if (Hit.DamCalc != "") Str += CalStr(Hit.DamCalc);
                 if (ShotCounts != 1) Str += "×" + ShotCounts;
+                for (int j = 0; j < Hit.BufSets.Length; j++) Str += Hit.BufSets[j].InfoStr();
             }
             return Str;
         }
@@ -367,10 +429,10 @@ static public class Manifesto
         毒 = 1000,
         HP再生 = 2000,
         シールド=2010,
-        根性=2100,
+        バリア = 2011,
+        根性 =2100,
         根性CT=2101,
-
-        与ダメージ増加=2200,
+        与ダメージ増加 =2200,
         近距離強化=2201,
         遠距離強化=2202,
     }
@@ -433,9 +495,12 @@ static public class Manifesto
     }
     public enum Enum_State
     {
-        HP,
-        MP,
-        SP,
+        回復,
+        ダメージ,
+        MP増加,
+        MP減少,
+        SP増加,
+        SP減少,
     }
     public enum Enum_WeponSet
     {

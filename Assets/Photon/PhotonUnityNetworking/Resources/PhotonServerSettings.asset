@@ -46,6 +46,7 @@ MonoBehaviour:
   - RPC_SEPlays
   - RPC_SEPlay
   - RPC_BufSet
+  - RPC_MessageAdd
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

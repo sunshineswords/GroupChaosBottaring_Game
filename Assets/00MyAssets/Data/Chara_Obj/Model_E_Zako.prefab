@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7338699090716222000}
   - component: {fileID: 6980702683957590785}
   m_Layer: 0
-  m_Name: Model_Zako
+  m_Name: Model_E_Zako
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

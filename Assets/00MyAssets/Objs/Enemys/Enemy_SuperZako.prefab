@@ -142,6 +142,7 @@ MonoBehaviour:
   Rig: {fileID: 6544934709698599726}
   CamTrans: {fileID: 8851893093483233145}
   Hight: 1
+  SizeAdd: 100
   Team: 1
   Player: 0
   Boss: 1
@@ -161,7 +162,7 @@ MonoBehaviour:
   MPRegene: 0
   SPRegene: 10
   Atk: 50000
-  Def: 20
+  Def: 100000
   HP: 0
   MP: 0
   SP: 0
@@ -193,7 +194,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3138562507945577928}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f10b1af5d05e4e948ad109c6cf0abb56, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -220,9 +221,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2049415607464157120}
-  SpeedRem: 5
-  NearDis: {x: 4, y: 5}
-  MoveSpeed: 20
+  SpeedRem: 15
+  NearDis: {x: 12, y: 15}
+  MoveSpeed: 1
   LerpSpeed: 1
 --- !u!1 &4063638381043877865
 GameObject:
@@ -370,16 +371,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sta: {fileID: 2049415607464157120}
   AtkAIs:
-  - TimeIf: {x: 50, y: 50}
+  - TimeIf: {x: 50, y: 350}
     OtherIfs: []
     AtkSlot: 0
-    AtkD: {fileID: 11400000, guid: ba33213edd0bb0e46b06fdd42a2c6ec5, type: 2}
-  - TimeIf: {x: 350, y: 350}
+    AtkD: {fileID: 11400000, guid: dd99f100389c5ed47a65b799de073f25, type: 2}
+  - TimeIf: {x: 450, y: 500}
     OtherIfs: []
-    AtkSlot: 0
+    AtkSlot: 1
     AtkD: {fileID: 11400000, guid: 72762b22539ad2a4da843126afc124c1, type: 2}
-  TimerLim: 400
+  TimerLim: 600
   NoTargetResetTime: 0
+  timer: 0
 --- !u!1001 &1544550461700310150
 PrefabInstance:
   m_ObjectHideFlags: 0

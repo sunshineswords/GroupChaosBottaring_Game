@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  DamAdds: -0.5
+  DamAdds: -50
 --- !u!135 &8711960159727362399
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -176,6 +176,7 @@ MonoBehaviour:
     AtkD: {fileID: 11400000, guid: da3ec92c23376564383a70e1faa57919, type: 2}
   TimerLim: 1700
   NoTargetResetTime: 0
+  timer: 0
 --- !u!1 &6754717574664688524
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +381,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7042812544794517674}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f10b1af5d05e4e948ad109c6cf0abb56, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -412,6 +413,7 @@ MonoBehaviour:
   Rig: {fileID: 785899834645812091}
   CamTrans: {fileID: 3073676590767012862}
   Hight: 1
+  SizeAdd: 300
   Team: 1
   Player: 0
   Boss: 1
@@ -431,7 +433,7 @@ MonoBehaviour:
   MPRegene: 0
   SPRegene: 10
   Atk: 200000
-  Def: 50
+  Def: 100000
   HP: 0
   MP: 0
   SP: 0
@@ -469,9 +471,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  SpeedRem: 0
+  SpeedRem: 15
   NearDis: {x: 6, y: 15}
-  MoveSpeed: 15
+  MoveSpeed: 3
   LerpSpeed: 5
 --- !u!1 &7801158436413557424
 GameObject:

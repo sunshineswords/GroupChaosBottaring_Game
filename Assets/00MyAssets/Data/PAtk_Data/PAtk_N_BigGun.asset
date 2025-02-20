@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u30C7\u30AB\u9283"
   Info: "\u30C7\u30AB\u3044\u9283\u306B\u4E57\u308B\n\u9577\u62BC\u3057\u3067\u30C1\u30E3\u30FC\u30B8\u3057\n\u96E2\u3059\u304B\u30D5\u30EB\u30C1\u30E3\u30FC\u30B8\u3067\u653B\u6483\u3059\u308B"
-  Icon: {fileID: 2800000, guid: 6914da7c4ef8bf64da2506deb67c6a29, type: 3}
+  Icon: {fileID: 2800000, guid: 8367f7a3f7b3944439cb33c548fbe88f, type: 3}
   AtkType: 0
   Filters: 00000000010000006500000066000000c8000000
   EndTime: 140
@@ -167,7 +167,7 @@ MonoBehaviour:
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:11|(\u91CD\u6483,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u5FA1\u8A08\u7B97}\u6575\u9632\u5FA1\u529B)*0.75"
+    - EditDisp: "[0]BNum:11|(\u91CD\u6483,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)75.0%"
       BranchNum: 11
       EHit: 1
       FHit: 0
@@ -193,16 +193,16 @@ MonoBehaviour:
   States:
   - BranchNum: 1
     Times: {x: 0, y: 140, z: 0}
-    State: 1
-    Adds: -0.5
+    State: 3
+    Adds: 0.3
   - BranchNum: 10
     Times: {x: 0, y: 140, z: 0}
-    State: 1
-    Adds: -0.5
+    State: 3
+    Adds: 0.5
   - BranchNum: 11
     Times: {x: 0, y: 140, z: 0}
-    State: 1
-    Adds: -0.5
+    State: 3
+    Adds: 1
   Bufs: []
   WeponSets:
   - BranchNum: -1

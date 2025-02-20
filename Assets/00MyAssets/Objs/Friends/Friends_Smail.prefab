@@ -142,6 +142,7 @@ MonoBehaviour:
   Rig: {fileID: 6544934709698599726}
   CamTrans: {fileID: 8851893093483233145}
   Hight: 1
+  SizeAdd: 0
   Team: 0
   Player: 0
   Boss: 0
@@ -201,7 +202,7 @@ MonoBehaviour:
   Sta: {fileID: 2049415607464157120}
   SpeedRem: 5
   NearDis: {x: 0, y: 0}
-  MoveSpeed: 15
+  MoveSpeed: 6
   LerpSpeed: 1
 --- !u!136 &5474315860153017573
 CapsuleCollider:
@@ -210,7 +211,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3138562507945577928}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f10b1af5d05e4e948ad109c6cf0abb56, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

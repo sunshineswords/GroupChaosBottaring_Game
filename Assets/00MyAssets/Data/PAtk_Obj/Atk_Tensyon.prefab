@@ -4885,7 +4885,7 @@ GameObject:
   - component: {fileID: -1467573478106684984}
   - component: {fileID: 2647640555106031623}
   - component: {fileID: 603534621849985299}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Atk_Tensyon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

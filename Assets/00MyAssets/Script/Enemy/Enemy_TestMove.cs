@@ -17,7 +17,7 @@ public class Enemy_TestMove : MonoBehaviourPun
         var RigVect = Sta.Rig.linearVelocity;
         var Rem = 1f - SpeedRem * 0.01f;
         RigVect.x *= Rem;
-        RigVect.y *= Rem;
+        RigVect.z *= Rem;
         Sta.Anim_MoveID = 0;
         if (Sta.Target != null)
         {

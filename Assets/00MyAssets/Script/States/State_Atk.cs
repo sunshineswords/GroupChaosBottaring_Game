@@ -221,9 +221,12 @@ public class State_Atk
             var Val = (float)Cal(State.Adds,USta,USta);
             switch (State.State)
             {
-                case Enum_State.HP:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(Val)); break;
-                case Enum_State.MP:USta.MP += Val;break;
-                case Enum_State.SP:USta.SP += Val;break;
+                case Enum_State.回復:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(Val)); break;
+                case Enum_State.ダメージ: USta.Damage(USta.PosGet(), Mathf.RoundToInt(Val)); break;
+                case Enum_State.MP増加: USta.MP += Val;break;
+                case Enum_State.MP減少: USta.MP -= Val; break;
+                case Enum_State.SP増加: USta.SP += Val;break;
+                case Enum_State.SP減少: USta.SP -= Val; break;
             }
         }
     }

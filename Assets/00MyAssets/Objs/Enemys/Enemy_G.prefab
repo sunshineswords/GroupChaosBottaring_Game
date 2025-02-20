@@ -211,6 +211,7 @@ MonoBehaviour:
   Rig: {fileID: 6544934709698599726}
   CamTrans: {fileID: 8851893093483233145}
   Hight: 1
+  SizeAdd: 0
   Team: 1
   Player: 0
   Boss: 0
@@ -224,13 +225,13 @@ MonoBehaviour:
     Volume: 100
     Pitch: 100
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
-  MHP: 1000000
+  MHP: 500000
   HPRegene: 100000
   MMP: 0
   MPRegene: 0
   SPRegene: 10
   Atk: 150000
-  Def: 20
+  Def: 100000
   HP: 0
   MP: 0
   SP: 0
@@ -262,7 +263,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3138562507945577928}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f10b1af5d05e4e948ad109c6cf0abb56, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -291,7 +292,7 @@ MonoBehaviour:
   Sta: {fileID: 2049415607464157120}
   SpeedRem: 0
   NearDis: {x: 10, y: 12}
-  MoveSpeed: 50
+  MoveSpeed: 20
   LerpSpeed: 60
 --- !u!1 &4350126102488607792
 GameObject:
@@ -413,6 +414,7 @@ MonoBehaviour:
     AtkD: {fileID: 11400000, guid: 7a51e3bcf99676345b060ce3c22000dc, type: 2}
   TimerLim: 0
   NoTargetResetTime: 0
+  timer: 0
 --- !u!1001 &1544550461700310150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -495,6 +497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Model_G
       objectReference: {fileID: 0}
+    - target: {fileID: 6980702683957590785, guid: 5325de202baf8ff4694b7335e13561fa, type: 3}
+      propertyPath: Sta
+      value: 
+      objectReference: {fileID: 2049415607464157120}
     - target: {fileID: 7338699090716222000, guid: 5325de202baf8ff4694b7335e13561fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

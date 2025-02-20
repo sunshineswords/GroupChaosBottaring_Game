@@ -8,10 +8,13 @@ public class Enemy_Atk : MonoBehaviourPun
     [SerializeField] Class_Enemy_AtkAI[] AtkAIs;
     [SerializeField] int TimerLim;
     [SerializeField] bool NoTargetResetTime;
-    int timer;
+    [SerializeField] int timer;
 
 
-
+    private void Start()
+    {
+        timer = 0;
+    }
     void FixedUpdate()
     {
         if (!photonView.IsMine) return;

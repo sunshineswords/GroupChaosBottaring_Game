@@ -47,7 +47,7 @@ MonoBehaviour:
         Index: 0
         Set: 1
         TimeVal: 600
-        PowVal: 20000
+        PowVal: 2000
         TimeMax: 600
         PowMax: 
     HitCT: 0

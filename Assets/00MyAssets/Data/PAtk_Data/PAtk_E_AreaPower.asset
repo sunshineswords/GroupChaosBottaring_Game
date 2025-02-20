@@ -51,7 +51,7 @@ MonoBehaviour:
         RotWay: {x: 0, y: 0, z: 0}
         RotTime: {x: 0, y: 0, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)(\u81EA\u6700\u5927\u73FE\u5728HP)*0.2"
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)(\u81EA\u6700\u5927HP)20.0%"
       BranchNum: 0
       EHit: 0
       FHit: 1
@@ -65,7 +65,7 @@ MonoBehaviour:
       - Buf: 10
         Index: 1000
         Set: 0
-        TimeVal: 60*3
+        TimeVal: 180
         PowVal: 100
         TimeMax: 
         PowMax: 
