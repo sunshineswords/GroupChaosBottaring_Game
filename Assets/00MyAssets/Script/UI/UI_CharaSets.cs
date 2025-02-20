@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using static DataBase;
-using static PlayerValue;
 using static Manifesto;
-using System.Linq;
+using static PlayerValue;
 
-public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
+public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
 {
     [SerializeField] List<UI_Sin_Set> PriSet_Sin_UIs;
     //[SerializeField] Toggle FBToggle;
@@ -110,7 +108,7 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
                     InfoTx.text += "\n" + S2_Atk_Data.InfoGets();
                 }
                 break;
-            case 20: 
+            case 20:
                 DataCount = DB.E_Atks.Length;
                 InfoTx.text = E_Atk_Data.Name;
                 InfoTx.text += "\n" + E_Atk_Data.InfoGets();
@@ -120,7 +118,7 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
             case 32:
             case 33:
                 DataCount = DB.Passives.Length;
-                Data_Passive PassD=null;
+                Data_Passive PassD = null;
                 switch (SelectID)
                 {
                     case 30:
@@ -140,7 +138,7 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
                 InfoTx.text += "\n" + PassD.Info;
                 break;
         }
-        for (int i=0;i < Mathf.Max(DataCount,Set_Sin_UIs.Count); i++)
+        for (int i = 0; i < Mathf.Max(DataCount, Set_Sin_UIs.Count); i++)
         {
             bool Disp = true;
             if (i < DataCount)
@@ -170,13 +168,13 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
                         if (FilterDr.value > 0)
                         {
                             var AtkKeys = Enum.GetValues(typeof(Enum_AtkFilter));
-                            if (!NAtkData.Filters.Contains((Enum_AtkFilter)AtkKeys.GetValue(FilterDr.value - 1)))Disp = false;
+                            if (!NAtkData.Filters.Contains((Enum_AtkFilter)AtkKeys.GetValue(FilterDr.value - 1))) Disp = false;
                         }
                         break;
                     case 11:
                     case 12:
                         var SAtkData = DB.S_Atks[i];
-                        if(SelectID == 11)
+                        if (SelectID == 11)
                         {
                             SinUI.Type = "S1_Atk";
                             SinUI.BackImage.color = i == Atks.S1_AtkID ? Color.yellow : Color.white;
@@ -282,7 +280,7 @@ public class UI_CharaSets : MonoBehaviour,UI_Sin_Set.SetReturn
     }
     void UI_Sin_Set.SetReturn.ReturnID(string Type, int ID)
     {
-        var Atks = PriSetGet.AtkGet(TypeID==1);
+        var Atks = PriSetGet.AtkGet(TypeID == 1);
         switch (Type)
         {
             case "PriSet":
