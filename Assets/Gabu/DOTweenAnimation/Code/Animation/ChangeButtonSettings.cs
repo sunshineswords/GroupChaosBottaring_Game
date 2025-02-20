@@ -1,11 +1,18 @@
 ﻿using System;
 using UnityEngine;
 using DG.Tweening;
+using static UnityEngine.UI.Button;
+using UnityEngine.Serialization;
 
-public class ChengeButtonSettings : MonoBehaviour
+public class ChangeButtonSettings : MonoBehaviour
 {
     public ImageAnimation_Gabu[] targets;
     public NEWSettings[] settings;
+
+    // Event delegates triggered on click.
+    [FormerlySerializedAs("onSet")]
+    [SerializeField]
+    private ButtonClickedEvent m_OnClick = new ButtonClickedEvent();
 
     public void SetSettings(int index)
     {
@@ -13,6 +20,7 @@ public class ChengeButtonSettings : MonoBehaviour
         {
             return;
         }
+        m_OnClick.Invoke();
         for (int i = 0; i < targets.Length; i++)
         {
             if (i < settings[index].settings.Length)

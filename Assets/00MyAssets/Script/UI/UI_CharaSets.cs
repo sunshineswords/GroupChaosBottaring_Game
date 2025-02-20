@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static DataBase;
 using static Manifesto;
 using static PlayerValue;
+using static UnityEngine.UI.Button;
 
 public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
 {
+    #region 変数
+
     [SerializeField] List<UI_Sin_Set> PriSet_Sin_UIs;
     //[SerializeField] Toggle FBToggle;
     [SerializeField] TextMeshProUGUI InfoTx;
@@ -17,15 +21,22 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
     [SerializeField] UI_Sin_Set[] SetSelectUIs;
     [SerializeField] List<UI_Sin_Set> Set_Sin_UIs;
     [SerializeField] TMP_Dropdown FilterDr;
+    [SerializeField] ChangeButtonSettings buttonSetting;
+
     int TypeID = 0;
     int SelectID = 0;
     int FilterID = -1;
+
+    #endregion
+
     private void Start()
     {
+        // フィルターを更新
         FilterUpdate();
     }
     void Update()
     {
+        // PriSet_Sin_UIsの更新
         for (int i = 0; i < PriSets.Length; i++)
         {
             if (PriSet_Sin_UIs.Count <= i) PriSet_Sin_UIs.Add(Instantiate(PriSet_Sin_UIs[0], PriSet_Sin_UIs[0].transform.parent));
@@ -36,14 +47,17 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
             SinUI.ID = i;
             SinUI.Name.text = (i + 1).ToString("");
         }
+        // TypeUIsの更新
         for (int i = 0; i < TypeUIs.Length; i++)
         {
             TypeUIs[i].Returns = this;
             TypeUIs[i].Type = "TypeChange";
             TypeUIs[i].BackImage.color = TypeUIs[i].ID == TypeID ? Color.yellow : Color.white;
         }
+        // AtkUIsとPassiveUIsの表示切替
         AtkUIs.gameObject.SetActive(TypeID <= 1);
         PassiveUIs.gameObject.SetActive(TypeID == 10);
+        // SetSelectUIsの更新
         for (int i = 0; i < SetSelectUIs.Length; i++)
         {
             SetSelectUIs[i].Returns = this;
@@ -52,6 +66,7 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
         }
         var Atks = PriSetGet.AtkGet(TypeID == 1);
 
+        // キャラデータの更新
         var Chara_Data = DB.Charas[PriSetGet.CharaID];
         SetSelectUIs[0].Name.text = Chara_Data.Name;
         SetSelectUIs[0].Icon.texture = Chara_Data.Icon;
@@ -67,6 +82,7 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
         var E_Atk_Data = DB.E_Atks[Atks.E_AtkID];
         SetSelectUIs[4].Name.text = E_Atk_Data.Name;
         SetSelectUIs[4].Icon.texture = E_Atk_Data.Icon;
+        // パッシブデータの更新
         for (int i = 5; i < 5 + 4; i++)
         {
             int PassID = -1;
@@ -83,6 +99,7 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
         }
         int DataCount = 0;
         InfoTx.text = "";
+        // 選択IDに応じたデータの更新
         switch (SelectID)
         {
             case 0:
@@ -138,6 +155,7 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
                 InfoTx.text += "\n" + PassD.Info;
                 break;
         }
+        // Set_Sin_UIsの更新
         for (int i = 0; i < Mathf.Max(DataCount, Set_Sin_UIs.Count); i++)
         {
             bool Disp = true;
@@ -245,11 +263,15 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
 
 
     }
+
+    #region　関数
     void FilterUpdate()
     {
+        // フィルターのオプションをクリア
         FilterDr.options.Clear();
         FilterDr.options.Add(new TMP_Dropdown.OptionData { text = "無" });
         int FID = -1;
+        // 選択IDに応じたフィルターの更新
         switch (SelectID)
         {
             case 10:
@@ -281,6 +303,7 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
     void UI_Sin_Set.SetReturn.ReturnID(string Type, int ID)
     {
         var Atks = PriSetGet.AtkGet(TypeID == 1);
+        // タイプに応じたIDの更新
         switch (Type)
         {
             case "PriSet":
@@ -325,6 +348,9 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
     }
     public void Saves()
     {
+        // データを保存
         Save();
     }
+
+    #endregion
 }
