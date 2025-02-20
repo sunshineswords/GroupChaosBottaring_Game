@@ -91,7 +91,7 @@ public class InstructionsSpaceAnimation : MonoBehaviour, IUIAnimation
         RestartTween();
     }
 
-    private void RestartTween()
+    public void RestartTween()
     {
         if (_tween != null)
         {

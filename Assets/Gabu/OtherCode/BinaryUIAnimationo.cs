@@ -20,7 +20,7 @@ public class BinaryUIAnimationo : MonoBehaviour
             }
             else
             {
-                myAnimation.Pause();
+                myAnimation.Play();
             }
         }
     } 
