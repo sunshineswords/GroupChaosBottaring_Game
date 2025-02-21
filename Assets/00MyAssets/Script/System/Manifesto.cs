@@ -20,13 +20,65 @@ static public class Manifesto
     [System.Serializable]
     public class Class_Base_BufSet
     {
+        [HideInInspector] public string EditDisp;
         public Enum_Bufs Buf;
         [Tooltip("状態番号")] public int Index;
         [Tooltip("付与処理")] public Enum_BufSet Set;
-        [Tooltip("時間付与フレーム式\n0以下だと永続\n" + TooltipStr), TextArea(1, 3)] public string TimeVal;
+        [Tooltip("時間付与フレーム\n0以下だと永続")] public int TimeVal;
         [Tooltip("段階付与式\n0以下だと段階表示なし\n" + TooltipStr), TextArea(1, 3)] public string PowVal;
-        [Tooltip("時間上限フレーム式\n0以下は上限無し\n" + TooltipStr), TextArea(1, 3)] public string TimeMax;
+        [Tooltip("時間上限フレーム\n0以下は上限無し")] public int TimeMax;
         [Tooltip("段階上限上限式\n0以下は上限無し\n" + TooltipStr), TextArea(1, 3)] public string PowMax;
+        public string InfoStr()
+        {
+            var OStr = Buf.ToString() + Set.ToString();
+            bool Adds = (Set == Enum_BufSet.付与増加 || Set == Enum_BufSet.不付与増加);
+            OStr += "時間:" + (TimeVal / 60f).ToString("F1");
+            if (Adds && TimeMax > 0) OStr += "Max" + (TimeMax / 60f).ToString("F1");
+            OStr += "秒";
+            var PowStr = CalStr(PowVal);
+            var PowVald = double.TryParse(PowStr, out var oPVal) ? oPVal : 1;
+            if (PowStr != "" && PowVald > 0)
+            {
+                OStr += ",段階:" + CalStr(PowVal);
+                if (Adds)
+                {
+                    var MaxStr = CalStr(PowMax);
+                    var MaxVal = double.TryParse(MaxStr, out var oVal) ? oVal : 1;
+                    if (MaxStr != "" && MaxVal > 0) OStr += "Max" + MaxStr;
+                }
+            }
+            return OStr;
+        }
+        public void EditDispSet()
+        {
+            EditDisp = Buf.ToString();
+            EditDisp += "[" + Index;
+            EditDisp += "," + Set.ToString() +"]";
+            var Adds = Set == Enum_BufSet.付与増加 || Set == Enum_BufSet.不付与増加;
+            if (TimeVal > 0)
+            {
+                EditDisp += "(時間:付与" + TimeVal;
+                if(Adds && TimeMax > 0) EditDisp += "Max" + TimeMax;
+                EditDisp += ")";
+            }
+            else
+            {
+                EditDisp += "(時間無限)";
+            }
+            var PowStr = CalStr(PowVal);
+            var PowVald = double.TryParse(PowStr, out var oPVal) ? oPVal : 1;
+            if (PowStr != "" && PowVald > 0)
+            {
+                EditDisp += "(段階:付与" + CalStr(PowVal);
+                if (Adds)
+                {
+                    var MaxStr = CalStr(PowMax);
+                    var MaxVal = double.TryParse(MaxStr, out var oVal) ? oVal : 1;
+                    if (MaxStr != "" && MaxVal > 0) EditDisp += "Max" + MaxStr;
+                }
+                EditDisp += ")";
+            }
+        }
     }
 
     [System.Serializable]
@@ -85,6 +137,8 @@ static public class Manifesto
                 Hit.EditDisp += Hit.ShortAtk ? "近距離" : "遠距離";
                 Hit.EditDisp += ")";
                 if (Hit.DamCalc != "") Hit.EditDisp += CalStr(Hit.DamCalc);
+                if(Hit.BufSets!=null)
+                for (int j = 0; j < Hit.BufSets.Length; j++) Hit.BufSets[j].EditDispSet();
             }
 
         }
@@ -104,8 +158,16 @@ static public class Manifesto
                 var Hit = Hits[i];
                 if (Hit.BranchNum != BNum) continue;
                 if (Str != "") Str += "\n";
+                Str += "(";
+                if (Hit.EHit) Str += "敵";
+                if (Hit.FHit) Str += "味方";
+                if (Hit.MHit) Str += "自身";
+                Str += ",";
+                Str += Hit.Heals ? "回復" : "攻撃";
+                Str += ")";
                 if (Hit.DamCalc != "") Str += CalStr(Hit.DamCalc);
                 if (ShotCounts != 1) Str += "×" + ShotCounts;
+                for (int j = 0; j < Hit.BufSets.Length; j++) Str += Hit.BufSets[j].InfoStr();
             }
             return Str;
         }
@@ -118,21 +180,29 @@ static public class Manifesto
         [Tooltip(Const_Ttp_Times)] public Vector3Int Times;
         [Tooltip("弾数")] public int Count;
         [Tooltip("弾速度x～y")] public Vector2 Speed;
-        [Tooltip("発射形状")] public Class_Atk_Shot_Trans Trans;
+        [Tooltip("発射形状")] public Class_Atk_Shot_TransBase Trans;
     }
     [System.Serializable]
-    public class Class_Atk_Shot_Trans
+    public class Class_Atk_Shot_TransBase
     {
-        [Tooltip("座標基準")] public Enum_PosBase PosBase;
-        [Tooltip("座標ズレ")] public Vector3 PosChange;
-        [Tooltip("座標ブレ")] public Vector3 PosRand;
-        [Tooltip("座標拡散")] public Vector3 PosWay;
-        [Tooltip("座標時間変化")] public Vector3 PosTime;
+        [Tooltip("位置基準")] public Enum_PosBase PosBase;
+        [Tooltip("位置変化")] public Class_Atk_Shot_TransPos[] TransPoss;
         [Tooltip("角度基準")] public Enum_RotBase RotBase;
-        [Tooltip("角度ズレ")] public Vector3 RotChange;
-        [Tooltip("角度ブレ")] public Vector3 RotRand;
-        [Tooltip("角度拡散")] public Vector3 RotWay;
-        [Tooltip("角度時間変化")] public Vector3 RotTime;
+        [Tooltip("角度変化")] public Class_Atk_Shot_TransRot[] TransRots;
+    }
+    [System.Serializable]
+    public class Class_Atk_Shot_TransPos
+    {
+        [Tooltip("変化方法")] public Enum_TransChange Change;
+        [Tooltip("変化補正")] public float Mlt;
+        [Tooltip("変化値")] public Vector3 Val;
+    }
+    [System.Serializable]
+    public class Class_Atk_Shot_TransRot
+    {
+        [Tooltip("変化方法")] public Enum_TransChange Change;
+        [Tooltip("変化補正")] public float Mlt;
+        [Tooltip("変化値")] public Vector3 Val;
     }
     [System.Serializable]
     public class Class_Atk_Shot_Hit
@@ -257,6 +327,7 @@ static public class Manifesto
         public float BGMVol = 1;
         public float SEVol = 1;
         public float SystemVol = 1;
+        public int QualityLV = 4;
         public int PriSetID;
         public Class_Save_PSaves()
         {
@@ -264,6 +335,7 @@ static public class Manifesto
             BGMVol = 1;
             SEVol = 1;
             SystemVol = 1;
+            QualityLV = 4;
             PriSetID = 0;
         }
     }
@@ -365,10 +437,10 @@ static public class Manifesto
         毒 = 1000,
         HP再生 = 2000,
         シールド=2010,
-        根性=2100,
+        バリア = 2011,
+        根性 =2100,
         根性CT=2101,
-
-        与ダメージ増加=2200,
+        与ダメージ増加 =2200,
         近距離強化=2201,
         遠距離強化=2202,
     }
@@ -429,11 +501,25 @@ static public class Manifesto
         ターゲット方向,
         使用者カメラ方向,
     }
+    public enum Enum_TransChange
+    {
+        ズレ,
+        ブレ,
+        拡散_掛け,
+        拡散_Sin,
+        拡散_Cos,
+        時間_掛け,
+        時間_Sin,
+        時間_Cos,
+    }
     public enum Enum_State
     {
-        HP,
-        MP,
-        SP,
+        回復,
+        ダメージ,
+        MP増加,
+        MP減少,
+        SP増加,
+        SP減少,
     }
     public enum Enum_WeponSet
     {

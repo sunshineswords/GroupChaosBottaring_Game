@@ -29,7 +29,7 @@ MonoBehaviour:
   - BranchNum: 0
     Times: {x: 50, y: 50, z: 0}
     State: 0
-    Adds: U.MHP*0.3
+    Adds: U.MHP*0.15
   Bufs: []
   WeponSets: []
   Anims:

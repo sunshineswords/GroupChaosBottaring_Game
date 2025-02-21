@@ -33,17 +33,17 @@ MonoBehaviour:
       Speed: {x: 3000, y: 3000}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss:
+        - Change: 0
+          Mlt: 0
+          Val: {x: 0, y: 1, z: 0}
         RotBase: 0
-        RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 45, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots:
+        - Change: 2
+          Mlt: 0
+          Val: {x: 0, y: 45, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u5FA1\u8A08\u7B97}\u6575\u9632\u5FA1\u529B)*0.4"
+    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)40.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0

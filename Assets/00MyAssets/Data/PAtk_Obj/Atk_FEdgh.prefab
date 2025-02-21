@@ -4859,7 +4859,7 @@ GameObject:
   - component: {fileID: 4996487390174411274}
   - component: {fileID: -1467573478106684984}
   - component: {fileID: 2647640555106031623}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Atk_FEdgh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5005,6 +5005,7 @@ MonoBehaviour:
   DelAddShots: []
   SepParticles:
   - {fileID: 8842683406498741388}
+  SepTrails: []
   Times: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
@@ -5020,4 +5021,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
+  HitTime: {x: 0, y: 0, z: 0}
   WallRem: 0

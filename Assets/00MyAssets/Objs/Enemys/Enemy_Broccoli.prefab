@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  DamAdds: -0.5
+  DamAdds: -50
 --- !u!135 &8711960159727362399
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -100,82 +100,6 @@ Transform:
   - {fileID: 6970332086115298574}
   m_Father: {fileID: 3073676590767012862}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4665460620923072261
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4515513133156989201}
-  - component: {fileID: 14829217547628892}
-  m_Layer: 0
-  m_Name: AtkAI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4515513133156989201
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4665460620923072261}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3073676590767012862}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &14829217547628892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4665460620923072261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1adfaabcd71e6ce4cb52500259cc3f23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Sta: {fileID: 2758125950921923790}
-  AtkAIs:
-  - TimeIf: {x: 50, y: 200}
-    OtherIfs: []
-    AtkSlot: 0
-    AtkD: {fileID: 11400000, guid: f84f8b994ca9ff94aa21502bf0f367bc, type: 2}
-  - TimeIf: {x: 300, y: 500}
-    OtherIfs:
-    - Ifs: 10
-      Val: {x: 12, y: 0}
-    AtkSlot: 1
-    AtkD: {fileID: 11400000, guid: 455d6c7ac8240cd4cb0eb7d38b6cf13e, type: 2}
-  - TimeIf: {x: 300, y: 500}
-    OtherIfs:
-    - Ifs: 11
-      Val: {x: 12, y: 0}
-    AtkSlot: 1
-    AtkD: {fileID: 11400000, guid: b0cb898749cca334a96ce47b003daa40, type: 2}
-  - TimeIf: {x: 700, y: 750}
-    OtherIfs: []
-    AtkSlot: 2
-    AtkD: {fileID: 11400000, guid: 719586dd196f4a546b1b4bce90de6d30, type: 2}
-  - TimeIf: {x: 1100, y: 1150}
-    OtherIfs: []
-    AtkSlot: 3
-    AtkD: {fileID: 11400000, guid: 002a7df2f2de31442898ac74c2e651e0, type: 2}
-  - TimeIf: {x: 1350, y: 1600}
-    OtherIfs: []
-    AtkSlot: 4
-    AtkD: {fileID: 11400000, guid: da3ec92c23376564383a70e1faa57919, type: 2}
-  TimerLim: 1700
-  NoTargetResetTime: 0
 --- !u!1 &6754717574664688524
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +186,7 @@ GameObject:
   - component: {fileID: 6814216102208262774}
   - component: {fileID: 2758125950921923790}
   - component: {fileID: 7598547461402963404}
+  - component: {fileID: 7140868982649933936}
   m_Layer: 7
   m_Name: Enemy_Broccoli
   m_TagString: Untagged
@@ -286,7 +211,6 @@ Transform:
   - {fileID: 2450705294629991309}
   - {fileID: 5944838194380330750}
   - {fileID: 927593588313463577}
-  - {fileID: 4515513133156989201}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &785899834645812091
@@ -380,7 +304,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7042812544794517674}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f10b1af5d05e4e948ad109c6cf0abb56, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -412,6 +336,7 @@ MonoBehaviour:
   Rig: {fileID: 785899834645812091}
   CamTrans: {fileID: 3073676590767012862}
   Hight: 1
+  SizeAdd: 300
   Team: 1
   Player: 0
   Boss: 1
@@ -431,7 +356,7 @@ MonoBehaviour:
   MPRegene: 0
   SPRegene: 10
   Atk: 200000
-  Def: 50
+  Def: 100000
   HP: 0
   MP: 0
   SP: 0
@@ -469,10 +394,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  SpeedRem: 0
+  SpeedRem: 15
   NearDis: {x: 6, y: 15}
-  MoveSpeed: 15
+  MoveSpeed: 3
   LerpSpeed: 5
+--- !u!114 &7140868982649933936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042812544794517674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1adfaabcd71e6ce4cb52500259cc3f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sta: {fileID: 2758125950921923790}
+  EnemyAI: {fileID: 11400000, guid: 629cd48140d242a448b3b92ead466f6f, type: 2}
+  timer: 0
 --- !u!1 &7801158436413557424
 GameObject:
   m_ObjectHideFlags: 0

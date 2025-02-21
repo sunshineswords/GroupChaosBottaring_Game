@@ -1,4 +1,5 @@
 ﻿
+using Photon.Pun;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -52,6 +53,7 @@ public class Calculation : MonoBehaviour
             case "T.MMP": Vald = Sta2.FMMP; break;
             case "T.ATK": Vald = Sta2.FAtk; break;
             case "T.DEF": Vald = Sta2.FDef; break;
+            case "PCOUNT":Vald = PhotonNetwork.CurrentRoom.PlayerCount;break;
         }
         if (Neg) Vald *= -1;
         return Vald;
@@ -98,44 +100,7 @@ public class Calculation : MonoBehaviour
             }
             var Get = MaxStrs;
             #endregion
-            #region 変換設定
-            //連続+-修正
-            Get = AddRemStrFixes(Get);
-            //空白・改行
-            Get = Get.Replace(" ", "");
-            Get = Get.Replace("\n", "");
-            Get = Get.Replace("\r", "");
-            //負値
-            //他
-            Get = Get.Replace("~-", "|rndneg");
-            Get = Get.Replace("max-", "|m_aneg");
-            Get = Get.Replace("min-", "|m_inneg");
-            Get = Get.Replace("or-", "|o_rneg");
-            Get = Get.Replace("dfm", "|d_mneg");
-            //乗算
-            Get = Get.Replace("^-", "|powneg");
-            //掛除
-            Get = Get.Replace("*-", "|mulneg");
-            Get = Get.Replace("/-", "|divneg");
-            //正値
-            //他
-            Get = Get.Replace("~", "|rnd");
-            Get = Get.Replace("max", "|m_a");
-            Get = Get.Replace("min", "|m_i");
-            Get = Get.Replace("or", "|o_r");
-            Get = Get.Replace("dfm", "|d_m");
-            //乗算
-            Get = Get.Replace("^", "|pow");
-            //掛除
-            Get = Get.Replace("*", "|mul");
-            Get = Get.Replace("/", "|div");
-            //加減
-            Get = Get.Replace("+", "|add");
-            Get = Get.Replace("-", "|rem");
-            //負変換
-            Get = Get.Replace("neg", "-");
-            if (Get.Substring(0, 1) == "|") Get = Get.Remove(0, 1);
-            #endregion
+            Get = ChangeReplace(Get);
             #region 計算
             var OpeCuts = Get.Split('|').ToList();
             //他
@@ -164,22 +129,39 @@ public class Calculation : MonoBehaviour
         string LogStr = CutOpe(Ca);
         return GetValue(LogStr, Sta1, Sta2);
     }
+
     static public string CalStr(string Ca)
     {
         if (Ca == null) return "";
-        Ca = Ca.Replace("dfm", "{防御計算}");
+        if (Ca == "") return "";
+        Ca = Ca.Replace("dfm", "{防計}");
 
         Ca = Ca.Replace("U.", "自");
         Ca = Ca.Replace("T.", "敵");
-        Ca = Ca.Replace("MHP", "最大HP");
+        Ca = Ca.Replace("MHP", "最大H#P");
         Ca = Ca.Replace("HP", "現在HP");
-        Ca = Ca.Replace("MMP", "最大MP");
+        Ca = Ca.Replace("MMP", "最大M#P");
         Ca = Ca.Replace("MP", "現在MP");
         Ca = Ca.Replace("ATK", "攻撃力");
         Ca = Ca.Replace("DEF", "防御力");
+        Ca = Ca.Replace("PCOUNT", "プレイヤー数");
+        Ca = Ca.Replace("#", "");
 
-
-        return Ca;
+        var CaReplace = ChangeReplace(Ca);
+        var CaCut = CaReplace.Split('|').ToList();
+        string FCa = "";
+        for(int i = 0; i < CaCut.Count; i++)
+        {
+            if (CaCut[i].Length >= 3 && CaCut[i].Substring(0,3) == "mul")
+            {
+                if (double.TryParse(CutOpe(CaCut[i]),out var oVal))
+                {
+                    CaCut[i] = (oVal*100).ToString("F1") + "%";
+                }
+            }
+            FCa += CaCut[i];
+        }
+        return ChangeRestoration(FCa);
     }
 
     #region 処理用
@@ -228,6 +210,85 @@ public class Calculation : MonoBehaviour
         Str = Str.Replace("add", "");
         Str = Str.Replace("rem", "-");
         return Str;
+    }
+    static string ChangeReplace(string Get)
+    {
+        //連続+-修正
+        Get = AddRemStrFixes(Get);
+        //空白・改行
+        Get = Get.Replace(" ", "");
+        Get = Get.Replace("\n", "");
+        Get = Get.Replace("\r", "");
+        //負値
+        //他
+        Get = Get.Replace("~-", "|rndneg");
+        Get = Get.Replace("max-", "|m_aneg");
+        Get = Get.Replace("min-", "|m_inneg");
+        Get = Get.Replace("or-", "|o_rneg");
+        Get = Get.Replace("dfm", "|d_mneg");
+        //乗算
+        Get = Get.Replace("^-", "|powneg");
+        //掛除
+        Get = Get.Replace("*-", "|mulneg");
+        Get = Get.Replace("/-", "|divneg");
+        //正値
+        //他
+        Get = Get.Replace("~", "|rnd");
+        Get = Get.Replace("max", "|m_a");
+        Get = Get.Replace("min", "|m_i");
+        Get = Get.Replace("or", "|o_r");
+        Get = Get.Replace("dfm", "|d_m");
+        //乗算
+        Get = Get.Replace("^", "|pow");
+        //掛除
+        Get = Get.Replace("*", "|mul");
+        Get = Get.Replace("/", "|div");
+        //加減
+        Get = Get.Replace("+", "|add");
+        Get = Get.Replace("-", "|rem");
+        //負変換
+        Get = Get.Replace("neg", "-");
+        if (Get.Substring(0, 1) == "|") Get = Get.Remove(0, 1);
+        return Get;
+    }
+    static string ChangeRestoration(string Get)
+    {
+        //連続+-修正
+        Get = AddRemStrFixes(Get);
+        //空白・改行
+        Get = Get.Replace(" ", "");
+        Get = Get.Replace("\n", "");
+        Get = Get.Replace("\r", "");
+        //負値
+        //他
+        Get = Get.Replace("rndneg", "~-");
+        Get = Get.Replace("m_aneg", "max-");
+        Get = Get.Replace("m_inneg", "min-");
+        Get = Get.Replace("o_rneg", "or-");
+        Get = Get.Replace("d_mneg", "dfm");
+        //乗算
+        Get = Get.Replace("powneg", "^-");
+        //掛除
+        Get = Get.Replace("mulneg", "*-");
+        Get = Get.Replace("divneg", "/-");
+        //正値
+        //他
+        Get = Get.Replace("rnd", "~");
+        Get = Get.Replace("m_a", "max");
+        Get = Get.Replace("m_i", "min");
+        Get = Get.Replace("o_r", "or");
+        Get = Get.Replace("d_m", "dfm");
+        //乗算
+        Get = Get.Replace("pow", "^");
+        //掛除
+        Get = Get.Replace("mul", "*");
+        Get = Get.Replace("div", "/");
+        //加減
+        Get = Get.Replace("add", "+");
+        Get = Get.Replace("rem", "-");
+
+        if (Get.Substring(0, 1) == "|") Get = Get.Remove(0, 1);
+        return Get;
     }
     static void StrOther(List<string> OpeCuts, State_Base Sta1, State_Base Sta2)
     {

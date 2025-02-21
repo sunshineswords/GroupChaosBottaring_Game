@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u5FC5\u6BBA\u518D\u751F"
   Info: "\u5FC5\u6BBA\u3092\u4F7F\u3046\u3068HP\u304C15%\u56DE\u5FA9"
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: 15e9e1c48b1b89b4199b6520ff394f35, type: 3}
   Filters: 030000000b00000016000000

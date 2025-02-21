@@ -15,6 +15,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public Rigidbody Rig;
     public Transform CamTrans;
     public float Hight;
+    public float SizeAdd;
     [Tooltip("チーム")] public int Team;
     [Tooltip("プレイヤー")] public bool Player;
     [Tooltip("ボス")] public bool Boss;
@@ -122,6 +123,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (Team != 0)
         {
             MHP = Mathf.RoundToInt(MHP * BTManager.EStaMults);
+            HPRegene = Mathf.RoundToInt(HPRegene * BTManager.EStaMults);
         }
         HP = FMHP;
         MP = FMMP;
@@ -214,8 +216,8 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                     if (SpReturnLV > 0) SP = SpReturnLV * 15;
                 }
             }
+            if (UseAtkD.AtkType == Enum_AtkType.必殺) BTManager.MessageAdd(Name + "\\の必殺「" + UseAtkD.Name + "」");
             AtkCTs.Add(UseAtkSlot, new Class_Sta_AtkCT { CT = CTs, CTMax = CTs });
-
 
             AtkD = UseAtkD;
             AtkSlot = UseAtkSlot;
@@ -231,11 +233,9 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     }
     public void BufSets(Class_Base_BufSet BufSet,State_Base AddSta)
     {
-        var TimeVal = Mathf.RoundToInt((float)Cal(BufSet.TimeVal,AddSta,this));
         var PowVal = Mathf.RoundToInt((float)Cal(BufSet.PowVal, AddSta, this));
-        var TimeMax = Mathf.RoundToInt((float)Cal(BufSet.TimeMax, AddSta, this));
         var PowMax = Mathf.RoundToInt((float)Cal(BufSet.PowMax, AddSta, this));
-        BufSets(BufSet.Buf, BufSet.Index,BufSet.Set,TimeVal, PowVal, TimeMax, PowMax);
+        BufSets(BufSet.Buf, BufSet.Index,BufSet.Set, BufSet.TimeVal, PowVal, BufSet.TimeMax, PowMax);
     }
     public void BufSets(Enum_Bufs BufID, int Index, Enum_BufSet Sets, int Time, int Pow, int TMax=0, int PMax=0)
     {
@@ -310,6 +310,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
         else
         {
+            int Barria = BufPowGet(Enum_Bufs.バリア);
+            if (Barria > 0)
+            {
+                Val /= 10;
+                if (photonView.IsMine)
+                {
+                    BufPowRem(Enum_Bufs.バリア, 1);
+                }
+            }
             int Shilds = BufPowGet(Enum_Bufs.シールド);
             if (Shilds > 0)
             {
@@ -450,6 +459,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 {
                     BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
                     BTManager.DeathAdd();
+                    BTManager.MessageAdd("<color=#FF0000>" + Name + "</color>\\<color=#FF0000>は倒れた!!!</color>");
                     var DeathPowLV = PriSetGet.PassiveLVGet(Enum_Passive.死に力);
                     if (DeathPowLV > 0)
                     {
@@ -538,6 +548,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             if (BufD != null && !BufEffects.ContainsKey(Bufi.ID))
             {
                 var EffectIns = Instantiate(BufD.EffectObj, PosGet(), Quaternion.identity);
+                EffectIns.transform.localScale = Vector3.one * (1f + SizeAdd*0.01f);
                 EffectIns.transform.parent = Rig!=null ? Rig.transform : transform;
                 BufEffects.Add(Bufi.ID, EffectIns);
             }

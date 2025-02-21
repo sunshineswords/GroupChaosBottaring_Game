@@ -88,6 +88,9 @@
         },
         {
             "m_Id": "439c1d85636548138f30d285ff8bff3b"
+        },
+        {
+            "m_Id": "e4af69c6f3de49aeb16334730da09cbc"
         }
     ],
     "m_GroupDatas": [],
@@ -472,6 +475,9 @@
             },
             {
                 "m_Id": "e09c1390f7684925b246c6aa2f87591d"
+            },
+            {
+                "m_Id": "e4af69c6f3de49aeb16334730da09cbc"
             }
         ]
     },
@@ -647,10 +653,10 @@
     "m_ObjectId": "12ab072597d34f998d65986b2c2d5f65",
     "m_DecalData": {
         "affectsAlbedo": true,
-        "affectsNormalBlend": true,
+        "affectsNormalBlend": false,
         "affectsNormal": false,
         "affectsMAOS": false,
-        "affectsEmission": false,
+        "affectsEmission": true,
         "drawOrder": 0,
         "supportLodCrossFade": false,
         "angleFade": false
@@ -1376,6 +1382,36 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.ColorRGBMaterialSlot",
+    "m_ObjectId": "517cae1fd3e642a9b6f0382dc7d28c46",
+    "m_Id": 0,
+    "m_DisplayName": "Emission",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Emission",
+    "m_StageCapability": 2,
+    "m_Value": {
+        "x": 2.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": [],
+    "m_ColorMode": 1,
+    "m_DefaultColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 1.0
+    }
 }
 
 {
@@ -3346,6 +3382,40 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
+    "m_ObjectId": "e4af69c6f3de49aeb16334730da09cbc",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "SurfaceDescription.Emission",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 0.0,
+            "y": 0.0,
+            "width": 0.0,
+            "height": 0.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "517cae1fd3e642a9b6f0382dc7d28c46"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_SerializedDescriptor": "SurfaceDescription.Emission"
 }
 
 {

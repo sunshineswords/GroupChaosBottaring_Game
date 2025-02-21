@@ -141,15 +141,9 @@ MonoBehaviour:
       Speed: {x: 4000, y: 4000}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 2
-        RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots: []
     - EditDisp: '[1]BNum:1,Time:(5, 5, 0),Count:1,Speed:(4000.00, 4000.00)'
       BranchNum: 1
       Times: {x: 5, y: 5, z: 0}
@@ -157,15 +151,12 @@ MonoBehaviour:
       Speed: {x: 4000, y: 4000}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 1
-        RotChange: {x: -5, y: 0, z: 0}
-        RotRand: {x: 1, y: 1, z: 1}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots:
+        - Change: 0
+          Mlt: 0
+          Val: {x: -3, y: 0, z: 0}
     - EditDisp: '[2]BNum:2,Time:(5, 5, 0),Count:1,Speed:(4000.00, 4000.00)'
       BranchNum: 2
       Times: {x: 5, y: 5, z: 0}
@@ -173,15 +164,12 @@ MonoBehaviour:
       Speed: {x: 4000, y: 4000}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 1
-        RotChange: {x: -5, y: 0, z: 0}
-        RotRand: {x: 1, y: 1, z: 1}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots:
+        - Change: 0
+          Mlt: 0
+          Val: {x: -3, y: 0, z: 0}
     - EditDisp: '[3]BNum:3,Time:(5, 25, 15),Count:1,Speed:(4000.00, 4000.00)'
       BranchNum: 3
       Times: {x: 5, y: 25, z: 15}
@@ -189,15 +177,12 @@ MonoBehaviour:
       Speed: {x: 4000, y: 4000}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 1
-        RotChange: {x: -5, y: 0, z: 0}
-        RotRand: {x: 2, y: 2, z: 2}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots:
+        - Change: 0
+          Mlt: 0
+          Val: {x: -3, y: 0, z: 0}
     - EditDisp: '[4]BNum:4,Time:(25, 25, 0),Count:1,Speed:(7000.00, 7000.00)'
       BranchNum: 4
       Times: {x: 25, y: 25, z: 0}
@@ -205,17 +190,14 @@ MonoBehaviour:
       Speed: {x: 7000, y: 7000}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 1
-        RotChange: {x: -2, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots:
+        - Change: 0
+          Mlt: 0
+          Val: {x: -3, y: 0, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:11|(\u91CD\u6483,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u5FA1\u8A08\u7B97}\u6575\u9632\u5FA1\u529B)*1.6"
+    - EditDisp: "[0]BNum:11|(\u91CD\u6483,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)160.0%"
       BranchNum: 11
       EHit: 1
       FHit: 0
@@ -226,7 +208,7 @@ MonoBehaviour:
       DamCalc: (U.ATKdfmT.DEF)*1.6
       SPAdd: 25
       BufSets: []
-    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u5FA1\u8A08\u7B97}\u6575\u9632\u5FA1\u529B)*1"
+    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)100.0%"
       BranchNum: 1
       EHit: 1
       FHit: 0
@@ -237,7 +219,7 @@ MonoBehaviour:
       DamCalc: (U.ATKdfmT.DEF)*1
       SPAdd: 6
       BufSets: []
-    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u5FA1\u8A08\u7B97}\u6575\u9632\u5FA1\u529B)*1.1"
+    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)110.0%"
       BranchNum: 2
       EHit: 1
       FHit: 0
@@ -248,7 +230,7 @@ MonoBehaviour:
       DamCalc: (U.ATKdfmT.DEF)*1.1
       SPAdd: 8
       BufSets: []
-    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u5FA1\u8A08\u7B97}\u6575\u9632\u5FA1\u529B)*0.6"
+    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)60.0%"
       BranchNum: 3
       EHit: 1
       FHit: 0
@@ -259,7 +241,7 @@ MonoBehaviour:
       DamCalc: (U.ATKdfmT.DEF)*0.6
       SPAdd: 5
       BufSets: []
-    - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u5FA1\u8A08\u7B97}\u6575\u9632\u5FA1\u529B)*1.4"
+    - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)140.0%"
       BranchNum: 4
       EHit: 1
       FHit: 0
