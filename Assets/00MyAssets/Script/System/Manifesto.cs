@@ -586,5 +586,21 @@ static public class Manifesto
         スキル,
         必殺,
     }
+    public enum Enum_SetSlot
+    {
+        キャラ,
+        表通常,
+        表スキル1,
+        表スキル2,
+        表必殺,
+        裏通常,
+        裏スキル1,
+        裏スキル2,
+        裏必殺,
+        パッシブ1,
+        パッシブ2,
+        パッシブ3,
+        パッシブ4,
+    }
     #endregion
 }

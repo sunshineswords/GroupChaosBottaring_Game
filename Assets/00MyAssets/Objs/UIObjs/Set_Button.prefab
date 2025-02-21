@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5260715357652566960}
   - component: {fileID: 7754038680714755690}
   m_Layer: 5
-  m_Name: N_Atk_Name
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 8538093586541090357}
   - component: {fileID: 712922639891218397}
   m_Layer: 5
-  m_Name: N_Atk_Image
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 747767947566133470}
   - component: {fileID: 1650128459225871159}
   m_Layer: 5
-  m_Name: N_Atk
+  m_Name: Type
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
