@@ -173,7 +173,7 @@ MonoBehaviour:
           Val: {x: 0, y: 0, z: 7}
         - Change: 0
           Mlt: 0
-          Val: {x: 0, y: 0, z: 45}
+          Val: {x: 0, y: 0, z: -30}
     - EditDisp: '[4]BNum:4,Time:(20, 20, 0),Count:1,Speed:(2000.00, 2000.00)'
       BranchNum: 4
       Times: {x: 20, y: 20, z: 0}

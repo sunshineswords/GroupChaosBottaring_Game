@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "CT\u30AB\u30C3\u30C8"
   Info: CT-10%
-  Icon: {fileID: 0}
+  Icon: {fileID: 2800000, guid: 61b5681bcddce454c82ea123c1b32cb4, type: 3}
   Filters: 140000001500000016000000
