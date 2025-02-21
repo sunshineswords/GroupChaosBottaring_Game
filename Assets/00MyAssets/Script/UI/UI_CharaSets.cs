@@ -16,8 +16,6 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
     //[SerializeField] Toggle FBToggle;
     [SerializeField] TextMeshProUGUI InfoTx;
     [SerializeField] UI_Sin_Set[] TypeUIs;
-    [SerializeField] GameObject AtkUIs;
-    [SerializeField] GameObject PassiveUIs;
     [SerializeField] UI_Sin_Set[] SetSelectUIs;
     [SerializeField] List<UI_Sin_Set> Set_Sin_UIs;
     [SerializeField] TMP_Dropdown FilterDr;
@@ -54,9 +52,7 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
             TypeUIs[i].Type = "TypeChange";
             TypeUIs[i].BackImage.color = TypeUIs[i].ID == TypeID ? Color.yellow : Color.white;
         }
-        // AtkUIsとPassiveUIsの表示切替
-        AtkUIs.gameObject.SetActive(TypeID <= 1);
-        PassiveUIs.gameObject.SetActive(TypeID == 10);
+
         // SetSelectUIsの更新
         for (int i = 0; i < SetSelectUIs.Length; i++)
         {
