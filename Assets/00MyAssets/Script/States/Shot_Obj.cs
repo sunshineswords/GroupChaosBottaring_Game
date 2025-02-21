@@ -89,8 +89,9 @@ public class Shot_Obj : MonoBehaviourPun
                 return;
             }
             HitCh = true;
-            int Damamge = DamSets(HitState, Hit);
-            HitState.Sta.Damage(HitPos, Damamge);
+            int Damage = DamSets(HitState, Hit);
+            if (USta.Player) USta.AddInfoAdd(Damage);
+            HitState.Sta.Damage(HitPos, Damage);
             if (Hit.BufSets!=null)
             for (int j = 0; j < Hit.BufSets.Length; j++) HitState.Sta.BufSets(Hit.BufSets[j],USta);
             if (USta.Player)
@@ -98,7 +99,7 @@ public class Shot_Obj : MonoBehaviourPun
                 USta.SP += Hit.SPAdd * 1f + PriSetGet.PassiveLVGet(Enum_Passive.SPブースト) * 0.25f;
             }
             else USta.SP += Hit.SPAdd;
-            if(Damamge>0) USta.HitEvents(HitState.Sta,HitPos,Hit.DamageType,Hit.ShortAtk);
+            if(Damage>0) USta.HitEvents(HitState.Sta,HitPos,Hit.DamageType,Hit.ShortAtk);
         }
         if (HitRem && HitCh) ShotDel();
     }

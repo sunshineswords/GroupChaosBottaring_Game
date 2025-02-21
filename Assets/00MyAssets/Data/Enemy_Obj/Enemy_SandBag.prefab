@@ -223,7 +223,7 @@ MonoBehaviour:
     Volume: 100
     Pitch: 100
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
-  MHP: 10000000
+  MHP: 100000000
   HPRegene: 0
   MMP: 0
   MPRegene: 0
@@ -233,13 +233,14 @@ MonoBehaviour:
   HP: 0
   MP: 0
   SP: 0
+  Ground: 0
   DeathTime: 0
+  Target: {fileID: 0}
+  TargetHit: {fileID: 0}
+  Bufs: []
   LowMP: 0
   DashTime: 0
   GroundB: 0
-  Ground: 0
-  Target: {fileID: 0}
-  TargetHit: {fileID: 0}
   AtkD: {fileID: 0}
   AtkSlot: 0
   AtkTime: 0
@@ -253,7 +254,6 @@ MonoBehaviour:
   Anim_AtkID: 0
   Anim_AtkSpeed: 0
   Anim_OtherID: 0
-  Bufs: []
 --- !u!65 &5206309696311436553
 BoxCollider:
   m_ObjectHideFlags: 0

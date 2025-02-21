@@ -398,6 +398,8 @@ static public class Manifesto
             P4_ID = 6;
         }
     }
+
+
     #endregion
 
     #region Enum

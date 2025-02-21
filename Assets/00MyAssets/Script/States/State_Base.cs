@@ -71,6 +71,11 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public Dictionary<int,Class_Sta_AtkCT> AtkCTs = new Dictionary<int,Class_Sta_AtkCT>();
     public Dictionary<int,GameObject> BufEffects = new Dictionary<int,GameObject>();
     public Dictionary<int, int> LocalCTs = new Dictionary<int, int>();
+    [System.NonSerialized] public int AddTimer = 0;
+    [System.NonSerialized] public int[] AddDams = new int[10];
+    [System.NonSerialized] public float AddDamTotal = 0;
+    [System.NonSerialized] public int[] AddHits = new int[10];
+    [System.NonSerialized] public float AddHitTotal = 0;
 
     public int FMHP
     {
@@ -165,6 +170,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         LocalCTRems();
         AtkPlays(CamTrans.eulerAngles);
         if (Rig) Rig.useGravity = !NGravity;
+        if (Player) AddInfoChange();
     }
     #region 内部メソッド
     void Deletes()
@@ -334,6 +340,22 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             if (Val <= 0) return;
         }
     }
+
+    void AddInfoChange()
+    {
+        AddTimer++;
+        if(AddTimer >= 60)
+        {
+            AddTimer = 0;
+            for (int i = AddDams.Length - 1; i > 0; i--)
+            {
+                AddDams[i] = AddDams[i - 1];
+                AddHits[i] = AddHits[i - 1];
+            }
+            AddDams[0] = 0;
+            AddHits[0] = 0;
+        }
+    }
     #endregion
     #region 呼び出しメソッド
     public Vector3 PosGet()
@@ -462,6 +484,24 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 else BufSets(Enum_Bufs.近距離強化, -1000, Enum_BufSet.付与増加, Timed, 3 * WSystemLV, Timed, 60);
             }
         }
+    }
+    public void AddInfoAdd(int Dam)
+    {
+        AddDamTotal += Dam;
+        AddDams[0]+=Dam;
+        AddHitTotal++;
+        AddHits[0]++;
+    }
+    public void AddInfoReset()
+    {
+        AddTimer = 0;
+        for(int i = 0; i < AddDams.Length; i++)
+        {
+            AddDams[i] = 0;
+            AddHits[i] = 0;
+        }
+        AddDamTotal = 0;
+        AddHitTotal = 0;
     }
     #endregion
     #region RPCメソッド
