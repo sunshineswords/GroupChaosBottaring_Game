@@ -26,6 +26,11 @@ public class ChangeButtonSettings : MonoBehaviour
         {
             for(int j = 0; j < targets[i].uiSystems.Length; j++)
             {
+                if(targets[i].uiSystems[j] == null)
+                {
+                    Debug.LogWarning("uiSystemsが空です:" + targets[i].name);
+                    continue;
+                }
                 targets[i].uiSystems[j].UpdateSettings(settings[index].uiSystems[j]);
             }
         }
