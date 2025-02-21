@@ -90,7 +90,11 @@ public class ImageAnimation_Gabu : UISystem_Gabu
     public void UpdateImageAnimation(ImageAnimation_Gabu imageAnimation)
     {
         base.UpdateSettings(imageAnimation);
-        image = imageAnimation.image ?? image;
+        if (imageAnimation.image != null)
+        {
+            image = imageAnimation.image;
+        }
+        image.color = imageAnimation._normalColor;
     }
 
     #endregion
@@ -101,7 +105,7 @@ public class ImageAnimation_Gabu : UISystem_Gabu
         if (image == null)
         {
             image = GetComponent<Image>();
-            if(image == null)
+            if (image == null)
             {
                 Debug.LogWarning("Imageがアタッチされていません");
                 return;

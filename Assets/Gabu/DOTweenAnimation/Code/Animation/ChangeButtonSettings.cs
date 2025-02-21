@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using static UnityEngine.UI.Button;
 using UnityEngine.Serialization;
+using static UnityEngine.UI.Button;
 
 public class ChangeButtonSettings : MonoBehaviour
 {
     public List<ImageAnimationManager> targets;
     public ImageAnimationManager[] settings;
+    public int currentIndex = -1;
 
     // Event delegates triggered on click.
     [FormerlySerializedAs("onSet")]
@@ -16,6 +16,11 @@ public class ChangeButtonSettings : MonoBehaviour
 
     public void SetSettings(int index)
     {
+        if (index == currentIndex)
+        {
+            return;
+        }
+        currentIndex = index;
         if (index < 0 || index >= settings.Length)
         {
             Debug.LogWarning("Index out of range: " + index);
@@ -24,14 +29,14 @@ public class ChangeButtonSettings : MonoBehaviour
         m_OnClick.Invoke();
         for (int i = 0; i < targets.Count; i++)
         {
-            for(int j = 0; j < targets[i].uiSystems.Length; j++)
+            for (int j = 0; j < targets[i].uiSystems.Length; j++)
             {
-                if(targets[i].uiSystems[j] == null)
+                if (targets[i].uiSystems[j] == null)
                 {
                     Debug.LogWarning("uiSystemsが空です:" + targets[i].name);
                     continue;
                 }
-                targets[i].uiSystems[j].UpdateSettings(settings[index].uiSystems[j]);
+                targets[i].uiSystems[j].UpdateImageAnimation(settings[index].uiSystems[j]);
             }
         }
     }

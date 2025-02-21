@@ -113,7 +113,7 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
                 Icon = CharaD.Icon;
                 if (i == SelectID) Info = CharaD.Name;
                 if (ModelIns != null) Destroy(ModelIns);
-                ModelIns = Instantiate(CharaD.ModelObj.gameObject,ModelTrans.position,Quaternion.identity);
+                ModelIns = Instantiate(CharaD.ModelObj.gameObject, ModelTrans.position, Quaternion.identity);
                 ModelIns.transform.parent = ModelTrans;
             }
             if (AtkD != null)
@@ -148,6 +148,8 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
                 var SinUI = Set_Sin_UIs[i];
                 SinUI.Returns = this;
                 SinUI.ID = i;
+
+                buttonSetting.targets.Add(SinUI.GetComponent<ImageAnimationManager>());
 
                 bool Select = false;
                 string Name = "";
@@ -335,7 +337,18 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
 
         }
         UIUpdate();
+        if (buttonSetting.currentIndex != ID)
+        {
+            Debug.Log("SetSettings");
+            buttonSetting.targets.Clear();
+            foreach (var item in Set_Sin_UIs)
+            {
+                buttonSetting.targets.Add(item.GetComponent<ImageAnimationManager>());
+            }
+            buttonSetting.SetSettings(ID);
+        }
     }
+
     public void Saves()
     {
         // データを保存

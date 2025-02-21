@@ -213,9 +213,14 @@ public class UISystem_Gabu : ColorSystem
 
     public virtual void UpdateSettings(UISystem_Gabu uiSystem)
     {
-        _animator = uiSystem._animator ?? _animator;    // null合体演算子、nullの場合は代入されない
-        Debug.Log($"myAnimator{_animator}, setAnimator{uiSystem._animator}");
-        _transform = uiSystem._transform ?? _transform;
+        if (uiSystem._animator != null)
+        {
+            _animator = uiSystem._animator;
+        }
+        if (uiSystem._transform != null)
+        {
+            _transform = uiSystem._transform;
+        }
         _unitPosition = uiSystem._unitPosition;
         _unitRotation = uiSystem._unitRotation;
         _unitScale = uiSystem._unitScale == Vector3.zero ? _unitScale : uiSystem._unitScale;
@@ -229,7 +234,10 @@ public class UISystem_Gabu : ColorSystem
         _isLockHue = uiSystem._isLockHue;
         _isLockSaturation = uiSystem._isLockSaturation;
         _isLockValue = uiSystem._isLockValue;
-        _disabledImage = uiSystem._disabledImage ?? _disabledImage;
+        if (uiSystem._disabledImage != null)
+        {
+            _disabledImage = uiSystem._disabledImage;
+        }
         _isReset = uiSystem._isReset;
         _normalScaleDuration = uiSystem._normalScaleDuration;
         _highlightedScaleDuration = uiSystem._highlightedScaleDuration;
