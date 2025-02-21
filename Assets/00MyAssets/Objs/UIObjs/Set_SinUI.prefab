@@ -401,7 +401,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -705,6 +705,7 @@ GameObject:
   - component: {fileID: 5683209105659728044}
   - component: {fileID: 9168387984156902166}
   - component: {fileID: 3131440344636224361}
+  - component: {fileID: 8832061377701450361}
   m_Layer: 5
   m_Name: Set_SinUI
   m_TagString: Untagged
@@ -868,6 +869,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8832061377701450361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862503744277740757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f9bb2ddb480a747b737b887ded7219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiSystems:
+  - {fileID: 6667746291049992390}
+  - {fileID: 2913799921353850422}
+  - {fileID: 3716155918130392541}
+  images:
+  - {fileID: 6491459437821757602}
+  - {fileID: 3331923960591693241}
+  - {fileID: 3973630414151558780}
+  - {fileID: 4850793358449519628}
+  - {fileID: 292113734800191078}
+  - {fileID: 2965132557402064771}
+  pixelsPerUnitMultiplier: 6
 --- !u!1 &7965716531500393686
 GameObject:
   m_ObjectHideFlags: 0

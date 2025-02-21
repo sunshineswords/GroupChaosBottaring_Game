@@ -214,6 +214,7 @@ public class UISystem_Gabu : ColorSystem
     public virtual void UpdateSettings(UISystem_Gabu uiSystem)
     {
         _animator = uiSystem._animator ?? _animator;    // null合体演算子、nullの場合は代入されない
+        Debug.Log($"myAnimator{_animator}, setAnimator{uiSystem._animator}");
         _transform = uiSystem._transform ?? _transform;
         _unitPosition = uiSystem._unitPosition;
         _unitRotation = uiSystem._unitRotation;

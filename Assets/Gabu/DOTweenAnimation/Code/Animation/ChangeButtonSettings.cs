@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using static UnityEngine.UI.Button;
@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 
 public class ChangeButtonSettings : MonoBehaviour
 {
-    public ImageAnimation_Gabu[] targets;
-    public NEWSettings[] settings;
+    public List<ImageAnimationManager> targets;
+    public ImageAnimationManager[] settings;
 
     // Event delegates triggered on click.
     [FormerlySerializedAs("onSet")]
@@ -18,21 +18,16 @@ public class ChangeButtonSettings : MonoBehaviour
     {
         if (index < 0 || index >= settings.Length)
         {
+            Debug.LogWarning("Index out of range: " + index);
             return;
         }
         m_OnClick.Invoke();
-        for (int i = 0; i < targets.Length; i++)
+        for (int i = 0; i < targets.Count; i++)
         {
-            if (i < settings[index].settings.Length)
+            for(int j = 0; j < targets[i].uiSystems.Length; j++)
             {
-                targets[i].UpdateSettings(settings[index].settings[i]);
+                targets[i].uiSystems[j].UpdateSettings(settings[index].uiSystems[j]);
             }
         }
     }
-}
-
-[Serializable]
-public class NEWSettings
-{
-    public ImageAnimation_Gabu[] settings;
 }
