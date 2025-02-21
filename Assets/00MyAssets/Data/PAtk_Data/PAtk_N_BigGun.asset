@@ -157,15 +157,12 @@ MonoBehaviour:
       Speed: {x: 4000, y: 4000}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 2}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 2
-        RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 45, y: 45, z: 45}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots:
+        - Change: 1
+          Mlt: 0
+          Val: {x: 45, y: 45, z: 45}
     Hits:
     - EditDisp: "[0]BNum:11|(\u91CD\u6483,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)75.0%"
       BranchNum: 11

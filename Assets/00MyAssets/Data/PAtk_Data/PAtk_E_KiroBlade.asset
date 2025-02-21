@@ -33,15 +33,12 @@ MonoBehaviour:
       Speed: {x: 500, y: 500}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 0
-        RotChange: {x: 0, y: 0, z: -90}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots:
+        - Change: 0
+          Mlt: 0
+          Val: {x: 0, y: 0, z: -90}
     - EditDisp: '[1]BNum:0,Time:(35, 35, 0),Count:1,Speed:(0.00, 0.00)'
       BranchNum: 0
       Times: {x: 35, y: 35, z: 0}
@@ -49,15 +46,12 @@ MonoBehaviour:
       Speed: {x: 0, y: 0}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 0
-        RotChange: {x: 0, y: 0, z: 100}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots:
+        - Change: 0
+          Mlt: 0
+          Val: {x: 0, y: 0, z: 75}
     - EditDisp: '[2]BNum:0,Time:(35, 35, 0),Count:1,Speed:(0.00, 0.00)'
       BranchNum: 0
       Times: {x: 35, y: 35, z: 0}
@@ -65,17 +59,14 @@ MonoBehaviour:
       Speed: {x: 0, y: 0}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 0
-        RotChange: {x: 0, y: 0, z: 80}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots:
+        - Change: 0
+          Mlt: 0
+          Val: {x: 0, y: 0, z: -75}
     Hits:
-    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u8FD1\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u5FA1\u8A08\u7B97}\u6575\u9632\u5FA1\u529B)*5"
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u8FD1\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)500.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0

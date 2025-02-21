@@ -7,6 +7,8 @@ using static DataBase;
 using static BattleManager;
 using static Manifesto;
 using static Calculation;
+using static UnityEditor.PlayerSettings;
+
 public class State_Atk
 {
     static public void Branch(State_Base USta, bool Enter, bool Stay)
@@ -99,8 +101,8 @@ public class State_Atk
                 for (int k = 0; k < AtFire.Count; k++)
                 {
                     float WaySet = k - ((AtFire.Count - 1) / 2f);
-                    var Pos = PosGet(USta, AtFire, BasePos, BaseRot, WaySet,USta.AtkTime);
-                    var Rot = RotGet(USta, AtFire, Pos, BaseRot, CamRot, WaySet, USta.AtkTime);
+                    var Pos = PosGet(USta, AtFire, BasePos, BaseRot, WaySet, USta.AtkTime - AtFire.Times.x);
+                    var Rot = RotGet(USta, AtFire, Pos, BaseRot, CamRot, WaySet, USta.AtkTime - AtFire.Times.x);
                     Shots(USta, AtShot,USta.AtkBranch, AtFire.Speed, Pos, Rot);
                 }
             }
@@ -137,25 +139,81 @@ public class State_Atk
                 if (USta.Target != null) Pos = USta.Target.PosGet();
                 break;
         }
-        Pos += Quaternion.Euler(BaseRot) * Fire.Trans.PosChange;
-        Pos += Quaternion.Euler(BaseRot) * Fire.Trans.PosWay * Way;
-        Pos += Quaternion.Euler(BaseRot) * Fire.Trans.PosTime * Times;
-        Vector3 RPos;
-        RPos.x = Float_NegRand(Fire.Trans.PosRand.x);
-        RPos.y = Float_NegRand(Fire.Trans.PosRand.y);
-        RPos.z = Float_NegRand(Fire.Trans.PosRand.z);
-        Pos += Quaternion.Euler(BaseRot) * RPos;
+        if (Fire.Trans.TransPoss != null)
+            for(int i = 0; i < Fire.Trans.TransPoss.Length; i++)
+            {
+                var TPos = Fire.Trans.TransPoss[i];
+                switch (TPos.Change)
+                {
+                    case Enum_TransChange.ズレ:
+                        Pos += Quaternion.Euler(BaseRot) * TPos.Val;
+                        break;
+                    case Enum_TransChange.ブレ:
+                        Vector3 RPos;
+                        RPos.x = Float_NegRand(TPos.Val.x);
+                        RPos.y = Float_NegRand(TPos.Val.y);
+                        RPos.z = Float_NegRand(TPos.Val.z);
+                        Pos += Quaternion.Euler(BaseRot) * RPos;
+                        break;
+                    case Enum_TransChange.拡散_掛け:
+                        Pos += Quaternion.Euler(BaseRot) * TPos.Val * Way;
+                        break;
+                    case Enum_TransChange.拡散_Sin:
+                        Pos += Quaternion.Euler(BaseRot) * TPos.Val * Mathf.Sin(Way * TPos.Mlt * Mathf.PI * 2f);
+                        break;
+                    case Enum_TransChange.拡散_Cos:
+                        Pos += Quaternion.Euler(BaseRot) * TPos.Val * Mathf.Cos(Way * TPos.Mlt * Mathf.PI * 2f);
+                        break;
+                    case Enum_TransChange.時間_掛け:
+                        Pos += Quaternion.Euler(BaseRot) * TPos.Val * Times;
+                        break;
+                    case Enum_TransChange.時間_Sin:
+                        Pos += Quaternion.Euler(BaseRot) * TPos.Val * Mathf.Sin(Times * TPos.Mlt * Mathf.PI * 2f);
+                        break;
+                    case Enum_TransChange.時間_Cos:
+                        Pos += Quaternion.Euler(BaseRot) * TPos.Val * Mathf.Cos(Times * TPos.Mlt * Mathf.PI * 2f);
+                        break;
+                }
+            }
         return Pos;
     }
     static public Vector3 RotGet(State_Base USta, Class_Atk_Shot_Fire Fire, Vector3 BasePos, Vector3 BaseRot, Vector3 CamRot, float Way, int Times)
     {
         var Rot = RotBaseGet(USta, Fire.Trans.RotBase, BasePos, BaseRot, CamRot);
-        Rot += Fire.Trans.RotChange;
-        Rot += Fire.Trans.RotWay * Way;
-        Rot += Fire.Trans.RotTime * Times;
-        Rot.x += Float_NegRand(Fire.Trans.RotRand.x);
-        Rot.y += Float_NegRand(Fire.Trans.RotRand.y);
-        Rot.z += Float_NegRand(Fire.Trans.RotRand.z);
+        if (Fire.Trans.TransRots != null)
+            for (int i = 0; i < Fire.Trans.TransRots.Length; i++)
+            {
+                var TRot = Fire.Trans.TransRots[i];
+                switch (TRot.Change)
+                {
+                    case Enum_TransChange.ズレ:
+                        Rot += (Vector3)TRot.Val;
+                        break;
+                    case Enum_TransChange.ブレ:
+                        Rot.x += Float_NegRand(TRot.Val.x);
+                        Rot.y += Float_NegRand(TRot.Val.y);
+                        Rot.z += Float_NegRand(TRot.Val.z);
+                        break;
+                    case Enum_TransChange.拡散_掛け:
+                        Rot += TRot.Val * Way;
+                        break;
+                    case Enum_TransChange.拡散_Sin:
+                        Rot += TRot.Val * Mathf.Sin(Way * TRot.Mlt * Mathf.PI * 2f);
+                        break;
+                    case Enum_TransChange.拡散_Cos:
+                        Rot += TRot.Val * Mathf.Cos(Way * TRot.Mlt * Mathf.PI * 2f);
+                        break;
+                    case Enum_TransChange.時間_掛け:
+                        Rot += TRot.Val * Times;
+                        break;
+                    case Enum_TransChange.時間_Sin:
+                        Rot += TRot.Val * Mathf.Sin(Times * TRot.Mlt * Mathf.PI * 2f);
+                        break;
+                    case Enum_TransChange.時間_Cos:
+                        Rot += TRot.Val * Mathf.Cos(Times * TRot.Mlt * Mathf.PI * 2f);
+                        break;
+                }
+            }
         return Rot;
     }
     static public Vector3 RotBaseGet(State_Base USta, Enum_RotBase RotBase,Vector3 Pos,Vector3 Rot,Vector3 CamRot)

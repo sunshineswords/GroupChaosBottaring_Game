@@ -41,15 +41,9 @@ MonoBehaviour:
       Speed: {x: 0, y: 0}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 2}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 1, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
-        RotBase: 2
-        RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
+        RotBase: -1
+        TransRots: []
     Hits:
     - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)(\u81EA\u6700\u5927HP)20.0%"
       BranchNum: 0
@@ -62,12 +56,13 @@ MonoBehaviour:
       DamCalc: (U.MHP)*0.2
       SPAdd: 0
       BufSets:
-      - Buf: 10
+      - EditDisp: "\u653B\u6483\u5897\u52A0[1000,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E180)(\u6BB5\u968E:\u4ED8\u4E0E100)"
+        Buf: 10
         Index: 1000
         Set: 0
         TimeVal: 180
         PowVal: 100
-        TimeMax: 
+        TimeMax: 0
         PowMax: 
     HitCT: 60
   Moves: []

@@ -5,9 +5,7 @@ using static Manifesto;
 public class Enemy_Atk : MonoBehaviourPun
 {
     [SerializeField] State_Base Sta;
-    [SerializeField] Class_Enemy_AtkAI[] AtkAIs;
-    [SerializeField] int TimerLim;
-    [SerializeField] bool NoTargetResetTime;
+    [SerializeField] Data_EnemyAI EnemyAI;
     [SerializeField] int timer;
 
 
@@ -20,14 +18,14 @@ public class Enemy_Atk : MonoBehaviourPun
         if (!photonView.IsMine) return;
         if (Sta.Target == null)
         {
-            if(NoTargetResetTime) timer = 0;
+            if(EnemyAI.NoTargetResetTime) timer = 0;
             return;
         }
         timer++;
-        if (timer > TimerLim) timer = 0;
-        for(int i = 0; i < AtkAIs.Length; i++)
+        if (timer > EnemyAI.TimerLim) timer = 0;
+        for(int i = 0; i < EnemyAI.AtkAIs.Length; i++)
         {
-            var AtkAI = AtkAIs[i];
+            var AtkAI = EnemyAI.AtkAIs[i];
             if (!V3IntTimeCheck(timer, (Vector3Int)AtkAI.TimeIf)) continue;
             bool OIf = true;
             for(int j = 0; j < AtkAI.OtherIfs.Length; j++)

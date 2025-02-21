@@ -180,21 +180,29 @@ static public class Manifesto
         [Tooltip(Const_Ttp_Times)] public Vector3Int Times;
         [Tooltip("弾数")] public int Count;
         [Tooltip("弾速度x～y")] public Vector2 Speed;
-        [Tooltip("発射形状")] public Class_Atk_Shot_Trans Trans;
+        [Tooltip("発射形状")] public Class_Atk_Shot_TransBase Trans;
     }
     [System.Serializable]
-    public class Class_Atk_Shot_Trans
+    public class Class_Atk_Shot_TransBase
     {
-        [Tooltip("座標基準")] public Enum_PosBase PosBase;
-        [Tooltip("座標ズレ")] public Vector3 PosChange;
-        [Tooltip("座標ブレ")] public Vector3 PosRand;
-        [Tooltip("座標拡散")] public Vector3 PosWay;
-        [Tooltip("座標時間変化")] public Vector3 PosTime;
+        [Tooltip("位置基準")] public Enum_PosBase PosBase;
+        [Tooltip("位置変化")] public Class_Atk_Shot_TransPos[] TransPoss;
         [Tooltip("角度基準")] public Enum_RotBase RotBase;
-        [Tooltip("角度ズレ")] public Vector3 RotChange;
-        [Tooltip("角度ブレ")] public Vector3 RotRand;
-        [Tooltip("角度拡散")] public Vector3 RotWay;
-        [Tooltip("角度時間変化")] public Vector3 RotTime;
+        [Tooltip("角度変化")] public Class_Atk_Shot_TransRot[] TransRots;
+    }
+    [System.Serializable]
+    public class Class_Atk_Shot_TransPos
+    {
+        [Tooltip("変化方法")] public Enum_TransChange Change;
+        [Tooltip("変化補正")] public float Mlt;
+        [Tooltip("変化値")] public Vector3 Val;
+    }
+    [System.Serializable]
+    public class Class_Atk_Shot_TransRot
+    {
+        [Tooltip("変化方法")] public Enum_TransChange Change;
+        [Tooltip("変化補正")] public float Mlt;
+        [Tooltip("変化値")] public Vector3 Val;
     }
     [System.Serializable]
     public class Class_Atk_Shot_Hit
@@ -492,6 +500,17 @@ static public class Manifesto
         使用者向き,
         ターゲット方向,
         使用者カメラ方向,
+    }
+    public enum Enum_TransChange
+    {
+        ズレ,
+        ブレ,
+        拡散_掛け,
+        拡散_Sin,
+        拡散_Cos,
+        時間_掛け,
+        時間_Sin,
+        時間_Cos,
     }
     public enum Enum_State
     {

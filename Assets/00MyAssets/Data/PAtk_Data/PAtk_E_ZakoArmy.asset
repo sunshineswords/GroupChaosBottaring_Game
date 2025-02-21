@@ -41,15 +41,15 @@ MonoBehaviour:
       Speed: {x: 0, y: 0}
       Trans:
         PosBase: 0
-        PosChange: {x: -3, y: 0, z: 4}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 1, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
-        RotBase: 2
-        RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransPoss:
+        - Change: 3
+          Mlt: 0.14285715
+          Val: {x: 10, y: 0, z: 0}
+        - Change: 4
+          Mlt: 0.14285715
+          Val: {x: 0, y: 0, z: 10}
+        RotBase: -1
+        TransRots: []
     Hits: []
     HitCT: 0
   Moves: []
