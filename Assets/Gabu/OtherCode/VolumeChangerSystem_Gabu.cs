@@ -1,5 +1,4 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using static PlayerValue;
@@ -17,19 +16,6 @@ public class VolumeChangerSystem_Gabu : MonoBehaviour
     [SerializeField] Slider BGMSlider;
     [SerializeField] Slider SESlider;
     [SerializeField] Slider SystemSlider;
-
-    private void Start()
-    {
-        audioMixer.SetFloat(MasterValue, Mathf.Clamp(Mathf.Log(PSaves.MasterVol, 10) * 60f, -80, 20));
-        audioMixer.SetFloat(BGMValue, Mathf.Clamp(Mathf.Log(PSaves.BGMVol, 10) * 60f, -80, 20));
-        audioMixer.SetFloat(SEValue, Mathf.Clamp(Mathf.Log(PSaves.SEVol, 10) * 60f, -80, 20));
-        audioMixer.SetFloat(SystemValue, Mathf.Clamp(Mathf.Log(PSaves.SystemVol, 10) * 60f, -80, 20));
-
-        MasterSlider.value = PSaves.MasterVol;
-        BGMSlider.value = PSaves.BGMVol;
-        SESlider.value = PSaves.SEVol;
-        SystemSlider.value = PSaves.SystemVol;
-    }
 
     #endregion
     #region 関数
@@ -66,5 +52,18 @@ public class VolumeChangerSystem_Gabu : MonoBehaviour
     }
 
     #endregion
+
+    private void Start()
+    {
+        audioMixer.SetFloat(MasterValue, Mathf.Clamp(Mathf.Log(PSaves.MasterVol, 10) * 60f, -80, 20));
+        audioMixer.SetFloat(BGMValue, Mathf.Clamp(Mathf.Log(PSaves.BGMVol, 10) * 60f, -80, 20));
+        audioMixer.SetFloat(SEValue, Mathf.Clamp(Mathf.Log(PSaves.SEVol, 10) * 60f, -80, 20));
+        audioMixer.SetFloat(SystemValue, Mathf.Clamp(Mathf.Log(PSaves.SystemVol, 10) * 60f, -80, 20));
+
+        MasterSlider.value = PSaves.MasterVol;
+        BGMSlider.value = PSaves.BGMVol;
+        SESlider.value = PSaves.SEVol;
+        SystemSlider.value = PSaves.SystemVol;
+    }
 
 }
