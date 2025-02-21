@@ -19425,7 +19425,7 @@ GameObject:
   - component: {fileID: -1467573478106684984}
   - component: {fileID: 2647640555106031623}
   - component: {fileID: -7632642970117116558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Atk_BladeSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19579,6 +19579,7 @@ MonoBehaviour:
   - {fileID: 865553001914827567}
   - {fileID: 4983063264260496228}
   - {fileID: 6393386175756660899}
+  SepTrails: []
   Times: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
@@ -19594,6 +19595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
+  HitTime: {x: 0, y: 0, z: 0}
   WallRem: 0
 --- !u!114 &-7632642970117116558
 MonoBehaviour:

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2647640555106031623}
   - component: {fileID: 1096604114630377537}
   - component: {fileID: -4383927948934268170}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Atk_BroccoliShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

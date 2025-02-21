@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using static Manifesto;
+using static Calculation;
 [CreateAssetMenu(menuName ="DataCre/Atk")]
 public class Data_Atk : ScriptableObject
 {
@@ -41,23 +42,41 @@ public class Data_Atk : ScriptableObject
             {
                 var BInfo = BranchInfos[i];
                 Str += "\n" + BInfo.Name;
-                for (int j = 0; j < Shots.Length; j++)
-                {
-                    var Shot = Shots[j];
-                    var OStr = Shot.OtherStrGet(BInfo.BID);
-                    if (OStr != "") Str += "\n" + OStr;
-                }
+                Str += "\n" + InfoGetBranchs(BInfo.BID);
             }
         }
         else
         {
-            for (int j = 0; j < Shots.Length; j++)
-            {
-                var Shot = Shots[j];
-                Str += "\n" + Shot.OtherStrGet(0);
-            }
+            Str += "\n" + InfoGetBranchs(0);
         }
         return Str;
+    }
+    string InfoGetBranchs(int BID)
+    {
+        var OStr = "";
+        for (int j = 0; j < Shots.Length; j++)
+        {
+            var Shot = Shots[j];
+            if (OStr != "") OStr += "\n";
+            OStr += Shot.OtherStrGet(BID);
+        }
+        for (int j = 0; j < States.Length; j++)
+        {
+            var State = States[j];
+            if (State.BranchNum >= 0 && State.BranchNum != BID) continue;
+            if (OStr != "") OStr += "\n";
+            OStr += "(自身" + State.State.ToString()+")";
+            OStr += CalStr(State.Adds);
+        }
+        for (int j = 0; j < Bufs.Length; j++)
+        {
+            var Buf = Bufs[j];
+            if (Buf.BranchNum >= 0 && Buf.BranchNum != BID) continue;
+            if (OStr != "") OStr += "\n";
+            OStr += "(自身状態変化)";
+            for (int k = 0; k < Buf.BufSets.Length; k++) OStr += Buf.BufSets[k].InfoStr();
+        }
+        return OStr;
     }
     private void OnValidate()
     {
@@ -88,6 +107,17 @@ public class Data_Atk : ScriptableObject
             }
         if (Shots != null)
         for (int i = 0; i < Shots.Length; i++) Shots[i].EditDispSet();
+        if (Bufs != null)
+        {
+            for(int i = 0; i < Bufs.Length; i++)
+            {
+                var Buf = Bufs[i];
+                for (int j = 0; j < Buf.BufSets.Length; j++)
+                {
+                    Buf.BufSets[j].EditDispSet();
+                }
+            }
+        }
         if (Anims != null)
         for (int i = 0; i < Anims.Length; i++)
         {

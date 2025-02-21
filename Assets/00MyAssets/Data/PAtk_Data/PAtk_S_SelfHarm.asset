@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u81EA\u50B7"
   Info: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u304C\nSP\u304C\u5897\u52A0\u3059\u308B"
-  Icon: {fileID: 2800000, guid: 9587663c4d27e47b19a118aabaac4a08, type: 3}
+  Icon: {fileID: 2800000, guid: c2f293b3f5b7e3c49a70fcf20d707d5c, type: 3}
   AtkType: 1
   Filters: 06000000
   EndTime: 40
@@ -28,8 +28,8 @@ MonoBehaviour:
   States:
   - BranchNum: 0
     Times: {x: 35, y: 35, z: 0}
-    State: 0
-    Adds: U.MHP*-0.1
+    State: 1
+    Adds: U.MHP*0.1
   - BranchNum: 0
     Times: {x: 35, y: 35, z: 0}
     State: 2

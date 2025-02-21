@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 971300707df511444a5e16905bf0c64b, type: 3}
+  m_Name: EnemyAI_Eiffel
+  m_EditorClassIdentifier: 
+  AtkAIs:
+  - TimeIf: {x: 0, y: 100}
+    OtherIfs: []
+    AtkSlot: 0
+    AtkD: {fileID: 11400000, guid: d7885b49726d4f949913ecc3d7f89bb0, type: 2}
+  - TimeIf: {x: 200, y: 400}
+    OtherIfs: []
+    AtkSlot: 1
+    AtkD: {fileID: 11400000, guid: 375746371fc31ab4f93c96c59d008af0, type: 2}
+  - TimeIf: {x: 600, y: 750}
+    OtherIfs: []
+    AtkSlot: 2
+    AtkD: {fileID: 11400000, guid: 11d9ef7f3c06cc342bd467bdbcd16c0d, type: 2}
+  - TimeIf: {x: 800, y: 1000}
+    OtherIfs: []
+    AtkSlot: 1
+    AtkD: {fileID: 11400000, guid: 375746371fc31ab4f93c96c59d008af0, type: 2}
+  - TimeIf: {x: 1100, y: 1200}
+    OtherIfs: []
+    AtkSlot: 3
+    AtkD: {fileID: 11400000, guid: 1cb3a6009f397724fb31c0d9421abe54, type: 2}
+  - TimeIf: {x: 1300, y: 1500}
+    OtherIfs: []
+    AtkSlot: 1
+    AtkD: {fileID: 11400000, guid: 375746371fc31ab4f93c96c59d008af0, type: 2}
+  - TimeIf: {x: 1600, y: 1700}
+    OtherIfs: []
+    AtkSlot: 4
+    AtkD: {fileID: 11400000, guid: a576259fd693fe740811677a70bfc1a3, type: 2}
+  TimerLim: 1800
+  NoTargetResetTime: 0

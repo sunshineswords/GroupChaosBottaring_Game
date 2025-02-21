@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using static BattleManager;
 public class UI_BattleBase : MonoBehaviour
 {
+    [SerializeField] GameObject InfoUI;
     [SerializeField] TextMeshProUGUI TimeTx;
     [SerializeField] TextMeshProUGUI DeathTx;
     [SerializeField] List<UI_Sin_BossUI> BossUIs;
@@ -15,15 +16,19 @@ public class UI_BattleBase : MonoBehaviour
 
     void LateUpdate()
     {
-        TimeTx.text = (BTManager.Time / 3600).ToString("D2") + ":" + (BTManager.Time / 60 % 60).ToString("D2");
-        DeathTx.text = "Death:" + BTManager.DeathCount;
+        if (BTManager.TimeLimSec > 0)
+        {
+            InfoUI.SetActive(true);
+            TimeTx.text = (BTManager.Time / 3600).ToString("D2") + ":" + (BTManager.Time / 60 % 60).ToString("D2");
+            DeathTx.text = "Death:" + BTManager.DeathCount;
 
-        TimeStarTx.text = (BTManager.Time >= BTManager.TimeStar * 60 ? "★" : "☆");
-        TimeStarTx.text += (BTManager.TimeStar / 60).ToString("D2") + ":" + (BTManager.TimeStar % 60).ToString("D2");
+            TimeStarTx.text = (BTManager.Time >= BTManager.TimeStar * 60 ? "★" : "☆");
+            TimeStarTx.text += (BTManager.TimeStar / 60).ToString("D2") + ":" + (BTManager.TimeStar % 60).ToString("D2");
 
-        DeathStarTx.text = (BTManager.DeathCount < BTManager.DeathStar ? "★" : "☆");
-        DeathStarTx.text += "Death:" + BTManager.DeathStar;
-
+            DeathStarTx.text = (BTManager.DeathCount < BTManager.DeathStar ? "★" : "☆");
+            DeathStarTx.text += "Death:" + BTManager.DeathStar;
+        }
+        else InfoUI.SetActive(false);
         for (int i = 0; i < Mathf.Max(BossUIs.Count, BTManager.BossList.Count); i++)
         {
             if (i < BTManager.BossList.Count)

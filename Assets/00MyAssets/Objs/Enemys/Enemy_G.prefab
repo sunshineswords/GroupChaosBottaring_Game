@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 2049415607464157120}
   - component: {fileID: 5206309696311436553}
   - component: {fileID: 466128821954756127}
+  - component: {fileID: 1591256124578168889}
   m_Layer: 7
   m_Name: Enemy_G
   m_TagString: Untagged
@@ -108,7 +109,6 @@ Transform:
   - {fileID: 4421319564007628912}
   - {fileID: 981339803735981756}
   - {fileID: 8823589140426962884}
-  - {fileID: 4771423146545183970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6544934709698599726
@@ -211,6 +211,7 @@ MonoBehaviour:
   Rig: {fileID: 6544934709698599726}
   CamTrans: {fileID: 8851893093483233145}
   Hight: 1
+  SizeAdd: 0
   Team: 1
   Player: 0
   Boss: 0
@@ -224,13 +225,13 @@ MonoBehaviour:
     Volume: 100
     Pitch: 100
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
-  MHP: 1000000
+  MHP: 500000
   HPRegene: 100000
   MMP: 0
   MPRegene: 0
   SPRegene: 10
   Atk: 150000
-  Def: 20
+  Def: 100000
   HP: 0
   MP: 0
   SP: 0
@@ -262,7 +263,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3138562507945577928}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: f10b1af5d05e4e948ad109c6cf0abb56, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -291,8 +292,23 @@ MonoBehaviour:
   Sta: {fileID: 2049415607464157120}
   SpeedRem: 0
   NearDis: {x: 10, y: 12}
-  MoveSpeed: 50
+  MoveSpeed: 20
   LerpSpeed: 60
+--- !u!114 &1591256124578168889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138562507945577928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1adfaabcd71e6ce4cb52500259cc3f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sta: {fileID: 2049415607464157120}
+  EnemyAI: {fileID: 11400000, guid: b00dd24548d4e4f40a74603001d3d116, type: 2}
+  timer: 0
 --- !u!1 &4350126102488607792
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,58 +377,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.5, y: 1, z: 3.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &6866279282261125627
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4771423146545183970}
-  - component: {fileID: 5357656220883819763}
-  m_Layer: 0
-  m_Name: AtkAI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4771423146545183970
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866279282261125627}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8851893093483233145}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5357656220883819763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6866279282261125627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1adfaabcd71e6ce4cb52500259cc3f23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Sta: {fileID: 2049415607464157120}
-  AtkAIs:
-  - TimeIf: {x: 0, y: 0}
-    OtherIfs: []
-    AtkSlot: 0
-    AtkD: {fileID: 11400000, guid: 7a51e3bcf99676345b060ce3c22000dc, type: 2}
-  TimerLim: 0
-  NoTargetResetTime: 0
 --- !u!1001 &1544550461700310150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -495,6 +459,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Model_G
       objectReference: {fileID: 0}
+    - target: {fileID: 6980702683957590785, guid: 5325de202baf8ff4694b7335e13561fa, type: 3}
+      propertyPath: Sta
+      value: 
+      objectReference: {fileID: 2049415607464157120}
     - target: {fileID: 7338699090716222000, guid: 5325de202baf8ff4694b7335e13561fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

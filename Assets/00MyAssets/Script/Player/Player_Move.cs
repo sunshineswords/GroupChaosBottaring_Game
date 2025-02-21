@@ -28,7 +28,6 @@ public class Player_Move : MonoBehaviourPun
   
     Vector3 DashVect;
     Vector3 PosBase;
-    Vector3 BaseCamLPos;
     private void Start()
     {
         if (!photonView.IsMine) return;
@@ -36,7 +35,6 @@ public class Player_Move : MonoBehaviourPun
         float SpeedAdd = 1f + PriSetGet.PassiveLVGet(Enum_Passive.速度増加) * 10f;
         MoveSpeed *= SpeedAdd;
         DashSpeed *= SpeedAdd;
-        BaseCamLPos = CamPosTrans.localPosition;
     }
     private void Update()
     {
@@ -51,12 +49,21 @@ public class Player_Move : MonoBehaviourPun
         CamRotTrans.eulerAngles = CamRot;
         CamRotTrans.position = Sta.Rig.position + (Vector3.up * CamHight);
 
-        float CamDis = BaseCamLPos.magnitude;
-        foreach(var RayHit in Physics.SphereCastAll(CamRotTrans.position,0.2f,CamPosTrans.position - CamRotTrans.position, CamDis, DB.CamLayer))
+
+        if (Sta.AtkD != null && Sta.Aiming)
         {
-            if (CamDis > RayHit.distance)CamDis = RayHit.distance;
+            CamPosTrans.localPosition = Vector3.Lerp(CamPosTrans.localPosition, PosBase * ZomeDis * 0.01f, ZomeSpeed * 0.01f);
+
         }
-        CamPosTrans.localPosition = BaseCamLPos.normalized * CamDis;
+        else
+        {
+            float CamDis = PosBase.magnitude;
+            foreach (var RayHit in Physics.SphereCastAll(CamRotTrans.position, 0.2f, CamPosTrans.position - CamRotTrans.position, CamDis, DB.CamLayer))
+            {
+                if (CamDis > RayHit.distance) CamDis = RayHit.distance;
+            }
+            CamPosTrans.localPosition = Vector3.Lerp(CamPosTrans.localPosition, PosBase.normalized * CamDis, ZomeSpeed * 0.01f);
+        }
 
         #endregion
         var RigVect = Sta.Rig.linearVelocity;
@@ -127,11 +134,9 @@ public class Player_Move : MonoBehaviourPun
             var LookRot = Cam.transform.eulerAngles;
             LookRot.x = 0;
             Sta.Rig.transform.eulerAngles = LookRot;
-            CamPosTrans.localPosition = Vector3.Lerp(CamPosTrans.localPosition, PosBase * ZomeDis * 0.01f, ZomeSpeed * 0.01f);
         }
         else
         {
-            CamPosTrans.localPosition = Vector3.Lerp(CamPosTrans.localPosition, PosBase, ZomeSpeed * 0.01f);
             if (Sta.TargetHit != null)
             {
                 var TargetVect = Sta.TargetHit.PosGet() - Sta.Rig.transform.position;

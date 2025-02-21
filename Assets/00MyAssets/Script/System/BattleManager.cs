@@ -1,4 +1,5 @@
 ﻿using Photon.Pun;
+using Photon.Realtime;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     public int Star;
     public bool Win;
     public bool End;
+    public List<string> Messages = new List<string>();
     [System.NonSerialized] public List<State_Base> StateList = new List<State_Base>();
     [System.NonSerialized] public List<State_Hit> HitList = new List<State_Hit>();
     [System.NonSerialized] public List<State_Base> PlayerList = new List<State_Base>();
@@ -63,7 +65,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
                 Win = WaveCheck;
                 if(WaveCheck)End = true;
             }
-            if (TimeLimSec < 0) End = false;
+            if (TimeLimSec <= 0) End = false;
             Star = 3;
             if (Time <= TimeStar * 60) Star--;
             if (DeathCount > DeathStar) Star--;
@@ -96,6 +98,10 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
         if (!Local) photonView.RPC(nameof(RPC_SEPlay), RpcTarget.All, SEID, Pos, Volume, Pitch);
         else RPC_SEPlay(SEID, Pos, Volume, Pitch);
     }
+    public void MessageAdd(string Message)
+    {
+        photonView.RPC(nameof(RPC_MessageAdd), RpcTarget.All,Message);
+    }
     [PunRPC]
     void RPC_DeathAdd()
     {
@@ -117,6 +123,15 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
             SEObj.Play();
             Destroy(SEObj.gameObject, 10f);
         }
+    }
+    [PunRPC]
+    void RPC_MessageAdd(string Message)
+    {
+        Messages.Add(Message);
+    }
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Messages.Add(otherPlayer.NickName + "\\が退室しました");
     }
     void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info)
     {

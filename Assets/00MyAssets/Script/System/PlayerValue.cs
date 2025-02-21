@@ -14,13 +14,14 @@ public class PlayerValue
     {
         var PSaves_Json = JsonUtility.ToJson(PSaves);
         SaveFile("PSaves.data",PSaves_Json);
-        Debug.Log(PSaves_Json);
+        var DebugStr = "SaveJson\n(PSaves)\n" + PSaves_Json;
         for (int i = 0; i < PriSets.Length; i++)
         {
             var PriSet_Json = JsonUtility.ToJson(PriSets[i]);
             SaveFile("Priset_"+(i+1)+".data", PriSet_Json);
-            Debug.Log("PriSet_" + i + ":" + PriSet_Json);
+            DebugStr += "\n(PriSet_" + (i + 1) + ")\n" + PriSet_Json;
         }
+        Debug.Log(DebugStr);
     }
     static public void Load()
     {
