@@ -7,7 +7,6 @@ using static DataBase;
 using static BattleManager;
 using static Manifesto;
 using static Calculation;
-using static UnityEditor.PlayerSettings;
 
 public class State_Atk
 {

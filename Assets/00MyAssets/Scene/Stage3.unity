@@ -470,13 +470,11 @@ MonoBehaviour:
     - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
     Pos: []
   - Enemys:
-    - {fileID: 3138562507945577928, guid: 29bf505f8834bba4a9df203e6bb8a887, type: 3}
+    - {fileID: 3138562507945577928, guid: 3319fc5efce7c9d48a7352e8abc431a7, type: 3}
+    - {fileID: 3138562507945577928, guid: 3319fc5efce7c9d48a7352e8abc431a7, type: 3}
     Pos: []
   - Enemys:
-    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
-    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
-    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
-    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
+    - {fileID: 3138562507945577928, guid: 29bf505f8834bba4a9df203e6bb8a887, type: 3}
     Pos: []
 --- !u!114 &1371921339
 MonoBehaviour:
