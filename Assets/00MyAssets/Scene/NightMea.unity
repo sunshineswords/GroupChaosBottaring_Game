@@ -629,25 +629,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clear: 0
   Wave: 0
+  GizmosWave: 3
   Waves:
   - Enemys:
     - {fileID: 3138562507945577928, guid: 858796c6ba2fe744a82cf74c45a5df80, type: 3}
     Pos: []
-  - Enemys:
-    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
-    Pos: []
-  - Enemys:
-    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
-    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
-    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
-    Pos: []
+    HPMult: []
+    AtkMult: []
   - Enemys:
     - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
     - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
     - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
+    Pos:
+    - {x: 0, y: 0, z: -3}
+    - {x: 8, y: 0, z: 0}
+    - {x: -8, y: 0, z: 0}
+    HPMult: []
+    AtkMult: []
+  - Enemys:
     - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
+    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
+    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
+    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
+    - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
+    Pos:
+    - {x: 15, y: 0, z: -10}
+    - {x: 7.5, y: 0, z: -5}
+    - {x: 0, y: 0, z: 0}
+    - {x: -7.5, y: 0, z: -5}
+    - {x: -15, y: 0, z: -10}
+    HPMult: []
+    AtkMult: []
+  - Enemys:
     - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
     Pos: []
+    HPMult:
+    - 430
+    AtkMult:
+    - 430
 --- !u!23 &1807571186
 MeshRenderer:
   m_ObjectHideFlags: 0

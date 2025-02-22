@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Calculation : MonoBehaviour
 {
-    public const string TooltipStr = "文字列計算式(例)U.Atkdfm" +
+    public const string TooltipStr = "文字列計算式(例)U.ATKdfmT.DEF[自攻撃力{防計}敵防御]" +
         "\n演算式\n[max=左右の大きい値][min=左右の小さい値][or=左右を50%の確率でどちらか][dfm=防御計算]" +
         "\nステータス値\n[U=使用者][T=対象者]+\n[.HP=現在HP][.MHP=最大HP][.MP=現在MP][.MMP=最大MP][.ATK=攻撃力][.DEF=防御]";
     [TextArea] public string Cals;
@@ -225,7 +225,7 @@ public class Calculation : MonoBehaviour
         Get = Get.Replace("max-", "|m_aneg");
         Get = Get.Replace("min-", "|m_inneg");
         Get = Get.Replace("or-", "|o_rneg");
-        Get = Get.Replace("dfm", "|d_mneg");
+        Get = Get.Replace("dfm-", "|d_mneg");
         //乗算
         Get = Get.Replace("^-", "|powneg");
         //掛除
@@ -265,7 +265,7 @@ public class Calculation : MonoBehaviour
         Get = Get.Replace("m_aneg", "max-");
         Get = Get.Replace("m_inneg", "min-");
         Get = Get.Replace("o_rneg", "or-");
-        Get = Get.Replace("d_mneg", "dfm");
+        Get = Get.Replace("d_mneg", "dfm-");
         //乗算
         Get = Get.Replace("powneg", "^-");
         //掛除
@@ -300,7 +300,7 @@ public class Calculation : MonoBehaviour
                 string Ope;
                 try { Ope = OpeCuts[i].Substring(0, 3); }
                 catch { Ope = ""; }
-                if (Ope == "rnd" || Ope == "m_a" || Ope == "m_i" || Ope == "o_r")
+                if (Ope == "rnd" || Ope == "m_a" || Ope == "m_i" || Ope == "o_r"||Ope=="d_m")
                 {
                     var Val1 = GetValue(OpeCuts[i - 1], Sta1, Sta2);
                     var Val2 = GetValue(OpeCuts[i], Sta1, Sta2);

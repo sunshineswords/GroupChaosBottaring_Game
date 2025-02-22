@@ -49,10 +49,10 @@ MonoBehaviour:
   Bufs: []
   WeponSets: []
   Anims:
-  - EditDisp: '[0]BNum:0Time:(0, 60)ID:1'
+  - EditDisp: '[0]BNum:0Time:(0, 60)ID:2'
     BranchNum: 0
     Times: {x: 0, y: 60}
-    ID: 1
+    ID: 2
     Speed: 150
   SEPlays:
   - BranchNum: 0

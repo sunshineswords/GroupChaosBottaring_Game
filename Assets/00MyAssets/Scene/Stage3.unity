@@ -456,6 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Clear: 0
   Wave: 0
+  GizmosWave: 2
   Waves:
   - Enemys:
     - {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
@@ -464,15 +465,25 @@ MonoBehaviour:
     - {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
     - {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
     - {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
-    Pos: []
+    Pos:
+    - {x: 4, y: 0, z: 0}
+    - {x: 8, y: 0, z: 0}
+    - {x: 12, y: 0, z: 0}
+    - {x: -4, y: 0, z: 0}
+    - {x: -8, y: 0, z: 0}
+    - {x: -12, y: 0, z: 0}
   - Enemys:
     - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
     - {fileID: 3138562507945577928, guid: f989ebe2c364d1441b5f84d34e128277, type: 3}
-    Pos: []
+    Pos:
+    - {x: 3, y: 0, z: 0}
+    - {x: -3, y: 0, z: 0}
   - Enemys:
     - {fileID: 3138562507945577928, guid: 3319fc5efce7c9d48a7352e8abc431a7, type: 3}
     - {fileID: 3138562507945577928, guid: 3319fc5efce7c9d48a7352e8abc431a7, type: 3}
-    Pos: []
+    Pos:
+    - {x: 5, y: 0, z: 0}
+    - {x: -5, y: 0, z: 0}
   - Enemys:
     - {fileID: 3138562507945577928, guid: 29bf505f8834bba4a9df203e6bb8a887, type: 3}
     Pos: []

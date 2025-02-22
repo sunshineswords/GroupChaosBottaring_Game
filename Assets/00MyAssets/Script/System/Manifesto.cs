@@ -307,6 +307,8 @@ static public class Manifesto
     {
         public GameObject[] Enemys;
         public Vector3[] Pos;
+        public float[] HPMult;
+        public float[] AtkMult;
     }
     [System.Serializable]
     public class Class_Shot_Move
