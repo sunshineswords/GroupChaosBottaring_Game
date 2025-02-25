@@ -13,10 +13,6 @@ public class ImageAnimation_Gabu : UISystem_Gabu
     #region 関数
     protected override void NormalAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         if (_disabledImage != null)
         {
             _disabledImage.color = new Color(0f, 0f, 0f, 0f);
@@ -28,10 +24,6 @@ public class ImageAnimation_Gabu : UISystem_Gabu
 
     protected override void HighlightedAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         if (_disabledImage != null)
         {
             _disabledImage.color = new Color(0f, 0f, 0f, 0f);
@@ -43,25 +35,17 @@ public class ImageAnimation_Gabu : UISystem_Gabu
 
     protected override void PressedAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         if (_disabledImage != null)
         {
             _disabledImage.color = new Color(0f, 0f, 0f, 0f);
         }
-
+        Debug.Log("PressedAnimation");
         _transform.DOScale(_unitScale * _pressedScaleMultiplier, _pressedScaleDuration).SetEase(_pressedEase);
         image.DOColor(_pressedColor, _pressedScaleDuration);
     }
 
     protected override void SelectedAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         if (_disabledImage != null)
         {
             _disabledImage.color = new Color(0f, 0f, 0f, 0f);
@@ -73,11 +57,6 @@ public class ImageAnimation_Gabu : UISystem_Gabu
 
     protected override void DisabledAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
-
         _transform.DOScale(_unitScale * _disabledScaleMultiplier, _disabledScaleDuration).SetEase(_disabledEase);
         image.DOColor(_disabledColor, _disabledScaleDuration);
 

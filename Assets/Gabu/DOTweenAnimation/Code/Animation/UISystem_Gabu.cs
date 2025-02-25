@@ -125,55 +125,32 @@ public class UISystem_Gabu : ColorSystem
 
     protected virtual void NormalAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         _transform.DOScale(_unitScale, _normalScaleDuration).SetEase(_normalEase);
     }
 
     protected virtual void HighlightedAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         _transform.DOScale(_unitScale * _highlightedScaleMultiplier, _highlightedScaleDuration).SetEase(_highlightedEase);
     }
 
     protected virtual void PressedAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         _transform.DOScale(_unitScale * _pressedScaleMultiplier, _pressedScaleDuration).SetEase(_pressedEase);
     }
 
     protected virtual void SelectedAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         _transform.DOScale(_unitScale * _selectedScaleMultiplier, _selectedScaleDuration).SetEase(_selectedEase);
-
     }
 
     protected virtual void DisabledAnimation()
     {
-        if (_i_currentAnimation == _i_lastAnimation)
-        {
-            return;
-        }
         _transform.DOScale(_unitScale, _disabledScaleDuration).SetEase(_disabledEase);
-
     }
 
     public void UpdateAnimation(int _i_currentAnimation)
     {
         if (_i_lastAnimation == _i_currentAnimation) return;
-
         switch (_i_currentAnimation)
         {
             case (int)AnimatorStatu.Normal:
@@ -208,6 +185,7 @@ public class UISystem_Gabu : ColorSystem
         {
             return;
         }
+            Debug.Log("not return");
         UpdateAnimation((int)newStatu);
     }
 
