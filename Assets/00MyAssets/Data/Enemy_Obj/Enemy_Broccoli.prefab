@@ -360,13 +360,14 @@ MonoBehaviour:
   HP: 0
   MP: 0
   SP: 0
+  Ground: 0
   DeathTime: 0
+  Target: {fileID: 0}
+  TargetHit: {fileID: 0}
+  Bufs: []
   LowMP: 0
   DashTime: 0
   GroundB: 0
-  Ground: 0
-  Target: {fileID: 0}
-  TargetHit: {fileID: 0}
   AtkD: {fileID: 0}
   AtkSlot: 0
   AtkTime: 0
@@ -380,7 +381,6 @@ MonoBehaviour:
   Anim_AtkID: 0
   Anim_AtkSpeed: 0
   Anim_OtherID: 0
-  Bufs: []
 --- !u!114 &7598547461402963404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,10 +394,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  SpeedRem: 15
+  SpeedRem: 10
   NearDis: {x: 6, y: 15}
-  MoveSpeed: 3
+  MoveSpeed: {x: 50, y: 0}
   LerpSpeed: 5
+  SideSpeed: {x: 25, y: 25}
+  SideChangePer: 8
 --- !u!114 &7140868982649933936
 MonoBehaviour:
   m_ObjectHideFlags: 0

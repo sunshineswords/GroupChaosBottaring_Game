@@ -22,15 +22,9 @@ MonoBehaviour:
       Speed: {x: 0, y: 0}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: -1
-        RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots: []
     Hits:
     - EditDisp: 
       BranchNum: 1
@@ -40,12 +34,7 @@ MonoBehaviour:
       Heals: 0
       DamageType: 5
       ShortAtk: 0
-      BaseDam: 0
-      MHPDamPer: 0
-      HPDamPer: 0
-      AtkDamPer: 30
-      DefDamPer: 0
-      DefRemPer: 0
+      DamCalc: (U.ATKdfmT.DEF)*0.3
       SPAdd: 0
       BufSets: []
     - EditDisp: 
@@ -56,12 +45,7 @@ MonoBehaviour:
       Heals: 0
       DamageType: 5
       ShortAtk: 0
-      BaseDam: 0
-      MHPDamPer: 0
-      HPDamPer: 0
-      AtkDamPer: 60
-      DefDamPer: 0
-      DefRemPer: 0
+      DamCalc: (U.ATKdfmT.DEF)*0.6
       SPAdd: 0
       BufSets: []
     - EditDisp: 
@@ -72,12 +56,7 @@ MonoBehaviour:
       Heals: 0
       DamageType: 5
       ShortAtk: 0
-      BaseDam: 0
-      MHPDamPer: 0
-      HPDamPer: 0
-      AtkDamPer: 90
-      DefDamPer: 0
-      DefRemPer: 0
+      DamCalc: (U.ATKdfmT.DEF)*0.9
       SPAdd: 0
       BufSets: []
     - EditDisp: 
@@ -88,12 +67,7 @@ MonoBehaviour:
       Heals: 0
       DamageType: 5
       ShortAtk: 0
-      BaseDam: 0
-      MHPDamPer: 0
-      HPDamPer: 0
-      AtkDamPer: 120
-      DefDamPer: 0
-      DefRemPer: 0
+      DamCalc: (U.ATKdfmT.DEF)*1.2
       SPAdd: 0
       BufSets: []
     HitCT: 0

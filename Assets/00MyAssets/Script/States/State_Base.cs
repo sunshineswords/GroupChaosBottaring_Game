@@ -8,40 +8,74 @@ using System.Linq;
 using static PlayerValue;
 using static Manifesto;
 using static Calculation;
+using NaughtyAttributes;
 public class State_Base : MonoBehaviourPun,IPunObservable
 {
-    [Header("設定")]
-    public string Name;
-    public Rigidbody Rig;
-    public Transform CamTrans;
-    public float Hight;
-    public float SizeAdd;
-    [Tooltip("チーム")] public int Team;
-    [Tooltip("プレイヤー")] public bool Player;
-    [Tooltip("ボス")] public bool Boss;
-    [Tooltip("不死")] public bool Undet;
-    public Class_Base_SEPlay DamageSE;
-    public Class_Base_SEPlay DeathSE;
-    [Tooltip("死亡エフェクト")] public GameObject DeathEffect;
-    [Header("ステータス")]
-    [Tooltip("最大HP")]public int MHP;
-    [Tooltip("秒間HP回復速度")] public float HPRegene;
-    [Tooltip("最大MP(移動力)")] public int MMP;
-    [Tooltip("秒間MP回復速度")] public float MPRegene;
-    [Tooltip("秒間SP回復速度")] public float SPRegene;
-    [Tooltip("攻撃力")] public int Atk;
-    [Tooltip("防御力")] public int Def;
-    [Header("変数")]
-    public float HP;
-    public float MP;
-    public float SP;
-    public int DeathTime;
+    #region インスペクター変数
+    [Foldout("設定")]public string Name;
+    [Foldout("設定")] public Rigidbody Rig;
+    [Foldout("設定")] public Transform CamTrans;
+    [Foldout("設定")] public float Hight;
+    [Foldout("設定")] public float SizeAdd;
+    [Foldout("設定"),Tooltip("チーム")] public int Team;
+    [Foldout("設定"), Tooltip("プレイヤー")] public bool Player;
+    [Foldout("設定"), Tooltip("ボス")] public bool Boss;
+    [Foldout("設定"), Tooltip("不死")] public bool Undet;
+    [Foldout("設定")] public Class_Base_SEPlay DamageSE;
+    [Foldout("設定")] public Class_Base_SEPlay DeathSE;
+    [Foldout("設定"), Tooltip("死亡エフェクト")] public GameObject DeathEffect;
+    //
+    [Foldout("ステータス"), Tooltip("最大HP")]public int MHP;
+    [Foldout("ステータス"), Tooltip("秒間HP回復速度")] public float HPRegene;
+    [Foldout("ステータス"), Tooltip("最大MP(移動力)")] public int MMP;
+    [Foldout("ステータス"), Tooltip("秒間MP回復速度")] public float MPRegene;
+    [Foldout("ステータス"), Tooltip("秒間SP回復速度")] public float SPRegene;
+    [Foldout("ステータス"), Tooltip("攻撃力")] public int Atk;
+    [Foldout("ステータス"), Tooltip("防御力")] public int Def;
+    //
+    [Foldout("数値")]public float HP;
+    [Foldout("数値")] public float MP;
+    [Foldout("数値")] public float SP;
+    [Foldout("数値")] public bool Ground;
+    [Foldout("数値")] public int DeathTime;
+    [Foldout("数値")] public State_Base Target;
+    [Foldout("数値")] public State_Hit TargetHit;
+    [Foldout("数値")] public List<Class_Sta_BufInfo> Bufs = new List<Class_Sta_BufInfo>();
+    //
 
-    public bool LowMP;
+    [Foldout("変数")] public bool LowMP;
+    [Foldout("変数")] public int DashTime;
+    [Foldout("変数")] public bool GroundB;
 
-    public int DashTime;
-    public bool GroundB;
-    public bool Ground;
+    [Foldout("変数")] public Data_Atk AtkD;
+    [Foldout("変数")] public int AtkSlot;
+    [Foldout("変数")] public int AtkTime;
+    [Foldout("変数")] public int AtkBranch;
+
+    [Foldout("変数")] public float SpeedRem;
+    [Foldout("変数")] public bool NoJump;
+    [Foldout("変数")] public bool NoDash;
+    [Foldout("変数")] public bool Aiming;
+    [Foldout("変数")] public bool NGravity;
+
+    [Foldout("変数")] public int Anim_MoveID;
+    [Foldout("変数")] public int Anim_AtkID;
+    [Foldout("変数")] public float Anim_AtkSpeed;
+    [Foldout("変数")] public int Anim_OtherID;
+
+    #endregion
+    #region 内部変数
+    public Dictionary<int,int> WeponSets = new Dictionary<int, int>();
+    public Dictionary<int, Vector3> WeponPoss = new Dictionary<int, Vector3>();
+    public Dictionary<int, Vector3> WeponRots = new Dictionary<int, Vector3>();
+    public Dictionary<int,Class_Sta_AtkCT> AtkCTs = new Dictionary<int,Class_Sta_AtkCT>();
+    public Dictionary<int,GameObject> BufEffects = new Dictionary<int,GameObject>();
+    public Dictionary<int, int> LocalCTs = new Dictionary<int, int>();
+    [System.NonSerialized] public int AddTimer = 0;
+    [System.NonSerialized] public int[] AddDams = new int[10];
+    [System.NonSerialized] public float AddDamTotal = 0;
+    [System.NonSerialized] public int[] AddHits = new int[10];
+    [System.NonSerialized] public float AddHitTotal = 0;
 
     public int FMHP
     {
@@ -78,35 +112,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             return Mathf.RoundToInt(FVal);
         }
     }
-
-    public State_Base Target;
-    public State_Hit TargetHit;
-
-    public Data_Atk AtkD;
-    public int AtkSlot;
-    public int AtkTime;
-    public int AtkBranch;
-
-    public float SpeedRem;
-    public bool NoJump;
-    public bool NoDash;
-    public bool Aiming;
-    public bool NGravity;
-
-    public Dictionary<int,int> WeponSets = new Dictionary<int, int>();
-    public Dictionary<int, Vector3> WeponPoss = new Dictionary<int, Vector3>();
-    public Dictionary<int, Vector3> WeponRots = new Dictionary<int, Vector3>();
-
-    public int Anim_MoveID;
-    public int Anim_AtkID;
-    public float Anim_AtkSpeed;
-    public int Anim_OtherID;
-
-    public Dictionary<int,Class_Sta_AtkCT> AtkCTs = new Dictionary<int,Class_Sta_AtkCT>();
-    public List<Class_Sta_BufInfo> Bufs = new List<Class_Sta_BufInfo>();
-    public Dictionary<int,GameObject> BufEffects = new Dictionary<int,GameObject>();
-    public Dictionary<int, int> LocalCTs = new Dictionary<int, int>();
-
+    #endregion
     private void Start()
     {
         if (!photonView.IsMine) return;
@@ -164,8 +170,194 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         LocalCTRems();
         AtkPlays(CamTrans.eulerAngles);
         if (Rig) Rig.useGravity = !NGravity;
+        if (Player) AddInfoChange();
+    }
+    #region 内部メソッド
+    void Deletes()
+    {
+        photonView.RPC(nameof(RPC_DeathEffect), RpcTarget.All);
+        PhotonNetwork.Destroy(gameObject);
+    }
+    void AtkPlays(Vector3 CamRot)
+    {
+        #region CT減少
+        var CTKeys = AtkCTs.Keys.ToArray();
+        for (int i = 0; i < CTKeys.Length; i++)
+        {
+            AtkCTs[CTKeys[i]].CT--;
+            if (AtkCTs[CTKeys[i]].CT <= 0) AtkCTs.Remove(CTKeys[i]);
+        }
+        #endregion
+        var WeponKeys = WeponSets.Keys.ToArray();
+        for (int i = 0; i < WeponKeys.Length; i++)
+        {
+            WeponSets[WeponKeys[i]] = -1;
+        }
+        SpeedRem = 0;
+        NoJump = false;
+        NoDash = false;
+        Aiming = false;
+        NGravity = false;
+        #region スキル処理
+        if (HP <= 0) AtkD = null;
+        Anim_AtkID = 0;
+        Anim_AtkSpeed = 1;
+        if (AtkD == null)
+        {
+            AtkTime = 0;
+            return;
+        }
+        State_Atk.Fixed(this);
+        State_Atk.Shot(this, PosGet(), RotGet(), CamRot);
+        State_Atk.Move(this, CamRot);
+        State_Atk.State(this);
+        State_Atk.Buf(this);
+        State_Atk.WeponSet(this);
+        State_Atk.Anim(this);
+        State_Atk.SEPlay(this);
+        AtkTime++;
+        if (AtkTime > AtkD.EndTime) AtkD = null;
+        #endregion
+    }
+    void StateDeaths()
+    {
+        var GutsLV = BufPowGet(Enum_Bufs.根性);
+        if (GutsLV <= 0)
+        {
+            if (Player)
+            {
+                if (DeathTime == 0)
+                {
+                    BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
+                    BTManager.DeathAdd();
+                    BTManager.MessageAdd("<color=#FF0000>" + Name + "</color>\\<color=#FF0000>は倒れた!!!</color>");
+                    var DeathPowLV = PriSetGet.PassiveLVGet(Enum_Passive.死に力);
+                    if (DeathPowLV > 0)
+                    {
+                        BufSets(Enum_Bufs.攻撃増加, -1000, Enum_BufSet.付与増加, 0, DeathPowLV * 5);
+                    }
+                }
+                if (DeathTime >= 300) HP = FMHP;
+            }
+            else if (Undet)
+            {
+                if (DeathTime >= 300) HP = FMHP;
+            }
+            else if (!Boss)
+            {
+                if (DeathTime >= 60)
+                {
+                    BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
+                    Deletes();
+                }
+            }
+            else
+            {
+                if (DeathTime == 0) BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
+            }
+        }
+        else
+        {
+            BufPowRem(Enum_Bufs.根性, 1);
+            HP = 1;
+        }
+        DeathTime++;
+        DashTime = 0;
+    }
+    void LivesTimes()
+    {
+        HP += HPRegene / 60f;
+        HP -= BufPowGet(Enum_Bufs.毒) / 60f;
+        HP = Mathf.Clamp(HP, 1, FMHP);
+        SP += SPRegene / 60f;
+        DeathTime = 0;
+        if (Player)
+        {
+            var GutLV = PriSetGet.PassiveLVGet(Enum_Passive.根性);
+            if (GutLV > 0 && !BufCheck(Enum_Bufs.根性CT))
+            {
+                BufSets(Enum_Bufs.根性, -1000, Enum_BufSet.付与, 0, GutLV);
+                BufSets(Enum_Bufs.根性CT, -1000, Enum_BufSet.付与, 60 * 15, 0);
+            }
+        }
+    }
+    void BufTimeRems()
+    {
+        for (int i = Bufs.Count - 1; i >= 0; i--)
+        {
+            var Bufi = Bufs[i];
+            if (Bufi.TimeMax <= 0) continue;
+            Bufi.Time--;
+            if (Bufi.Time <= 0) Bufs.RemoveAt(i);
+        }
+    }
+    void LocalCTRems()
+    {
+        var LocalKeys = LocalCTs.Keys.ToArray();
+        for (int i = 0; i < LocalKeys.Length; i++)
+        {
+            LocalCTs[LocalKeys[i]]--;
+            if (LocalCTs[LocalKeys[i]] <= 0) LocalCTs.Remove(LocalKeys[i]);
+        }
+    }
+    void BufEffectSet()
+    {
+        var BufKeys = BufEffects.Keys.ToArray();
+        for (int i = 0; i < BufKeys.Length; i++)
+        {
+            var BufGet = Bufs.Find(x => x.ID == BufKeys[i]);
+            if (BufGet == null)
+            {
+                Destroy(BufEffects[BufKeys[i]]);
+                BufEffects.Remove(BufKeys[i]);
+            }
+        }
+        for (int i = 0; i < Bufs.Count; i++)
+        {
+            var Bufi = Bufs[i];
+            var BufD = DB.Bufs.Find(x => (int)x.Buf == Bufi.ID);
+            if (BufD != null && !BufEffects.ContainsKey(Bufi.ID))
+            {
+                var EffectIns = Instantiate(BufD.EffectObj, PosGet(), Quaternion.identity);
+                EffectIns.transform.localScale = Vector3.one * (1f + SizeAdd * 0.01f);
+                EffectIns.transform.parent = Rig != null ? Rig.transform : transform;
+                BufEffects.Add(Bufi.ID, EffectIns);
+            }
+        }
+    }
+    void BufPowRem(Enum_Bufs BufID, int Val)
+    {
+        for (int i = Bufs.Count - 1; i >= 0; i--)
+        {
+            var Bufi = Bufs[i];
+            if (Bufi.ID == (int)BufID)
+            {
+                var Vald = Val;
+                Val -= Bufi.Pow;
+                Bufi.Pow -= Vald;
+                if (Bufi.Pow <= 0) Bufs.Remove(Bufi);
+            }
+            if (Val <= 0) return;
+        }
     }
 
+    void AddInfoChange()
+    {
+        AddTimer++;
+        if(AddTimer >= 60)
+        {
+            AddTimer = 0;
+            for (int i = AddDams.Length - 1; i > 0; i--)
+            {
+                AddDams[i] = AddDams[i - 1];
+                AddHits[i] = AddHits[i - 1];
+            }
+            AddDams[0] = 0;
+            AddHits[0] = 0;
+        }
+    }
+    #endregion
+    #region 呼び出しメソッド
     public Vector3 PosGet()
     {
         if (Rig != null) return Rig.position + Vector3.up * Hight;
@@ -293,12 +485,26 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             }
         }
     }
-
-    void Deletes()
+    public void AddInfoAdd(int Dam)
     {
-        photonView.RPC(nameof(RPC_DeathEffect), RpcTarget.All);
-        PhotonNetwork.Destroy(gameObject);
+        AddDamTotal += Dam;
+        AddDams[0]+=Dam;
+        AddHitTotal++;
+        AddHits[0]++;
     }
+    public void AddInfoReset()
+    {
+        AddTimer = 0;
+        for(int i = 0; i < AddDams.Length; i++)
+        {
+            AddDams[i] = 0;
+            AddHits[i] = 0;
+        }
+        AddDamTotal = 0;
+        AddHitTotal = 0;
+    }
+    #endregion
+    #region RPCメソッド
     [PunRPC]
     void RPC_Damage(Vector3 HitPos, int Val)
     {
@@ -405,172 +611,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
         else if (Bufi != null) Bufs.Remove(Bufi);
     }
-
-
-    void AtkPlays(Vector3 CamRot)
-    {
-        #region CT減少
-        var CTKeys = AtkCTs.Keys.ToArray();
-        for (int i = 0; i < CTKeys.Length; i++)
-        {
-            AtkCTs[CTKeys[i]].CT--;
-            if (AtkCTs[CTKeys[i]].CT <= 0) AtkCTs.Remove(CTKeys[i]);
-        }
-        #endregion
-        var WeponKeys = WeponSets.Keys.ToArray();
-        for (int i = 0; i < WeponKeys.Length; i++)
-        {
-            WeponSets[WeponKeys[i]] = -1;
-        }
-        SpeedRem = 0;
-        NoJump = false;
-        NoDash = false;
-        Aiming = false;
-        NGravity = false;
-        #region スキル処理
-        if (HP <= 0) AtkD = null;
-        Anim_AtkID = 0;
-        Anim_AtkSpeed = 1;
-        if (AtkD==null)
-        {
-            AtkTime = 0;
-            return;
-        }
-        State_Atk.Fixed(this);
-        State_Atk.Shot(this,PosGet(), RotGet(),CamRot);
-        State_Atk.Move(this, CamRot);
-        State_Atk.State(this);
-        State_Atk.Buf(this);
-        State_Atk.WeponSet(this);
-        State_Atk.Anim(this);
-        State_Atk.SEPlay(this);
-        AtkTime++;
-        if (AtkTime > AtkD.EndTime) AtkD = null;
-        #endregion
-    }
-    void StateDeaths()
-    {
-        var GutsLV = BufPowGet(Enum_Bufs.根性);
-        if (GutsLV <= 0)
-        {
-            if (Player)
-            {
-                if (DeathTime == 0)
-                {
-                    BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
-                    BTManager.DeathAdd();
-                    BTManager.MessageAdd("<color=#FF0000>" + Name + "</color>\\<color=#FF0000>は倒れた!!!</color>");
-                    var DeathPowLV = PriSetGet.PassiveLVGet(Enum_Passive.死に力);
-                    if (DeathPowLV > 0)
-                    {
-                        BufSets(Enum_Bufs.攻撃増加, -1000, Enum_BufSet.付与増加, 0, DeathPowLV * 5);
-                    }
-                }
-                if (DeathTime >= 300) HP = FMHP;
-            }
-            else if (Undet)
-            {
-                if (DeathTime >= 300) HP = FMHP;
-            }
-            else if (!Boss)
-            {
-                if (DeathTime >= 60)
-                {
-                    BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
-                    Deletes();
-                }
-            }
-            else
-            {
-                if (DeathTime == 0) BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
-            }
-        }
-        else
-        {
-            BufPowRem(Enum_Bufs.根性, 1);
-            HP = 1;
-        }
-        DeathTime++;
-        DashTime = 0;
-    }
-    void LivesTimes()
-    {
-        HP += HPRegene / 60f;
-        HP -= BufPowGet(Enum_Bufs.毒) / 60f;
-        HP = Mathf.Clamp(HP, 1, FMHP);
-        SP += SPRegene / 60f;
-        DeathTime = 0;
-        if (Player)
-        {
-            var GutLV = PriSetGet.PassiveLVGet(Enum_Passive.根性);
-            if (GutLV > 0 && !BufCheck(Enum_Bufs.根性CT))
-            {
-                BufSets(Enum_Bufs.根性, -1000, Enum_BufSet.付与, 0, GutLV);
-                BufSets(Enum_Bufs.根性CT, -1000, Enum_BufSet.付与, 60 * 15, 0);
-            }
-        }
-    }
-    void BufTimeRems()
-    {
-        for(int i = Bufs.Count - 1; i >= 0; i--)
-        {
-            var Bufi = Bufs[i];
-            if (Bufi.TimeMax <= 0) continue;
-            Bufi.Time--;
-            if (Bufi.Time <= 0) Bufs.RemoveAt(i);
-        }
-    }
-    void LocalCTRems()
-    {
-        var LocalKeys = LocalCTs.Keys.ToArray();
-        for(int i = 0; i < LocalKeys.Length; i++)
-        {
-            LocalCTs[LocalKeys[i]]--;
-            if (LocalCTs[LocalKeys[i]] <= 0) LocalCTs.Remove(LocalKeys[i]);
-        }
-    }
-    void BufEffectSet()
-    {
-        var BufKeys = BufEffects.Keys.ToArray();
-        for(int i = 0; i < BufKeys.Length; i++)
-        {
-            var BufGet = Bufs.Find(x => x.ID == BufKeys[i]);
-            if (BufGet == null)
-            {
-                Destroy(BufEffects[BufKeys[i]]);
-                BufEffects.Remove(BufKeys[i]);
-            }
-        }
-        for (int i = 0; i < Bufs.Count; i++)
-        {
-            var Bufi = Bufs[i];
-            var BufD = DB.Bufs.Find(x => (int)x.Buf == Bufi.ID);
-            if (BufD != null && !BufEffects.ContainsKey(Bufi.ID))
-            {
-                var EffectIns = Instantiate(BufD.EffectObj, PosGet(), Quaternion.identity);
-                EffectIns.transform.localScale = Vector3.one * (1f + SizeAdd*0.01f);
-                EffectIns.transform.parent = Rig!=null ? Rig.transform : transform;
-                BufEffects.Add(Bufi.ID, EffectIns);
-            }
-        }
-    }
-
-    void BufPowRem(Enum_Bufs BufID,int Val)
-    {
-        for(int i = Bufs.Count - 1; i >= 0; i--)
-        {
-            var Bufi = Bufs[i];
-            if(Bufi.ID == (int)BufID)
-            {
-                var Vald = Val;
-                Val -= Bufi.Pow;
-                Bufi.Pow -= Vald;
-                if (Bufi.Pow <= 0) Bufs.Remove(Bufi);
-            }
-            if (Val <= 0) return;
-        }
-    }
-
+    #endregion
     void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info)
     {
         if (stream.IsWriting)
