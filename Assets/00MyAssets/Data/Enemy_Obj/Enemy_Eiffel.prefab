@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  DamAdds: 400
+  DamAdds: 100
 --- !u!65 &193542352589772642
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  DamAdds: -50
+  DamAdds: -25
 --- !u!65 &7531928809395438136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -395,22 +395,23 @@ MonoBehaviour:
     Pitch: 50
   DeathEffect: {fileID: 0}
   MHP: 9000000
-  HPRegene: 100000
+  HPRegene: 0
   MMP: 0
   MPRegene: 0
   SPRegene: 10
-  Atk: 200000
+  Atk: 300000
   Def: 200000
   HP: 0
   MP: 0
   SP: 0
+  Ground: 0
   DeathTime: 0
+  Target: {fileID: 0}
+  TargetHit: {fileID: 0}
+  Bufs: []
   LowMP: 0
   DashTime: 0
   GroundB: 0
-  Ground: 0
-  Target: {fileID: 0}
-  TargetHit: {fileID: 0}
   AtkD: {fileID: 0}
   AtkSlot: 0
   AtkTime: 0
@@ -424,7 +425,6 @@ MonoBehaviour:
   Anim_AtkID: 0
   Anim_AtkSpeed: 0
   Anim_OtherID: 0
-  Bufs: []
 --- !u!65 &8417435144989242325
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -461,8 +461,10 @@ MonoBehaviour:
   Sta: {fileID: 2758125950921923790}
   SpeedRem: 0
   NearDis: {x: 0, y: 2000}
-  MoveSpeed: 0
+  MoveSpeed: {x: 0, y: 0}
   LerpSpeed: 5
+  SideSpeed: {x: 0, y: 0}
+  SideChangePer: 0
 --- !u!114 &909472449231988662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,7 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  DamAdds: 200
+  DamAdds: 50
 --- !u!65 &8450152523651972705
 BoxCollider:
   m_ObjectHideFlags: 0

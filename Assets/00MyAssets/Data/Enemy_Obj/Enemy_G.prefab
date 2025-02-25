@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2049415607464157120}
-  DamAdds: 2
+  DamAdds: 25
 --- !u!65 &8085587035655144327
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -225,13 +225,13 @@ MonoBehaviour:
     Volume: 100
     Pitch: 100
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
-  MHP: 500000
-  HPRegene: 100000
+  MHP: 200000
+  HPRegene: 20000
   MMP: 0
   MPRegene: 0
   SPRegene: 10
-  Atk: 150000
-  Def: 100000
+  Atk: 300000
+  Def: 50000
   HP: 0
   MP: 0
   SP: 0

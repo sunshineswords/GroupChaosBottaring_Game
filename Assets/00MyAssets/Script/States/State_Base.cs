@@ -99,7 +99,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         get
         {
             float FVal = Atk;
-            FVal *= 1f + BufPowGet(Enum_Bufs.攻撃増加) * 0.01f;
+            FVal *= 1f + (BufPowGet(Enum_Bufs.攻撃増加) * 0.01f) - (BufPowGet(Enum_Bufs.攻撃低下) * 0.01f);
             return Mathf.RoundToInt(FVal);
         }
     }
@@ -108,7 +108,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         get
         {
             float FVal = Def;
-            FVal *= 1f + BufPowGet(Enum_Bufs.防御増加) * 0.01f;
+            FVal *= 1f + (BufPowGet(Enum_Bufs.防御増加) * 0.01f) - (BufPowGet(Enum_Bufs.防御低下) * 0.01f);
             return Mathf.RoundToInt(FVal);
         }
     }
@@ -118,13 +118,13 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (!photonView.IsMine) return;
         if (Player)
         {
-            MHP = Mathf.RoundToInt(MHP * (1f + PriSetGet.PassiveLVGet(Enum_Passive.HP増加) * 0.25f));
+            MHP = Mathf.RoundToInt(MHP * (1f + PriSetGet.PassiveLVGet(Enum_Passive.HP増加) * 0.2f));
             HPRegene = Mathf.RoundToInt(HPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.自然再生) * 0.5f));
             MMP = Mathf.RoundToInt(MMP * (1f + PriSetGet.PassiveLVGet(Enum_Passive.MP増加) * 0.1f));
             MPRegene = Mathf.RoundToInt(MPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.気力増幅) * 0.05f));
             SPRegene = Mathf.RoundToInt(SPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.SPブースト) * 0.2f));
             Atk = Mathf.RoundToInt(Atk * (1f + PriSetGet.PassiveLVGet(Enum_Passive.攻撃力増加) * 0.1f));
-            Def = Mathf.RoundToInt(Def * (1f + PriSetGet.PassiveLVGet(Enum_Passive.防御力増加) * 0.1f));
+            Def = Mathf.RoundToInt(Def * (1f + PriSetGet.PassiveLVGet(Enum_Passive.防御力増加) * 0.25f));
         }
         if (Team != 0)
         {

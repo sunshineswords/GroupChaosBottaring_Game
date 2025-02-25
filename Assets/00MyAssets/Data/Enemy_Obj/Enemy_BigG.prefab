@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2049415607464157120}
-  DamAdds: 2
+  DamAdds: 25
 --- !u!65 &8085587035655144327
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -229,8 +229,8 @@ MonoBehaviour:
   MMP: 0
   MPRegene: 0
   SPRegene: 10
-  Atk: 150000
-  Def: 100000
+  Atk: 400000
+  Def: 50000
   HP: 0
   MP: 0
   SP: 0

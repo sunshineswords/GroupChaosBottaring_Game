@@ -266,7 +266,7 @@ MonoBehaviour:
       DamCalc: (U.ATKdfmT.DEF)*2.6
       SPAdd: 45
       BufSets: []
-    - EditDisp: "[4]BNum:21|(\u843D\u4E0B,\u8FD1\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)60.0%"
+    - EditDisp: "[4]BNum:21|(\u843D\u4E0B,\u8FD1\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)80.0%"
       BranchNum: 21
       EHit: 1
       FHit: 0
@@ -274,10 +274,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 2
       ShortAtk: 1
-      DamCalc: (U.ATKdfmT.DEF)*0.6
+      DamCalc: (U.ATKdfmT.DEF)*0.8
       SPAdd: 45
       BufSets: []
-    - EditDisp: "[5]BNum:22|(\u843D\u4E0B,\u8FD1\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)60.0%"
+    - EditDisp: "[5]BNum:22|(\u843D\u4E0B,\u8FD1\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)70.0%"
       BranchNum: 22
       EHit: 1
       FHit: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
       Heals: 0
       DamageType: 2
       ShortAtk: 1
-      DamCalc: (U.ATKdfmT.DEF)*0.6
+      DamCalc: (U.ATKdfmT.DEF)*0.7
       SPAdd: 45
       BufSets: []
     HitCT: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
         RotBase: 0
         TransRots: []
     Hits:
-    - EditDisp: "[0]BNum:10|(\u91CD\u6483,\u8FD1\u8DDD\u96E2)"
+    - EditDisp: "[0]BNum:10|(\u91CD\u6483,\u8FD1\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)50.0%"
       BranchNum: 10
       EHit: 1
       FHit: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
       Heals: 0
       DamageType: 1
       ShortAtk: 1
-      DamCalc: 
+      DamCalc: (U.ATKdfmT.DEF)*0.5
       SPAdd: 3
       BufSets: []
     HitCT: 15

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  DamAdds: -50
+  DamAdds: -25
 --- !u!135 &8711960159727362399
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -355,7 +355,7 @@ MonoBehaviour:
   MMP: 0
   MPRegene: 0
   SPRegene: 10
-  Atk: 200000
+  Atk: 300000
   Def: 100000
   HP: 0
   MP: 0
@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2758125950921923790}
-  DamAdds: 200
+  DamAdds: 50
 --- !u!1001 &388386998231469886
 PrefabInstance:
   m_ObjectHideFlags: 0

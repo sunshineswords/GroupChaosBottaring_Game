@@ -1233,12 +1233,12 @@ MonoBehaviour:
     Volume: 200
     Pitch: 65
   DeathEffect: {fileID: 0}
-  MHP: 1000000
+  MHP: 500000
   HPRegene: 10000
   MMP: 400
   MPRegene: 50
   SPRegene: 1
-  Atk: 250000
+  Atk: 100000
   Def: 100000
   HP: 0
   MP: 0

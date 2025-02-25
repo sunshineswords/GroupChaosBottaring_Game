@@ -340,69 +340,112 @@ MonoBehaviour:
   - BranchNum: 0
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP10.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.1
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-101,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E15)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP20.0%)"
+      Buf: 2010
+      Index: -101
+      Set: 0
+      TimeVal: 15
+      PowVal: U.MHP*0.2
       TimeMax: 0
       PowMax: 
   - BranchNum: 1
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP10.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.1
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-101,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E15)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP20.0%)"
+      Buf: 2010
+      Index: -101
+      Set: 0
+      TimeVal: 15
+      PowVal: U.MHP*0.2
       TimeMax: 0
       PowMax: 
   - BranchNum: 2
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP10.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.1
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-101,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E15)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP20.0%)"
+      Buf: 2010
+      Index: -101
+      Set: 0
+      TimeVal: 15
+      PowVal: U.MHP*0.2
       TimeMax: 0
       PowMax: 
   - BranchNum: 3
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP10.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.1
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-101,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E15)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP20.0%)"
+      Buf: 2010
+      Index: -101
+      Set: 0
+      TimeVal: 15
+      PowVal: U.MHP*0.2
       TimeMax: 0
       PowMax: 
   - BranchNum: 4
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP10.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.1
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-101,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E15)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP20.0%)"
+      Buf: 2010
+      Index: -101
+      Set: 0
+      TimeVal: 15
+      PowVal: U.MHP*0.2
       TimeMax: 0
       PowMax: 
   - BranchNum: 10
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP15.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.15
       TimeMax: 0
       PowMax: 
+  - BranchNum: 11
+    Times: {x: 0, y: 0, z: 0}
+    BufSets:
     - EditDisp: "\u30D0\u30EA\u30A2[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E1)"
       Buf: 2011
       Index: -100

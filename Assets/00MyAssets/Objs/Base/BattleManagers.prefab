@@ -1407,7 +1407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeLimSec: 300
   TimeStar: 120
-  DeathStar: 15
+  DeathStar: 6
   EStaMults: 0
   Time: 0
   DeathCount: 0

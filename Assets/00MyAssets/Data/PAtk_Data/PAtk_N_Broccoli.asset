@@ -289,30 +289,30 @@ MonoBehaviour:
   - BranchNum: 0
     Times: {x: 15, y: 15, z: 0}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 50
     Pitch: 150
   - BranchNum: 1
     Times: {x: 15, y: 15, z: 0}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 50
     Pitch: 150
   - BranchNum: 2
     Times: {x: 20, y: 20, z: 0}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 50
     Pitch: 150
   - BranchNum: 3
     Times: {x: 10, y: 20, z: 8}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 50
     Pitch: 150
   - BranchNum: 4
     Times: {x: 10, y: 30, z: 4}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 40
     Pitch: 150
   - BranchNum: 10
     Times: {x: 0, y: 25, z: 7}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 50
     Pitch: 150

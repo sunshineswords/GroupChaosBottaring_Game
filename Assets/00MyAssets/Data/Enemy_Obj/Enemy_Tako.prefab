@@ -162,8 +162,8 @@ MonoBehaviour:
   MMP: 0
   MPRegene: 0
   SPRegene: 10
-  Atk: 100000
-  Def: 80000
+  Atk: 200000
+  Def: 50000
   HP: 0
   MP: 0
   SP: 0
@@ -224,9 +224,9 @@ MonoBehaviour:
   Sta: {fileID: 2049415607464157120}
   SpeedRem: 10
   NearDis: {x: 14, y: 15}
-  MoveSpeed: {x: 60, y: 30}
+  MoveSpeed: {x: 30, y: 15}
   LerpSpeed: 5
-  SideSpeed: {x: 120, y: 60}
+  SideSpeed: {x: 60, y: 30}
   SideChangePer: 5
 --- !u!114 &7500122617385835745
 MonoBehaviour:
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Sta: {fileID: 2049415607464157120}
-  DamAdds: 200
+  DamAdds: 50
 --- !u!65 &6236993433549807225
 BoxCollider:
   m_ObjectHideFlags: 0
