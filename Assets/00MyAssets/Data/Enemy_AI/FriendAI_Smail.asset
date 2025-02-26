@@ -18,7 +18,7 @@ MonoBehaviour:
     - Ifs: 10
       Val: {x: 4, y: 0}
     AtkSlot: 0
-    AtkD: {fileID: 11400000, guid: a4008368ed4518b4e8ad9b5023383b94, type: 2}
+    AtkD: {fileID: 11400000, guid: 224ff1b997fb26a438a174be70e6dccf, type: 2}
   - TimeIf: {x: 0, y: 0}
     OtherIfs:
     - Ifs: 11

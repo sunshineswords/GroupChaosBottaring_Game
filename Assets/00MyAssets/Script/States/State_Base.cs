@@ -99,7 +99,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         get
         {
             float FVal = Atk;
-            FVal *= 1f + BufPowGet(Enum_Bufs.攻撃増加) * 0.01f;
+            FVal *= 1f + (BufPowGet(Enum_Bufs.攻撃増加) * 0.01f) - (BufPowGet(Enum_Bufs.攻撃低下) * 0.01f);
             return Mathf.RoundToInt(FVal);
         }
     }
@@ -108,7 +108,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         get
         {
             float FVal = Def;
-            FVal *= 1f + BufPowGet(Enum_Bufs.防御増加) * 0.01f;
+            FVal *= 1f + (BufPowGet(Enum_Bufs.防御増加) * 0.01f) - (BufPowGet(Enum_Bufs.防御低下) * 0.01f);
             return Mathf.RoundToInt(FVal);
         }
     }
@@ -118,13 +118,13 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (!photonView.IsMine) return;
         if (Player)
         {
-            MHP = Mathf.RoundToInt(MHP * (1f + PriSetGet.PassiveLVGet(Enum_Passive.HP増加) * 0.25f));
+            MHP = Mathf.RoundToInt(MHP * (1f + PriSetGet.PassiveLVGet(Enum_Passive.HP増加) * 0.2f));
             HPRegene = Mathf.RoundToInt(HPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.自然再生) * 0.5f));
             MMP = Mathf.RoundToInt(MMP * (1f + PriSetGet.PassiveLVGet(Enum_Passive.MP増加) * 0.1f));
             MPRegene = Mathf.RoundToInt(MPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.気力増幅) * 0.05f));
             SPRegene = Mathf.RoundToInt(SPRegene * (1f + PriSetGet.PassiveLVGet(Enum_Passive.SPブースト) * 0.2f));
             Atk = Mathf.RoundToInt(Atk * (1f + PriSetGet.PassiveLVGet(Enum_Passive.攻撃力増加) * 0.1f));
-            Def = Mathf.RoundToInt(Def * (1f + PriSetGet.PassiveLVGet(Enum_Passive.防御力増加) * 0.1f));
+            Def = Mathf.RoundToInt(Def * (1f + PriSetGet.PassiveLVGet(Enum_Passive.防御力増加) * 0.25f));
         }
         if (Team != 0)
         {
@@ -228,7 +228,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             {
                 if (DeathTime == 0)
                 {
-                    BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
+                    BTManager.SEPlay(DeathSE, PosGet());
                     BTManager.DeathAdd();
                     BTManager.MessageAdd("<color=#FF0000>" + Name + "</color>\\<color=#FF0000>は倒れた!!!</color>");
                     var DeathPowLV = PriSetGet.PassiveLVGet(Enum_Passive.死に力);
@@ -247,13 +247,13 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             {
                 if (DeathTime >= 60)
                 {
-                    BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
+                    BTManager.SEPlay(DeathSE, PosGet());
                     Deletes();
                 }
             }
             else
             {
-                if (DeathTime == 0) BTManager.SEPlay(DeathSE.Clip, PosGet(), DeathSE.Volume, DeathSE.Pitch);
+                if (DeathTime == 0) BTManager.SEPlay(DeathSE, PosGet());
             }
         }
         else
@@ -335,7 +335,12 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 var Vald = Val;
                 Val -= Bufi.Pow;
                 Bufi.Pow -= Vald;
-                if (Bufi.Pow <= 0) Bufs.Remove(Bufi);
+                if (Bufi.Pow <= 0)
+                {
+                    var BufD = DB.Bufs.Find(x => (int)x.Buf == Bufi.ID);
+                    if (BufD != null) BTManager.SEPlay(BufD.RemSE, PosGet());
+                    Bufs.Remove(Bufi);
+                }
             }
             if (Val <= 0) return;
         }
@@ -419,6 +424,11 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
         if (AtkD != null && UseAtkSlot == AtkSlot)
         {
+            if (UseAtkD != AtkD)
+            {
+                Enter = false;
+                Stay = false;
+            }
             State_Atk.Branch(this, Enter, Stay);
         }
 
@@ -514,7 +524,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             int Healm = FMHP - (int)HP;
             Val = -Mathf.Min(-Val, Healm);
         }
-        else
+        else if (Val > 0)
         {
             int Barria = BufPowGet(Enum_Bufs.バリア);
             if (Barria > 0)
@@ -523,6 +533,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 if (photonView.IsMine)
                 {
                     BufPowRem(Enum_Bufs.バリア, 1);
+                    BTManager.SEPlay(DB.BarriaHitSE, HitPos, true);
                 }
             }
             int Shilds = BufPowGet(Enum_Bufs.シールド);
@@ -533,6 +544,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 if (photonView.IsMine)
                 {
                     BufPowRem(Enum_Bufs.シールド, Vald);
+                    BTManager.SEPlay(DB.ShildHitSE, HitPos, true);
                 }
             }
         }
@@ -558,7 +570,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
         DamageObj.DamageSet(HitPos, Mathf.Abs(Val), DamCol);
         var InsHitEffect = Instantiate(HitEffect, HitPos, Quaternion.identity);
-        if (Val >= 0)BTManager.SEPlay(DamageSE.Clip, HitPos, DamageSE.Volume, DamageSE.Pitch, true);
+        if (Val >= 0)BTManager.SEPlay(DamageSE, HitPos,true);
 
         if (!photonView.IsMine) return;
         HP -= Val;
@@ -584,7 +596,12 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         }
         if (Sets != (int)Enum_BufSet.消去)
         {
-            if (Bufi != null && Sets == (int)Enum_BufSet.切り替え) Bufs.Remove(Bufi);
+            if (Bufi != null && Sets == (int)Enum_BufSet.切り替え)
+            {
+                var BufD = DB.Bufs.Find(x => (int)x.Buf == Bufi.ID);
+                if (BufD != null) BTManager.SEPlay(BufD.RemSE, PosGet());
+                Bufs.Remove(Bufi);
+            }
             else
             {
                 if (Bufi == null && Sets == (int)Enum_BufSet.不付与増加) return;
@@ -609,7 +626,12 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 if (Bufi.TimeMax > 0) Bufi.TimeMax = Mathf.Max(Bufi.Time, Bufi.TimeMax);
             }
         }
-        else if (Bufi != null) Bufs.Remove(Bufi);
+        else if (Bufi != null)
+        {
+            var BufD = DB.Bufs.Find(x => (int)x.Buf == Bufi.ID);
+            if (BufD != null) BTManager.SEPlay(BufD.RemSE, PosGet());
+            Bufs.Remove(Bufi);
+        }
     }
     #endregion
     void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info)
@@ -621,6 +643,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             stream.SendNext(Atk);
             stream.SendNext(Def);
 
+            stream.SendNext(Name);
             stream.SendNext(Team);
 
             stream.SendNext(HP);
@@ -664,6 +687,8 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             MMP = (int)stream.ReceiveNext();
             Atk = (int)stream.ReceiveNext();
             Def = (int)stream.ReceiveNext();
+
+            Name = (string)stream.ReceiveNext();
             Team = (int)stream.ReceiveNext();
 
             HP = (float)stream.ReceiveNext();

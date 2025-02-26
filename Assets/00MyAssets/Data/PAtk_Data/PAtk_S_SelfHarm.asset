@@ -18,7 +18,7 @@ MonoBehaviour:
   AtkType: 1
   Filters: 06000000
   EndTime: 40
-  CT: 2
+  CT: 1
   SPUse: 0
   BranchInfos: []
   Branchs: []

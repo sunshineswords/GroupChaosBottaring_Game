@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using static Manifesto;
 using static Calculation;
 using NaughtyAttributes;
@@ -28,23 +29,23 @@ static public class Manifesto
         [Tooltip("段階付与式\n0以下だと段階表示なし\n" + TooltipStr), TextArea(1, 3)] public string PowVal;
         [Tooltip("時間上限フレーム\n0以下は上限無し")] public int TimeMax;
         [Tooltip("段階上限上限式\n0以下は上限無し\n" + TooltipStr), TextArea(1, 3)] public string PowMax;
-        public string InfoStr()
+        public string InfoStr(bool AddIf)
         {
-            var OStr = Buf.ToString() + Set.ToString();
+            var OStr = "[" + Buf.ToString() +","+ Set.ToString() + "]\n";
             bool Adds = (Set == Enum_BufSet.付与増加 || Set == Enum_BufSet.不付与増加);
             OStr += "時間:" + (TimeVal / 60f).ToString("F1");
-            if (Adds && TimeMax > 0) OStr += "Max" + (TimeMax / 60f).ToString("F1");
+            if (Adds && TimeMax > 0) OStr += (AddIf ? "<size=30%>" : "<size=50%>") + "Max" + (TimeMax / 60f).ToString("F1")+"</size>";
             OStr += "秒";
-            var PowStr = CalStr(PowVal);
+            var PowStr = CalStr(PowVal, true);
             var PowVald = double.TryParse(PowStr, out var oPVal) ? oPVal : 1;
             if (PowStr != "" && PowVald > 0)
             {
-                OStr += ",段階:" + CalStr(PowVal);
+                OStr += "\n段階:" + CalStr(PowVal, true);
                 if (Adds)
                 {
-                    var MaxStr = CalStr(PowMax);
+                    var MaxStr = CalStr(PowMax, true);
                     var MaxVal = double.TryParse(MaxStr, out var oVal) ? oVal : 1;
-                    if (MaxStr != "" && MaxVal > 0) OStr += "Max" + MaxStr;
+                    if (MaxStr != "" && MaxVal > 0) OStr += (AddIf ? "<size=30%>" : "<size=50%>") + "Max" + MaxStr + "</size>";
                 }
             }
             return OStr;
@@ -65,14 +66,14 @@ static public class Manifesto
             {
                 EditDisp += "(時間無限)";
             }
-            var PowStr = CalStr(PowVal);
+            var PowStr = CalStr(PowVal, false);
             var PowVald = double.TryParse(PowStr, out var oPVal) ? oPVal : 1;
             if (PowStr != "" && PowVald > 0)
             {
-                EditDisp += "(段階:付与" + CalStr(PowVal);
+                EditDisp += "(段階:付与" + CalStr(PowVal, false);
                 if (Adds)
                 {
-                    var MaxStr = CalStr(PowMax);
+                    var MaxStr = CalStr(PowMax, false);
                     var MaxVal = double.TryParse(MaxStr, out var oVal) ? oVal : 1;
                     if (MaxStr != "" && MaxVal > 0) EditDisp += "Max" + MaxStr;
                 }
@@ -116,6 +117,7 @@ static public class Manifesto
         [Tooltip("弾オブジェクト")] public GameObject Obj;
         [Tooltip("発射")] public Class_Atk_Shot_Fire[] Fires;
         [Tooltip("命中効果")] public Class_Atk_Shot_Hit[] Hits;
+        [Tooltip("追加弾")] public Class_Atk_Shot_Add[] Adds;
         [Tooltip("多段ヒットCT(0以下は単発ヒット)")] public int HitCT;
         public void EditDispSet()
         {
@@ -136,39 +138,59 @@ static public class Manifesto
                 Hit.EditDisp += Hit.DamageType+",";
                 Hit.EditDisp += Hit.ShortAtk ? "近距離" : "遠距離";
                 Hit.EditDisp += ")";
-                if (Hit.DamCalc != "") Hit.EditDisp += CalStr(Hit.DamCalc);
+                if (Hit.DamCalc != "") Hit.EditDisp += CalStr(Hit.DamCalc,false);
                 if(Hit.BufSets!=null)
                 for (int j = 0; j < Hit.BufSets.Length; j++) Hit.BufSets[j].EditDispSet();
             }
 
         }
-        public string OtherStrGet(int BNum)
+        public string OtherStrGet(int BNum,bool AddIf)
         {
             string Str = "";
             int ShotCounts = 0;
-            for (int i = 0; i < Fires.Length; i++)
-            {
-                var Fire = Fires[i];
-                if (Fire.BranchNum != BNum) continue;
-                int TCounts = (Fire.Times.y - Fire.Times.x) / Mathf.Max(1, Fire.Times.z) + 1;
-                ShotCounts += Fire.Count * TCounts;
-            }
-            for (int i = 0; i < Hits.Length; i++)
-            {
-                var Hit = Hits[i];
-                if (Hit.BranchNum != BNum) continue;
-                if (Str != "") Str += "\n";
-                Str += "(";
-                if (Hit.EHit) Str += "敵";
-                if (Hit.FHit) Str += "味方";
-                if (Hit.MHit) Str += "自身";
-                Str += ",";
-                Str += Hit.Heals ? "回復" : "攻撃";
-                Str += ")";
-                if (Hit.DamCalc != "") Str += CalStr(Hit.DamCalc);
-                if (ShotCounts != 1) Str += "×" + ShotCounts;
-                for (int j = 0; j < Hit.BufSets.Length; j++) Str += Hit.BufSets[j].InfoStr();
-            }
+            if (Fires != null)
+                for (int i = 0; i < Fires.Length; i++)
+                {
+                    var Fire = Fires[i];
+                    if (Fire.BranchNum >= 0 && Fire.BranchNum != BNum) continue;
+                    int TCounts = (Fire.Times.y - Fire.Times.x) / Mathf.Max(1, Fire.Times.z) + 1;
+                    ShotCounts += Fire.Count * TCounts;
+                }
+            if (Hits != null)
+                for (int i = 0; i < Hits.Length; i++)
+                {
+                    var Hit = Hits[i];
+                    if (Hit.BranchNum >= 0 && Hit.BranchNum != BNum) continue;
+                    if (Str != "") Str += "\n";
+                    Str += "<color=#FF8800>(";
+                    if (Hit.EHit) Str += "敵";
+                    if (Hit.FHit) Str += "味方";
+                    if (Hit.MHit) Str += "自身";
+                    Str += ",";
+                    Str += Hit.Heals ? "回復" : "攻撃";
+                    Str += ")";
+                    if (ShotCounts != 1) Str += "×" + ShotCounts;
+                    if (Hit.DamCalc != "") Str += "\n" + CalStr(Hit.DamCalc, true);
+                    Str += "</color>";
+                    for (int j = 0; j < Hit.BufSets.Length; j++)
+                    {
+                        Str += "\n<color=#8888FF>" + Hit.BufSets[j].InfoStr(AddIf) + "</color>";
+                    }
+                }
+            if (Adds != null)
+                for (int i = 0; i < Adds.Length; i++)
+                {
+                    var Add = Adds[i];
+                    if (Add.BranchNum >= 0 && Add.BranchNum != BNum) continue;
+                    for (int j = 0; j < Add.AddShots.Length; j++)
+                    {
+                        var Ads = Add.AddShots[j];
+                        for (int k = 0; k < Ads.Shots.Length; k++)
+                        {
+                            Str += "\n<color=#FF0000>[追加]</color><size=50%>\n" + Ads.Shots[k].OtherStrGet(BNum,true) + "</size>";
+                        }
+                    }
+                }
             return Str;
         }
     }
@@ -218,6 +240,13 @@ static public class Manifesto
         [Tooltip("ダメージ式\n"+TooltipStr),TextArea(1,3)] public string DamCalc;
         [Tooltip("命中時SP増加量")] public int SPAdd;
         [Tooltip("状態付与")] public Class_Base_BufSet[] BufSets;
+    }
+    [System.Serializable]
+    public class Class_Atk_Shot_Add
+    {
+        [HideInInspector] public string EditDisp;
+        [Tooltip(Const_Ttp_BID)] public int BranchNum;
+        public Data_AddShot[] AddShots;
     }
     [System.Serializable]
     public class Class_Atk_Move
@@ -323,6 +352,12 @@ static public class Manifesto
         [HideInInspector] public int TCT;
     }
     [System.Serializable]
+    public class Class_Shot_Add
+    {
+        public Vector3Int Times;
+        public Data_AddShot AddShot;
+    }
+    [System.Serializable]
     public class Class_Save_PSaves
     {
         public float MasterVol = 1;
@@ -331,6 +366,8 @@ static public class Manifesto
         public float SystemVol = 1;
         public int QualityLV = 4;
         public int PriSetID;
+        public List<int> StageSoloStars;
+        public List<int> StageMultStars;
         public Class_Save_PSaves()
         {
             MasterVol = 1;
@@ -339,6 +376,8 @@ static public class Manifesto
             SystemVol = 1;
             QualityLV = 4;
             PriSetID = 0;
+            StageSoloStars = new List<int>();
+            StageMultStars = new List<int>();
         }
     }
     [System.Serializable]
@@ -437,6 +476,9 @@ static public class Manifesto
         HP増加 = 0,
         攻撃増加 = 10,
         防御増加 = 20,
+
+        攻撃低下 = 110,
+        防御低下 = 120,
 
         毒 = 1000,
         HP再生 = 2000,

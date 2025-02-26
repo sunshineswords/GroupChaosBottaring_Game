@@ -38,9 +38,7 @@ MonoBehaviour:
   - BID: 20
     Name: "\u843D\u4E0B\u653B\u6483"
   - BID: 21
-    Name: "\u4F4E\u7740\u5730\u653B\u6483"
-  - BID: 22
-    Name: "\u9AD8\u7740\u5730\u653B\u6483"
+    Name: "\u7740\u5730\u653B\u6483"
   Branchs:
   - EditDisp: '[0]BNum:0Time:(25, 50)MP:0Future{Num:1Time:0}'
     BranchNums: 00000000
@@ -226,21 +224,8 @@ MonoBehaviour:
         - Change: 2
           Mlt: 0
           Val: {x: 0, y: 45, z: 0}
-    - EditDisp: '[7]BNum:22,Time:(0, 0, 0),Count:5,Speed:(3000.00, 3000.00)'
-      BranchNum: 22
-      Times: {x: 0, y: 0, z: 0}
-      Count: 5
-      Speed: {x: 3000, y: 3000}
-      Trans:
-        PosBase: 0
-        TransPoss: []
-        RotBase: 0
-        TransRots:
-        - Change: 2
-          Mlt: 0
-          Val: {x: 0, y: 75, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)60.0%"
+    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)40.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -248,10 +233,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 1
-      DamCalc: (U.DEFdfmT.DEF)*0.6
+      DamCalc: (U.DEFdfmT.DEF)*0.4
       SPAdd: 3
       BufSets: []
-    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)70.0%"
+    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)45.0%"
       BranchNum: 1
       EHit: 1
       FHit: 0
@@ -259,10 +244,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 1
-      DamCalc: (U.DEFdfmT.DEF)*0.7
+      DamCalc: (U.DEFdfmT.DEF)*0.45
       SPAdd: 4
       BufSets: []
-    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)80.0%"
+    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)55.0%"
       BranchNum: 2
       EHit: 1
       FHit: 0
@@ -270,10 +255,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 1
-      DamCalc: (U.DEFdfmT.DEF)*0.8
+      DamCalc: (U.DEFdfmT.DEF)*0.55
       SPAdd: 5
       BufSets: []
-    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)90.0%"
+    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)70.0%"
       BranchNum: 3
       EHit: 1
       FHit: 0
@@ -281,10 +266,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 1
-      DamCalc: (U.DEFdfmT.DEF)*0.9
+      DamCalc: (U.DEFdfmT.DEF)*0.70
       SPAdd: 6
       BufSets: []
-    - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)120.0%"
+    - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)100.0%"
       BranchNum: 4
       EHit: 1
       FHit: 0
@@ -292,10 +277,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 1
-      DamCalc: (U.DEFdfmT.DEF)*1.2
+      DamCalc: (U.DEFdfmT.DEF)*1
       SPAdd: 15
       BufSets: []
-    - EditDisp: "[5]BNum:11|(\u91CD\u6483,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)140.0%"
+    - EditDisp: "[5]BNum:11|(\u91CD\u6483,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)140.0%"
       BranchNum: 11
       EHit: 1
       FHit: 0
@@ -306,19 +291,8 @@ MonoBehaviour:
       DamCalc: (U.DEFdfmT.DEF)*1.4
       SPAdd: 2
       BufSets: []
-    - EditDisp: "[6]BNum:21|(\u843D\u4E0B,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)50.0%"
+    - EditDisp: "[6]BNum:21|(\u843D\u4E0B,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)40.0%"
       BranchNum: 21
-      EHit: 1
-      FHit: 0
-      MHit: 0
-      Heals: 0
-      DamageType: 2
-      ShortAtk: 1
-      DamCalc: (U.DEFdfmT.DEF)*0.5
-      SPAdd: 2
-      BufSets: []
-    - EditDisp: "[7]BNum:22|(\u843D\u4E0B,\u8FD1\u8DDD\u96E2)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)40.0%"
-      BranchNum: 22
       EHit: 1
       FHit: 0
       MHit: 0
@@ -328,6 +302,7 @@ MonoBehaviour:
       DamCalc: (U.DEFdfmT.DEF)*0.4
       SPAdd: 2
       BufSets: []
+    Adds: []
     HitCT: 0
   Moves:
   - BranchNum: 20
@@ -340,69 +315,112 @@ MonoBehaviour:
   - BranchNum: 0
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP10.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.1
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-101,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E15)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP20.0%)"
+      Buf: 2010
+      Index: -101
+      Set: 0
+      TimeVal: 15
+      PowVal: U.MHP*0.2
       TimeMax: 0
       PowMax: 
   - BranchNum: 1
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP10.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.1
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-101,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E15)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP20.0%)"
+      Buf: 2010
+      Index: -101
+      Set: 0
+      TimeVal: 15
+      PowVal: U.MHP*0.2
       TimeMax: 0
       PowMax: 
   - BranchNum: 2
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP10.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.1
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-101,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E15)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP20.0%)"
+      Buf: 2010
+      Index: -101
+      Set: 0
+      TimeVal: 15
+      PowVal: U.MHP*0.2
       TimeMax: 0
       PowMax: 
   - BranchNum: 3
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP10.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.1
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-101,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E15)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP20.0%)"
+      Buf: 2010
+      Index: -101
+      Set: 0
+      TimeVal: 15
+      PowVal: U.MHP*0.2
       TimeMax: 0
       PowMax: 
   - BranchNum: 4
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP10.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.1
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-101,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E15)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP20.0%)"
+      Buf: 2010
+      Index: -101
+      Set: 0
+      TimeVal: 15
+      PowVal: U.MHP*0.2
       TimeMax: 0
       PowMax: 
   - BranchNum: 10
     Times: {x: 0, y: 0, z: 0}
     BufSets:
-    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u73FE\u5728HP5.0%)"
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP15.0%)"
       Buf: 2010
       Index: -100
       Set: 0
       TimeVal: 60
-      PowVal: U.HP*0.05
+      PowVal: U.MHP*0.15
       TimeMax: 0
       PowMax: 
+  - BranchNum: 11
+    Times: {x: 0, y: 0, z: 0}
+    BufSets:
     - EditDisp: "\u30D0\u30EA\u30A2[-100,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E60)(\u6BB5\u968E:\u4ED8\u4E0E1)"
       Buf: 2011
       Index: -100
@@ -495,8 +513,3 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 44c245d1f30e77c4ba62ed452fd4695b, type: 3}
     Volume: 180
     Pitch: 60
-  - BranchNum: 22
-    Times: {x: 0, y: 0, z: 0}
-    Clip: {fileID: 8300000, guid: 44c245d1f30e77c4ba62ed452fd4695b, type: 3}
-    Volume: 220
-    Pitch: 50

@@ -21,6 +21,10 @@ public class UI_StageSelect : MonoBehaviour,UI_Sin_Set.SetReturn
             SinUI.ID = i;
             SinUI.BackImage.color = i == StageID ? Color.yellow : Color.white;
             SinUI.Name.text = StageD.Name;
+            SinUI.Info.text = "ソロ　";
+            for (int j = 0; j < 3; j++) SinUI.Info.text += j < PSaves.StageSoloStars[i] ? "★" : "☆";
+            SinUI.Info.text += "\nマルチ";
+            for (int j = 0; j < 3; j++) SinUI.Info.text += j < PSaves.StageMultStars[i] ? "★" : "☆";
             SinUI.Icon.texture = StageD.Icon;
         }
     }

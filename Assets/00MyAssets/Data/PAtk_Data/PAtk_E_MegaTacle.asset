@@ -45,6 +45,11 @@ MonoBehaviour:
         RotBase: -1
         TransRots: []
     Hits: []
+    Adds:
+    - EditDisp: 
+      BranchNum: 0
+      AddShots:
+      - {fileID: 11400000, guid: e632fa87e58e051498f7d8ffec062126, type: 2}
     HitCT: 0
   Moves:
   - BranchNum: 0

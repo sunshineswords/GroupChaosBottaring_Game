@@ -166,7 +166,7 @@ MonoBehaviour:
           Mlt: 0
           Val: {x: 0, y: -30, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)50.0%"
+    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)30.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -174,10 +174,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 0
-      DamCalc: (U.ATKdfmT.DEF)*0.5
+      DamCalc: (U.ATKdfmT.DEF)*0.3
       SPAdd: 3
       BufSets: []
-    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)60.0%"
+    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)35.0%"
       BranchNum: 1
       EHit: 1
       FHit: 0
@@ -185,10 +185,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 0
-      DamCalc: (U.ATKdfmT.DEF)*0.6
+      DamCalc: (U.ATKdfmT.DEF)*0.35
       SPAdd: 4
       BufSets: []
-    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)70.0%"
+    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)40.0%"
       BranchNum: 2
       EHit: 1
       FHit: 0
@@ -196,10 +196,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 0
-      DamCalc: (U.ATKdfmT.DEF)*0.7
+      DamCalc: (U.ATKdfmT.DEF)*0.4
       SPAdd: 5
       BufSets: []
-    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)50.0%"
+    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)30.0%"
       BranchNum: 3
       EHit: 1
       FHit: 0
@@ -207,10 +207,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 0
-      DamCalc: (U.ATKdfmT.DEF)*0.5
+      DamCalc: (U.ATKdfmT.DEF)*0.3
       SPAdd: 6
       BufSets: []
-    - EditDisp: "[4]BNum:10|(\u91CD\u6483,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)30.0%"
+    - EditDisp: "[4]BNum:10|(\u91CD\u6483,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)20.0%"
       BranchNum: 10
       EHit: 1
       FHit: 0
@@ -218,9 +218,30 @@ MonoBehaviour:
       Heals: 0
       DamageType: 1
       ShortAtk: 0
-      DamCalc: (U.ATKdfmT.DEF)*0.3
+      DamCalc: (U.ATKdfmT.DEF)*0.2
       SPAdd: 2
       BufSets: []
+    Adds:
+    - EditDisp: 
+      BranchNum: 0
+      AddShots:
+      - {fileID: 11400000, guid: e9d64d9df49527b4180b79f0cff9bc5f, type: 2}
+    - EditDisp: 
+      BranchNum: 1
+      AddShots:
+      - {fileID: 11400000, guid: e9d64d9df49527b4180b79f0cff9bc5f, type: 2}
+    - EditDisp: 
+      BranchNum: 2
+      AddShots:
+      - {fileID: 11400000, guid: e9d64d9df49527b4180b79f0cff9bc5f, type: 2}
+    - EditDisp: 
+      BranchNum: 3
+      AddShots:
+      - {fileID: 11400000, guid: e9d64d9df49527b4180b79f0cff9bc5f, type: 2}
+    - EditDisp: 
+      BranchNum: 10
+      AddShots:
+      - {fileID: 11400000, guid: 75804ec4aa09ac44e96ef243cf8f958c, type: 2}
     HitCT: 0
   - Obj: {fileID: 5905403385281065886, guid: 3b8a242298aba1547a06a357d06f04e3, type: 3}
     Fires:
@@ -238,7 +259,7 @@ MonoBehaviour:
           Mlt: 0
           Val: {x: 35, y: 35, z: 35}
     Hits:
-    - EditDisp: "[0]BNum:4|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)20.0%"
+    - EditDisp: "[0]BNum:4|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)12.0%"
       BranchNum: 4
       EHit: 1
       FHit: 0
@@ -246,9 +267,14 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 0
-      DamCalc: (U.ATKdfmT.DEF)*0.2
+      DamCalc: (U.ATKdfmT.DEF)*0.12
       SPAdd: 15
       BufSets: []
+    Adds:
+    - EditDisp: 
+      BranchNum: 4
+      AddShots:
+      - {fileID: 11400000, guid: 75804ec4aa09ac44e96ef243cf8f958c, type: 2}
     HitCT: 0
   Moves: []
   States: []
@@ -289,30 +315,30 @@ MonoBehaviour:
   - BranchNum: 0
     Times: {x: 15, y: 15, z: 0}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 50
     Pitch: 150
   - BranchNum: 1
     Times: {x: 15, y: 15, z: 0}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 50
     Pitch: 150
   - BranchNum: 2
     Times: {x: 20, y: 20, z: 0}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 50
     Pitch: 150
   - BranchNum: 3
     Times: {x: 10, y: 20, z: 8}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 50
     Pitch: 150
   - BranchNum: 4
     Times: {x: 10, y: 30, z: 4}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 40
     Pitch: 150
   - BranchNum: 10
     Times: {x: 0, y: 25, z: 7}
     Clip: {fileID: 8300000, guid: 96ce7ebf2a5453d46ba4410b0cb16abe, type: 3}
-    Volume: 100
+    Volume: 50
     Pitch: 150

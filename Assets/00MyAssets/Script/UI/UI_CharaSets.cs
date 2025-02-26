@@ -337,6 +337,7 @@ public class UI_CharaSets : MonoBehaviour, UI_Sin_Set.SetReturn
 
         }
         UIUpdate();
+        return;
         if (buttonSetting.currentIndex != ID)
         {
             Debug.Log("SetSettings");

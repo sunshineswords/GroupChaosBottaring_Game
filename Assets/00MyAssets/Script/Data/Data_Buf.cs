@@ -8,4 +8,5 @@ public class Data_Buf : ScriptableObject
     public Color Col;
     public Texture Icon;
     public GameObject EffectObj;
+    public Class_Base_SEPlay RemSE;
 }

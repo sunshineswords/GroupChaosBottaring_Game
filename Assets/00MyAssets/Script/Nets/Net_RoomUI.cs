@@ -47,11 +47,8 @@ public class Net_RoomUI : MonoBehaviour
         MasterOnly.SetActive(PhotonNetwork.IsMasterClient);
         NoMaster.SetActive(!PhotonNetwork.IsMasterClient);
         PrivateT.isOn = !CRoom.IsVisible;
-        var CPro = CRoom.CustomProperties;
-        if (PhotonNetwork.IsMasterClient && CPro.TryGetValue("curscn",out var oCurscn) && (int)oCurscn <= 0)
-        {
-            CRoom.IsOpen = true;
-        }
+        CRoom.IsOpen = true;
+        PhotonNetwork.DestroyAll();
     }
 
     //ルーム退室

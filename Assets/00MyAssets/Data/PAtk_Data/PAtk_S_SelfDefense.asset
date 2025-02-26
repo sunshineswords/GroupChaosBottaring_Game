@@ -18,7 +18,7 @@ MonoBehaviour:
   AtkType: 1
   Filters: 020000006e0000002d010000
   EndTime: 60
-  CT: 12
+  CT: 18
   SPUse: 0
   BranchInfos: []
   Branchs: []
@@ -30,12 +30,21 @@ MonoBehaviour:
   - BranchNum: 0
     Times: {x: 50, y: 50, z: 0}
     BufSets:
-    - Buf: 2010
+    - EditDisp: "\u30B7\u30FC\u30EB\u30C9[0,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E900)(\u6BB5\u968E:\u4ED8\u4E0E\u81EA\u6700\u5927HP40.0%)"
+      Buf: 2010
       Index: 0
       Set: 0
       TimeVal: 900
-      PowVal: U.MHP*0.2
-      TimeMax: 
+      PowVal: U.MHP*0.4
+      TimeMax: 0
+      PowMax: 
+    - EditDisp: "\u30D0\u30EA\u30A2[0,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E900)(\u6BB5\u968E:\u4ED8\u4E0E2)"
+      Buf: 2011
+      Index: 0
+      Set: 0
+      TimeVal: 900
+      PowVal: 2
+      TimeMax: 0
       PowMax: 
   WeponSets: []
   Anims:

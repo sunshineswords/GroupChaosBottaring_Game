@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Passive_HPAdd
   m_EditorClassIdentifier: 
   Name: "HP\u5897\u52A0"
-  Info: "\u57FA\u790E\u6700\u5927HP+25%"
+  Info: "\u57FA\u790E\u6700\u5927HP+20%"
   Icon: {fileID: 2800000, guid: 454074f51eadfc7488a46d8a4ce0aafb, type: 3}
   Filters: 0000000002000000
