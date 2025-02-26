@@ -14,7 +14,12 @@ public class Net_RoomUI : MonoBehaviour
     [Tooltip("マスター用UI"), SerializeField] GameObject MasterOnly;
     [Tooltip("プライベート切り替えトグル"), SerializeField] Toggle PrivateT;
     [Tooltip("非マスター用UI"), SerializeField] GameObject NoMaster;
-
+    private void Start()
+    {
+        if (!PhotonNetwork.InRoom) return;
+        if (!PhotonNetwork.IsMasterClient) return;
+        PhotonNetwork.DestroyAll();
+    }
     void LateUpdate()
     {
         var CRoom = PhotonNetwork.CurrentRoom;
@@ -48,7 +53,6 @@ public class Net_RoomUI : MonoBehaviour
         NoMaster.SetActive(!PhotonNetwork.IsMasterClient);
         PrivateT.isOn = !CRoom.IsVisible;
         CRoom.IsOpen = true;
-        PhotonNetwork.DestroyAll();
     }
 
     //ルーム退室
