@@ -1,4 +1,3 @@
-
 #pragma kernel CSMain
 
 struct BoidState
@@ -7,7 +6,7 @@ struct BoidState
     float3 forward;
 };
 
-RWStructuredBuffer<BoidState> boidBuffer; 
+RWStructuredBuffer<BoidState> boidBuffer;
 
 uint numBoids;
 float deltaTime;
@@ -25,7 +24,6 @@ float3 normalizeSafe(float3 v)
 [numthreads(8, 1, 1)]
 void CSMain(uint3 id : SV_DispatchThreadID)
 {
-
     uint boidIndex = id.x;
     BoidState boidSelf = boidBuffer[boidIndex];
     float3 cellAlignment, cellSeparation;
@@ -54,5 +52,4 @@ void CSMain(uint3 id : SV_DispatchThreadID)
     boidSelf.position = boidSelf.position + (nextHeading * moveSpeed * deltaTime);
     boidSelf.forward = nextHeading;
     boidBuffer[boidIndex] = boidSelf;
-    
 }
