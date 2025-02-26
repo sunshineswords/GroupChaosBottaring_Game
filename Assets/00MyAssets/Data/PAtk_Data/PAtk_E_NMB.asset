@@ -43,6 +43,11 @@ MonoBehaviour:
           Mlt: 0
           Val: {x: -90, y: 0, z: 0}
     Hits: []
+    Adds:
+    - EditDisp: 
+      BranchNum: 0
+      AddShots:
+      - {fileID: 11400000, guid: 9ee06b8beb9225a418c8cc7232db7e90, type: 2}
     HitCT: 0
   Moves: []
   States: []

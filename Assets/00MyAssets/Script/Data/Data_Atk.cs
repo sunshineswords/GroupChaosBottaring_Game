@@ -31,17 +31,18 @@ public class Data_Atk : ScriptableObject
     public string InfoGets()
     {
         string Str = "";
-        if (Info != "") Str = Info;
+        if (Info != "") Str = "\n" + Info;
         if (Str != "") Str += "\n";
-        Str += "CT" + CT+"秒";
-        if (SPUse > 0)Str += "\nSP" + SPUse;
-        
+        Str += "<color=#888888>CT" + CT+"秒</color>";
+        Str += "\n<color=#008888>攻撃時間" + EndTime + "f</color>";
+        if (SPUse > 0)Str += "\n<color=#FFFF00>SP" + SPUse+ "</color>";
+        Str += "<size=70%>";
         if (BranchInfos.Count > 0)
         {
             for (int i = 0; i < BranchInfos.Count; i++)
             {
                 var BInfo = BranchInfos[i];
-                Str += "\n" + BInfo.Name;
+                Str += "\n<size=100%>" + BInfo.Name+"</size>";
                 Str += "\n" + InfoGetBranchs(BInfo.BID);
             }
         }
@@ -49,32 +50,50 @@ public class Data_Atk : ScriptableObject
         {
             Str += "\n" + InfoGetBranchs(0);
         }
+        Str += "</size>";
+        while (true)
+        {
+            if (Str.Contains("\n\n"))
+            {
+                Str = Str.Replace("\n\n", "\n");
+            }
+            else break;
+        }
         return Str;
     }
     string InfoGetBranchs(int BID)
     {
         var OStr = "";
+
         for (int j = 0; j < Shots.Length; j++)
         {
             var Shot = Shots[j];
             if (OStr != "") OStr += "\n";
-            OStr += Shot.OtherStrGet(BID);
+            OStr += Shot.OtherStrGet(BID,false);
         }
+
+
         for (int j = 0; j < States.Length; j++)
         {
             var State = States[j];
             if (State.BranchNum >= 0 && State.BranchNum != BID) continue;
             if (OStr != "") OStr += "\n";
+            OStr += "<color=#88FF88>";
             OStr += "(自身" + State.State.ToString()+")";
-            OStr += CalStr(State.Adds);
+            OStr += CalStr(State.Adds,true);
+            OStr += "</color>";
         }
+
+
         for (int j = 0; j < Bufs.Length; j++)
         {
             var Buf = Bufs[j];
             if (Buf.BranchNum >= 0 && Buf.BranchNum != BID) continue;
             if (OStr != "") OStr += "\n";
+            OStr += "<color=#FF88FF>";
             OStr += "(自身状態変化)";
-            for (int k = 0; k < Buf.BufSets.Length; k++) OStr += Buf.BufSets[k].InfoStr();
+            for (int k = 0; k < Buf.BufSets.Length; k++) OStr += "\n" + Buf.BufSets[k].InfoStr(false);
+            OStr += "</color>";
         }
         return OStr;
     }

@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static DataBase;
+using static PlayerValue;
+using static Manifesto;
+using UnityEngine.Rendering.Universal;
+
 public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
 {
     static public BattleManager BTManager;
@@ -13,6 +17,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     public int DeathStar;
 
     public float EStaMults;
+    public int Stage;
     public int Time;
     public int DeathCount;
     public int Star;
@@ -24,7 +29,7 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     [System.NonSerialized] public List<State_Base> PlayerList = new List<State_Base>();
     [System.NonSerialized] public List<State_Base> BossList = new List<State_Base>();
     [System.NonSerialized] public List<Enemy_WaveSpawne> WaveSpList = new List<Enemy_WaveSpawne>();
-
+    bool EndSave = false;
     void Awake()
     {
         BTManager = this;
@@ -34,6 +39,8 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
         {
             Time = TimeLimSec * 60;
             EStaMults = 1f + (PhotonNetwork.CurrentRoom.PlayerCount - 1) * 0.8f;
+            DeathStar = Mathf.RoundToInt(DeathStar * (1f + (PhotonNetwork.CurrentRoom.PlayerCount - 1) * 0.3f));
+            Stage = StageID;
         }
     }
 
@@ -41,7 +48,19 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     {
         if (!PhotonNetwork.InRoom) return;
         ListSet();
+        if (End)
+        {
+            if(PhotonNetwork.OfflineMode)PSaves.StageSoloStars[Stage] = Mathf.Max(PSaves.StageSoloStars[Stage], Star);
+            else PSaves.StageMultStars[Stage] = Mathf.Max(PSaves.StageMultStars[Stage], Star);
+            if (!EndSave)
+            {
+                EndSave = true;
+                Save();
+            }
+        }
         if (!photonView.IsMine) return;
+        var CRoom = PhotonNetwork.CurrentRoom;
+        CRoom.IsOpen = false;
         if (!End)
         {
             if (Time > 0) Time--;
@@ -91,6 +110,10 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     {
         photonView.RPC(nameof(RPC_DeathAdd), RpcTarget.All);
     }
+    public void SEPlay(Class_Base_SEPlay SEPlays,Vector3 Pos,bool Local = false)
+    {
+        SEPlay(SEPlays.Clip, Pos, SEPlays.Volume, SEPlays.Pitch, Local);
+    }
     public void SEPlay(AudioClip SEClip, Vector3 Pos, float Volume, float Pitch,bool Local=false)
     {
         var SEID = DB.SEs.IndexOf(SEClip);
@@ -137,17 +160,21 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
     {
         if (stream.IsWriting)
         {
+            stream.SendNext(Stage);
             stream.SendNext(Time);
             stream.SendNext(DeathCount);
             stream.SendNext(Star);
+            stream.SendNext(DeathStar);
             stream.SendNext(Win);
             stream.SendNext(End);
         }
         else
         {
+            Stage = (int)stream.ReceiveNext();
             Time = (int)stream.ReceiveNext();
             DeathCount = (int)stream.ReceiveNext();
             Star = (int)stream.ReceiveNext();
+            DeathStar = (int)stream.ReceiveNext();
             Win = (bool)stream.ReceiveNext();
             End = (bool)stream.ReceiveNext();
         }

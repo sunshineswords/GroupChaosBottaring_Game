@@ -130,14 +130,14 @@ public class Calculation : MonoBehaviour
         return GetValue(LogStr, Sta1, Sta2);
     }
 
-    static public string CalStr(string Ca)
+    static public string CalStr(string Ca,bool Enters)
     {
         if (Ca == null) return "";
         if (Ca == "") return "";
-        Ca = Ca.Replace("dfm", "{防計}");
+
 
         Ca = Ca.Replace("U.", "自");
-        Ca = Ca.Replace("T.", "敵");
+        Ca = Ca.Replace("T.", "対");
         Ca = Ca.Replace("MHP", "最大H#P");
         Ca = Ca.Replace("HP", "現在HP");
         Ca = Ca.Replace("MMP", "最大M#P");
@@ -161,7 +161,10 @@ public class Calculation : MonoBehaviour
             }
             FCa += CaCut[i];
         }
-        return ChangeRestoration(FCa);
+        Ca = ChangeRestoration(FCa);
+        Ca = Ca.Replace("dfm", "{防計}\n");
+        if(!Enters)Ca = Ca.Replace("\n", "");
+        return Ca;
     }
 
     #region 処理用

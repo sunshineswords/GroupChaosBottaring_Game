@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Buf_Shield
   m_EditorClassIdentifier: 
   Buf: 2010
-  Name: 
   Info: 
   Col: {r: 0, g: 0, b: 1, a: 1}
   Icon: {fileID: 0}
   EffectObj: {fileID: 7024842138666826482, guid: 25cf9c606a45b8a458a92fec20b11388, type: 3}
+  RemSE:
+    Clip: {fileID: 8300000, guid: 02aab3dbb3ba6814a84ef0e107fdb488, type: 3}
+    Volume: 200
+    Pitch: 125

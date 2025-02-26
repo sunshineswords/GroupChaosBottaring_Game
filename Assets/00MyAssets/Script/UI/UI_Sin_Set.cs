@@ -13,6 +13,7 @@ public class UI_Sin_Set : MonoBehaviour
     public int ID;
     public Image BackImage;
     public TextMeshProUGUI Name;
+    public TextMeshProUGUI Info;
     public RawImage Icon;
 
     public void Click()

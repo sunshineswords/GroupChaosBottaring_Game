@@ -11,6 +11,7 @@ public class UI_Sin_Message : MonoBehaviour
     float times = 0;
     private void Update()
     {
+        if (DelTime <= 0) return;
         times += Time.fixedDeltaTime;
         float Alpha = 1f - (times / DelTime);
         Color BackCol = BackUI.color;

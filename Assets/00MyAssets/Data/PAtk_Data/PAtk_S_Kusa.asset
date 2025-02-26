@@ -18,7 +18,7 @@ MonoBehaviour:
   AtkType: 1
   Filters: 040000006e000000
   EndTime: 60
-  CT: 6
+  CT: 15
   SPUse: 0
   BranchInfos: []
   Branchs: []
@@ -29,7 +29,7 @@ MonoBehaviour:
   - BranchNum: 0
     Times: {x: 50, y: 50, z: 0}
     State: 0
-    Adds: U.MHP*0.25
+    Adds: U.MHP*0.6
   Bufs: []
   WeponSets: []
   Anims:

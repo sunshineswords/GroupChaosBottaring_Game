@@ -23,6 +23,14 @@ MonoBehaviour:
   HealEffects:
   - {fileID: 104953593097573077, guid: 9b06eee8eb04de8448ea200973c601e9, type: 3}
   - {fileID: 104953593097573077, guid: 70f6162ee7145964fbd1078dc9c238d2, type: 3}
+  BarriaHitSE:
+    Clip: {fileID: 8300000, guid: eb81a134a0826fc4792faf22db68dfed, type: 3}
+    Volume: 120
+    Pitch: 80
+  ShildHitSE:
+    Clip: {fileID: 8300000, guid: eb81a134a0826fc4792faf22db68dfed, type: 3}
+    Volume: 50
+    Pitch: 200
   Charas:
   - {fileID: 11400000, guid: 07821d065f745214395a81df54ff17ce, type: 2}
   - {fileID: 11400000, guid: a7854d6c44cf2e94d898f0a5ac93e7aa, type: 2}
@@ -59,6 +67,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5b91dd4916fa4434ba929f8d9136c12e, type: 2}
   - {fileID: 11400000, guid: 51f7a8df5ec9e1f45b8c4d828c8a227f, type: 2}
   - {fileID: 11400000, guid: 5a7f8a7577abc394fa87620b32a39917, type: 2}
+  - {fileID: 11400000, guid: 03cd9b38175f55640bb044011d49376d, type: 2}
+  - {fileID: 11400000, guid: 6c967c722290ad94198b4f558abca966, type: 2}
+  - {fileID: 11400000, guid: 808f73f9e40a5fc408b018332070275f, type: 2}
+  - {fileID: 11400000, guid: df264aa4b46d1824b966e6f3fe44b9af, type: 2}
   E_Atks:
   - {fileID: 11400000, guid: 40dbec132893f92458f13ebb61e76ddd, type: 2}
   - {fileID: 11400000, guid: 7940ced0e66f13b48a4a5fdc7c157138, type: 2}
@@ -130,6 +142,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 37ccea76d7befc347a68ef577ff9841b, type: 3}
   - {fileID: 8300000, guid: 95e2f1d310157194caee4428a2ee1992, type: 3}
   - {fileID: 8300000, guid: 44c245d1f30e77c4ba62ed452fd4695b, type: 3}
+  - {fileID: 8300000, guid: eb81a134a0826fc4792faf22db68dfed, type: 3}
+  - {fileID: 8300000, guid: 02aab3dbb3ba6814a84ef0e107fdb488, type: 3}
   Stages:
   - {fileID: 11400000, guid: 632b57d86c62ed6439b96f12aeb840a2, type: 2}
   - {fileID: 11400000, guid: 07c8d87946b505d4484d0d663a5c7a9d, type: 2}

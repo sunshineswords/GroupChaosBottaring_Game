@@ -17,20 +17,14 @@ MonoBehaviour:
     Fires:
     - EditDisp: 
       BranchNum: -1
-      Times: {x: 0, y: 999, z: 0}
+      Times: {x: 0, y: 0, z: 0}
       Count: 1
       Speed: {x: 0, y: 0}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: -1
-        RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots: []
     Hits:
     - EditDisp: 
       BranchNum: -1
@@ -43,13 +37,15 @@ MonoBehaviour:
       DamCalc: (U.ATKdfmT.DEF)*4.6
       SPAdd: 0
       BufSets:
-      - Buf: 1000
+      - EditDisp: 
+        Buf: 1000
         Index: 0
         Set: 1
         TimeVal: 600
         PowVal: 15000
         TimeMax: 600
         PowMax: 
+    Adds: []
     HitCT: 0
   SEPlays:
   - BranchNum: -1

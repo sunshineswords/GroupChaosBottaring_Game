@@ -41,15 +41,9 @@ MonoBehaviour:
       Speed: {x: 0, y: 0}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: -1
-        RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots: []
     Hits:
     - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)"
       BranchNum: 0
@@ -62,13 +56,15 @@ MonoBehaviour:
       DamCalc: 
       SPAdd: 0
       BufSets:
-      - Buf: 2010
+      - EditDisp: "\u30B7\u30FC\u30EB\u30C9[10,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E900)(\u6BB5\u968E:\u4ED8\u4E0E(\u81EA\u6700\u5927HP)80.0%)"
+        Buf: 2010
         Index: 10
         Set: 0
         TimeVal: 900
-        PowVal: (U.MHP)*0.4
+        PowVal: (U.MHP)*0.8
         TimeMax: 0
         PowMax: 
+    Adds: []
     HitCT: 0
   Moves: []
   States: []

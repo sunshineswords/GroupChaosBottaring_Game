@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UnityEngine;
 using static Manifesto;
-
+using static DataBase;
 public class PlayerValue
 {
     static string Paths { get { return Application.persistentDataPath+"/"; } }
@@ -31,6 +31,14 @@ public class PlayerValue
         {
             var PSaves_C = JsonUtility.FromJson<Class_Save_PSaves>(PSaves_Json);
             PSaves = PSaves_C;
+        }
+        for (int i = PSaves.StageSoloStars.Count - 1; i < DB.Stages.Length; i++)
+        {
+            PSaves.StageSoloStars.Add(0);
+        }
+        for (int i = PSaves.StageMultStars.Count - 1; i < DB.Stages.Length; i++)
+        {
+            PSaves.StageMultStars.Add(0);
         }
         for (int i = 0; i < PriSets.Length; i++)
         {

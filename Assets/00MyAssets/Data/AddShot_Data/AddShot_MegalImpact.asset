@@ -17,7 +17,7 @@ MonoBehaviour:
     Fires:
     - EditDisp: 
       BranchNum: -1
-      Times: {x: 0, y: 999, z: 0}
+      Times: {x: 0, y: 0, z: 0}
       Count: 1
       Speed: {x: 0, y: 0}
       Trans:
@@ -37,6 +37,7 @@ MonoBehaviour:
       DamCalc: (U.ATKdfmT.DEF)*16
       SPAdd: 0
       BufSets: []
+    Adds: []
     HitCT: 20
   SEPlays:
   - BranchNum: -1

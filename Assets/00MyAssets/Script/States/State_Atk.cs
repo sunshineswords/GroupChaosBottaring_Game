@@ -116,7 +116,6 @@ public class State_Atk
             {
                 var AtFire = AtShot.Fires[j];
                 if (AtFire.BranchNum >= 0 && BranchID != AtFire.BranchNum) continue;
-                if (!V3IntTimeCheck(Times, AtFire.Times)) continue;
                 for (int k = 0; k < AtFire.Count; k++)
                 {
                     float WaySet = k - ((AtFire.Count - 1) / 2f);
