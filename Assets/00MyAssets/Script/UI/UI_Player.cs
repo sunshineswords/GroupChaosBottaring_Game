@@ -65,10 +65,10 @@ public class UI_Player : UI_State
                     AtkUIs[index].ChargeImage[j].fillAmount = (float)Sta.SP / AtkD.SPUse;
 
                     // スタミナ不足の場合、背景を灰色に変更
-                    if (Sta.SP < AtkD.SPUse && AtkUIs[index].BackImage[j])
-                    {
-                        AtkUIs[index].BackImage[j].color = Color.gray;
-                    }
+                    //if (Sta.SP < AtkD.SPUse && AtkUIs[index].BackImage[j])
+                    //{
+                    //    AtkUIs[index].BackImage[j].color = Color.gray;
+                    //}
                 }
                 else AtkUIs[index].ChargeImage[j].fillAmount = 0;
             }
