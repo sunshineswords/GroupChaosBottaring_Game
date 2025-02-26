@@ -19991,7 +19991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3826475236891402547, guid: b09bab02c3651e949a63e9bb4c273013, type: 3}
       propertyPath: startCount
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3826475236891402547, guid: b09bab02c3651e949a63e9bb4c273013, type: 3}
       propertyPath: boidExtent.x
@@ -20015,7 +20015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3826475236891402547, guid: b09bab02c3651e949a63e9bb4c273013, type: 3}
       propertyPath: boidConfig.moveSpeed
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3826475236891402547, guid: b09bab02c3651e949a63e9bb4c273013, type: 3}
       propertyPath: boidConfig.boidTarget
@@ -20024,6 +20024,14 @@ PrefabInstance:
     - target: {fileID: 3826475236891402547, guid: b09bab02c3651e949a63e9bb4c273013, type: 3}
       propertyPath: boidConfig.targetWeight
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3826475236891402547, guid: b09bab02c3651e949a63e9bb4c273013, type: 3}
+      propertyPath: boidConfig.alignmentWeight
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3826475236891402547, guid: b09bab02c3651e949a63e9bb4c273013, type: 3}
+      propertyPath: boidConfig.separationWeight
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8053333483231115105, guid: b09bab02c3651e949a63e9bb4c273013, type: 3}
       propertyPath: m_Name
@@ -20798,7 +20806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {x: -100, y: 0, z: 40}
   endPosition: {x: 100, y: 0, z: 40}
-  duration: 60
+  duration: 30
   ease: 22
 --- !u!1 &1999793803
 GameObject:
