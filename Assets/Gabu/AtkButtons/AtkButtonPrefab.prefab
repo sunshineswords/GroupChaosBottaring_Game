@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 8599508815412033284}
   m_Layer: 5
   m_Name: DisabledImage
-  m_TagString: Untagged
+  m_TagString: CamNoUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -286,9 +286,10 @@ GameObject:
   - component: {fileID: 946669590222359435}
   - component: {fileID: 2150429589955166516}
   - component: {fileID: 1982827215887333424}
+  - component: {fileID: 199165566222711355}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: CamNoUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,7 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -416,6 +417,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2
+--- !u!114 &199165566222711355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751361620415380065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448cd6d8e2f2cb04096e777d99974bc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonStateOutputEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  buttonClickOutputEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3097992804080212927
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +657,7 @@ GameObject:
   - component: {fileID: 7407462711929111621}
   m_Layer: 5
   m_Name: FullImage
-  m_TagString: Untagged
+  m_TagString: CamNoUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1920,7 +1939,7 @@ GameObject:
   - component: {fileID: 7851035136417648895}
   m_Layer: 5
   m_Name: Images
-  m_TagString: Untagged
+  m_TagString: CamNoUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2065,7 +2084,7 @@ GameObject:
   - component: {fileID: 5452188459693216086}
   m_Layer: 5
   m_Name: ChengedImages
-  m_TagString: Untagged
+  m_TagString: CamNoUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -59,7 +59,7 @@ public class UI_State : MonoBehaviour
             HPFrontFill.color = HPCol;
             CHPPer = Mathf.Min(CHPPer + ChangeSpeed, HPPer);
         }
-
+        CHPPer = Mathf.Clamp01(CHPPer);
         for (int i = 0; i < Mathf.Max(BufUIs.Count, Sta.Bufs.Count); i++)
         {
             if (i < Sta.Bufs.Count)
