@@ -55,12 +55,15 @@ VisualEffect:
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 5, y: 5, z: 5}
+        m_Name: BoidScale
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
       m_Array:
-      - m_Value: 1000
+      - m_Value: 10000
         m_Name: BoidCount
         m_Overridden: 1
     m_Int:
@@ -130,17 +133,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a155577e12e4064d8c6cbbcf67389ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCount: 100
-  endCount: 1000
-  instanceTime: 1
+  startCount: 1
+  endCount: 10000
+  instanceTime: 60
   boidExtent:
-    x: 10
-    y: 10
-    z: 10
+    x: 200
+    y: 50
+    z: 25
   BoidComputeShader: {fileID: 7200000, guid: 374418a1890bac848b1f14b340769ac4, type: 3}
   boidConfig:
-    moveSpeed: 1
-    separationWeight: 0.5
-    alignmentWeight: 0.5
-    targetWeight: 0.5
+    moveSpeed: 7
+    separationWeight: 0.2
+    alignmentWeight: 0.6
+    targetWeight: 1
     boidTarget: {fileID: 0}

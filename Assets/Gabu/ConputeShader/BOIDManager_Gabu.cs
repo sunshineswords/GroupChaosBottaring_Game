@@ -28,9 +28,10 @@ public class BOIDManager_Gabu : MonoBehaviour
         public Transform boidTarget;
     }
 
+    public int adder = 1;
     public int startCount = 1;
     public int endCount = 100;
-    private int boidCount;
+    public int boidCount;
     public float instanceTime = 60f; // 60秒ごとにBOID数を更新
 
     public float3 boidExtent = new(32f, 32f, 32f);
@@ -72,7 +73,7 @@ public class BOIDManager_Gabu : MonoBehaviour
         if (_timer >= instanceTime && boidCount < endCount)
         {
             _timer = 0;
-            int newBoidCount = Mathf.Min(boidCount + 10, endCount); // 10体ずつ増やす
+            int newBoidCount = Mathf.Min(boidCount + adder, endCount); // 10体ずつ増やす
             UpdateBoidsCount(newBoidCount);
         }
         UpdateBoids();
