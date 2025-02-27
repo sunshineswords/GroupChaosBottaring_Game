@@ -622,7 +622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -681,6 +681,7 @@ MonoBehaviour:
   ID: 10
   BackImage: {fileID: 1281436323455479460}
   Name: {fileID: 7754038680714755690}
+  Info: {fileID: 0}
   Icon: {fileID: 712922639891218397}
 --- !u!95 &5445691093122514001
 Animator:

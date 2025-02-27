@@ -7,11 +7,12 @@ public class CursorSystem_Gabu : MonoBehaviour
     {
         Cursor.visible = setCursorVisible;
     }
-    public void Update()
+    private void OnEnable()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.visible = !Cursor.visible;
-        }
+        Cursor.visible = setCursorVisible;
     }
+    private void OnDisable()
+    {
+        Cursor.visible = !setCursorVisible;
+    }   
 }

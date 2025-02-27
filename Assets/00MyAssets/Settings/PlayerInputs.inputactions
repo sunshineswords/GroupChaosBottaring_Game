@@ -234,7 +234,7 @@
                     "id": "c1f7a91b-d0fd-4a62-997e-7fb9b69bf235",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "ScaleVector2(x=50,y=25)",
                     "groups": ";Gamepad",
                     "action": "Look",
                     "isComposite": false,
@@ -256,8 +256,8 @@
                     "id": "98a3fd8e-bab3-417b-b5fb-5e8e72c51db1",
                     "path": "<XInputController>/rightStick",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "ScaleVector2(x=50,y=50)",
+                    "groups": ";Xbox Controller",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -267,8 +267,8 @@
                     "id": "3533343b-5304-42b3-a26e-0d6bb06f23db",
                     "path": "<DualShockGamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "processors": "ScaleVector2(x=50,y=25)",
+                    "groups": ";PlayStation Controller",
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -817,6 +817,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "VMouseMove",
+                    "type": "Value",
+                    "id": "763d5ff2-6014-4cbe-972a-8682c230a9e4",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "VMouseClick",
+                    "type": "Button",
+                    "id": "fd6836a5-b561-4012-94a6-72ec7031baab",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1142,7 +1160,7 @@
                 {
                     "name": "",
                     "id": "f6bb933b-ee7d-4c48-a1b1-407265368ce0",
-                    "path": "<XInputController>/buttonSouth",
+                    "path": "<XInputController>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1323,6 +1341,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0556c5f9-ac24-4e50-bbc7-b0b31ddf4815",
+                    "path": "<XInputController>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Xbox Controller",
+                    "action": "VMouseMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d80b9c9-12a6-4f61-b644-b2390d520912",
+                    "path": "<DualShockGamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PlayStation Controller",
+                    "action": "VMouseMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26ff455f-bc6a-4f7c-9786-5719d5c5676e",
+                    "path": "<DualShockGamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";PlayStation Controller",
+                    "action": "VMouseClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d89e7292-b97d-4403-b500-cb6904f0e721",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Xbox Controller",
+                    "action": "VMouseClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

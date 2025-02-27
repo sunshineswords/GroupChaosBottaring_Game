@@ -10,6 +10,7 @@ public class ActionIcones_DB : ScriptableObject
     [Header("0:マウスカーソル、1:xbox、2:PlayStation、3:その他")]
     public ActionIcone[] Menu_icons = new ActionIcone[4];
     public ActionIcone[] Move_icons = new ActionIcone[4];
+    public ActionIcone[] Dash_icons = new ActionIcone[4];
     public ActionIcone[] Jump_icons = new ActionIcone[4];
     public ActionIcone[] Target_icons = new ActionIcone[4];
     public ActionIcone[] Chenge_icons = new ActionIcone[4];

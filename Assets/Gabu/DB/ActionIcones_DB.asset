@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ActionIcones_DB
   m_EditorClassIdentifier: 
   default_index: 0
-  play_index: 9
-  ui_index: 13
+  play_index: 10
+  ui_index: 14
   Menu_icons:
   - {fileID: 11400000, guid: 529bef8632ebe6847ba64e7749446c7a, type: 2}
   - {fileID: 11400000, guid: 805858e642d60f84297f3761dce54133, type: 2}
@@ -25,6 +25,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dd706748f04b4947b6a9945c28caa74, type: 2}
   - {fileID: 11400000, guid: 9216e3ed78933cf44b381a006f4c7a64, type: 2}
   - {fileID: 11400000, guid: e5718bffd2aee1e44b0c7552ad434f66, type: 2}
+  Dash_icons:
+  - {fileID: 11400000, guid: 700403c41705574498d65b98b4a8d463, type: 2}
+  - {fileID: 11400000, guid: 3264dc1969480f54d84f809a71f445ed, type: 2}
+  - {fileID: 11400000, guid: 55e18d6bcb6c693468794f76142077e2, type: 2}
+  - {fileID: 11400000, guid: 700403c41705574498d65b98b4a8d463, type: 2}
   Jump_icons:
   - {fileID: 11400000, guid: 69eb51997782b3a48aedf9fe2ea03bfe, type: 2}
   - {fileID: 11400000, guid: 0aad3aa9bcfad1b4cbeaa1bf8215e4c8, type: 2}
