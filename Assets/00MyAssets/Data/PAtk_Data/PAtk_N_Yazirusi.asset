@@ -189,7 +189,7 @@ MonoBehaviour:
         RotBase: 1
         TransRots: []
     Hits:
-    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)\u81EA\u653B\u6483\u529B10.0%"
+    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+0.8)\u81EA\u653B\u6483\u529B10.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -198,9 +198,9 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: U.ATK*0.1
-      SPAdd: 3
+      SPAdd: 0.8
       BufSets: []
-    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)\u81EA\u653B\u6483\u529B22.0%"
+    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+2.0)\u81EA\u653B\u6483\u529B22.0%"
       BranchNum: 1
       EHit: 1
       FHit: 0
@@ -209,9 +209,9 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: U.ATK*0.22
-      SPAdd: 4
+      SPAdd: 2
       BufSets: []
-    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)\u81EA\u653B\u6483\u529B5.0%"
+    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+0.6)\u81EA\u653B\u6483\u529B5.0%"
       BranchNum: 2
       EHit: 1
       FHit: 0
@@ -220,9 +220,9 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: U.ATK*0.05
-      SPAdd: 5
+      SPAdd: 0.6
       BufSets: []
-    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)\u81EA\u653B\u6483\u529B15.0%"
+    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+0.6)\u81EA\u653B\u6483\u529B6.0%"
       BranchNum: 3
       EHit: 1
       FHit: 0
@@ -230,10 +230,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 1
-      DamCalc: U.ATK*0.15
-      SPAdd: 6
+      DamCalc: U.ATK*0.06
+      SPAdd: 0.6
       BufSets: []
-    - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)\u81EA\u653B\u6483\u529B35.0%"
+    - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+5.0)\u81EA\u653B\u6483\u529B35.0%"
       BranchNum: 4
       EHit: 1
       FHit: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: U.ATK*0.35
-      SPAdd: 15
+      SPAdd: 5
       BufSets: []
     Adds: []
     HitCT: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
           Mlt: 0
           Val: {x: 0, y: 360, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:10|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)\u81EA\u653B\u6483\u529B20.0%"
+    - EditDisp: "[0]BNum:10|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+1.5)\u81EA\u653B\u6483\u529B20.0%"
       BranchNum: 10
       EHit: 1
       FHit: 0
@@ -284,9 +284,9 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: U.ATK*0.2
-      SPAdd: 3
+      SPAdd: 1.5
       BufSets: []
-    - EditDisp: "[1]BNum:21|(\u901A\u5E38,\u8FD1\u8DDD\u96E2)\u81EA\u653B\u6483\u529B25.0%"
+    - EditDisp: "[1]BNum:21|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+1.7)\u81EA\u653B\u6483\u529B25.0%"
       BranchNum: 21
       EHit: 1
       FHit: 0
@@ -295,7 +295,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: U.ATK*0.25
-      SPAdd: 3
+      SPAdd: 1.7
       BufSets: []
     Adds: []
     HitCT: 0

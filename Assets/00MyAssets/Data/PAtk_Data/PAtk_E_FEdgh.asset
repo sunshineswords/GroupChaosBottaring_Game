@@ -19,7 +19,7 @@ MonoBehaviour:
   Filters: 0000000064000000
   EndTime: 60
   CT: 15
-  SPUse: 250
+  SPUse: 350
   BranchInfos: []
   Branchs: []
   Fixeds: []
@@ -33,17 +33,11 @@ MonoBehaviour:
       Speed: {x: 500, y: 500}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 0
-        RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots: []
     Hits:
-    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u8FD1\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u5FA1\u8A08\u7B97}\u6575\u9632\u5FA1\u529B)*12"
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u8FD1\u8DDD\u96E2,SP+0.0)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)2000.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -51,9 +45,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 4
       ShortAtk: 1
-      DamCalc: (U.ATKdfmT.DEF)*12
+      DamCalc: (U.ATKdfmT.DEF)*20
       SPAdd: 0
       BufSets: []
+    Adds: []
     HitCT: 0
   Moves: []
   States: []

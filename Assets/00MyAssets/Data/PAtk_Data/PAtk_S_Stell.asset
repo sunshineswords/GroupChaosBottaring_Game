@@ -26,9 +26,9 @@ MonoBehaviour:
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 1e32a69d6acb8ff4a9c3d6380ff18760, type: 3}
     Fires:
-    - EditDisp: '[0]BNum:0,Time:(0, 0, 0),Count:1,Speed:(1000.00, 10000.00)'
+    - EditDisp: '[0]BNum:0,Time:(20, 20, 0),Count:1,Speed:(1000.00, 10000.00)'
       BranchNum: 0
-      Times: {x: 0, y: 0, z: 0}
+      Times: {x: 20, y: 20, z: 0}
       Count: 1
       Speed: {x: 1000, y: 10000}
       Trans:
@@ -38,9 +38,9 @@ MonoBehaviour:
         TransRots:
         - Change: 1
           Mlt: 0
-          Val: {x: 10, y: 0, z: 0}
+          Val: {x: 5, y: 0, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:0|(\u30B9\u30AD\u30EB,\u8FD1\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)200.0%"
+    - EditDisp: "[0]BNum:0|(\u30B9\u30AD\u30EB,\u8FD1\u8DDD\u96E2,SP+50.0)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)200.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -49,8 +49,9 @@ MonoBehaviour:
       DamageType: 3
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*2
-      SPAdd: 0
+      SPAdd: 50
       BufSets: []
+    Adds: []
     HitCT: 60
   Moves: []
   States: []
@@ -62,4 +63,9 @@ MonoBehaviour:
     Times: {x: 0, y: 60}
     ID: 20
     Speed: 0
-  SEPlays: []
+  SEPlays:
+  - BranchNum: 0
+    Times: {x: 20, y: 20, z: 0}
+    Clip: {fileID: 8300000, guid: eb81a134a0826fc4792faf22db68dfed, type: 3}
+    Volume: 200
+    Pitch: 80

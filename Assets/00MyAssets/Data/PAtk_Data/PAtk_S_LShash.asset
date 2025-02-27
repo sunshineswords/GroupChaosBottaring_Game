@@ -37,7 +37,7 @@ MonoBehaviour:
         RotBase: 0
         TransRots: []
     Hits:
-    - EditDisp: "[0]BNum:0|(\u30B9\u30AD\u30EB,\u8FD1\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)450.0%"
+    - EditDisp: "[0]BNum:0|(\u30B9\u30AD\u30EB,\u8FD1\u8DDD\u96E2,SP+20.0)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)450.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
       DamageType: 3
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*4.5
-      SPAdd: 15
+      SPAdd: 20
       BufSets: []
     Adds: []
     HitCT: 0

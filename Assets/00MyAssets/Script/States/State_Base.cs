@@ -410,7 +410,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                     var SpHealLV = PriSetGet.PassiveLVGet(Enum_Passive.必殺再生);
                     if (SpHealLV > 0) Damage(PosGet(), Mathf.RoundToInt(MHP * SpHealLV * 0.15f));
                     var SpReturnLV = PriSetGet.PassiveLVGet(Enum_Passive.必殺返還);
-                    if (SpReturnLV > 0) SP = SpReturnLV * 15;
+                    if (SpReturnLV > 0) SP = SpReturnLV * 25;
                 }
             }
             if (UseAtkD.AtkType == Enum_AtkType.必殺) BTManager.MessageAdd(Name + "\\の必殺「" + UseAtkD.Name + "」");

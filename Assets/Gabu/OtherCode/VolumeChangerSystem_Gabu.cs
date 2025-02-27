@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using static PlayerValue;
@@ -16,6 +17,11 @@ public class VolumeChangerSystem_Gabu : MonoBehaviour
     [SerializeField] Slider BGMSlider;
     [SerializeField] Slider SESlider;
     [SerializeField] Slider SystemSlider;
+
+    [SerializeField] TextMeshProUGUI MasterValTx;
+    [SerializeField] TextMeshProUGUI BGMValTx;
+    [SerializeField] TextMeshProUGUI SEValTx;
+    [SerializeField] TextMeshProUGUI SystemValTx;
 
     #endregion
     #region 関数
@@ -40,6 +46,7 @@ public class VolumeChangerSystem_Gabu : MonoBehaviour
     public void ChangeVolume(float sliderValue, string targetName)
     {
         audioMixer.SetFloat(targetName, Mathf.Clamp(Mathf.Log(sliderValue, 10) * 60f, -80, 20));
+        ValTxSet();
     }
 
     public void SaveVolume()
@@ -50,7 +57,13 @@ public class VolumeChangerSystem_Gabu : MonoBehaviour
         PSaves.SystemVol = SystemSlider.value;
         Save();
     }
-
+    void ValTxSet()
+    {
+        MasterValTx.text = (MasterSlider.value * 100f).ToString("F0")+"%";
+        BGMValTx.text = (BGMSlider.value * 100f).ToString("F0") + "%";
+        SEValTx.text = (SESlider.value * 100f).ToString("F0") + "%";
+        SystemValTx.text = (SystemSlider.value * 100f).ToString("F0") + "%";
+    }
     #endregion
 
     private void Start()
@@ -64,6 +77,9 @@ public class VolumeChangerSystem_Gabu : MonoBehaviour
         BGMSlider.value = PSaves.BGMVol;
         SESlider.value = PSaves.SEVol;
         SystemSlider.value = PSaves.SystemVol;
+
+        ValTxSet();
+
     }
 
 }

@@ -72,7 +72,7 @@ MonoBehaviour:
   m_FillMethod: 1
   m_FillAmount: 0.208
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &667937272061284055
@@ -1062,14 +1062,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3142661954104204246}
-  - {fileID: 7766861820598727205}
   - {fileID: 142124713885099542}
+  - {fileID: 7766861820598727205}
+  - {fileID: 3142661954104204246}
   m_Father: {fileID: 6827037285154968509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 313, y: 0}
+  m_AnchoredPosition: {x: 240, y: 0}
   m_SizeDelta: {x: 200, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6595776954507724274
@@ -1097,7 +1097,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 7
+  m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
@@ -1237,7 +1237,7 @@ MonoBehaviour:
   HPRegene: 10000
   MMP: 400
   MPRegene: 50
-  SPRegene: 1
+  SPRegene: 5
   Atk: 100000
   Def: 100000
   HP: 0
@@ -6765,8 +6765,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 102.99999, y: 0}
-  m_SizeDelta: {x: 200, y: 0}
+  m_AnchoredPosition: {x: 70, y: 0}
+  m_SizeDelta: {x: 120, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4359039707495885611
 CanvasRenderer:
@@ -6793,7 +6793,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 7
+  m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
@@ -6887,7 +6887,7 @@ MonoBehaviour:
   m_FillMethod: 1
   m_FillAmount: 0.208
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5908227383607221918
@@ -7196,7 +7196,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20, y: 50}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 0, y: -300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3140625380212941101
@@ -7414,6 +7414,7 @@ MonoBehaviour:
   - {fileID: 3846183794014518389}
   StateInfoTx: {fileID: 2825798815466795617}
   binaryUIAnimationo: {fileID: 7013770161110473674}
+  DebugUI: {fileID: 5990992951536025380}
 --- !u!1 &6698640804870128443
 GameObject:
   m_ObjectHideFlags: 0
@@ -8393,6 +8394,10 @@ PrefabInstance:
       propertyPath: _pressedColor.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4624307401201295687, guid: 14c976d31e590d04e990966e0dd5e4e1, type: 3}
+      propertyPath: m_Name
+      value: FullImages
+      objectReference: {fileID: 0}
     - target: {fileID: 5754749339213568305, guid: 14c976d31e590d04e990966e0dd5e4e1, type: 3}
       propertyPath: m_Color.a
       value: 0.4
@@ -8619,7 +8624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5147272031780544943, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_fontSize
-      value: 26.75
+      value: 16.05
       objectReference: {fileID: 0}
     - target: {fileID: 5618930965234581267, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -8757,7 +8762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5147272031780544943, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_fontSize
-      value: 36
+      value: 21.9
       objectReference: {fileID: 0}
     - target: {fileID: 5618930965234581267, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -8982,7 +8987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5147272031780544943, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_fontSize
-      value: 35.75
+      value: 21.45
       objectReference: {fileID: 0}
     - target: {fileID: 5618930965234581267, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -9120,7 +9125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5147272031780544943, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_fontSize
-      value: 31.95
+      value: 19.15
       objectReference: {fileID: 0}
     - target: {fileID: 5618930965234581267, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -9258,7 +9263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5147272031780544943, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_fontSize
-      value: 34.15
+      value: 20.5
       objectReference: {fileID: 0}
     - target: {fileID: 5618930965234581267, guid: db39fbf5053f394438c95fa20c4e56a3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

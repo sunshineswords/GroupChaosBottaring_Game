@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -1467573478106684984}
   - component: {fileID: 2647640555106031623}
   - component: {fileID: 4889832231577311306}
+  - component: {fileID: 1406126899398382005}
   m_Layer: 8
   m_Name: Atk_SteelFrame
   m_TagString: Untagged
@@ -180,6 +181,28 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 3, z: 15}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1406126899398382005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905403385281065886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685eb37c37aedfc4ab8095085b9269d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SObj: {fileID: -1467573478106684984}
+  Moves:
+  - Times: {x: 0, y: 1, z: 0}
+    MoveMode: 2
+    Pow: {x: 30, y: 360, z: 0}
+    TargetMode: 0
+    TargetCT: 0
+    Target: {fileID: 0}
+    TargetHit: {fileID: 0}
+    TCT: 0
 --- !u!1 &7693662301762538480
 GameObject:
   m_ObjectHideFlags: 0

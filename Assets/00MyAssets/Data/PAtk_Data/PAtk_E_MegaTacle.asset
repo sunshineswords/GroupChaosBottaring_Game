@@ -44,7 +44,18 @@ MonoBehaviour:
         TransPoss: []
         RotBase: -1
         TransRots: []
-    Hits: []
+    Hits:
+    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2,SP+0.0)"
+      BranchNum: 0
+      EHit: 1
+      FHit: 0
+      MHit: 0
+      Heals: 0
+      DamageType: 0
+      ShortAtk: 0
+      DamCalc: 
+      SPAdd: 0
+      BufSets: []
     Adds:
     - EditDisp: 
       BranchNum: 0

@@ -1333,6 +1333,7 @@ GameObject:
   - component: {fileID: 318872877649301518}
   - component: {fileID: 9044132580081521016}
   - component: {fileID: 805049447542634046}
+  - component: {fileID: 7039338057023793856}
   m_Layer: 0
   m_Name: BattleManagers
   m_TagString: Untagged
@@ -1417,6 +1418,19 @@ MonoBehaviour:
   Win: 0
   End: 0
   Messages: []
+--- !u!114 &7039338057023793856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156027594301703700}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1bd53eb3e45bdc43a5c8bce8e965fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  setCursorVisible: 1
 --- !u!1 &2224632265638147534
 GameObject:
   m_ObjectHideFlags: 0

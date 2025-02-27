@@ -41,15 +41,15 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4574422993637538612}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.5
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 0
-  prewarm: 0
+  looping: 1
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -980,7 +980,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 100
+        scalar: 25
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -5046,7 +5046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   USta: {fileID: 0}
   Rig: {fileID: 8710933915686848093}
-  RemTime: 300
+  RemTime: 1200
   HitRem: 0
   DelAddShots: []
   SepParticles:

@@ -34,16 +34,16 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 0
-      DamCalc: (U.ATKdfmT.DEF)*4.6
+      DamCalc: (U.ATKdfmT.DEF)*5
       SPAdd: 0
       BufSets:
       - EditDisp: 
         Buf: 1000
         Index: 0
         Set: 1
-        TimeVal: 600
+        TimeVal: 1200
         PowVal: 15000
-        TimeMax: 600
+        TimeMax: 1200
         PowMax: 
     Adds: []
     HitCT: 0

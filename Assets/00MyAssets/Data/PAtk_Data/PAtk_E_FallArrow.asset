@@ -19,7 +19,7 @@ MonoBehaviour:
   Filters: 0000000065000000c8000000
   EndTime: 75
   CT: 0
-  SPUse: 0
+  SPUse: 200
   BranchInfos: []
   Branchs: []
   Fixeds:
@@ -51,7 +51,7 @@ MonoBehaviour:
           Mlt: 0
           Val: {x: 15, y: 15, z: 360}
     Hits:
-    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)40.0%"
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2,SP+0.0)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)40.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -62,6 +62,7 @@ MonoBehaviour:
       DamCalc: (U.ATKdfmT.DEF)*0.4
       SPAdd: 0
       BufSets: []
+    Adds: []
     HitCT: 0
   Moves: []
   States: []

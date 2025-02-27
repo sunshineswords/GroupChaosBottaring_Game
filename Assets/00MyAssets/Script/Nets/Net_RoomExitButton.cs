@@ -16,7 +16,13 @@ public class Net_RoomExitButton : MonoBehaviour
     //退室
     public void ExitB()
     {
-        if (Master)PhotonNetwork.LoadLevel(0);
+        if (Master)
+        {
+            var CRoom = PhotonNetwork.CurrentRoom;
+            var CRoomCP = new ExitGames.Client.Photon.Hashtable();
+            CRoomCP["SceneID"] = 0;
+            CRoom.SetCustomProperties(CRoomCP);
+        }
         else PhotonNetwork.LeaveRoom();
     }
 }

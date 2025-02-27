@@ -148,13 +148,13 @@ MonoBehaviour:
   Boss: 0
   Undet: 0
   DamageSE:
-    Clip: {fileID: 0}
-    Volume: 100
-    Pitch: 100
+    Clip: {fileID: 8300000, guid: 8aae3bda30b8dce4ea0797c9b832fbdf, type: 3}
+    Volume: 75
+    Pitch: 250
   DeathSE:
-    Clip: {fileID: 0}
+    Clip: {fileID: 8300000, guid: 7fb4c41cc4d25f74e990ac5e0ca081ec, type: 3}
     Volume: 100
-    Pitch: 100
+    Pitch: 150
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
   MHP: 1000000
   HPRegene: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   MPRegene: 0
   SPRegene: 0
   Atk: 50000
-  Def: 20
+  Def: 10000
   HP: 0
   MP: 0
   SP: 0

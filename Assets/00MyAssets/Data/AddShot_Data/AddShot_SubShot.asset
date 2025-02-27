@@ -38,7 +38,7 @@ MonoBehaviour:
       SPAdd: 0
       BufSets: []
     Adds: []
-    HitCT: 20
+    HitCT: 0
   SEPlays:
   - BranchNum: -1
     Times: {x: 0, y: 0, z: 0}
