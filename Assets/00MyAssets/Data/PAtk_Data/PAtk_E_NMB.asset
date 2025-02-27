@@ -19,7 +19,7 @@ MonoBehaviour:
   Filters: 
   EndTime: 180
   CT: 20
-  SPUse: 180
+  SPUse: 240
   BranchInfos: []
   Branchs: []
   Fixeds: []

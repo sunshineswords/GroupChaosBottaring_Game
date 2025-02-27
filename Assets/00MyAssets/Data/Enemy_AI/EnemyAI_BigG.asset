@@ -17,7 +17,15 @@ MonoBehaviour:
     OtherIfs: []
     AtkSlot: 1
     AtkD: {fileID: 11400000, guid: 750e3ee135cc36d498ee003527d01a8c, type: 2}
-  - TimeIf: {x: 300, y: 1400}
+  - TimeIf: {x: 300, y: 500}
+    OtherIfs: []
+    AtkSlot: 0
+    AtkD: {fileID: 11400000, guid: d339808f1c0a28f43820e28f96db4c8d, type: 2}
+  - TimeIf: {x: 600, y: 900}
+    OtherIfs: []
+    AtkSlot: 0
+    AtkD: {fileID: 11400000, guid: c99b1a5030a614549b7642c68e94ab87, type: 2}
+  - TimeIf: {x: 1100, y: 1400}
     OtherIfs: []
     AtkSlot: 0
     AtkD: {fileID: 11400000, guid: d339808f1c0a28f43820e28f96db4c8d, type: 2}

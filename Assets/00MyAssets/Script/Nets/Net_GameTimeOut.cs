@@ -1,10 +1,10 @@
-using Photon.Pun;
+ï»¿using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Net_GameTimeOut : MonoBehaviourPunCallbacks
 {
-    [Tooltip("ƒ^ƒCƒ€ƒAƒEƒg‚Ü‚Å‚Ì•b”"),SerializeField] float TimeLim;
+    [Tooltip("ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã¾ã§ã®ç§’æ•°"),SerializeField] float TimeLim;
     float times = 0;
     void Update()
     {
@@ -13,7 +13,7 @@ public class Net_GameTimeOut : MonoBehaviourPunCallbacks
             times += Time.unscaledDeltaTime;
             if (times > TimeLim)
             {
-                SceneManager.LoadScene(0);
+                SceneChangePanel.SceneSet(0);
             }
         }
         else times = 0;

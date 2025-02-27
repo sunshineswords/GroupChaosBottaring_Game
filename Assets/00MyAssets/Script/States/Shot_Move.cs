@@ -3,6 +3,7 @@ using static Statics;
 using static BattleManager;
 using static Manifesto;
 using Photon.Pun;
+using System.Collections.Generic;
 
 public class Shot_Move : MonoBehaviourPun
 {
@@ -19,37 +20,50 @@ public class Shot_Move : MonoBehaviourPun
             Moved.TCT--;
             if (!V3IntTimeCheck(SObj.Times, Moved.Times)) continue;
             var RigVect = SObj.Rig.linearVelocity;
+            var RigRot = SObj.Rig.angularVelocity;
             switch (Moved.MoveMode)
             {
-                case Enum_MoveMode.重力落下:
-                    RigVect += Physics.gravity * 0.01f;
+                case Enum_MoveMode.重力落下_x:
+                    RigVect += Physics.gravity * Moved.Pow.x * 0.01f;
                     break;
                 case Enum_MoveMode.速度向き:
                     SObj.transform.LookAt(SObj.transform.position + RigVect);
                     break;
-                case Enum_MoveMode.加速:
-                    RigVect += RigVect.normalized * Moved.Pow * 0.01f;
+                case Enum_MoveMode.加速_x:
+                    RigVect += RigVect.normalized * Moved.Pow.x * 0.01f;
                     break;
-                case Enum_MoveMode.速度変化:
-                    RigVect = RigVect.normalized * Moved.Pow * 0.01f;
+                case Enum_MoveMode.速度変化_x:
+                    RigVect = RigVect.normalized * Moved.Pow.x * 0.01f;
                     break;
-                case Enum_MoveMode.直線補間ホーミング:
+                case Enum_MoveMode.物理ランダム回転_xyz:
+                    RigRot = new Vector3(Float_NegRand(Moved.Pow.x), Float_NegRand(Moved.Pow.y), Float_NegRand(Moved.Pow.z));
+                    break;
+                case Enum_MoveMode.物理指定回転_xyz:
+                    RigRot = Moved.Pow;
+                    break;
+                case Enum_MoveMode.オブジェランダム回転_xyz:
+                    SObj.transform.Rotate(new Vector3(Float_NegRand(Moved.Pow.x), Float_NegRand(Moved.Pow.y), Float_NegRand(Moved.Pow.z)));
+                    break;
+                case Enum_MoveMode.オブジェ指定回転_xyz:
+                    SObj.transform.Rotate(Moved.Pow);
+                    break;
+                case Enum_MoveMode.直線補間ホーミング_x距離_y変値:
                     TargetSet(Moved);
                     if (Moved.Target != null || Moved.TargetHit != null)
                     {
                         var TVect = (Moved.Target!=null ? Moved.Target.PosGet() : Moved.TargetHit.PosGet()) - SObj.transform.position;
-                        RigVect = Vector3.Lerp(RigVect.normalized, TVect.normalized, Moved.Pow * 0.01f).normalized * RigVect.magnitude;
+                        RigVect = Vector3.Lerp(RigVect.normalized, TVect.normalized, Moved.Pow.y * 0.01f).normalized * RigVect.magnitude;
                     }
                     break;
-                case Enum_MoveMode.曲線補間ホーミング:
+                case Enum_MoveMode.曲線補間ホーミング_x距離_y変値:
                     TargetSet(Moved);
                     if (Moved.Target != null || Moved.TargetHit != null)
                     {
                         var TVect = (Moved.Target != null ? Moved.Target.PosGet() : Moved.TargetHit.PosGet()) - SObj.transform.position;
-                        RigVect = Vector3.Slerp(RigVect.normalized, TVect.normalized, Moved.Pow * 0.01f).normalized * RigVect.magnitude;
+                        RigVect = Vector3.Slerp(RigVect.normalized, TVect.normalized, Moved.Pow.y * 0.01f).normalized * RigVect.magnitude;
                     }
                     break;
-                case Enum_MoveMode.瞬間移動:
+                case Enum_MoveMode.瞬間移動_x距離:
                     TargetSet(Moved);
                     if (Moved.Target != null || Moved.TargetHit != null)
                     {
@@ -59,6 +73,7 @@ public class Shot_Move : MonoBehaviourPun
 
             }
             SObj.Rig.linearVelocity = RigVect;
+            SObj.Rig.angularVelocity = RigRot;
         }
     }
     void TargetSet(Class_Shot_Move Moved)
@@ -76,7 +91,8 @@ public class Shot_Move : MonoBehaviourPun
             if (Moved.TargetMode == Enum_TargetMode.自身) Moved.Target = SObj.USta;
             if (Moved.Target != null || Moved.TargetHit!=null) return;
             float NearDis = -1;
-            foreach(var THit in BTManager.HitList)
+            var RandomLists = new List<State_Hit>();
+            foreach (var THit in BTManager.HitList)
             {
                 bool Enemy = false;
                 bool Flend = false;
@@ -84,23 +100,28 @@ public class Shot_Move : MonoBehaviourPun
                 {
                     case Enum_TargetMode.近敵ターゲット優先:
                     case Enum_TargetMode.近敵:
+                    case Enum_TargetMode.ランダム敵:
                         Enemy = true;
                         break;
                     case Enum_TargetMode.味方:
+                    case Enum_TargetMode.ランダム味方:
                         Flend = true;
                         break;
                 }
-                if (TeamCheck(SObj.USta, THit.Sta, Enemy, Flend))
+                if (!TeamCheck(SObj.USta, THit.Sta, Enemy, Flend)) continue;
+                var Dis = Vector3.Distance(SObj.USta.PosGet(), THit.PosGet());
+                if (Dis > Moved.Pow.x) continue;
+                if (Moved.TargetMode == Enum_TargetMode.ランダム敵 || Moved.TargetMode == Enum_TargetMode.ランダム味方)
                 {
-                    var Dis = Vector3.Distance(SObj.USta.PosGet(), THit.PosGet());
-                    if(NearDis <= 0 || NearDis > Dis)
-                    {
-                        NearDis = Dis;
-                        Moved.TargetHit = THit;
-                    }
+                    RandomLists.Add(THit);
                 }
-                
+                else if (NearDis <= 0 || NearDis > Dis)
+                {
+                    NearDis = Dis;
+                    Moved.TargetHit = THit;
+                }
             }
+            if (RandomLists.Count > 0) Moved.TargetHit = RandomLists[Random.Range(0, RandomLists.Count)];
 
         }
     }

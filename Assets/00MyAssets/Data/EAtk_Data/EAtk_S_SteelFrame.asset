@@ -26,11 +26,11 @@ MonoBehaviour:
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 1e32a69d6acb8ff4a9c3d6380ff18760, type: 3}
     Fires:
-    - EditDisp: '[0]BNum:0,Time:(120, 160, 12),Count:1,Speed:(2000.00, 20000.00)'
+    - EditDisp: '[0]BNum:0,Time:(120, 160, 12),Count:1,Speed:(500.00, 5000.00)'
       BranchNum: 0
       Times: {x: 120, y: 160, z: 12}
       Count: 1
-      Speed: {x: 2000, y: 20000}
+      Speed: {x: 500, y: 5000}
       Trans:
         PosBase: 0
         TransPoss:
@@ -41,12 +41,12 @@ MonoBehaviour:
         TransRots:
         - Change: 1
           Mlt: 0
-          Val: {x: 70, y: 25, z: 25}
+          Val: {x: -20, y: 60, z: 25}
         - Change: 0
           Mlt: 0
           Val: {x: 25, y: 0, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u6575\u9632\u5FA1\u529B)250.0%"
+    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)110.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -54,9 +54,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 0
-      DamCalc: (U.ATKdfmT.DEF)*2.5
+      DamCalc: (U.ATKdfmT.DEF)*1.1
       SPAdd: 0
       BufSets: []
+    Adds: []
     HitCT: 120
   Moves: []
   States: []
@@ -71,6 +72,6 @@ MonoBehaviour:
   SEPlays:
   - BranchNum: 0
     Times: {x: 120, y: 160, z: 12}
-    Clip: {fileID: 8300000, guid: 6791451c594fab44fac46b35c74d67b0, type: 3}
-    Volume: 150
-    Pitch: 250
+    Clip: {fileID: 8300000, guid: eb81a134a0826fc4792faf22db68dfed, type: 3}
+    Volume: 200
+    Pitch: 80

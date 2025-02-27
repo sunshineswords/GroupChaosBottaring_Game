@@ -159,7 +159,7 @@ MonoBehaviour:
           Mlt: 0
           Val: {x: 15, y: 15, z: 360}
     Hits:
-    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)50.0%"
+    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2,SP+5.0)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)50.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -168,9 +168,9 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.5
-      SPAdd: 3
+      SPAdd: 5
       BufSets: []
-    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)65.0%"
+    - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u9060\u8DDD\u96E2,SP+6.5)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)65.0%"
       BranchNum: 1
       EHit: 1
       FHit: 0
@@ -179,9 +179,9 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.65
-      SPAdd: 4
+      SPAdd: 6.5
       BufSets: []
-    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)80.0%"
+    - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u9060\u8DDD\u96E2,SP+8.0)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)80.0%"
       BranchNum: 2
       EHit: 1
       FHit: 0
@@ -190,9 +190,9 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.8
-      SPAdd: 5
+      SPAdd: 8
       BufSets: []
-    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)50.0%"
+    - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u9060\u8DDD\u96E2,SP+9.5)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)50.0%"
       BranchNum: 3
       EHit: 1
       FHit: 0
@@ -201,9 +201,9 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.5
-      SPAdd: 6
+      SPAdd: 9.5
       BufSets: []
-    - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)130.0%"
+    - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u9060\u8DDD\u96E2,SP+11.0)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)130.0%"
       BranchNum: 4
       EHit: 1
       FHit: 0
@@ -212,9 +212,9 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*1.3
-      SPAdd: 15
+      SPAdd: 11
       BufSets: []
-    - EditDisp: "[5]BNum:10|(\u91CD\u6483,\u9060\u8DDD\u96E2)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)40.0%"
+    - EditDisp: "[5]BNum:10|(\u91CD\u6483,\u9060\u8DDD\u96E2,SP+1.5)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)40.0%"
       BranchNum: 10
       EHit: 1
       FHit: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
       DamageType: 1
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.4
-      SPAdd: 2
+      SPAdd: 1.5
       BufSets: []
     Adds: []
     HitCT: 0

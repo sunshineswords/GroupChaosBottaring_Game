@@ -336,7 +336,7 @@ MonoBehaviour:
   Moves:
   - Times: {x: 5, y: 10, z: 0}
     MoveMode: 11
-    Pow: 25
+    Pow: {x: 35, y: 30, z: 0}
     TargetMode: 1
     TargetCT: 999
     Target: {fileID: 0}
@@ -344,7 +344,7 @@ MonoBehaviour:
     TCT: 0
   - Times: {x: 10, y: 999, z: 0}
     MoveMode: 11
-    Pow: 50
+    Pow: {x: 35, y: 25, z: 0}
     TargetMode: 1
     TargetCT: 999
     Target: {fileID: 0}
@@ -352,7 +352,7 @@ MonoBehaviour:
     TCT: 0
   - Times: {x: 5, y: 999, z: 0}
     MoveMode: 1
-    Pow: 10000
+    Pow: {x: 10000, y: 0, z: 0}
     TargetMode: 1
     TargetCT: 999
     Target: {fileID: 0}

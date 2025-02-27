@@ -8,6 +8,6 @@ public class Net_OfflineStart : MonoBehaviour
     {
         PhotonNetwork.OfflineMode = true;
         PhotonNetwork.CreateRoom("Offline");
-        SceneManager.LoadScene(DB.Stages[PlayerValue.StageID].SceneID);
+        SceneChangePanel.SceneSet(DB.Stages[PlayerValue.StageID].SceneID);
     }
 }

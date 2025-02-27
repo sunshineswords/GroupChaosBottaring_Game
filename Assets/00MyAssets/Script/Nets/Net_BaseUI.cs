@@ -30,7 +30,7 @@ public class Net_BaseUI : MonoBehaviourPunCallbacks
         Application.targetFrameRate = 60;
         PhotonNetwork.OfflineMode = true;
         PhotonNetwork.EnableCloseConnection = true;
-        PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.AutomaticallySyncScene = false;
         PlayerNameIn.text = PlayerPrefs.GetString("PlayerName", "");
         Net_PlayerNameSet();
 

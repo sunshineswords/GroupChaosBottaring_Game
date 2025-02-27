@@ -137,6 +137,7 @@ static public class Manifesto
                 Hit.EditDisp += "BNum:" + Hit.BranchNum + "|(";
                 Hit.EditDisp += Hit.DamageType+",";
                 Hit.EditDisp += Hit.ShortAtk ? "近距離" : "遠距離";
+                Hit.EditDisp += ",SP+" + Hit.SPAdd.ToString("F1");
                 Hit.EditDisp += ")";
                 if (Hit.DamCalc != "") Hit.EditDisp += CalStr(Hit.DamCalc,false);
                 if(Hit.BufSets!=null)
@@ -168,6 +169,7 @@ static public class Manifesto
                     if (Hit.MHit) Str += "自身";
                     Str += ",";
                     Str += Hit.Heals ? "回復" : "攻撃";
+                    if (Hit.SPAdd > 0) Str += ",SP+" + Hit.SPAdd.ToString("F1");
                     Str += ")";
                     if (ShotCounts != 1) Str += "×" + ShotCounts;
                     if (Hit.DamCalc != "") Str += "\n" + CalStr(Hit.DamCalc, true);
@@ -177,6 +179,7 @@ static public class Manifesto
                         Str += "\n<color=#8888FF>" + Hit.BufSets[j].InfoStr(AddIf) + "</color>";
                     }
                 }
+            if (HitCT > 0) Str += "\n多段" + HitCT + "f/Hit";
             if (Adds != null)
                 for (int i = 0; i < Adds.Length; i++)
                 {
@@ -191,6 +194,7 @@ static public class Manifesto
                         }
                     }
                 }
+
             return Str;
         }
     }
@@ -238,7 +242,7 @@ static public class Manifesto
         [Tooltip("ダメージタイプ")]public Enum_DamageType DamageType;
         [Tooltip("近距離攻撃")] public bool ShortAtk;
         [Tooltip("ダメージ式\n"+TooltipStr),TextArea(1,3)] public string DamCalc;
-        [Tooltip("命中時SP増加量")] public int SPAdd;
+        [Tooltip("命中時SP増加量")] public float SPAdd;
         [Tooltip("状態付与")] public Class_Base_BufSet[] BufSets;
     }
     [System.Serializable]
@@ -344,7 +348,7 @@ static public class Manifesto
     {
         public Vector3Int Times;
         public Enum_MoveMode MoveMode;
-        public float Pow;
+        public Vector3 Pow;
         public Enum_TargetMode TargetMode;
         public int TargetCT;
         [HideInInspector] public State_Base Target;
@@ -508,21 +512,27 @@ static public class Manifesto
     }
     public enum Enum_MoveMode
     {
-        重力落下 = -2,
+        重力落下_x = -2,
         速度向き = -1,
-        加速 = 0,
-        速度変化 = 1,
-        直線補間ホーミング = 10,
-        曲線補間ホーミング = 11,
-        瞬間移動 = 12,
+        加速_x = 0,
+        速度変化_x = 1,
+        物理ランダム回転_xyz = 2,
+        物理指定回転_xyz = 3,
+        オブジェランダム回転_xyz = 4,
+        オブジェ指定回転_xyz = 5,
+        直線補間ホーミング_x距離_y変値 = 10,
+        曲線補間ホーミング_x距離_y変値 = 11,
+        瞬間移動_x距離 = 12,
     }
     public enum Enum_TargetMode
     {
         ターゲット,
         近敵ターゲット優先,
         近敵,
+        ランダム敵,
         自身 = 10,
         味方 = 20,
+        ランダム味方,
     }
     public enum Enum_AtkIf
     {

@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -130, y: 0}
-  m_SizeDelta: {x: 250, y: -10}
+  m_AnchoredPosition: {x: -200, y: 0}
+  m_SizeDelta: {x: 380, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4694421914002308775
 CanvasRenderer:
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -211,7 +211,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: d4daa9ef98e7c2746b049d7e79b17036, type: 3}
   m_Resource: {fileID: 8300000, guid: d4daa9ef98e7c2746b049d7e79b17036, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -483,6 +483,10 @@ MonoBehaviour:
   BGMSlider: {fileID: 5149881350867046852}
   SESlider: {fileID: 3055799835738390288}
   SystemSlider: {fileID: 6990509729573489795}
+  MasterValTx: {fileID: 5918491594172367588}
+  BGMValTx: {fileID: 1332847022341539989}
+  SEValTx: {fileID: 9182651903206368833}
+  SystemValTx: {fileID: 3748247287360378322}
 --- !u!1 &6248737637291417863
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 300
+    m_Left: 400
     m_Right: 50
     m_Top: 50
     m_Bottom: 50
@@ -1261,6 +1265,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7186142186991714151, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+      propertyPath: m_Name
+      value: SystemValue
+      objectReference: {fileID: 0}
     - target: {fileID: 8507167293534128119, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
@@ -1293,6 +1301,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "System\u97F3\u91CF"
       objectReference: {fileID: 0}
+    - target: {fileID: 8947093933059101219, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+      propertyPath: m_fontSize
+      value: 35.45
+      objectReference: {fileID: 0}
     - target: {fileID: 9144811651953089002, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
       propertyPath: m_Name
       value: SystemSlider (3)
@@ -1302,6 +1314,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+--- !u!114 &3748247287360378322 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2524464503255490214, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+  m_PrefabInstance: {fileID: 1660913586162076532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4343578301554969786 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3119795425142949838, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
@@ -1438,6 +1461,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7186142186991714151, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+      propertyPath: m_Name
+      value: BGMValue
+      objectReference: {fileID: 0}
     - target: {fileID: 8507167293534128119, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
@@ -1462,6 +1489,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8947093933059101219, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+      propertyPath: m_fontSize
+      value: 44.95
+      objectReference: {fileID: 0}
     - target: {fileID: 9144811651953089002, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
       propertyPath: m_Name
       value: BGMSlider (1)
@@ -1471,6 +1502,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+--- !u!114 &1332847022341539989 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2524464503255490214, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+  m_PrefabInstance: {fileID: 3564469745853568563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1890446630699815421 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3119795425142949838, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
@@ -1880,6 +1922,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7186142186991714151, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+      propertyPath: m_Name
+      value: SEValue
+      objectReference: {fileID: 0}
     - target: {fileID: 8507167293534128119, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
@@ -1942,6 +1988,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3119795425142949838, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
   m_PrefabInstance: {fileID: 6658543832173279463}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9182651903206368833 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2524464503255490214, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+  m_PrefabInstance: {fileID: 6658543832173279463}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8154338495463676994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2066,6 +2123,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7186142186991714151, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+      propertyPath: m_Name
+      value: MasterValue
+      objectReference: {fileID: 0}
     - target: {fileID: 8507167293534128119, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
@@ -2102,6 +2163,14 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u97F3\u91CF"
       objectReference: {fileID: 0}
+    - target: {fileID: 8947093933059101219, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+      propertyPath: m_fontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8947093933059101219, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 9144811651953089002, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
       propertyPath: m_Name
       value: MasterSlider
@@ -2120,6 +2189,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5918491594172367588 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2524464503255490214, guid: 16ad922286d4204458c7265f7311afdc, type: 3}
+  m_PrefabInstance: {fileID: 8154338495463676994}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &6512691872634182540 stripped

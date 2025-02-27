@@ -18,14 +18,21 @@ public class Shot_Obj : MonoBehaviourPun
     public TrailRenderer[] SepTrails;
 
     public int Times = 0;
+    public int SPAddCT = 0;
     public int BranchNum;
     bool Dels = false;
     public Dictionary<State_Base,int> HitList = new Dictionary<State_Base,int>();
+    private void Start()
+    {
+        Times = 0;
+        SPAddCT = 0;
+    }
     private void FixedUpdate()
     {
         if (!photonView.IsMine) return;
         if (USta == null) ShotDel();
         Times++;
+        SPAddCT--;
         if (ShotD.HitCT > 0)
         {
             var HitKeys = HitList.Keys.ToArray();
@@ -94,13 +101,14 @@ public class Shot_Obj : MonoBehaviourPun
             HitState.Sta.Damage(HitPos, Damage);
             if (Hit.BufSets!=null)
             for (int j = 0; j < Hit.BufSets.Length; j++) HitState.Sta.BufSets(Hit.BufSets[j],USta);
-            if (USta.Player)
+            if (SPAddCT <= 0)
             {
-                USta.SP += Hit.SPAdd * 1f + PriSetGet.PassiveLVGet(Enum_Passive.SPブースト) * 0.25f;
+                if (USta.Player)USta.SP += Hit.SPAdd * 1f + PriSetGet.PassiveLVGet(Enum_Passive.SPブースト) * 0.25f;
+                else USta.SP += Hit.SPAdd;
             }
-            else USta.SP += Hit.SPAdd;
             if(Damage>0) USta.HitEvents(HitState.Sta,HitPos,Hit.DamageType,Hit.ShortAtk);
         }
+        if(HitCh) SPAddCT = ShotD.HitCT <= 0 ? RemTime : ShotD.HitCT;
         if (HitRem && HitCh) ShotDel();
     }
     int DamSets(State_Hit HitState, Class_Atk_Shot_Hit AtkHit)

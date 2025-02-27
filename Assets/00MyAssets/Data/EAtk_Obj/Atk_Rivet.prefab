@@ -4993,7 +4993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SObj: {fileID: -1467573478106684984}
   HitTime: {x: 0, y: 0, z: 0}
-  WallRem: 1
+  WallRem: 0
 --- !u!114 &-4383927948934268170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5010,7 +5010,7 @@ MonoBehaviour:
   Moves:
   - Times: {x: 25, y: 35, z: 0}
     MoveMode: 1
-    Pow: 150
+    Pow: {x: 500, y: 0, z: 0}
     TargetMode: 0
     TargetCT: 0
     Target: {fileID: 0}
@@ -5018,15 +5018,15 @@ MonoBehaviour:
     TCT: 0
   - Times: {x: 0, y: 50, z: 0}
     MoveMode: 11
-    Pow: 8
-    TargetMode: 2
-    TargetCT: 50
+    Pow: {x: 100, y: 15, z: 0}
+    TargetMode: 3
+    TargetCT: 60
     Target: {fileID: 0}
     TargetHit: {fileID: 0}
     TCT: 0
   - Times: {x: 50, y: 50, z: 0}
     MoveMode: 1
-    Pow: 8000
+    Pow: {x: 3000, y: 0, z: 0}
     TargetMode: 0
     TargetCT: 0
     Target: {fileID: 0}
@@ -5034,7 +5034,7 @@ MonoBehaviour:
     TCT: 0
   - Times: {x: 0, y: 999, z: 0}
     MoveMode: -1
-    Pow: 0
+    Pow: {x: 0, y: 0, z: 0}
     TargetMode: 0
     TargetCT: 0
     Target: {fileID: 0}

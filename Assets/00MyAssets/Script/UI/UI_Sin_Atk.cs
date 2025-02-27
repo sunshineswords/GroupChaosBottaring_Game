@@ -13,4 +13,5 @@ public class UI_Sin_Atk : MonoBehaviour
     public GameObject[] ChengedImages;
 
     public ImageAnimation_Gabu[] imageAnimation;
+    public GameObject FullImage;
 }

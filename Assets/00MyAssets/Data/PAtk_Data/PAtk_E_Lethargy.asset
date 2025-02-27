@@ -19,7 +19,7 @@ MonoBehaviour:
   Filters: 03000000
   EndTime: 35
   CT: 16
-  SPUse: 200
+  SPUse: 160
   BranchInfos: []
   Branchs:
   - EditDisp: '[0]BNum:0Time:(30, 34)MP:0Future{Num:0Time:0}'
@@ -51,7 +51,7 @@ MonoBehaviour:
         RotBase: -1
         TransRots: []
     Hits:
-    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)"
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2,SP+0.0)"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -70,6 +70,7 @@ MonoBehaviour:
         PowVal: 60
         TimeMax: 0
         PowMax: 
+    Adds: []
     HitCT: 0
   Moves: []
   States: []

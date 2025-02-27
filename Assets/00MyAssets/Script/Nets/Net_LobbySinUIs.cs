@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,10 +7,11 @@ using Photon.Pun;
 using Photon.Realtime;
 public class SinsUI_LobbyRoomUIs : MonoBehaviour
 {
-    [Tooltip("ƒ‹[ƒ€IDƒeƒLƒXƒg"), SerializeField] TextMeshProUGUI RoomIDTx;
-    [Tooltip("ƒƒbƒZ[ƒWƒeƒLƒXƒg"), SerializeField] TextMeshProUGUI MessageTx;
-    [Tooltip("ƒQ[ƒ€ƒo[ƒWƒ‡ƒ“ƒeƒLƒXƒg"), SerializeField] TextMeshProUGUI VersionTx;
-    [Tooltip("ƒvƒŒƒCƒ„[”ƒeƒLƒXƒg"), SerializeField] TextMeshProUGUI PlayersTx;
+    [Tooltip("ãƒ«ãƒ¼ãƒ IDãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] TextMeshProUGUI RoomIDTx;
+    [Tooltip("ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] TextMeshProUGUI MessageTx;
+    [Tooltip("ã‚²ãƒ¼ãƒ ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] TextMeshProUGUI VersionTx;
+    [Tooltip("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] TextMeshProUGUI PlayersTx;
+    [Tooltip("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼æ•°ãƒ†ã‚­ã‚¹ãƒˆ"), SerializeField] TextMeshProUGUI JoinTx;
     [System.NonSerialized] public RoomInfo Room;
 
     public void Disp(RoomInfo Rooms)
@@ -18,19 +19,20 @@ public class SinsUI_LobbyRoomUIs : MonoBehaviour
         Room = Rooms;
         RoomIDTx.text = Rooms.Name;
         if (Rooms.CustomProperties.TryGetValue("Message", out var Message) && Message.ToString() != "") MessageTx.text = Message.ToString();
-        else MessageTx.text = "‚Ì[ƒƒbƒZ[ƒW";
+        else MessageTx.text = "ã®ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸";
         if (Rooms.CustomProperties.TryGetValue("GameVer", out var GameVer))
         {
-            VersionTx.text = "ƒo[ƒWƒ‡ƒ“:" + GameVer.ToString();
+            VersionTx.text = "ãƒãƒ¼ã‚¸ãƒ§ãƒ³:" + GameVer.ToString();
             if (Application.version != GameVer.ToString()) VersionTx.color = Color.red;
             else VersionTx.color = Color.white;
         }
         else
         {
-            VersionTx.text = "ƒo[ƒWƒ‡ƒ“:???";
+            VersionTx.text = "ãƒãƒ¼ã‚¸ãƒ§ãƒ³:???";
             VersionTx.color = Color.magenta;
         }
         PlayersTx.text = Rooms.PlayerCount + "/" + Rooms.MaxPlayers;
+        JoinTx.text = Rooms.IsOpen ? "å‚åŠ " : "ã‚²ãƒ¼ãƒ ä¸­";
     }
     public void Joins()
     {

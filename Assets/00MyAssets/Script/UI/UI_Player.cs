@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using static DataBase;
 using static PlayerValue;
 using static Manifesto;
-
+using UnityEngine.SceneManagement;
 public class UI_Player : UI_State
 {
     [SerializeField] Player_Cont PCont;
@@ -16,6 +16,7 @@ public class UI_Player : UI_State
     [SerializeField] UI_Sin_Atk[] AtkUIs;
     [SerializeField] TextMeshProUGUI StateInfoTx;
     [SerializeField] BinaryUIAnimationo binaryUIAnimationo;
+    [SerializeField] GameObject DebugUI;
 
     #region 関数
 
@@ -72,6 +73,7 @@ public class UI_Player : UI_State
                 }
                 else AtkUIs[index].ChargeImage[j].fillAmount = 0;
             }
+            AtkUIs[index].FullImage.SetActive(AtkD.SPUse > 0 && Sta.SP >= AtkD.SPUse);
         }
 
         // 変更を反映するための画像を表示
@@ -129,5 +131,6 @@ public class UI_Player : UI_State
         StateInfoTx.text += "\nMMP:" + Sta.FMMP;
         StateInfoTx.text += "\nAtk:" + Sta.FAtk;
         StateInfoTx.text += "\nDef:" + Sta.FDef;
+        DebugUI.SetActive(SceneManager.GetActiveScene().buildIndex == 1);
     }
 }

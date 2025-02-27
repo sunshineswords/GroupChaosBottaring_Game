@@ -71,6 +71,9 @@ public class Net_RoomUI : MonoBehaviour
     {
         var CRoom = PhotonNetwork.CurrentRoom;
         CRoom.IsOpen = false;
-        PhotonNetwork.LoadLevel(DB.Stages[PlayerValue.StageID].SceneID);
+
+        var CRoomCP = new ExitGames.Client.Photon.Hashtable();
+        CRoomCP["SceneID"] = DB.Stages[PlayerValue.StageID].SceneID;
+        CRoom.SetCustomProperties(CRoomCP);
     }
 }
