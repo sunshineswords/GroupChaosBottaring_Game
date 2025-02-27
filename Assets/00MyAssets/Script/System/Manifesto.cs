@@ -378,7 +378,18 @@ static public class Manifesto
             BGMVol = 1;
             SEVol = 1;
             SystemVol = 1;
-            QualityLV = 4;
+            switch (Application.platform)
+            {
+                default:
+                    QualityLV = 2;
+                    break;
+                case RuntimePlatform.WindowsEditor:
+                    QualityLV = 3;
+                    break;
+                case RuntimePlatform.WindowsPlayer:
+                    QualityLV = 4;
+                    break;
+            }
             PriSetID = 0;
             StageSoloStars = new List<int>();
             StageMultStars = new List<int>();

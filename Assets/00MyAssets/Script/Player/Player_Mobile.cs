@@ -100,7 +100,6 @@ public class Player_Moblie : MonoBehaviour
                     if (target.gameObject.tag == "CamNoUI")
                     {
                         CamUI = false;
-
                         break;
                     }
                 }
@@ -114,8 +113,8 @@ public class Player_Moblie : MonoBehaviour
         if (touch1 >= 0 && touch2 >= 0)
         {
             DisT = true;
-            TouchState ts1 = PI.actions["Touch" + touch1].ReadValue<TouchState>();
-            TouchState ts2 = PI.actions["Touch" + touch2].ReadValue<TouchState>();
+            TouchState ts1 = PI.actions["Touch_" + touch1].ReadValue<TouchState>();
+            TouchState ts2 = PI.actions["Touch_" + touch2].ReadValue<TouchState>();
             var pos0 = ts1.position;
             var pos1 = ts2.position;
 
@@ -136,7 +135,7 @@ public class Player_Moblie : MonoBehaviour
         }
         else if (touch1 >= 0)
         {
-            TouchState ts = PI.actions["Touch" + touch1].ReadValue<TouchState>();
+            TouchState ts = PI.actions["Touch_" + touch1].ReadValue<TouchState>();
             lookv = ts.delta;
             LookT = true;
         }
