@@ -48,7 +48,7 @@ MonoBehaviour:
           Mlt: 0
           Val: {x: 0, y: -60, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)\u5BFE\u6700\u5927HP25.0%"
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2,SP+0.0)\u5BFE\u6700\u5927HP35.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -56,11 +56,11 @@ MonoBehaviour:
       Heals: 0
       DamageType: 4
       ShortAtk: 0
-      DamCalc: T.MHP*0.25
+      DamCalc: T.MHP*0.35
       SPAdd: 0
       BufSets: []
     Adds: []
-    HitCT: 1
+    HitCT: 0
   Moves: []
   States: []
   Bufs: []

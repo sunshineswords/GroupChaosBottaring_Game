@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Wall
+  - CinemachineTarget
+  - CamNoUI
   layers:
   - Default
   - TransparentFX

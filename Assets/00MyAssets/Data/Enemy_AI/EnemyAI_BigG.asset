@@ -13,21 +13,25 @@ MonoBehaviour:
   m_Name: EnemyAI_BigG
   m_EditorClassIdentifier: 
   AtkAIs:
-  - TimeIf: {x: 100, y: 200}
+  - EditDisp: "[0]Time(100\uFF5E200),OIfCount:0,AtkSlot:1,AtkName:G\u30B5\u30E2\u30F3"
+    TimeIf: {x: 100, y: 200}
     OtherIfs: []
     AtkSlot: 1
     AtkD: {fileID: 11400000, guid: 750e3ee135cc36d498ee003527d01a8c, type: 2}
-  - TimeIf: {x: 300, y: 500}
+  - EditDisp: "[1]Time(700\uFF5E900),OIfCount:0,AtkSlot:0,AtkName:G\u30A6\u30A7\u30FC\u30D6"
+    TimeIf: {x: 700, y: 900}
     OtherIfs: []
     AtkSlot: 0
     AtkD: {fileID: 11400000, guid: d339808f1c0a28f43820e28f96db4c8d, type: 2}
-  - TimeIf: {x: 600, y: 900}
+  - EditDisp: "[2]Time(1500\uFF5E1600),OIfCount:0,AtkSlot:0,AtkName:G\u30EC\u30A4"
+    TimeIf: {x: 1500, y: 1600}
     OtherIfs: []
     AtkSlot: 0
     AtkD: {fileID: 11400000, guid: c99b1a5030a614549b7642c68e94ab87, type: 2}
-  - TimeIf: {x: 1100, y: 1400}
+  - EditDisp: "[3]Time(2400\uFF5E2500),OIfCount:0,AtkSlot:0,AtkName:G\u30A6\u30A7\u30FC\u30D6"
+    TimeIf: {x: 2400, y: 2500}
     OtherIfs: []
     AtkSlot: 0
     AtkD: {fileID: 11400000, guid: d339808f1c0a28f43820e28f96db4c8d, type: 2}
-  TimerLim: 1400
+  TimerLim: 2700
   NoTargetResetTime: 0

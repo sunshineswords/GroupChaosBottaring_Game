@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 2758125950921923790}
   - component: {fileID: 7598547461402963404}
   - component: {fileID: 7140868982649933936}
+  - component: {fileID: 3684016521456547551}
   m_Layer: 7
   m_Name: Enemy_Broccoli
   m_TagString: Untagged
@@ -350,13 +351,13 @@ MonoBehaviour:
     Volume: 300
     Pitch: 50
   DeathEffect: {fileID: 0}
-  MHP: 8652100
+  MHP: 4326050
   HPRegene: 0
   MMP: 0
   MPRegene: 0
   SPRegene: 10
-  Atk: 300000
-  Def: 100000
+  Atk: 240000
+  Def: 80000
   HP: 0
   MP: 0
   SP: 0
@@ -415,6 +416,21 @@ MonoBehaviour:
   Sta: {fileID: 2758125950921923790}
   EnemyAI: {fileID: 11400000, guid: 629cd48140d242a448b3b92ead466f6f, type: 2}
   timer: 0
+--- !u!114 &3684016521456547551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042812544794517674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bfeaebdb3310f44a2e6bb0768e7b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sta: {fileID: 2758125950921923790}
+  RiviveSecond: 25
+  HPPer: 25
 --- !u!1 &7801158436413557424
 GameObject:
   m_ObjectHideFlags: 0

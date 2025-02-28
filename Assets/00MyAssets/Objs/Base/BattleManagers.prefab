@@ -4128,7 +4128,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2079024490269998287, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2079024490269998287, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -4424,7 +4424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7111782239987256367, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_OnCanceledClick.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7111782239987256367, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_OnCanceledClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
@@ -4445,7 +4445,7 @@ PrefabInstance:
     - target: {fileID: 7111782239987256367, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_OnCanceledClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 7248605279808307840}
+      objectReference: {fileID: 1958801829825822684}
     - target: {fileID: 7111782239987256367, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_OnCanceledClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
@@ -4464,7 +4464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7111782239987256367, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_OnCanceledClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: SetActive
+      value: set_enabled
       objectReference: {fileID: 0}
     - target: {fileID: 7111782239987256367, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_OnCanceledClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
@@ -4480,7 +4480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7111782239987256367, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_OnCanceledClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: UnityEngine.Behaviour, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7111782239987256367, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_OnCanceledClick.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName

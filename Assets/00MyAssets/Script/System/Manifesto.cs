@@ -11,6 +11,7 @@ static public class Manifesto
     #endregion
 
     #region Class
+    #region Class_Base
     [System.Serializable]
     public class Class_Base_SEPlay
     {
@@ -81,7 +82,8 @@ static public class Manifesto
             }
         }
     }
-
+    #endregion
+    #region Class_Atk
     [System.Serializable]
     public class Class_Atk_BranchInfo
     {
@@ -304,7 +306,8 @@ static public class Manifesto
         [Tooltip("音量")] public float Volume = 100f;
         [Tooltip("音程-300～300"), Range(-300f, 300f)] public float Pitch = 100f;
     }
-
+    #endregion
+    #region Class_Sta
     [System.Serializable]
     public class Class_Sta_AtkCT
     {
@@ -320,10 +323,12 @@ static public class Manifesto
         public int TimeMax;
         public int Pow;
     }
-
+    #endregion
+    #region Class_Enemy
     [System.Serializable]
     public class Class_Enemy_AtkAI
     {
+        [HideInInspector] public string EditDisp;
         public Vector2Int TimeIf;
         public Class_Enemy_OtherIfs[] OtherIfs;
         public int AtkSlot;
@@ -335,14 +340,8 @@ static public class Manifesto
         public Enum_OtherIfs Ifs;
         public Vector2 Val;
     }
-    [System.Serializable]
-    public class Class_Wave
-    {
-        public GameObject[] Enemys;
-        public Vector3[] Pos;
-        public float[] HPMult;
-        public float[] AtkMult;
-    }
+    #endregion
+    #region Class_Shot
     [System.Serializable]
     public class Class_Shot_Move
     {
@@ -361,6 +360,8 @@ static public class Manifesto
         public Vector3Int Times;
         public Data_AddShot AddShot;
     }
+    #endregion
+    #region Class_Save
     [System.Serializable]
     public class Class_Save_PSaves
     {
@@ -378,7 +379,18 @@ static public class Manifesto
             BGMVol = 1;
             SEVol = 1;
             SystemVol = 1;
-            QualityLV = 4;
+            switch (Application.platform)
+            {
+                default:
+                    QualityLV = 2;
+                    break;
+                case RuntimePlatform.WindowsEditor:
+                    QualityLV = 3;
+                    break;
+                case RuntimePlatform.WindowsPlayer:
+                    QualityLV = 4;
+                    break;
+            }
             PriSetID = 0;
             StageSoloStars = new List<int>();
             StageMultStars = new List<int>();
@@ -443,7 +455,17 @@ static public class Manifesto
             P4_ID = 6;
         }
     }
-
+    #endregion
+    #region Class_Other
+    [System.Serializable]
+    public class Class_Wave
+    {
+        public GameObject[] Enemys;
+        public Vector3[] Pos;
+        public float[] HPMult;
+        public float[] AtkMult;
+    }
+    #endregion
 
     #endregion
 
@@ -490,6 +512,7 @@ static public class Manifesto
         バリア = 2011,
         根性 =2100,
         根性CT=2101,
+        復活待機=2102,
         与ダメージ増加 =2200,
         近距離強化=2201,
         遠距離強化=2202,
