@@ -118,7 +118,6 @@ public class UI_Player : UI_State
 
             foreach (var animation in AtkUIs[i].imageAnimation)
             {
-                Debug.Log("animation");
                 // 入力があった場合にアニメーションをPressedに変更
                 animation.ChangeStatu(Input ? UISystem_Gabu.AnimatorStatu.Pressed : UISystem_Gabu.AnimatorStatu.Normal);
             }

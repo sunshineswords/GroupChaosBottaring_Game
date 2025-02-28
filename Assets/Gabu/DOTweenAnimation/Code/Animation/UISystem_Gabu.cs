@@ -185,7 +185,6 @@ public class UISystem_Gabu : ColorSystem
         {
             return;
         }
-            Debug.Log("not return");
         UpdateAnimation((int)newStatu);
     }
 
