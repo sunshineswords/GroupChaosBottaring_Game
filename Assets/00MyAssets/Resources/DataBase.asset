@@ -71,6 +71,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c967c722290ad94198b4f558abca966, type: 2}
   - {fileID: 11400000, guid: 808f73f9e40a5fc408b018332070275f, type: 2}
   - {fileID: 11400000, guid: df264aa4b46d1824b966e6f3fe44b9af, type: 2}
+  - {fileID: 11400000, guid: 57445ecd550058244b7d8af52e556da1, type: 2}
+  - {fileID: 11400000, guid: 5b4cc4eafe8a2a246bf85305db349f94, type: 2}
+  - {fileID: 11400000, guid: c27384540b5e9994e8e9bd18556bf912, type: 2}
   E_Atks:
   - {fileID: 11400000, guid: 40dbec132893f92458f13ebb61e76ddd, type: 2}
   - {fileID: 11400000, guid: 7940ced0e66f13b48a4a5fdc7c157138, type: 2}
@@ -91,6 +94,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18c4037ba0446ee4895dbb3653b9fa5d, type: 2}
   - {fileID: 11400000, guid: 96d41d772585f7a4c92d11779ce6fd4b, type: 2}
   - {fileID: 11400000, guid: f8a7d4eeb3c806540afb358f4c95ef47, type: 2}
+  - {fileID: 11400000, guid: 5accc760fbb28e04e90c37edffd676b0, type: 2}
   Passives:
   - {fileID: 11400000, guid: b5532d1c59d3fcb41addafe27aff6e3b, type: 2}
   - {fileID: 11400000, guid: 5466b9ed40ddaa14bae820559fdba7ca, type: 2}
