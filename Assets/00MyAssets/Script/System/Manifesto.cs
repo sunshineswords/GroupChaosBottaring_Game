@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using static Manifesto;
 using static Calculation;
 using NaughtyAttributes;
+using System.Globalization;
+
 static public class Manifesto
 {
     #region Const
@@ -38,14 +40,14 @@ static public class Manifesto
             if (Adds && TimeMax > 0) OStr += (AddIf ? "<size=30%>" : "<size=50%>") + "Max" + (TimeMax / 60f).ToString("F1")+"</size>";
             OStr += "秒";
             var PowStr = CalStr(PowVal, true);
-            var PowVald = double.TryParse(PowStr, out var oPVal) ? oPVal : 1;
+            var PowVald = double.TryParse(PowStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var oPVal) ? oPVal : 1;
             if (PowStr != "" && PowVald > 0)
             {
                 OStr += "\n段階:" + CalStr(PowVal, true);
                 if (Adds)
                 {
                     var MaxStr = CalStr(PowMax, true);
-                    var MaxVal = double.TryParse(MaxStr, out var oVal) ? oVal : 1;
+                    var MaxVal = double.TryParse(MaxStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var oVal) ? oVal : 1;
                     if (MaxStr != "" && MaxVal > 0) OStr += (AddIf ? "<size=30%>" : "<size=50%>") + "Max" + MaxStr + "</size>";
                 }
             }
@@ -68,14 +70,14 @@ static public class Manifesto
                 EditDisp += "(時間無限)";
             }
             var PowStr = CalStr(PowVal, false);
-            var PowVald = double.TryParse(PowStr, out var oPVal) ? oPVal : 1;
+            var PowVald = double.TryParse(PowStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var oPVal) ? oPVal : 1;
             if (PowStr != "" && PowVald > 0)
             {
                 EditDisp += "(段階:付与" + CalStr(PowVal, false);
                 if (Adds)
                 {
                     var MaxStr = CalStr(PowMax, false);
-                    var MaxVal = double.TryParse(MaxStr, out var oVal) ? oVal : 1;
+                    var MaxVal = double.TryParse(MaxStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var oVal) ? oVal : 1;
                     if (MaxStr != "" && MaxVal > 0) EditDisp += "Max" + MaxStr;
                 }
                 EditDisp += ")";
