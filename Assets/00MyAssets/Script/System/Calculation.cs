@@ -1,6 +1,7 @@
 ﻿
 using Photon.Pun;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using UnityEngine;
 
@@ -40,7 +41,7 @@ public class Calculation : MonoBehaviour
         var NNegStr = ValStr.Replace("-", "");
         switch (NNegStr)
         {
-            default: Vald = double.TryParse(NNegStr,out var oVal) ? oVal : 0; break;
+            default: Vald = double.TryParse(NNegStr, NumberStyles.Any, CultureInfo.InvariantCulture, out var oVal) ? oVal : 0; break;
             case "U.HP": Vald = Sta1.HP; break;
             case "U.MHP": Vald = Sta1.FMHP; break;
             case "U.MP": Vald = Sta1.MP; break;
@@ -154,7 +155,7 @@ public class Calculation : MonoBehaviour
         {
             if (CaCut[i].Length >= 3 && CaCut[i].Substring(0,3) == "mul")
             {
-                if (double.TryParse(CutOpe(CaCut[i]),out var oVal))
+                if (double.TryParse(CutOpe(CaCut[i]), NumberStyles.Any, CultureInfo.InvariantCulture, out var oVal))
                 {
                     CaCut[i] = (oVal*100).ToString("F1") + "%";
                 }
