@@ -59,7 +59,14 @@ public class InputIntefaceSystem_Gabu : MonoBehaviour
 
     private void Awake()
     {
-        _action = playerInput.FindAction(actionName);
+        try
+        {
+            _action = playerInput.FindAction(actionName);
+        }
+        catch (System.Exception)
+        {
+            Debug.LogWarning("PlayerInputが設定されていません");
+        }
         if (_action == null)
         {
             Debug.LogError($"存在しないアクションを指定しています:{actionName} of {playerInput}");
@@ -68,15 +75,29 @@ public class InputIntefaceSystem_Gabu : MonoBehaviour
 
     private void OnEnable()
     {
-        _action.started += OnGetThisAction;
-        _action.performed += OnGetThisAction;
-        _action.canceled += OnGetThisAction;
+        try
+        {
+            _action.started += OnGetThisAction;
+            _action.performed += OnGetThisAction;
+            _action.canceled += OnGetThisAction;
+        }
+        catch (System.Exception)
+        {
+            Debug.LogWarning("アクションが見つかりませんでした");
+        }
     }
 
     private void OnDisable()
     {
-        _action.started -= OnGetThisAction;
-        _action.performed -= OnGetThisAction;
-        _action.canceled -= OnGetThisAction;
+        try
+        {
+            _action.started -= OnGetThisAction;
+            _action.performed -= OnGetThisAction;
+            _action.canceled -= OnGetThisAction;
+        }
+        catch (System.Exception)
+        {
+            Debug.LogWarning("アクションが見つかりませんでした");
+        }
     }
 }
