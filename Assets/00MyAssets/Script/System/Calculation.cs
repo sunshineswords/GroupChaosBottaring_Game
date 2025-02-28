@@ -157,7 +157,7 @@ public class Calculation : MonoBehaviour
             {
                 if (double.TryParse(CutOpe(CaCut[i]), NumberStyles.Any, CultureInfo.InvariantCulture, out var oVal))
                 {
-                    CaCut[i] = (oVal*100).ToString("F1") + "%";
+                    CaCut[i] = (oVal*100).ToString("F1", CultureInfo.InvariantCulture) + "%";
                 }
             }
             FCa += CaCut[i];
@@ -310,16 +310,15 @@ public class Calculation : MonoBehaviour
                     var Val2 = GetValue(OpeCuts[i], Sta1, Sta2);
                     switch (Ope)
                     {
-                        case "rnd": OpeCuts[i] = Random.Range((float)Val1, (float)Val2).ToString(); break;
-                        case "m_a": OpeCuts[i] = System.Math.Max(Val1, Val2).ToString(); break;
-                        case "m_i": OpeCuts[i] = System.Math.Min(Val1, Val2).ToString(); break;
-                        case "o_r": OpeCuts[i] = (Random.value < 0.5f ? Val1 : Val2).ToString(); break;
+                        case "rnd": OpeCuts[i] = Random.Range((float)Val1, (float)Val2).ToString(CultureInfo.InvariantCulture); break;
+                        case "m_a": OpeCuts[i] = System.Math.Max(Val1, Val2).ToString(CultureInfo.InvariantCulture); break;
+                        case "m_i": OpeCuts[i] = System.Math.Min(Val1, Val2).ToString(CultureInfo.InvariantCulture); break;
+                        case "o_r": OpeCuts[i] = (Random.value < 0.5f ? Val1 : Val2).ToString(CultureInfo.InvariantCulture); break;
                         case "d_m":
-                            if (Val1 < Val2 * 2) OpeCuts[i] = ((Val1 * Val1) / (Val2 * 4)).ToString();
-                            else OpeCuts[i] = (Val1 - Val2).ToString();
+                            if (Val1 < Val2 * 2) OpeCuts[i] = ((Val1 * Val1) / (Val2 * 4)).ToString(CultureInfo.InvariantCulture);
+                            else OpeCuts[i] = (Val1 - Val2).ToString(CultureInfo.InvariantCulture);
                             break;
                     }
-
                     OpeCuts[i] = "add" + OpeCuts[i];
                     OpeCuts.RemoveAt(i - 1);
                     Change = true;
@@ -343,7 +342,7 @@ public class Calculation : MonoBehaviour
                 {
                     var Val1 = GetValue(OpeCuts[i - 1], Sta1, Sta2);
                     var Val2 = GetValue(OpeCuts[i], Sta1, Sta2);
-                    OpeCuts[i] = System.Math.Pow(Val1, Val2).ToString();
+                    OpeCuts[i] = System.Math.Pow(Val1, Val2).ToString(CultureInfo.InvariantCulture);
                     OpeCuts[i] = "add" + OpeCuts[i];
                     OpeCuts.RemoveAt(i - 1);
                     Change = true;
@@ -367,8 +366,8 @@ public class Calculation : MonoBehaviour
                 {
                     var Val1 = GetValue(OpeCuts[i - 1], Sta1, Sta2);
                     var Val2 = GetValue(OpeCuts[i], Sta1, Sta2);
-                    if (Ope == "mul") OpeCuts[i] = (Val1 * Val2).ToString();
-                    else OpeCuts[i] = (Val1 / Val2).ToString();
+                    if (Ope == "mul") OpeCuts[i] = (Val1 * Val2).ToString(CultureInfo.InvariantCulture);
+                    else OpeCuts[i] = (Val1 / Val2).ToString(CultureInfo.InvariantCulture);
                     OpeCuts[i] = "add" + OpeCuts[i];
                     OpeCuts.RemoveAt(i - 1);
                     Change = true;
@@ -392,7 +391,7 @@ public class Calculation : MonoBehaviour
                 {
                     var Val1 = GetValue(OpeCuts[i - 1], Sta1, Sta2);
                     var Val2 = GetValue(OpeCuts[i], Sta1, Sta2);
-                    OpeCuts[i] = (Val1 + Val2).ToString();
+                    OpeCuts[i] = (Val1 + Val2).ToString(CultureInfo.InvariantCulture);
                     OpeCuts.RemoveAt(i - 1);
                     Change = true;
                     break;
