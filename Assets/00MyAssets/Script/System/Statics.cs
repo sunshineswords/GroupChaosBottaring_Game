@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class Statics : MonoBehaviour
@@ -132,7 +133,7 @@ public class Statics : MonoBehaviour
         }
         string sd = S;
         if(Tani>0)sd = S.Substring(0,S.Length-1);
-        float Val = float.Parse(sd);
+        float Val = float.Parse(sd, CultureInfo.InvariantCulture);
         Val *= Mathf.Pow(10000, Tani);
         return Val;
     }
