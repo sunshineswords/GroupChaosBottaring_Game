@@ -1,15 +1,20 @@
-using Photon.Pun;
+Ôªøusing Photon.Pun;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using static DataBase;
 public class Net_JoinPlayerUI : MonoBehaviour
 {
     Photon.Realtime.Player PlayerD;
-    [Tooltip("î‘çÜÉeÉLÉXÉg"), SerializeField] TextMeshProUGUI IndexTx;
-    [Tooltip("ÉvÉåÉCÉÑÅ[ñºÉeÉLÉXÉg"), SerializeField] TextMeshProUGUI NameTx;
-    [Tooltip("É}ÉXÉ^Å[ópä«óùUI"), SerializeField] GameObject MasterOnlyUI;
-    [Tooltip("É}ÉXÉ^Å[ï\é¶"), SerializeField] GameObject IsMasterUI;
+    [Tooltip("Áï™Âè∑„ÉÜ„Ç≠„Çπ„Éà"), SerializeField] TextMeshProUGUI IndexTx;
+    [Tooltip("„Éó„É¨„Ç§„É§„ÉºÂêç„ÉÜ„Ç≠„Çπ„Éà"), SerializeField] TextMeshProUGUI NameTx;
+    [Tooltip("„Éû„Çπ„Çø„ÉºÁî®ÁÆ°ÁêÜUI"), SerializeField] GameObject MasterOnlyUI;
+    [Tooltip("„Éû„Çπ„Çø„ÉºË°®Á§∫"), SerializeField] GameObject IsMasterUI;
 
+    [SerializeField] UI_Sin_Set Chara_UI;
+    [SerializeField] List<UI_Sin_Set> FAtk_UIs;
+    [SerializeField] List<UI_Sin_Set> BAtk_UIs;
+    [SerializeField] List<UI_Sin_Set> Passive_UIs;
     public void UISet(int Index,Photon.Realtime.Player Player)
     {
         PlayerD = Player;
@@ -17,6 +22,65 @@ public class Net_JoinPlayerUI : MonoBehaviour
         NameTx.text = Player.NickName;
         MasterOnlyUI.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.LocalPlayer != Player);
         IsMasterUI.SetActive(Player.IsMasterClient);
+
+        var CPro = Player.CustomProperties;
+        var CID = CPro.TryGetValue("Chara", out var oCID) ? (int)oCID : 0;
+        var CharaData = DB.Charas[CID];
+        Chara_UI.Name.text = CharaData.Name;
+        Chara_UI.Icon.texture = CharaData.Icon;
+        for (int i = 0; i < 4; i++)
+        {
+            #region Ë°®ÊîªÊíÉ
+            if (FAtk_UIs.Count <= i) FAtk_UIs.Add(Instantiate(FAtk_UIs[0], FAtk_UIs[0].transform.parent));
+            var FSinUI = FAtk_UIs[i];
+            var FAtkID = CPro.TryGetValue("FAtk_" + i, out var oFAtk) ? (int)oFAtk : 0;
+            Data_Atk FAtkData = null;
+            switch (i)
+            {
+                case 0:
+                    FAtkData = DB.N_Atks[FAtkID];
+                    break;
+                case 1:
+                case 2:
+                    FAtkData = DB.S_Atks[FAtkID];
+                    break;
+                case 3:
+                    FAtkData = DB.E_Atks[FAtkID];
+                    break;
+            }
+            FSinUI.Name.text = FAtkData.Name;
+            FSinUI.Icon.texture = FAtkData.Icon;
+            #endregion
+            #region Ë£èÊîªÊíÉ
+            if (BAtk_UIs.Count <= i) BAtk_UIs.Add(Instantiate(BAtk_UIs[0], BAtk_UIs[0].transform.parent));
+            var BSinUI = BAtk_UIs[i];
+            var BAtkID = CPro.TryGetValue("BAtk_" + i, out var oBAtk) ? (int)oBAtk : 0;
+            Data_Atk BAtkData = null;
+            switch (i)
+            {
+                case 0:
+                    BAtkData = DB.N_Atks[BAtkID];
+                    break;
+                case 1:
+                case 2:
+                    BAtkData = DB.S_Atks[BAtkID];
+                    break;
+                case 3:
+                    BAtkData = DB.E_Atks[BAtkID];
+                    break;
+            }
+            BSinUI.Name.text = BAtkData.Name;
+            BSinUI.Icon.texture = BAtkData.Icon;
+            #endregion
+            #region „Éë„ÉÉ„Ç∑„Éñ
+            if (Passive_UIs.Count <= i) Passive_UIs.Add(Instantiate(Passive_UIs[0], Passive_UIs[0].transform.parent));
+            var PSinUI = Passive_UIs[i];
+            var PID = CPro.TryGetValue("Passive_" + i, out var oPassive) ? (int)oPassive : 0;
+            var PassiveData = DB.Passives[PID];
+            PSinUI.Name.text = PassiveData.Name;
+            PSinUI.Icon.texture = PassiveData.Icon;
+            #endregion
+        }
     }
     public void MasterChange()
     {

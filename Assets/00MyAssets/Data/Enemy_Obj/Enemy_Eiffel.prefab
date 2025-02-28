@@ -400,7 +400,7 @@ MonoBehaviour:
   MPRegene: 0
   SPRegene: 10
   Atk: 300000
-  Def: 200000
+  Def: 150000
   HP: 0
   MP: 0
   SP: 0

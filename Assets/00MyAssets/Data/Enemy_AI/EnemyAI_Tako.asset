@@ -13,21 +13,25 @@ MonoBehaviour:
   m_Name: EnemyAI_Tako
   m_EditorClassIdentifier: 
   AtkAIs:
-  - TimeIf: {x: 0, y: 100}
+  - EditDisp: "[0]Time(0\uFF5E200),OIfCount:0,AtkSlot:0,AtkName:\u30A6\u30A9\u30FC\u30BF\u30FC\u30A8\u30C3\u30B8"
+    TimeIf: {x: 0, y: 200}
     OtherIfs: []
     AtkSlot: 0
     AtkD: {fileID: 11400000, guid: e46916a6b66dd894a8c173d40b714746, type: 2}
-  - TimeIf: {x: 200, y: 300}
+  - EditDisp: "[1]Time(500\uFF5E600),OIfCount:0,AtkSlot:1,AtkName:\u30A6\u30A9\u30FC\u30BF\u30FC\u30B7\u30E7\u30C3\u30C8"
+    TimeIf: {x: 500, y: 600}
     OtherIfs: []
-    AtkSlot: 0
+    AtkSlot: 1
     AtkD: {fileID: 11400000, guid: 45cf9de2fc5dbe74aa84e312df4040ef, type: 2}
-  - TimeIf: {x: 400, y: 500}
+  - EditDisp: "[2]Time(900\uFF5E1100),OIfCount:0,AtkSlot:0,AtkName:\u30A6\u30A9\u30FC\u30BF\u30FC\u30A8\u30C3\u30B8"
+    TimeIf: {x: 900, y: 1100}
     OtherIfs: []
     AtkSlot: 0
     AtkD: {fileID: 11400000, guid: e46916a6b66dd894a8c173d40b714746, type: 2}
-  - TimeIf: {x: 600, y: 700}
+  - EditDisp: "[3]Time(1300\uFF5E1400),OIfCount:0,AtkSlot:2,AtkName:\u30A6\u30A9\u30FC\u30BF\u30FC\u30D3\u30FC\u30E0"
+    TimeIf: {x: 1300, y: 1400}
     OtherIfs: []
-    AtkSlot: 0
+    AtkSlot: 2
     AtkD: {fileID: 11400000, guid: 648c0ea24a189f64dbe287a9d701c64e, type: 2}
-  TimerLim: 800
+  TimerLim: 1600
   NoTargetResetTime: 0

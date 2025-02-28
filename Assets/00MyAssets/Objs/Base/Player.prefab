@@ -8071,7 +8071,7 @@ MonoBehaviour:
   SpeedRem: 12
   MoveSpeed: 100
   LerpSpeed: 10
-  DashTime: 20
+  DashTime: 30
   DashSpeed: 2500
   DashMPCost: 100
   JumpPow: 500

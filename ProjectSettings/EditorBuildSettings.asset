@@ -12,19 +12,19 @@ EditorBuildSettings:
     path: Assets/00MyAssets/Scene/TestStage.unity
     guid: bf51db86bebfcb3429ea00c4c5d4d485
   - enabled: 1
-    path: Assets/00MyAssets/Scene/Stage1.unity
+    path: Assets/00MyAssets/Scene/Zako.unity
     guid: cae4e5dba70dcc64fb21c768eca3dc00
   - enabled: 1
-    path: Assets/00MyAssets/Scene/Stage2.unity
+    path: Assets/00MyAssets/Scene/WBroccoli.unity
     guid: b2ba607540381ff449b2bdc1a64ca3c9
   - enabled: 1
     path: Assets/00MyAssets/Scene/NightMea.unity
     guid: 154f06922d5027e4a913a716dfad4f5f
   - enabled: 1
-    path: Assets/00MyAssets/Scene/Stage3.unity
+    path: Assets/00MyAssets/Scene/Waves.unity
     guid: 8ab25ddcd9db0c04ba027b3f18dfd36a
   - enabled: 1
-    path: Assets/00MyAssets/Scene/Stage4.unity
+    path: Assets/00MyAssets/Scene/Eiffel.unity
     guid: 446f2de49734f8b4abc80e476b984340
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

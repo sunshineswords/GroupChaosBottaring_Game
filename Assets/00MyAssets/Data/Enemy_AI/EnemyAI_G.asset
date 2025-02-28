@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: EnemyAI_G
   m_EditorClassIdentifier: 
   AtkAIs:
-  - TimeIf: {x: 0, y: 0}
+  - EditDisp: "[0]Time(150\uFF5E250),OIfCount:0,AtkSlot:0,AtkName:G\u30BF\u30C3\u30AF\u30EB"
+    TimeIf: {x: 150, y: 250}
     OtherIfs: []
     AtkSlot: 0
     AtkD: {fileID: 11400000, guid: 7a51e3bcf99676345b060ce3c22000dc, type: 2}
-  TimerLim: 0
+  TimerLim: 600
   NoTargetResetTime: 0

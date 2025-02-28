@@ -322,6 +322,7 @@ MonoBehaviour:
   SepTrails:
   - {fileID: 8826028816862956135}
   Times: 0
+  SPAddCT: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
 MonoBehaviour:
@@ -354,7 +355,7 @@ MonoBehaviour:
   Moves:
   - Times: {x: 0, y: 999, z: 0}
     MoveMode: -1
-    Pow: 0
+    Pow: {x: 0, y: 0, z: 0}
     TargetMode: 0
     TargetCT: 0
     Target: {fileID: 0}
@@ -362,7 +363,7 @@ MonoBehaviour:
     TCT: 0
   - Times: {x: 75, y: 90, z: 0}
     MoveMode: 11
-    Pow: 30
+    Pow: {x: 200, y: 15, z: 0}
     TargetMode: 1
     TargetCT: 60
     Target: {fileID: 0}
@@ -370,7 +371,7 @@ MonoBehaviour:
     TCT: 0
   - Times: {x: 90, y: 150, z: 0}
     MoveMode: 11
-    Pow: 3
+    Pow: {x: 200, y: 5, z: 0}
     TargetMode: 1
     TargetCT: 64
     Target: {fileID: 0}
