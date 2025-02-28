@@ -33,7 +33,7 @@ public class UI_EndResult : MonoBehaviour
         int CTime = (BTManager.TimeLimSec * 60) - BTManager.Time;
         StartsTx.text = "";
         for (int i = 0; i < 3; i++) StartsTx.text += i < BTManager.Star ? "★" : "☆";
-        TimeTx.text = (CTime / 3600).ToString("D2") + ":" + (CTime / 60 % 60).ToString("D2");
+        TimeTx.text = (BTManager.Time / 3600).ToString("D2") + ":" + (BTManager.Time / 60 % 60).ToString("D2");
         DeathTx.text = "Death:" + BTManager.DeathCount;
     }
 }

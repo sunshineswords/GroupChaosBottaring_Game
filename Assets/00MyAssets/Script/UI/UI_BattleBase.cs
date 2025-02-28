@@ -25,7 +25,7 @@ public class UI_BattleBase : MonoBehaviour
             TimeStarTx.text = (BTManager.Time >= BTManager.TimeStar * 60 ? "★" : "☆");
             TimeStarTx.text += (BTManager.TimeStar / 60).ToString("D2") + ":" + (BTManager.TimeStar % 60).ToString("D2");
 
-            DeathStarTx.text = (BTManager.DeathCount < BTManager.DeathStar ? "★" : "☆");
+            DeathStarTx.text = (BTManager.DeathCount <= BTManager.DeathStar ? "★" : "☆");
             DeathStarTx.text += "Death:" + BTManager.DeathStar;
         }
         else InfoUI.SetActive(false);

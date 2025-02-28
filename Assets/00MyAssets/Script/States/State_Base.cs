@@ -180,6 +180,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     }
     void AtkPlays(Vector3 CamRot)
     {
+        if (!PhotonNetwork.InRoom) return;
         #region CT減少
         var CTKeys = AtkCTs.Keys.ToArray();
         for (int i = 0; i < CTKeys.Length; i++)

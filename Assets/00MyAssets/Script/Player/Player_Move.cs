@@ -47,10 +47,8 @@ public class Player_Move : MonoBehaviourPun
         var CamRot = CamRotTrans.eulerAngles;
         CamRot.x += LookInput.y;
         CamRot.y += LookInput.x;
-        Debug.Log("1");
         if (Sta.TargetHit != null && !PCont.Target_Stay && !Sta.Aiming)
         {
-            Debug.Log("2");
             var CamFront = CamRotTrans.forward;
             var CamLook = Sta.TargetHit.PosGet() - CamRotTrans.position;
             var CamVect = Vector3.Slerp(CamFront.normalized, CamLook.normalized, TRotPer * 0.01f);

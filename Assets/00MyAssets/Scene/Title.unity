@@ -4217,7 +4217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3563752531572274092, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00009918213
+      value: 0.000049591064
       objectReference: {fileID: 0}
     - target: {fileID: 4343578301554969786, guid: 13a041cfc7410bd4389542c6bb9de61f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -13138,8 +13138,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286611584
+  m_fontColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17482,8 +17482,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286611584
+  m_fontColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -24645,7 +24645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2982228087132310685, guid: 5c05a33e2230a1240bbac8e1e336061e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -407.00012
+      value: -407.00018
       objectReference: {fileID: 0}
     - target: {fileID: 2982228087132310685, guid: 5c05a33e2230a1240bbac8e1e336061e, type: 3}
       propertyPath: m_AnchoredPosition.y

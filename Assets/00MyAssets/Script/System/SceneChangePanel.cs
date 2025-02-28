@@ -60,26 +60,23 @@ public class SceneChangePanel : MonoBehaviourPunCallbacks
         var PCol = Panel.color;
         if (!PhotonNetwork.OfflineMode && PhotonNetwork.InRoom)
         {
-            Debug.Log("RoomLo");
             var CRoom = PhotonNetwork.CurrentRoom;
             var CRoomCP = CRoom.CustomProperties;
             int RoomSceneID = CRoomCP.TryGetValue("SceneID", out var oSceneID) ? (int)oSceneID : -1;
             int CSceneID = SceneManager.GetActiveScene().buildIndex;
-            Debug.Log("Scene|Room:" + RoomSceneID + "|Cla:" + CSceneID);
             bool Changes = RoomSceneID != -1 && RoomSceneID != CSceneID;
             PCol.a = Mathf.Clamp01(PCol.a + AlphaSpeed * 0.01f * (Changes ? 1 : -1));
             if (Changes)
             {
-                Debug.Log("SChange");
                 PhotonNetwork.IsMessageQueueRunning = false;
                 if(PCol.a == 1 && RoomSceneID != -1)
                 {
+                    Save();
                     SceneManager.LoadScene(RoomSceneID);
                 }
             }
             else
             {
-                Debug.Log("NoChange");
                 PhotonNetwork.IsMessageQueueRunning = true;
             }
         }
@@ -88,6 +85,7 @@ public class SceneChangePanel : MonoBehaviourPunCallbacks
             PCol.a = Mathf.Clamp01(PCol.a + AlphaSpeed * 0.01f * (LoadSceneID != -1 ? 1 : -1));
             if (PCol.a == 1 && LoadSceneID != -1)
             {
+                Save();
                 SceneManager.LoadScene(LoadSceneID);
                 LoadSceneID = -1;
             }
@@ -118,9 +116,9 @@ public class SceneChangePanel : MonoBehaviourPunCallbacks
     }
     static public void SceneSet(int Scene)
     {
-        Save();
         if (SChange == null)
         {
+            Save();
             SceneManager.LoadScene(Scene);
         }
         else
