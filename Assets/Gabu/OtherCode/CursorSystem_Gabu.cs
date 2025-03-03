@@ -3,16 +3,29 @@
 public class CursorSystem_Gabu : MonoBehaviour
 {
     public bool setCursorVisible = false;
+    public GameObject vMouse = null;
     private void Start()
     {
-        Cursor.visible = setCursorVisible;
+        SetEnable(setCursorVisible);
+    }
+    private void Update()
+    {
+        if (BattleManager.BTManager.End) SetEnable(true);
     }
     private void OnEnable()
     {
-        Cursor.visible = setCursorVisible;
+        SetEnable(setCursorVisible);
     }
     private void OnDisable()
     {
-        Cursor.visible = !setCursorVisible;
-    }   
+        SetEnable(!setCursorVisible);
+    }
+    private void SetEnable(bool b)
+    {
+        Cursor.visible = b;
+        if (vMouse != null)
+        {
+            vMouse.SetActive(b);
+        }
+    }
 }
