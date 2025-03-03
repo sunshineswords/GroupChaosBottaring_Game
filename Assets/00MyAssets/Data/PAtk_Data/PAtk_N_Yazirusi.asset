@@ -254,10 +254,10 @@ MonoBehaviour:
         - Change: 1
           Mlt: 0
           Val: {x: 45, y: 45, z: 45}
-    - EditDisp: '[1]BNum:21,Time:(0, 0, 0),Count:9,Speed:(2000.00, 4000.00)'
+    - EditDisp: '[1]BNum:21,Time:(0, 0, 0),Count:6,Speed:(2000.00, 4000.00)'
       BranchNum: 21
       Times: {x: 0, y: 0, z: 0}
-      Count: 9
+      Count: 6
       Speed: {x: 2000, y: 4000}
       Trans:
         PosBase: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
           Mlt: 0
           Val: {x: 0, y: 360, z: 0}
     Hits:
-    - EditDisp: "[0]BNum:10|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+1.5)\u81EA\u653B\u6483\u529B20.0%"
+    - EditDisp: "[0]BNum:10|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+0.6)\u81EA\u653B\u6483\u529B6.0%"
       BranchNum: 10
       EHit: 1
       FHit: 0
@@ -276,10 +276,10 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 1
-      DamCalc: U.ATK*0.2
-      SPAdd: 1.5
+      DamCalc: U.ATK*0.06
+      SPAdd: 0.6
       BufSets: []
-    - EditDisp: "[1]BNum:21|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+1.7)\u81EA\u653B\u6483\u529B25.0%"
+    - EditDisp: "[1]BNum:21|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+0.9)\u81EA\u653B\u6483\u529B9.0%"
       BranchNum: 21
       EHit: 1
       FHit: 0
@@ -287,8 +287,8 @@ MonoBehaviour:
       Heals: 0
       DamageType: 0
       ShortAtk: 1
-      DamCalc: U.ATK*0.25
-      SPAdd: 1.7
+      DamCalc: U.ATK*0.09
+      SPAdd: 0.9
       BufSets: []
     Adds: []
     HitCT: 0
