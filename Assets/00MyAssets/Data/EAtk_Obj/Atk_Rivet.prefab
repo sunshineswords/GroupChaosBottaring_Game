@@ -4978,6 +4978,7 @@ MonoBehaviour:
   - {fileID: 6360208335822719378}
   SepTrails: []
   Times: 0
+  SPAddCT: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
 MonoBehaviour:
@@ -5016,15 +5017,15 @@ MonoBehaviour:
     Target: {fileID: 0}
     TargetHit: {fileID: 0}
     TCT: 0
-  - Times: {x: 0, y: 50, z: 0}
+  - Times: {x: 45, y: 100, z: 0}
     MoveMode: 11
-    Pow: {x: 100, y: 15, z: 0}
+    Pow: {x: 100, y: 7.5, z: 0}
     TargetMode: 3
     TargetCT: 60
     Target: {fileID: 0}
     TargetHit: {fileID: 0}
     TCT: 0
-  - Times: {x: 50, y: 50, z: 0}
+  - Times: {x: 100, y: 100, z: 0}
     MoveMode: 1
     Pow: {x: 3000, y: 0, z: 0}
     TargetMode: 0
