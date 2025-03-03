@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using static DataBase;
+using static Manifesto;
 public class State_Anims : MonoBehaviour
 {
     public State_Base Sta;
     [SerializeField] Animator Anim;
-    Dictionary<int, Transform> SetTrans = new Dictionary<int, Transform>();
-    Dictionary<int, int> WeponSets = new Dictionary<int, int>();
-    Dictionary<int, GameObject> WeponSObjs = new Dictionary<int, GameObject>();
+    [SerializeField] Transform RightHandTrans;
+    [SerializeField] Transform LeftHandTrans;
+    Dictionary<Enum_WeponSet, Transform> SetTrans = new Dictionary<Enum_WeponSet, Transform>();
+    Dictionary<Enum_WeponSet, int> WeponSets = new Dictionary<Enum_WeponSet, int>();
+    Dictionary<Enum_WeponSet, GameObject> WeponSObjs = new Dictionary<Enum_WeponSet, GameObject>();
 
     void Update()
     {
@@ -19,19 +22,19 @@ public class State_Anims : MonoBehaviour
         Anim.SetInteger("OtherID", Sta.Anim_OtherID);
         if (Anim.avatar != null)
         {
-            SetTrans.TryAdd(0, Anim.GetBoneTransform(HumanBodyBones.RightHand));
-            SetTrans.TryAdd(1, Anim.GetBoneTransform(HumanBodyBones.LeftHand));
-
+            SetTrans.TryAdd(Enum_WeponSet.右手, Anim.GetBoneTransform(HumanBodyBones.RightHand));
+            SetTrans.TryAdd(Enum_WeponSet.左手, Anim.GetBoneTransform(HumanBodyBones.LeftHand));
         }
+
         var WeponKeys = Sta.WeponSets.Keys.ToArray();
         for (int i = 0; i < WeponKeys.Length; i++)
         {
-            var WepKey = WeponKeys[i];
+            var WepKey = (Enum_WeponSet)WeponKeys[i];
             WeponSets.TryAdd(WepKey, -1);
             WeponSObjs.TryAdd(WepKey, null);
-            if (WeponSets[WepKey] != Sta.WeponSets[WepKey])
+            if (WeponSets[WepKey] != Sta.WeponSets[(int)WepKey])
             {
-                WeponSets[WepKey] = Sta.WeponSets[WepKey];
+                WeponSets[WepKey] = Sta.WeponSets[(int)WepKey];
                 if (WeponSObjs[WepKey] != null) Destroy(WeponSObjs[WepKey]);
                 if (WeponSets[WepKey] >= 0)
                 {
@@ -45,10 +48,15 @@ public class State_Anims : MonoBehaviour
             if (WeponSObjs[WepKey] != null)
             {
                 SetWep.transform.localPosition = Vector3.zero;
-                SetWep.transform.localPosition += Sta.WeponPoss[WepKey];
+                SetWep.transform.localPosition += Sta.WeponPoss[(int)WepKey];
                 SetWep.transform.localRotation = Quaternion.identity;
-                SetWep.transform.localEulerAngles += Sta.WeponRots[WepKey];
+                SetWep.transform.localEulerAngles += Sta.WeponRots[(int)WepKey];
             }
         }
+    }
+    private void LateUpdate()
+    {
+        if (WeponSObjs.TryGetValue(Enum_WeponSet.右手,out var RWep) && RWep!=null && RightHandTrans != null) RWep.transform.position = RightHandTrans.position;
+        if (WeponSObjs.TryGetValue(Enum_WeponSet.左手, out var LWep) && LWep != null&& LeftHandTrans != null) LWep.transform.position = LeftHandTrans.position;
     }
 }
