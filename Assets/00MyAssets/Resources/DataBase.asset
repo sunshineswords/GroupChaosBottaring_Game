@@ -95,6 +95,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 96d41d772585f7a4c92d11779ce6fd4b, type: 2}
   - {fileID: 11400000, guid: f8a7d4eeb3c806540afb358f4c95ef47, type: 2}
   - {fileID: 11400000, guid: 5accc760fbb28e04e90c37edffd676b0, type: 2}
+  - {fileID: 11400000, guid: 233a9db9456e5c04cb08b18341c954ae, type: 2}
   Passives:
   - {fileID: 11400000, guid: b5532d1c59d3fcb41addafe27aff6e3b, type: 2}
   - {fileID: 11400000, guid: 5466b9ed40ddaa14bae820559fdba7ca, type: 2}
