@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static PlayerValue;
 using static DataBase;
+using Photon.Pun;
+
 public class UI_StageSelect : MonoBehaviour,UI_Sin_Set.SetReturn
 {
     [SerializeField] TextMeshProUGUI StageInfoTx;
     [SerializeField] List<UI_Sin_Set> StageUIs;
+    [SerializeField] GameObject OfflineUI;
     private void Update()
     {
+        OfflineUI.SetActive(PhotonNetwork.OfflineMode);
         StageInfoTx.text = DB.Stages[StageID].Name;
         StageInfoTx.text += "\n" + DB.Stages[StageID].Info;
         for (int i = 0; i < DB.Stages.Length; i++)

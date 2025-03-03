@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PI: {fileID: 5310631824068134670}
+  LookMult: 0.75
   MoveInputs: {x: 0, y: 0}
   LookInputs: {x: 0, y: 0}
   LookT: 0

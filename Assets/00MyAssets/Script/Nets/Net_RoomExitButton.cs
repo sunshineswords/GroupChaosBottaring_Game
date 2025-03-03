@@ -11,7 +11,7 @@ public class Net_RoomExitButton : MonoBehaviour
     bool Master => !PhotonNetwork.OfflineMode && PhotonNetwork.IsMasterClient;
     private void Update()
     {
-        Texts.text = Master ? MasterTxs : NoMasterTxs;
+        Texts.text = PhotonNetwork.IsMasterClient ? MasterTxs : NoMasterTxs;
     }
     //退室
     public void ExitB()

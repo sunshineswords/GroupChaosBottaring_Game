@@ -94,19 +94,12 @@ MonoBehaviour:
     UseMP: 0
     FutureNum: 0
     FutureTime: 0
-  - EditDisp: '[8]BNum:20Time:(0, 17)MP:0Future{Num:21Time:0}'
-    BranchNums: 14000000
-    Times: {x: 0, y: 17}
-    Ifs: 0a000000
-    UseMP: 0
-    FutureNum: 21
-    FutureTime: 0
-  - EditDisp: '[9]BNum:20Time:(0, 99)MP:0Future{Num:22Time:0}'
+  - EditDisp: '[8]BNum:20Time:(0, 99)MP:0Future{Num:21Time:0}'
     BranchNums: 14000000
     Times: {x: 0, y: 99}
     Ifs: 0a000000
     UseMP: 0
-    FutureNum: 22
+    FutureNum: 21
     FutureTime: 0
   Fixeds:
   - EditDisp: '[0]BNum:-1Time:(0, 999)'

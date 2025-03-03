@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Player_Moblie : MonoBehaviour
 {
     [SerializeField] PlayerInput PI;
+    [SerializeField] float LookMult;
 
     public Vector2 MoveInputs;
     public Vector2 LookInputs;
@@ -139,7 +140,7 @@ public class Player_Moblie : MonoBehaviour
             lookv = ts.delta;
             LookT = true;
         }
-        LookInputs = lookv * 0.2f;
+        LookInputs = lookv * LookMult;
         #endregion
     }
 

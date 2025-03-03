@@ -38,6 +38,14 @@ MonoBehaviour:
       PowVal: PCOUNT*25
       TimeMax: 0
       PowMax: 
+    - EditDisp: "\u9632\u5FA1\u4F4E\u4E0B[9999,\u4ED8\u4E0E](\u6642\u9593:\u4ED8\u4E0E900)(\u6BB5\u968E:\u4ED8\u4E0E80)"
+      Buf: 120
+      Index: 9999
+      Set: 0
+      TimeVal: 900
+      PowVal: 80
+      TimeMax: 900
+      PowMax: 
   WeponSets: []
   Anims:
   - EditDisp: '[0]BNum:0Time:(0, 300)ID:4'

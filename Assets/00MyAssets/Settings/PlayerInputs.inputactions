@@ -258,7 +258,7 @@
                     "path": "<XInputController>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Xbox Controller",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -269,7 +269,7 @@
                     "path": "<DualShockGamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";PlayStation Controller",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -346,7 +346,7 @@
                     "path": "<XInputController>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Xbox Controller",
                     "action": "N_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -357,7 +357,7 @@
                     "path": "<DualShockGamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";PlayStation Controller",
                     "action": "N_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -390,7 +390,7 @@
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "S1_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -401,7 +401,7 @@
                     "path": "<Keyboard>/o",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "S1_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -412,7 +412,7 @@
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "S1_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -423,7 +423,7 @@
                     "path": "<XInputController>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Xbox Controller",
                     "action": "S1_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -434,7 +434,7 @@
                     "path": "<DualShockGamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";PlayStation Controller",
                     "action": "S1_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -467,7 +467,7 @@
                     "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "S2_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -478,7 +478,7 @@
                     "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "S2_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -489,7 +489,7 @@
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "S2_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -500,7 +500,7 @@
                     "path": "<XInputController>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Xbox Controller",
                     "action": "S2_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -511,7 +511,7 @@
                     "path": "<DualShockGamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";PlayStation Controller",
                     "action": "S2_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -544,7 +544,7 @@
                     "path": "<XInputController>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Xbox Controller",
                     "action": "E_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -555,7 +555,7 @@
                     "path": "<DualShockGamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";PlayStation Controller",
                     "action": "E_Atk",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -588,7 +588,7 @@
                     "path": "<XInputController>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Xbox Controller",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -599,7 +599,7 @@
                     "path": "<DualShockGamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";PlayStation Controller",
                     "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -632,7 +632,7 @@
                     "path": "<XInputController>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Xbox Controller",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -643,7 +643,7 @@
                     "path": "<DualShockGamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";PlayStation Controller",
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -676,7 +676,7 @@
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "Change",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -687,7 +687,7 @@
                     "path": "<XInputController>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Xbox Controller",
                     "action": "Change",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -698,7 +698,7 @@
                     "path": "<DualShockGamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";PlayStation Controller",
                     "action": "Change",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -731,7 +731,7 @@
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Gamepad",
                     "action": "Target",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -742,7 +742,7 @@
                     "path": "<XInputController>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Xbox Controller",
                     "action": "Target",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -753,7 +753,7 @@
                     "path": "<DualShockGamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";PlayStation Controller",
                     "action": "Target",
                     "isComposite": false,
                     "isPartOfComposite": false

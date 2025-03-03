@@ -41,19 +41,20 @@ public class Player_Move : MonoBehaviourPun
     {
         if (!photonView.IsMine) return;
         #region カメラ
-        var LookInput = PCont.Look;
-        LookInput.x *= RotSpeed.y * 0.01f;
-        LookInput.y *= -RotSpeed.x * 0.01f;
+
         var CamRot = CamRotTrans.eulerAngles;
-        CamRot.x += LookInput.y;
-        CamRot.y += LookInput.x;
-        if (Sta.TargetHit != null && !PCont.Target_Stay && !Sta.Aiming)
+        var LookInput = PCont.Look * PSaves.CamSpeed;
+        if (Sta.TargetHit != null && LookInput.magnitude < 0.1f && !PCont.Target_Stay && !Sta.Aiming)
         {
             var CamFront = CamRotTrans.forward;
             var CamLook = Sta.TargetHit.PosGet() - CamRotTrans.position;
-            var CamVect = Vector3.Slerp(CamFront.normalized, CamLook.normalized, TRotPer * 0.01f);
+            var CamVect = Vector3.Slerp(CamFront.normalized, CamLook.normalized, TRotPer * 0.01f * PSaves.TargetSpeed);
             CamRot = Quaternion.LookRotation(CamVect, Vector3.forward).eulerAngles;
         }
+        LookInput.x *= RotSpeed.y * 0.01f;
+        LookInput.y *= -RotSpeed.x * 0.01f;
+        CamRot.x += LookInput.y;
+        CamRot.y += LookInput.x;
         CamRot.x = Mathf.Clamp(Mathf.Repeat(CamRot.x + 180, 360f) - 180f, RotLim.x, RotLim.y);
         CamRot.z = 0;
         CamRotTrans.eulerAngles = CamRot;

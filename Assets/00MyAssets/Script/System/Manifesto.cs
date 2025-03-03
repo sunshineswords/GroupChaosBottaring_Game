@@ -372,6 +372,8 @@ static public class Manifesto
         public float SEVol = 1;
         public float SystemVol = 1;
         public int QualityLV = 4;
+        public float CamSpeed = 1;
+        public float TargetSpeed = 1;
         public int PriSetID;
         public List<int> StageSoloStars;
         public List<int> StageMultStars;
