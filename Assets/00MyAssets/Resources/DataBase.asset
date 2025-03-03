@@ -74,6 +74,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 57445ecd550058244b7d8af52e556da1, type: 2}
   - {fileID: 11400000, guid: 5b4cc4eafe8a2a246bf85305db349f94, type: 2}
   - {fileID: 11400000, guid: c27384540b5e9994e8e9bd18556bf912, type: 2}
+  - {fileID: 11400000, guid: 39753a6a5add33245a262b2d60861f57, type: 2}
   E_Atks:
   - {fileID: 11400000, guid: 40dbec132893f92458f13ebb61e76ddd, type: 2}
   - {fileID: 11400000, guid: 7940ced0e66f13b48a4a5fdc7c157138, type: 2}
