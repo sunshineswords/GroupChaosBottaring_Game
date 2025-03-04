@@ -80,6 +80,7 @@ public class State_Atk
                 USta.NoJump = MFixed.NoJump;
                 USta.Aiming = MFixed.Aiming;
                 USta.NGravity = MFixed.NGravity;
+                USta.NoDamage = MFixed.NoDamage;
             }
         }
     }

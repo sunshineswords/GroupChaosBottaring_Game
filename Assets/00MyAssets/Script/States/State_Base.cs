@@ -57,6 +57,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [Foldout("変数")] public bool NoDash;
     [Foldout("変数")] public bool Aiming;
     [Foldout("変数")] public bool NGravity;
+    [Foldout("変数")] public bool NoDamage;
 
     [Foldout("変数")] public int Anim_MoveID;
     [Foldout("変数")] public int Anim_AtkID;
@@ -208,6 +209,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         NoDash = false;
         Aiming = false;
         NGravity = false;
+        NoDamage = false;
         #region スキル処理
         if (HP <= 0) AtkD = null;
         Anim_AtkID = 0;
@@ -537,6 +539,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [PunRPC]
     void RPC_Damage(Vector3 HitPos, int Val)
     {
+        if (Val > 0 && NoDamage) return;
         if (HP <= 0) return;
         if (Val < 0)
         {
@@ -668,6 +671,8 @@ public class State_Base : MonoBehaviourPun,IPunObservable
 
             stream.SendNext(HP);
 
+            stream.SendNext(NoDamage);
+
             var WepSetKeys = WeponSets.Keys.ToArray();
             var WepSetIDs = WeponSets.Values.ToArray();
             var WepSetPoss = WeponPoss.Values.ToArray();
@@ -681,6 +686,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             stream.SendNext(Anim_AtkID);
             stream.SendNext(Anim_AtkSpeed);
             stream.SendNext(Anim_OtherID);
+
 
             var Buf_ID = new List<int>();
             var Buf_Index = new List<int>();
@@ -721,6 +727,8 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             Team = (int)stream.ReceiveNext();
 
             HP = (float)stream.ReceiveNext();
+
+            NoDamage = (bool)stream.ReceiveNext();
 
             var WepSetKeys = (int[])stream.ReceiveNext();
             var WepSetIDs = (int[])stream.ReceiveNext();

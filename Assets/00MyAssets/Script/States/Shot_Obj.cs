@@ -82,6 +82,7 @@ public class Shot_Obj : MonoBehaviourPun
     }
     public void Hits(State_Hit HitState,Vector3 HitPos)
     {
+        if (HitState.Sta.NoDamage) return;
         if (HitList.ContainsKey(HitState.Sta)) return;
         HitList.Add(HitState.Sta, ShotD.HitCT);
         bool HitCh = false;

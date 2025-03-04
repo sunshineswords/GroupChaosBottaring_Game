@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u9244\u9AA8"
   Info: "\u6301\u7D9A\u3059\u308B\u9244\u9AA8\u3092\u6295\u3052\u308B"
-  Icon: {fileID: 2800000, guid: 9a3e1a61c1b64c84190995a86b5c3df3, type: 3}
+  Icon: {fileID: 2800000, guid: 24f6ded9377afd6438463fd2ce6d0d9e, type: 3}
   AtkType: 1
   Filters: 00000000
   EndTime: 60

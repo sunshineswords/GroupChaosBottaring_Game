@@ -70,7 +70,15 @@ public class Shot_Move : MonoBehaviourPun
                         SObj.Rig.position = Moved.Target != null ? Moved.Target.PosGet() : Moved.TargetHit.PosGet();
                     }
                     break;
-
+                case Enum_MoveMode.向き合わせ_x距離_y変値:
+                    TargetSet(Moved);
+                    if (Moved.Target != null || Moved.TargetHit != null)
+                    {
+                        var TRot = Quaternion.Euler(Moved.Target != null ? Moved.Target.RotGet() : Moved.TargetHit.Sta.RotGet());
+                        var TVect = TRot * Vector3.forward;
+                        SObj.transform.LookAt(SObj.transform.position + Vector3.Slerp(SObj.transform.forward, TVect.normalized, Moved.Pow.y * 0.01f));
+                    }
+                    break;
             }
             SObj.Rig.linearVelocity = RigVect;
             SObj.Rig.angularVelocity = RigRot;

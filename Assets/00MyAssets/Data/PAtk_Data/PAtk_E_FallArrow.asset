@@ -26,11 +26,12 @@ MonoBehaviour:
   - EditDisp: '[0]BNum:0Time:(0, 999)'
     BranchNum: 0
     Times: {x: 0, y: 999}
-    SpeedRem: 70
-    NoJump: 0
-    NoDash: 0
+    SpeedRem: 100
+    NoJump: 1
+    NoDash: 1
     Aiming: 0
     NGravity: 0
+    NoDamage: 1
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 880bd2432576527489aa41e04159cc60, type: 3}
     Fires:

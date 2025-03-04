@@ -73,7 +73,7 @@ public class UI_EndResult : MonoBehaviour
             bool NDisp = false;
             if (Sta != null)
             {
-                SinUI.UISet(i,Sta.photonView.Owner,true);
+                SinUI.UISet(i+1,Sta.photonView.Owner,true);
                 SinUI.Bars[0].fillAmount = Sta.AddDamTotal / Mathf.Max(1f, AddDamMax);
                 SinUI.ValTxs[0].text = Sta.AddDamTotal.ToString("F0");
                 SinUI.Bars[1].fillAmount = Sta.AddHitTotal / Mathf.Max(1f, AddHitMax);

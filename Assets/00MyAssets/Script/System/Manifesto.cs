@@ -114,6 +114,7 @@ static public class Manifesto
         [Tooltip("ダッシュ不可")] public bool NoDash;
         [Tooltip("照準モード")] public bool Aiming;
         [Tooltip("無重力")] public bool NGravity;
+        [Tooltip("無敵")] public bool NoDamage;
     }
     [System.Serializable]
     public class Class_Atk_Shot_Base
@@ -576,6 +577,7 @@ static public class Manifesto
         直線補間ホーミング_x距離_y変値 = 10,
         曲線補間ホーミング_x距離_y変値 = 11,
         瞬間移動_x距離 = 12,
+        向き合わせ_x距離_y変値 = 13,
     }
     public enum Enum_TargetMode
     {

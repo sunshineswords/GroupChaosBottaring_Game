@@ -22,7 +22,16 @@ MonoBehaviour:
   SPUse: 150
   BranchInfos: []
   Branchs: []
-  Fixeds: []
+  Fixeds:
+  - EditDisp: '[0]BNum:0Time:(0, 999)'
+    BranchNum: 0
+    Times: {x: 0, y: 999}
+    SpeedRem: 60
+    NoJump: 1
+    NoDash: 1
+    Aiming: 0
+    NGravity: 0
+    NoDamage: 1
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: ce4a2da79f01a474eacda7ed6b960bed, type: 3}
     Fires:

@@ -26,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1310844888518404032}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5061325978849215828}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7361639760566915065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_DecalLayerMask: 2
   m_ScaleMode: 0
   m_Offset: {x: 0, y: 0, z: 200}
-  m_Size: {x: 25, y: 25, z: 400}
+  m_Size: {x: 30, y: 30, z: 400}
   m_FadeFactor: 1
 --- !u!114 &6041549639141499622
 MonoBehaviour:
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 4996487390174411274}
   - component: {fileID: -1467573478106684984}
   - component: {fileID: 2647640555106031623}
-  - component: {fileID: 4889832231577311306}
+  - component: {fileID: 5749137724377949176}
   m_Layer: 8
   m_Name: Atk_FallingEiffel
   m_TagString: Untagged
@@ -214,6 +214,7 @@ MonoBehaviour:
   - {fileID: 0}
   SepTrails: []
   Times: 0
+  SPAddCT: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
 MonoBehaviour:
@@ -230,8 +231,8 @@ MonoBehaviour:
   SObj: {fileID: -1467573478106684984}
   HitTime: {x: 0, y: 0, z: 0}
   WallRem: 0
---- !u!65 &4889832231577311306
-BoxCollider:
+--- !u!136 &5749137724377949176
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -248,9 +249,11 @@ BoxCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 25, y: 25, z: 60}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Radius: 15
+  m_Height: 60
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 10}
 --- !u!1001 &132394794558079071
 PrefabInstance:
   m_ObjectHideFlags: 0

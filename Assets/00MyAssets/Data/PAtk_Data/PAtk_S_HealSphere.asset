@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u30D2\u30FC\u30EB\u30B9\u30D5\u30A3\u30A2"
   Info: "\u5473\u65B9\u306EHP\u3092\u56DE\u5FA9\u3059\u308B\n\u30B9\u30D5\u30A3\u30A2\u3092\u4F5C\u308B\n\u81EA\u5206\u3067\u56DE\u53CE\u306F\u3067\u304D\u306A\u3044\u304C\n\u534A\u5206\u56DE\u5FA9\u3059\u308B"
-  Icon: {fileID: 2800000, guid: 577d9ed044fb4cd44837f527b477d3df, type: 3}
+  Icon: {fileID: 2800000, guid: 15e9e1c48b1b89b4199b6520ff394f35, type: 3}
   AtkType: 1
   Filters: 020000006f000000
   EndTime: 120
@@ -31,6 +31,7 @@ MonoBehaviour:
     NoDash: 0
     Aiming: 1
     NGravity: 0
+    NoDamage: 0
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 29caabf6b33bb3640b3bacdc56595c88, type: 3}
     Fires:

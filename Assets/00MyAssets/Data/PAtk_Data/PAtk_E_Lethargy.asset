@@ -36,7 +36,16 @@ MonoBehaviour:
     UseMP: 0
     FutureNum: 0
     FutureTime: 35
-  Fixeds: []
+  Fixeds:
+  - EditDisp: '[0]BNum:0Time:(0, 999)'
+    BranchNum: 0
+    Times: {x: 0, y: 999}
+    SpeedRem: 75
+    NoJump: 1
+    NoDash: 1
+    Aiming: 0
+    NGravity: 0
+    NoDamage: 1
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 9c108854128372542b17e68e9346ae34, type: 3}
     Fires:
