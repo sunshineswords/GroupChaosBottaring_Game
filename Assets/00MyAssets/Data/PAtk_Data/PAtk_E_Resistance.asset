@@ -23,14 +23,15 @@ MonoBehaviour:
   BranchInfos: []
   Branchs: []
   Fixeds:
-  - EditDisp: '[0]BNum:0Time:(0, 60)'
+  - EditDisp: '[0]BNum:0Time:(0, 999)'
     BranchNum: 0
-    Times: {x: 0, y: 60}
-    SpeedRem: 75
-    NoJump: 0
-    NoDash: 0
-    Aiming: 1
+    Times: {x: 0, y: 999}
+    SpeedRem: 100
+    NoJump: 1
+    NoDash: 1
+    Aiming: 0
     NGravity: 0
+    NoDamage: 1
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: b07f6056fe10aa24c9a482a255c0ff59, type: 3}
     Fires:
@@ -45,7 +46,7 @@ MonoBehaviour:
         RotBase: -1
         TransRots: []
     Hits:
-    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)"
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2,SP+0.0)"
       BranchNum: 0
       EHit: 0
       FHit: 1

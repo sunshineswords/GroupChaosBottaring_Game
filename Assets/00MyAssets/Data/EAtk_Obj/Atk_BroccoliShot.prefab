@@ -144,6 +144,7 @@ MonoBehaviour:
   SepParticles: []
   SepTrails: []
   Times: 0
+  SPAddCT: 0
   BranchNum: 0
 --- !u!114 &2647640555106031623
 MonoBehaviour:
@@ -197,7 +198,7 @@ MonoBehaviour:
   Moves:
   - Times: {x: 0, y: 999, z: 0}
     MoveMode: 11
-    Pow: {x: 100, y: 6, z: 0}
+    Pow: {x: 100, y: 2.5, z: 0}
     TargetMode: 1
     TargetCT: 50
     Target: {fileID: 0}

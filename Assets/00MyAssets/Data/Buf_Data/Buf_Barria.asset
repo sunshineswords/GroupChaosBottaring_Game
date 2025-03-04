@@ -16,6 +16,7 @@ MonoBehaviour:
   Info: 
   Col: {r: 1, g: 0.9964248, b: 0, a: 1}
   Icon: {fileID: 0}
+  Type: 1
   EffectObj: {fileID: 7024842138666826482, guid: a40fda33856eba14ca7effa301ff79c9, type: 3}
   RemSE:
     Clip: {fileID: 8300000, guid: 02aab3dbb3ba6814a84ef0e107fdb488, type: 3}

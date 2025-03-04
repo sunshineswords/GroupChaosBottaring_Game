@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static DataBase;
 public class Net_JoinPlayerUI : MonoBehaviour
 {
@@ -15,13 +16,19 @@ public class Net_JoinPlayerUI : MonoBehaviour
     [SerializeField] List<UI_Sin_Set> FAtk_UIs;
     [SerializeField] List<UI_Sin_Set> BAtk_UIs;
     [SerializeField] List<UI_Sin_Set> Passive_UIs;
-    public void UISet(int Index,Photon.Realtime.Player Player)
+
+    public Image[] Bars;
+    public TextMeshProUGUI[] ValTxs;
+    public void UISet(int Index,Photon.Realtime.Player Player,bool Plays)
     {
         PlayerD = Player;
         IndexTx.text = "[" + Index + "]";
         NameTx.text = Player.NickName;
-        MasterOnlyUI.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.LocalPlayer != Player);
-        IsMasterUI.SetActive(Player.IsMasterClient);
+        if (!Plays)
+        {
+            MasterOnlyUI.SetActive(PhotonNetwork.IsMasterClient && PhotonNetwork.LocalPlayer != Player);
+            IsMasterUI.SetActive(Player.IsMasterClient);
+        }
 
         var CPro = Player.CustomProperties;
         var CID = CPro.TryGetValue("Chara", out var oCID) ? (int)oCID : 0;

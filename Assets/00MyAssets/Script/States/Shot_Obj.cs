@@ -82,6 +82,7 @@ public class Shot_Obj : MonoBehaviourPun
     }
     public void Hits(State_Hit HitState,Vector3 HitPos)
     {
+        if (HitState.Sta.NoDamage) return;
         if (HitList.ContainsKey(HitState.Sta)) return;
         HitList.Add(HitState.Sta, ShotD.HitCT);
         bool HitCh = false;
@@ -148,6 +149,7 @@ public class Shot_Obj : MonoBehaviourPun
         else DamAdd += USta.BufPowGet(Enum_Bufs.遠距離強化) * 1;
         Dam *= 1f + DamAdd * 0.01f;
         if (AtkHit.DamCalc != "" && Dam < 1) Dam = 1;
+        if (AtkHit.Heals) USta.AddHeal += Dam;
         return Mathf.RoundToInt(Dam) * (AtkHit.Heals ? -1 : 1);
     }
 }

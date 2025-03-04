@@ -36,7 +36,16 @@ MonoBehaviour:
     UseMP: 0
     FutureNum: 0
     FutureTime: 35
-  Fixeds: []
+  Fixeds:
+  - EditDisp: '[0]BNum:0Time:(0, 999)'
+    BranchNum: 0
+    Times: {x: 0, y: 999}
+    SpeedRem: 0
+    NoJump: 0
+    NoDash: 0
+    Aiming: 0
+    NGravity: 0
+    NoDamage: 1
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 0cbfb87061fdf2b48ba0288629373887, type: 3}
     Fires:
@@ -47,17 +56,11 @@ MonoBehaviour:
       Speed: {x: 5000, y: 5000}
       Trans:
         PosBase: 0
-        PosChange: {x: 0, y: 0, z: 0}
-        PosRand: {x: 0, y: 0, z: 0}
-        PosWay: {x: 0, y: 0, z: 0}
-        PosTime: {x: 0, y: 0, z: 0}
+        TransPoss: []
         RotBase: 0
-        RotChange: {x: 0, y: 0, z: 0}
-        RotRand: {x: 0, y: 0, z: 0}
-        RotWay: {x: 0, y: 0, z: 0}
-        RotTime: {x: 0, y: 0, z: 0}
+        TransRots: []
     Hits:
-    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2)\u6575\u6700\u5927\u73FE\u5728HP*0.01"
+    - EditDisp: "[0]BNum:0|(\u5FC5\u6BBA,\u9060\u8DDD\u96E2,SP+0.0)\u5BFE\u6700\u5927HP1.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
@@ -68,6 +71,7 @@ MonoBehaviour:
       DamCalc: T.MHP*0.01
       SPAdd: 0
       BufSets: []
+    Adds: []
     HitCT: 0
   Moves: []
   States: []

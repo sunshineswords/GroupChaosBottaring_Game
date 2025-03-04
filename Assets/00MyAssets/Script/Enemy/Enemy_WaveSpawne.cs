@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Photon.Pun;
 using static Manifesto;
+using static BattleManager;
 public class Enemy_WaveSpawne : MonoBehaviourPun,IPunObservable
 {
     public bool Clear;
@@ -10,10 +11,12 @@ public class Enemy_WaveSpawne : MonoBehaviourPun,IPunObservable
     [SerializeField]Class_Wave[] Waves;
 
     List<State_Base> Enemys = new List<State_Base>();
+
     private void Start()
     {
         Wave = 0;
         Clear = false;
+        BTManager.WaveSpList.Add(this);
     }
     void FixedUpdate()
     {

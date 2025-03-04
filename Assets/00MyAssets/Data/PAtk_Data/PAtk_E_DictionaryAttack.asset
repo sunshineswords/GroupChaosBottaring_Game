@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: "\u30C7\u30A3\u30AF\u30B7\u30E7\u30CA\u30EA\u30A2\u30BF\u30C3\u30AF"
   Info: "\u8F9E\u66F8\u653B\u6483\u3092\u4ED5\u639B\u3051\u308B\n\u904B\u304C\u7121\u304F\u3066\u3082\u305D\u308C\u306A\u308A\u306B\u5F37\u3044\u3001\u904B\u304C\u3042\u308B\u3068\u306A\u304A\u5F37\u3044"
-  Icon: {fileID: 2800000, guid: b5af0ba0b90e51d46bfc1ba447f7978e, type: 3}
+  Icon: {fileID: 2800000, guid: cecb781b9e6e35642908f7941d6b5c61, type: 3}
   AtkType: 2
   Filters: 
   EndTime: 180
@@ -22,7 +22,16 @@ MonoBehaviour:
   SPUse: 400
   BranchInfos: []
   Branchs: []
-  Fixeds: []
+  Fixeds:
+  - EditDisp: '[0]BNum:0Time:(0, 999)'
+    BranchNum: 0
+    Times: {x: 0, y: 999}
+    SpeedRem: 100
+    NoJump: 1
+    NoDash: 1
+    Aiming: 0
+    NGravity: 0
+    NoDamage: 1
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 4978ddbdc5f978b4fba8c1be8b41ac91, type: 3}
     Fires:

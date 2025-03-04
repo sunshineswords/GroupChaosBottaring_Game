@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using static BattleManager;
 public class CursorSystem_Gabu : MonoBehaviour
 {
     public bool setCursorVisible = false;
@@ -10,7 +10,7 @@ public class CursorSystem_Gabu : MonoBehaviour
     }
     private void Update()
     {
-        if (BattleManager.BTManager.End) SetEnable(true);
+        if (BTManager != null && BTManager.End) SetEnable(true);
     }
     private void OnEnable()
     {
@@ -22,7 +22,7 @@ public class CursorSystem_Gabu : MonoBehaviour
     }
     private void SetEnable(bool b)
     {
-        Cursor.visible = b;
+        //Cursor.visible = b;
         if (vMouse != null)
         {
             vMouse.SetActive(b);

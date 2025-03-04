@@ -32,8 +32,8 @@ MonoBehaviour:
     Adds: U.MHP*0.1
   - BranchNum: 0
     Times: {x: 35, y: 35, z: 0}
-    State: 2
-    Adds: 10
+    State: 4
+    Adds: 20
   Bufs: []
   WeponSets: []
   Anims:

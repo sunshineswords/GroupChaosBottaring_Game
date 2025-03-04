@@ -80,6 +80,7 @@ public class State_Atk
                 USta.NoJump = MFixed.NoJump;
                 USta.Aiming = MFixed.Aiming;
                 USta.NGravity = MFixed.NGravity;
+                USta.NoDamage = MFixed.NoDamage;
             }
         }
     }
@@ -135,6 +136,7 @@ public class State_Atk
         {
             case Enum_PosBase.ターゲット位置:
                 if (USta.Target != null) Pos = USta.Target.PosGet();
+                if (USta.TargetHit != null) Pos = USta.TargetHit.PosGet();
                 break;
         }
         if (Fire.Trans.TransPoss != null)
@@ -277,8 +279,8 @@ public class State_Atk
             var Val = (float)Cal(State.Adds,USta,USta);
             switch (State.State)
             {
-                case Enum_State.回復:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(Val)); break;
-                case Enum_State.ダメージ: USta.Damage(USta.PosGet(), Mathf.RoundToInt(Val)); break;
+                case Enum_State.回復:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(Val));USta.AddHeal += Val; break;
+                case Enum_State.ダメージ: USta.Damage(USta.PosGet(), Mathf.RoundToInt(Val)); USta.ReceiveDam += Val; break;
                 case Enum_State.MP増加: USta.MP += Val;break;
                 case Enum_State.MP減少: USta.MP -= Val; break;
                 case Enum_State.SP増加: USta.SP += Val;break;

@@ -57,6 +57,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [Foldout("変数")] public bool NoDash;
     [Foldout("変数")] public bool Aiming;
     [Foldout("変数")] public bool NGravity;
+    [Foldout("変数")] public bool NoDamage;
 
     [Foldout("変数")] public int Anim_MoveID;
     [Foldout("変数")] public int Anim_AtkID;
@@ -75,7 +76,13 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [System.NonSerialized] public int[] AddDams = new int[10];
     [System.NonSerialized] public float AddDamTotal = 0;
     [System.NonSerialized] public int[] AddHits = new int[10];
-    [System.NonSerialized] public float AddHitTotal = 0;
+    [System.NonSerialized] public int AddHitTotal = 0;
+    [System.NonSerialized] public float AddHeal = 0;
+    [System.NonSerialized] public int AddBuf = 0;
+    [System.NonSerialized] public int AddDBuf = 0;
+    [System.NonSerialized] public int E_AtkCount = 0;
+    [System.NonSerialized] public float ReceiveDam = 0;
+    [System.NonSerialized] public int DeathCount = 0;
 
     public int FMHP
     {
@@ -115,6 +122,9 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     #endregion
     private void Start()
     {
+        BTManager.StateList.Add(this);
+        if (Player) BTManager.PlayerList.Add(this);
+        if (Boss) BTManager.BossList.Add(this);
         if (!photonView.IsMine) return;
         if (Player)
         {
@@ -199,6 +209,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         NoDash = false;
         Aiming = false;
         NGravity = false;
+        NoDamage = false;
         #region スキル処理
         if (HP <= 0) AtkD = null;
         Anim_AtkID = 0;
@@ -229,6 +240,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             {
                 if (DeathTime == 0)
                 {
+                    DeathCount++;
                     BTManager.SEPlay(DeathSE, PosGet());
                     BTManager.DeathAdd();
                     BTManager.MessageAdd("<color=#FF0000>" + Name + "</color>\\<color=#FF0000>は倒れた!!!</color>");
@@ -317,7 +329,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         {
             var Bufi = Bufs[i];
             var BufD = DB.Bufs.Find(x => (int)x.Buf == Bufi.ID);
-            if (BufD != null && !BufEffects.ContainsKey(Bufi.ID))
+            if (BufD != null && BufD.EffectObj!=null && !BufEffects.ContainsKey(Bufi.ID))
             {
                 var EffectIns = Instantiate(BufD.EffectObj, PosGet(), Quaternion.identity);
                 EffectIns.transform.localScale = Vector3.one * (1f + SizeAdd * 0.01f);
@@ -384,6 +396,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         Target = null;
         foreach (var Sta in BTManager.StateList)
         {
+            if (Sta == null) continue;
             if (!TeamCheck(this, Sta)) continue;
             if (Sta.HP <= 0) continue;
             float Dis = Vector3.Distance(PosGet(), Sta.PosGet());
@@ -408,6 +421,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 CTs = Mathf.RoundToInt(CTs * (1f - PriSetGet.PassiveLVGet(Enum_Passive.CTカット) * 0.10f));
                 if(UseAtkD.AtkType == Enum_AtkType.必殺)
                 {
+                    E_AtkCount++;
                     var SpHealLV = PriSetGet.PassiveLVGet(Enum_Passive.必殺再生);
                     if (SpHealLV > 0) Damage(PosGet(), Mathf.RoundToInt(MHP * SpHealLV * 0.15f));
                     var SpReturnLV = PriSetGet.PassiveLVGet(Enum_Passive.必殺返還);
@@ -438,6 +452,12 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     {
         var PowVal = Mathf.RoundToInt((float)Cal(BufSet.PowVal, AddSta, this));
         var PowMax = Mathf.RoundToInt((float)Cal(BufSet.PowMax, AddSta, this));
+        if (AddSta != null)
+        {
+            var BufD = DB.Bufs.Find(x => x.Buf == BufSet.Buf);
+            if (BufD != null && BufD.Type == Enum_BufType.バフ) AddSta.AddBuf++;
+            if (BufD != null && BufD.Type == Enum_BufType.デバフ) AddSta.AddDBuf++;
+        }
         BufSets(BufSet.Buf, BufSet.Index,BufSet.Set, BufSet.TimeVal, PowVal, BufSet.TimeMax, PowMax);
     }
     public void BufSets(Enum_Bufs BufID, int Index, Enum_BufSet Sets, int Time, int Pow, int TMax=0, int PMax=0)
@@ -519,6 +539,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [PunRPC]
     void RPC_Damage(Vector3 HitPos, int Val)
     {
+        if (Val > 0 && NoDamage) return;
         if (HP <= 0) return;
         if (Val < 0)
         {
@@ -550,16 +571,6 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             }
         }
         if (Val == 0) return;
-        if (Player)
-        {
-            var LifeVibrationLV = PriSetGet.PassiveLVGet(Enum_Passive.生命の振動);
-            if (LifeVibrationLV > 0 && !LocalCTs.ContainsKey((int)Enum_PassiveAtk.生命の振動))
-            {
-                LocalCTs.Add((int)Enum_PassiveAtk.生命の振動, 60 * 1);
-                int Timed = 60 * 6;
-                BufSets(Enum_Bufs.与ダメージ増加, -1000, Enum_BufSet.付与増加, Timed, 3 * LifeVibrationLV, Timed, 36);
-            }
-        }
         Color DamCol = Val >= 0 ? Color.white : Color.magenta;
         GameObject HitEffect = Val >= 0 ? DB.HitEffects[1] : DB.HealEffects[1];
         switch (Team)
@@ -574,6 +585,17 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (Val >= 0)BTManager.SEPlay(DamageSE, HitPos,true);
 
         if (!photonView.IsMine) return;
+        if (Player)
+        {
+            if (Val > 0) ReceiveDam += Val;
+            var LifeVibrationLV = PriSetGet.PassiveLVGet(Enum_Passive.生命の振動);
+            if (LifeVibrationLV > 0 && !LocalCTs.ContainsKey((int)Enum_PassiveAtk.生命の振動))
+            {
+                LocalCTs.Add((int)Enum_PassiveAtk.生命の振動, 60 * 1);
+                int Timed = 60 * 6;
+                BufSets(Enum_Bufs.与ダメージ増加, -1000, Enum_BufSet.付与増加, Timed, 3 * LifeVibrationLV, Timed, 36);
+            }
+        }
         HP -= Val;
     }
     [PunRPC]
@@ -649,6 +671,8 @@ public class State_Base : MonoBehaviourPun,IPunObservable
 
             stream.SendNext(HP);
 
+            stream.SendNext(NoDamage);
+
             var WepSetKeys = WeponSets.Keys.ToArray();
             var WepSetIDs = WeponSets.Values.ToArray();
             var WepSetPoss = WeponPoss.Values.ToArray();
@@ -662,6 +686,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             stream.SendNext(Anim_AtkID);
             stream.SendNext(Anim_AtkSpeed);
             stream.SendNext(Anim_OtherID);
+
 
             var Buf_ID = new List<int>();
             var Buf_Index = new List<int>();
@@ -681,6 +706,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             stream.SendNext(Buf_Time.ToArray());
             stream.SendNext(Buf_Pow.ToArray());
             stream.SendNext(Buf_TimeMax.ToArray());
+
+            stream.SendNext(AddDamTotal);
+            stream.SendNext(AddHitTotal);
+            stream.SendNext(AddHeal);
+            stream.SendNext(AddBuf);
+            stream.SendNext(AddDBuf);
+            stream.SendNext(E_AtkCount);
+            stream.SendNext(ReceiveDam);
+            stream.SendNext(DeathCount);
         }
         else
         {
@@ -693,6 +727,8 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             Team = (int)stream.ReceiveNext();
 
             HP = (float)stream.ReceiveNext();
+
+            NoDamage = (bool)stream.ReceiveNext();
 
             var WepSetKeys = (int[])stream.ReceiveNext();
             var WepSetIDs = (int[])stream.ReceiveNext();
@@ -730,6 +766,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                     TimeMax = Buf_TimeMax[i],
                 });
             }
+
+            AddDamTotal = (float)stream.ReceiveNext();
+            AddHitTotal = (int)stream.ReceiveNext();
+            AddHeal = (float)stream.ReceiveNext();
+            AddBuf = (int)stream.ReceiveNext();
+            AddDBuf = (int)stream.ReceiveNext();
+            E_AtkCount = (int)stream.ReceiveNext();
+            ReceiveDam = (float)stream.ReceiveNext();
+            DeathCount = (int)stream.ReceiveNext();
         }
     }
 }

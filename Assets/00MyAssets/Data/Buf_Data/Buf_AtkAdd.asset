@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Buf_AtkAdd
   m_EditorClassIdentifier: 
   Buf: 10
-  Name: 
   Info: 
-  Col: {r: 1, g: 0, b: 0, a: 1}
+  Col: {r: 1, g: 0.5019608, b: 0.5019608, a: 1}
   Icon: {fileID: 0}
+  Type: 1
   EffectObj: {fileID: 7024842138666826482, guid: e45076cf687590d40944f10fa5fc64d2, type: 3}
+  RemSE:
+    Clip: {fileID: 0}
+    Volume: 100
+    Pitch: 100
