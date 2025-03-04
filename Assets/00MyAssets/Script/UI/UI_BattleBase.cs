@@ -40,10 +40,12 @@ public class UI_BattleBase : MonoBehaviour
                 if (Sta == null)
                 {
                     NDisp = true;
-                    continue;
                 }
-                BUI.Sta = Sta;
-                BUI.BaseSet();
+                else
+                {
+                    BUI.Sta = Sta;
+                    BUI.BaseSet();
+                }
             }
             BossUIs[i].gameObject.SetActive(i < BTManager.BossList.Count || !NDisp);
         }
