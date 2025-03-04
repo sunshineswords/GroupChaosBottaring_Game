@@ -7,6 +7,7 @@ public class Data_Buf : ScriptableObject
     [TextArea]public string Info;
     public Color Col;
     public Texture Icon;
+    public Enum_BufType Type;
     public GameObject EffectObj;
     public Class_Base_SEPlay RemSE;
 }

@@ -31,15 +31,21 @@ public class UI_BattleBase : MonoBehaviour
         else InfoUI.SetActive(false);
         for (int i = 0; i < Mathf.Max(BossUIs.Count, BTManager.BossList.Count); i++)
         {
+            bool NDisp = false;
             if (i < BTManager.BossList.Count)
             {
                 if (BossUIs.Count <= i) BossUIs.Add(Instantiate(BossUIs[0], BossUIs[0].transform.parent));
                 var Sta = BTManager.BossList[i];
                 var BUI = BossUIs[i];
+                if (Sta == null)
+                {
+                    NDisp = true;
+                    continue;
+                }
                 BUI.Sta = Sta;
                 BUI.BaseSet();
             }
-            BossUIs[i].gameObject.SetActive(i < BTManager.BossList.Count);
+            BossUIs[i].gameObject.SetActive(i < BTManager.BossList.Count || !NDisp);
         }
 
     }

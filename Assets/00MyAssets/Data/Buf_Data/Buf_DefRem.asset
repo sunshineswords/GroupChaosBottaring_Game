@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 293c3158aaaba8140b700761c71ebdc0, type: 3}
-  m_Name: Buf_AtkAdd
+  m_Name: Buf_DefRem
   m_EditorClassIdentifier: 
-  Buf: 10
+  Buf: 120
   Info: 
-  Col: {r: 1, g: 0.5019608, b: 0.5019608, a: 1}
+  Col: {r: 0.2509804, g: 0.2509804, b: 0.5019608, a: 1}
   Icon: {fileID: 0}
-  Type: 1
-  EffectObj: {fileID: 7024842138666826482, guid: e45076cf687590d40944f10fa5fc64d2, type: 3}
+  Type: 2
+  EffectObj: {fileID: 0}
   RemSE:
     Clip: {fileID: 0}
-    Volume: 100
-    Pitch: 100
+    Volume: 200
+    Pitch: 125

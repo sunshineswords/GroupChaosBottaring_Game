@@ -94,6 +94,7 @@ public class Shot_Move : MonoBehaviourPun
             var RandomLists = new List<State_Hit>();
             foreach (var THit in BTManager.HitList)
             {
+                if (THit == null) continue;
                 bool Enemy = false;
                 bool Flend = false;
                 switch (Moved.TargetMode)
@@ -109,6 +110,7 @@ public class Shot_Move : MonoBehaviourPun
                         break;
                 }
                 if (!TeamCheck(SObj.USta, THit.Sta, Enemy, Flend)) continue;
+                if (THit.Sta.HP <= 0) continue;
                 var Dis = Vector3.Distance(SObj.USta.PosGet(), THit.PosGet());
                 if (Dis > Moved.Pow.x) continue;
                 if (Moved.TargetMode == Enum_TargetMode.ランダム敵 || Moved.TargetMode == Enum_TargetMode.ランダム味方)

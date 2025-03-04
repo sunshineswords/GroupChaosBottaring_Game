@@ -501,6 +501,26 @@ static public class Manifesto
         Wシステム,
         生命の振動,
     }
+    public enum Enum_PassiveAtk
+    {
+        タルタル,
+        追斬,
+        Wシステム,
+        生命の振動,
+    }
+    public enum Enum_PassiveFilter
+    {
+        基礎ステータス,
+        攻撃強化,
+        防御強化,
+        回復,
+        追撃 = 10,
+        条件,
+        メイン = 20,
+        スキル,
+        必殺,
+    }
+
     public enum Enum_Bufs
     {
         HP増加 = 0,
@@ -528,6 +548,12 @@ static public class Manifesto
         不付与増加,
         切り替え,
         消去,
+    }
+    public enum Enum_BufType
+    {
+        他=0,
+        バフ=1,
+        デバフ=2,
     }
     public enum Enum_OtherIfs
     {
@@ -561,17 +587,7 @@ static public class Manifesto
         味方 = 20,
         ランダム味方,
     }
-    public enum Enum_AtkIf
-    {
-        攻撃単入力 = 0,
-        攻撃長入力,
-        攻撃未入力,
-        攻撃未長入力,
-        地上 = 10,
-        空中 = 11,
-        MP有り = 20,
-        MP無し = 21,
-    }
+
     public enum Enum_PosBase
     {
         使用者位置,
@@ -614,12 +630,37 @@ static public class Manifesto
         胴体 = 20,
         頭 = 30,
     }
-    public enum Enum_PassiveAtk
+    public enum Enum_AtkFilter
     {
-        タルタル,
-        追斬,
-        Wシステム,
-        生命の振動,
+        攻撃,
+        移動,
+        バフ,
+        デバフ,
+        回復,
+        召喚,
+        特殊,
+        近距離 = 100,
+        遠距離,
+        照準,
+        自己 = 110,
+        味方 = 111,
+        複数 = 200,
+        多段 = 201,
+        高頻度 = 202,
+        追加攻撃 = 203,
+        攻撃強化 = 300,
+        防御強化 = 301,
+    }
+    public enum Enum_AtkIf
+    {
+        攻撃単入力 = 0,
+        攻撃長入力,
+        攻撃未入力,
+        攻撃未長入力,
+        地上 = 10,
+        空中 = 11,
+        MP有り = 20,
+        MP無し = 21,
     }
     public enum Enum_AtkType
     {
@@ -636,39 +677,7 @@ static public class Manifesto
         必殺,
         パッシブ,
     }
-    public enum Enum_AtkFilter
-    {
-        攻撃,
-        移動,
-        バフ,
-        デバフ,
-        回復,
-        召喚,
-        特殊,
-        近距離=100,
-        遠距離,
-        照準,
-        自己 =110,
-        味方=111,
-        複数=200,
-        多段=201,
-        高頻度=202,
-        追加攻撃=203,
-        攻撃強化=300,
-        防御強化=301,
-    }
-    public enum Enum_PassiveFilter
-    {
-        基礎ステータス,
-        攻撃強化,
-        防御強化,
-        回復,
-        追撃=10,
-        条件,
-        メイン=20,
-        スキル,
-        必殺,
-    }
+
     public enum Enum_SetSlot
     {
         キャラ,

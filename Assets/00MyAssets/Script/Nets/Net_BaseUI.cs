@@ -5,7 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using static PlayerValue;
 public class Net_BaseUI : MonoBehaviourPunCallbacks
 {
     [Tooltip("同期するプレファブ"), SerializeField] Net_PhotonPrefabs Prefabs;
@@ -39,6 +39,7 @@ public class Net_BaseUI : MonoBehaviourPunCallbacks
     void LateUpdate()
     {
         if (!PlayerNameIn.isFocused) PlayerNameIn.text = PhotonNetwork.NickName;
+        CharaSet();
         UIActives();
         LobbyIns();
     }
@@ -154,5 +155,25 @@ public class Net_BaseUI : MonoBehaviourPunCallbacks
             }
         }
     }
+    void CharaSet()
+    {
+        var CPro = new ExitGames.Client.Photon.Hashtable();
+        CPro["Chara"] = PriSetGet.CharaID;
 
+        CPro["FAtk_0"] = PriSetGet.AtkF.N_AtkID;
+        CPro["FAtk_1"] = PriSetGet.AtkF.S1_AtkID;
+        CPro["FAtk_2"] = PriSetGet.AtkF.S2_AtkID;
+        CPro["FAtk_3"] = PriSetGet.AtkF.E_AtkID;
+
+        CPro["BAtk_0"] = PriSetGet.AtkB.N_AtkID;
+        CPro["BAtk_1"] = PriSetGet.AtkB.S1_AtkID;
+        CPro["BAtk_2"] = PriSetGet.AtkB.S2_AtkID;
+        CPro["BAtk_3"] = PriSetGet.AtkB.E_AtkID;
+
+        CPro["Passive_0"] = PriSetGet.Passive.P1_ID;
+        CPro["Passive_1"] = PriSetGet.Passive.P2_ID;
+        CPro["Passive_2"] = PriSetGet.Passive.P3_ID;
+        CPro["Passive_3"] = PriSetGet.Passive.P4_ID;
+        PhotonNetwork.SetPlayerCustomProperties(CPro);
+    }
 }

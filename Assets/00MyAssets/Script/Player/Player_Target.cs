@@ -46,7 +46,9 @@ public class Player_Target : MonoBehaviour
         float NearDis = -1;
         foreach (var Hits in BTManager.HitList)
         {
+            if (Hits == null) continue;
             if (!TeamCheck(Sta, Hits.Sta)) continue;
+            if (Hits.Sta.HP <= 0) continue;
             var CPos = Cam.WorldToViewportPoint(Hits.PosGet());
             if (CPos.z <= 0) continue;
             if (CPos.x < 0f || CPos.x > 1f) continue;
