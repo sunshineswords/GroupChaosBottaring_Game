@@ -532,10 +532,10 @@ MonoBehaviour:
     - 3900
     AtkMult:
     - 0
-    - 3900
-    - 3900
-    - 3900
-    - 3900
+    - 900
+    - 900
+    - 900
+    - 900
 --- !u!114 &1371921339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -864,6 +864,18 @@ PrefabInstance:
     - target: {fileID: 531670783580997478, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805049447542634046, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
+      propertyPath: TimeStar
+      value: 240
+      objectReference: {fileID: 0}
+    - target: {fileID: 805049447542634046, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
+      propertyPath: DeathStar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 805049447542634046, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
+      propertyPath: TimeLimSec
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 1058755585672924378, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
       propertyPath: m_AnchorMax.y

@@ -47,7 +47,7 @@ public class UI_BattleBase : MonoBehaviour
                     BUI.BaseSet();
                 }
             }
-            BossUIs[i].gameObject.SetActive(i < BTManager.BossList.Count || !NDisp);
+            BossUIs[i].gameObject.SetActive(i < BTManager.BossList.Count && !NDisp);
         }
 
     }
