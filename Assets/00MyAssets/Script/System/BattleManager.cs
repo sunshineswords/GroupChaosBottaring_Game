@@ -89,13 +89,13 @@ public class BattleManager : MonoBehaviourPunCallbacks,IPunObservable
                     if (!WaveSpList[i].Clear) WaveCheck = false;
                 }
                 Win = WaveCheck;
-                if(WaveCheck)End = true;
+                if(WaveCheck || Time <= 0)End = true;
             }
             if (TimeLimSec <= 0) End = false;
             Star = 3;
             if (Time <= TimeStar * 60) Star--;
             if (DeathCount > DeathStar) Star--;
-            if (Time <= 0) Star--;
+            if (Time <= 0) Star = 0;
         }
 
     }
