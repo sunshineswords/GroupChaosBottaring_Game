@@ -69,7 +69,7 @@ public class InputIntefaceSystem_Gabu : MonoBehaviour
         }
         if (_action == null)
         {
-            Debug.LogError($"存在しないアクションを指定しています:{actionName} of {playerInput}");
+            Debug.LogError($"存在しないアクションを指定しています:{actionName} of {playerInput} in {gameObject}");
         }
     }
 
