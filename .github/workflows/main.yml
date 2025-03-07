@@ -23,11 +23,14 @@ jobs:
             Library-${{ runner.os }}-
 
       - name: Setup Unity
-        uses: game-ci/unity-builder@v3
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           unityVersion: 6000.0.36f1
           targetPlatform: StandaloneWindows64
-          unityLicense: ${{ secrets.UNITY_LICENSE }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
