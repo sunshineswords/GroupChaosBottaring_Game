@@ -29,7 +29,7 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          unityVersion: 2022.3.10f1  # Unityの正しいバージョンに変更
+          unityVersion: 6000.0.36f1
           targetPlatform: Android
 
       - name: Upload build artifacts
