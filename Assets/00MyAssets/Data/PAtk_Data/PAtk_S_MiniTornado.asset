@@ -26,38 +26,30 @@ MonoBehaviour:
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 59e0aba905d3d584ba37413948965b45, type: 3}
     Fires:
-    - EditDisp: '[0]BNum:0,Time:(25, 25, 0),Count:1,Speed:(3000.00, 3000.00)'
+    - EditDisp: '[0]BNum:0,Time:(25, 25, 0),Count:1,Speed:(1200.00, 1600.00)'
       BranchNum: 0
       Times: {x: 25, y: 25, z: 0}
       Count: 1
-      Speed: {x: 3000, y: 3000}
+      Speed: {x: 1200, y: 1600}
       Trans:
         PosBase: 0
         TransPoss: []
         RotBase: 0
         TransRots: []
     Hits:
-    - EditDisp: "[0]BNum:0|(\u901A\u5E38,\u9060\u8DDD\u96E2,SP+12.0)"
+    - EditDisp: "[0]BNum:0|(\u30B9\u30AD\u30EB,\u9060\u8DDD\u96E2,SP+2.0)\u81EA\u653B\u6483\u529B30.0%"
       BranchNum: 0
       EHit: 1
       FHit: 0
       MHit: 0
       Heals: 0
-      DamageType: 0
+      DamageType: 3
       ShortAtk: 0
-      DamCalc: 
-      SPAdd: 12
-      BufSets:
-      - EditDisp: "\u9632\u5FA1\u4F4E\u4E0B[0,\u4ED8\u4E0E\u5897\u52A0](\u6642\u9593:\u4ED8\u4E0E600Max600)(\u6BB5\u968E:\u4ED8\u4E0E4Max20)"
-        Buf: 120
-        Index: 0
-        Set: 1
-        TimeVal: 600
-        PowVal: 4
-        TimeMax: 600
-        PowMax: 20
+      DamCalc: U.ATK*0.3
+      SPAdd: 2
+      BufSets: []
     Adds: []
-    HitCT: 0
+    HitCT: 2
   Moves: []
   States: []
   Bufs: []

@@ -143,7 +143,7 @@ MonoBehaviour:
   Rig: {fileID: 6544934709698599726}
   CamTrans: {fileID: 8851893093483233145}
   Hight: 1
-  SizeAdd: 0
+  SizeAdd: 120
   Team: 1
   Player: 0
   Boss: 0
@@ -184,6 +184,7 @@ MonoBehaviour:
   NoDash: 0
   Aiming: 0
   NGravity: 0
+  NoDamage: 0
   Anim_MoveID: 0
   Anim_AtkID: 0
   Anim_AtkSpeed: 0
@@ -272,9 +273,9 @@ Transform:
   m_GameObject: {fileID: 4350126102488607792}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.612, z: -0.099}
-  m_LocalScale: {x: 0.65, y: 1.2, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 1.38, z: -0.099}
+  m_LocalScale: {x: 1.3, y: 2.4, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8851893093483233145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -340,9 +341,9 @@ Transform:
   m_GameObject: {fileID: 6904794507193576999}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.394, z: 0.351}
-  m_LocalScale: {x: 1, y: 0.5, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 2.82, z: 0.65}
+  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8851893093483233145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -402,12 +403,24 @@ PrefabInstance:
       value: EnemyUI
       objectReference: {fileID: 0}
     - target: {fileID: 1797273990418561594, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797273990418561594, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797273990418561594, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1797273990418561594, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1797273990418561594, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 3.54
       objectReference: {fileID: 0}
     - target: {fileID: 1797273990418561594, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
       propertyPath: m_LocalPosition.z
@@ -441,6 +454,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1797273990418561594, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -469,15 +486,15 @@ PrefabInstance:
       objectReference: {fileID: 2049415607464157120}
     - target: {fileID: 7338699090716222000, guid: bf2a16dac09ffa3409b7108bef0fae67, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7338699090716222000, guid: bf2a16dac09ffa3409b7108bef0fae67, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7338699090716222000, guid: bf2a16dac09ffa3409b7108bef0fae67, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7338699090716222000, guid: bf2a16dac09ffa3409b7108bef0fae67, type: 3}
       propertyPath: m_LocalPosition.x

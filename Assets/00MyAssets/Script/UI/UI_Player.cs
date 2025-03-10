@@ -12,6 +12,12 @@ public class UI_Player : UI_State
     [SerializeField] Player_Atk PAtk;
     [SerializeField] Image MPBar;
     [SerializeField] Image MPFill;
+
+    [SerializeField] Image AtkTimeBar;
+    [SerializeField] TextMeshProUGUI AtkNameTx;
+    [SerializeField] TextMeshProUGUI AtkBranchTx;
+    [SerializeField] List<Slider> BranchSliders;
+
     [SerializeField] TextMeshProUGUI AtkFBTx;
     [SerializeField] UI_Sin_Atk[] AtkUIs;
     [SerializeField] TextMeshProUGUI StateInfoTx;
@@ -86,6 +92,52 @@ public class UI_Player : UI_State
         BaseSet();
         MPBar.fillAmount = Sta.MP / Mathf.Max(1, Sta.FMMP);
         MPFill.color = Sta.LowMP ? Color.red : Color.white;
+        if (Sta.AtkD != null)
+        {
+            var AtkD = Sta.AtkD;
+            AtkTimeBar.fillAmount = Sta.AtkTime / Mathf.Max(1f, AtkD.EndTime);
+            AtkNameTx.text = AtkD.Name;
+            AtkBranchTx.text = "";
+            if (AtkD.BranchInfos.Count > 0)
+            {
+                var BranchGet = AtkD.BranchInfos.Find(x => x.BID == Sta.AtkBranch);
+                if(BranchGet!=null)AtkBranchTx.text = BranchGet.Name;
+            }
+            var BranchIndexs = new List<int>();
+            if(AtkD.Branchs!=null)
+                for(int i = 0; i < AtkD.Branchs.Length; i++)
+                {
+                    var BranchD = AtkD.Branchs[i];
+                    for(int j = 0; j < BranchD.BranchNums.Length; j++)
+                    {
+                        if(BranchD.BranchNums[j] < 0 || Sta.AtkBranch == BranchD.BranchNums[j])
+                        {
+                            BranchIndexs.Add(i);
+                            break;
+                        }
+                    }
+                }
+            for (int i = 0; i < Mathf.Max(BranchIndexs.Count, BranchSliders.Count); i++)
+            {
+                if (BranchSliders.Count <= i) BranchSliders.Add(Instantiate(BranchSliders[0], BranchSliders[0].transform.parent));
+                var SinUI = BranchSliders[i];
+                if (i < BranchIndexs.Count)
+                {
+                    SinUI.value = AtkD.Branchs[BranchIndexs[i]].Times.x / Mathf.Max(1f, AtkD.EndTime);
+                }
+                SinUI.gameObject.SetActive(i < BranchIndexs.Count);
+            }
+        }
+        else
+        {
+            AtkTimeBar.fillAmount = 0;
+            AtkNameTx.text = "";
+            AtkBranchTx.text = "";
+            for(int i = 0; i < BranchSliders.Count; i++)
+            {
+                BranchSliders[i].gameObject.SetActive(false);
+            }
+        }
         for (int i = 0; i < AtkUIs.Length; i++)
         {
             Data_Atk AtkD = null;

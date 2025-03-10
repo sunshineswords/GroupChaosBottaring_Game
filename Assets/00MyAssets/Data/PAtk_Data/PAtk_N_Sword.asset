@@ -87,12 +87,12 @@ MonoBehaviour:
     UseMP: 0
     FutureNum: 20
     FutureTime: 0
-  - EditDisp: '[7]BNum:10,21,22Time:(25, 50)MP:0Future{Num:0Time:0}'
+  - EditDisp: '[7]BNum:10,21,22Time:(25, 50)MP:0Future{Num:1Time:0}'
     BranchNums: 0a0000001500000016000000
     Times: {x: 25, y: 50}
     Ifs: 00000000
     UseMP: 0
-    FutureNum: 0
+    FutureNum: 1
     FutureTime: 0
   - EditDisp: '[8]BNum:20Time:(0, 99)MP:0Future{Num:21Time:0}'
     BranchNums: 14000000
@@ -110,6 +110,7 @@ MonoBehaviour:
     NoDash: 0
     Aiming: 0
     NGravity: 0
+    NoDamage: 0
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: c565a0afa41d45a48988a84252f627b1, type: 3}
     Fires:
