@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 5206309696311436553}
   - component: {fileID: 5439917454341434047}
   - component: {fileID: 3373766383878070975}
+  - component: {fileID: 4728372311081195124}
   m_Layer: 7
   m_Name: Enemy_SandBagShort
   m_TagString: Untagged
@@ -309,6 +310,7 @@ MonoBehaviour:
   NoDash: 0
   Aiming: 0
   NGravity: 0
+  NoDamage: 0
   Anim_MoveID: 0
   Anim_AtkID: 0
   Anim_AtkSpeed: 0
@@ -368,6 +370,21 @@ MonoBehaviour:
   Sta: {fileID: 2049415607464157120}
   EnemyAI: {fileID: 11400000, guid: 0c7cc3c0b32caa949afb6a7e5fe217d9, type: 2}
   timer: 0
+--- !u!114 &4728372311081195124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138562507945577928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74bfeaebdb3310f44a2e6bb0768e7b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sta: {fileID: 2049415607464157120}
+  RiviveSecond: 10
+  HPPer: 100
 --- !u!1 &4350126102488607792
 GameObject:
   m_ObjectHideFlags: 0

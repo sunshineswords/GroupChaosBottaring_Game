@@ -223,6 +223,7 @@ MonoBehaviour:
   _canvas: {fileID: 5617072528086533113}
   NonControlSchemes:
   - Keyboard&Mouse
+  - Touch
 --- !u!1 &5179444536656967848
 GameObject:
   m_ObjectHideFlags: 0

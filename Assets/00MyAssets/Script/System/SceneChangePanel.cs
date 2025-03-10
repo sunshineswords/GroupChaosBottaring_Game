@@ -72,6 +72,9 @@ public class SceneChangePanel : MonoBehaviourPunCallbacks
                 if(PCol.a == 1 && RoomSceneID != -1)
                 {
                     Save();
+                    var CPro = new ExitGames.Client.Photon.Hashtable();
+                    CPro["OK"] = false;
+                    PhotonNetwork.SetPlayerCustomProperties(CPro);
                     SceneManager.LoadScene(RoomSceneID);
                 }
             }
@@ -127,37 +130,4 @@ public class SceneChangePanel : MonoBehaviourPunCallbacks
             LoadSceneID = Scene;
         }
     }
-    /*
-    void ImageSet()
-    {
-        for(int i = 0; i < InfoUIs.Length; i++)
-        {
-            int Typed = Random.Range(0, 3);
-            switch (Typed)
-            {
-                case 0:
-                    var CharaData = DB.FixCharas[Random.Range(0, DB.FixCharas.Count)];
-                    InfoUIs[i].Name.text = CharaData.Name;
-                    InfoUIs[i].Icon.texture = CharaData.Model.Image;
-                    InfoUIs[i].Icon.gameObject.SetActive(true);
-                    InfoUIs[i].Info.text = CharaData.Info;
-                    break;
-                case 1:
-                    var SkillData = DB.SkillsDis[Random.Range(0, DB.SkillsDis.Count)];
-                    InfoUIs[i].Icon.texture = SkillData.Icon;
-                    InfoUIs[i].Icon.gameObject.SetActive(SkillData.Icon != null);
-                    InfoUIs[i].Name.text = SkillData.Name;
-                    InfoUIs[i].Info.text = SkillData.Info;
-                    break;
-                case 2:
-                    var ItemData = DB.Items[Random.Range(0, DB.Items.Count)];
-                    InfoUIs[i].Name.text = ItemData.Name;
-                    InfoUIs[i].Icon.texture = ItemData.Icon;
-                    InfoUIs[i].Icon.gameObject.SetActive(true);
-                    InfoUIs[i].Info.text = ItemData.Info;
-                    break;
-            }
-        }
-    }
-    */
 }

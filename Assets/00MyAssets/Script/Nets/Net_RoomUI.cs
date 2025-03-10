@@ -12,9 +12,12 @@ public class Net_RoomUI : MonoBehaviour
 {
     [Tooltip("ルーム名テキスト"), SerializeField]TextMeshProUGUI RoomName;
     [Tooltip("参加プレイヤー用サブUI"), SerializeField] List<Net_JoinPlayerUI> JoinPlayers;
+    [Tooltip("プレイヤー数テキスト"), SerializeField] TextMeshProUGUI PlayerCountTx;
+    [Tooltip("OKトグル"), SerializeField] Toggle OKsT;
     [Tooltip("マスター用UI"), SerializeField] GameObject MasterOnly;
     [Tooltip("プライベート切り替えトグル"), SerializeField] Toggle PrivateT;
     [Tooltip("非マスター用UI"), SerializeField] GameObject NoMaster;
+
     [SerializeField] TextMeshProUGUI StageTx;
     [SerializeField] RawImage StageImage;
     private void Start()
@@ -31,11 +34,15 @@ public class Net_RoomUI : MonoBehaviour
         UISet();
         PlayerDisp();
     }
-
+    private void OnEnable()
+    {
+        OKsT.isOn = false;
+    }
     void PlayerDisp()
     {
         var CRoom = PhotonNetwork.CurrentRoom;
         var PlayerKeys = CRoom.Players.Keys.ToArray();
+        int OKCount = 0;
         for (int i = 0; i < Mathf.Max(PlayerKeys.Length, JoinPlayers.Count); i++)
         {
             if (JoinPlayers.Count <= i)
@@ -45,14 +52,20 @@ public class Net_RoomUI : MonoBehaviour
             if (i < PlayerKeys.Length)
             {
                 JoinPlayers[i].UISet(i + 1, CRoom.Players[PlayerKeys[i]],false);
+                var JoinCPro = CRoom.Players[PlayerKeys[i]].CustomProperties;
+                if (JoinCPro.TryGetValue("OK", out var oOKs) && (bool)oOKs) OKCount++;
             }
             JoinPlayers[i].gameObject.SetActive(i < PlayerKeys.Length);
         }
+        PlayerCountTx.text = "Player:" + PlayerKeys.Length + "/" + CRoom.MaxPlayers;
+        PlayerCountTx.text += " <color=#FF8800>OK:" + OKCount + "/" + PlayerKeys.Length + "</color>";
     }
     void UISet()
     {
         var CRoom = PhotonNetwork.CurrentRoom;
         var CPro = CRoom.CustomProperties;
+        var PlayerCPro = PhotonNetwork.LocalPlayer.CustomProperties;
+
         RoomName.text = CRoom.Name;
         MasterOnly.SetActive(PhotonNetwork.IsMasterClient);
         NoMaster.SetActive(!PhotonNetwork.IsMasterClient);
@@ -60,6 +73,10 @@ public class Net_RoomUI : MonoBehaviour
         CRoom.IsOpen = true;
         var SID = CPro.TryGetValue("StageID", out var oSID) ? (int)oSID : 0;
         var StageData = DB.Stages[SID];
+
+        PlayerCPro["OK"] = OKsT.isOn;
+        PhotonNetwork.SetPlayerCustomProperties(PlayerCPro);
+
         StageTx.text = StageData.Name;
         StageImage.texture = StageData.Icon;
     }
@@ -81,6 +98,7 @@ public class Net_RoomUI : MonoBehaviour
         var CRoom = PhotonNetwork.CurrentRoom;
         CRoom.IsVisible = !PrivateT.isOn;
     }
+
     //ゲーム開始
     public void Net_GameStart()
     {

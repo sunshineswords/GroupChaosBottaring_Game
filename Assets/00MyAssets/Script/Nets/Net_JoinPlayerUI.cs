@@ -9,6 +9,7 @@ public class Net_JoinPlayerUI : MonoBehaviour
     Photon.Realtime.Player PlayerD;
     [Tooltip("番号テキスト"), SerializeField] TextMeshProUGUI IndexTx;
     [Tooltip("プレイヤー名テキスト"), SerializeField] TextMeshProUGUI NameTx;
+    [Tooltip("プレイヤー名テキスト"), SerializeField] TextMeshProUGUI OKsTx;
     [Tooltip("マスター用管理UI"), SerializeField] GameObject MasterOnlyUI;
     [Tooltip("マスター表示"), SerializeField] GameObject IsMasterUI;
 
@@ -31,6 +32,9 @@ public class Net_JoinPlayerUI : MonoBehaviour
         }
 
         var CPro = Player.CustomProperties;
+        var OKs = CPro.TryGetValue("OK", out var oOK) ? (bool)oOK : false;
+        OKsTx.text = OKs ? "OK" : "準備中";
+        OKsTx.color = OKs ? new Color(1, 0.5f, 0) : Color.white;
         var CID = CPro.TryGetValue("Chara", out var oCID) ? (int)oCID : 0;
         var CharaData = DB.Charas[CID];
         Chara_UI.Name.text = CharaData.Name;

@@ -250,13 +250,8 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                         BufSets(Enum_Bufs.攻撃増加, -1000, Enum_BufSet.付与増加, 0, DeathPowLV * 5);
                     }
                 }
-                if (DeathTime >= 300) HP = FMHP;
             }
-            else if (Undet)
-            {
-                if (DeathTime >= 300) HP = FMHP;
-            }
-            else if (!Boss)
+            else if (!Boss && !Undet)
             {
                 if (DeathTime >= 60)
                 {

@@ -10,6 +10,11 @@ public class UI_Player : UI_State
 {
     [SerializeField] Player_Cont PCont;
     [SerializeField] Player_Atk PAtk;
+
+    [SerializeField] Image DeathPanel;
+    [SerializeField] float DeathAlphaSpeed;
+    [SerializeField] float DeathAlphaMax;
+
     [SerializeField] Image MPBar;
     [SerializeField] Image MPFill;
 
@@ -87,9 +92,22 @@ public class UI_Player : UI_State
     }
 
     #endregion
+    private void Start()
+    {
+        var DeathColor = DeathPanel.color;
+        DeathColor.a = 0;
+        DeathPanel.color = DeathColor;
+    }
     void LateUpdate()
     {
         BaseSet();
+
+        var DeathColor = DeathPanel.color;
+        if (Sta.HP <= 0) DeathColor.a += 0.01f * DeathAlphaSpeed;
+        else DeathColor.a -= 0.05f * DeathAlphaSpeed;
+        DeathColor.a = Mathf.Clamp(DeathColor.a, 0f, DeathAlphaMax);
+        DeathPanel.color = DeathColor;
+
         MPBar.fillAmount = Sta.MP / Mathf.Max(1, Sta.FMMP);
         MPFill.color = Sta.LowMP ? Color.red : Color.white;
         if (Sta.AtkD != null)

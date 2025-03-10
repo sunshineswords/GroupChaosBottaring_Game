@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Photon.Pun;
 using static Manifesto;
-public class Enemy_Rivives : MonoBehaviourPun
+public class State_Rivives : MonoBehaviourPun
 {
     [SerializeField] State_Base Sta;
     [SerializeField] int RiviveSecond;
