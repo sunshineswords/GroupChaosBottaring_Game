@@ -3,6 +3,7 @@ using UnityEngine;
 using static PlayerValue;
 using static DataBase;
 using static Manifesto;
+using static Statics;
 public class Player_Move : MonoBehaviourPun
 {
     public State_Base Sta;
@@ -47,7 +48,11 @@ public class Player_Move : MonoBehaviourPun
         if (Sta.TargetHit != null && LookInput.magnitude < 0.1f && !PCont.Target_Stay && !Sta.Aiming)
         {
             var CamFront = CamRotTrans.forward;
-            var CamLook = Sta.TargetHit.PosGet() - CamRotTrans.position;
+            var LookPos = Sta.TargetHit.PosGet();
+            var CamTDis = HoriDistance(CamRotTrans.position, Sta.TargetHit.PosGet());
+            var DisC = 1f - Mathf.Clamp01(CamTDis / (PosBase.magnitude * 2));
+            LookPos.y = Mathf.Lerp(LookPos.y, CamRotTrans.position.y, DisC);
+            var CamLook = LookPos - CamRotTrans.position;
             var CamVect = Vector3.Slerp(CamFront.normalized, CamLook.normalized, TRotPer * 0.01f * PSaves.TargetSpeed);
             CamRot = Quaternion.LookRotation(CamVect, Vector3.forward).eulerAngles;
         }
