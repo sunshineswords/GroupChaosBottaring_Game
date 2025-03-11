@@ -217,6 +217,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (AtkD == null)
         {
             AtkTime = 0;
+            AtkSlot = -1;
             return;
         }
         State_Atk.Fixed(this);
@@ -405,16 +406,25 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public void AtkInput(int UseAtkSlot, Data_Atk UseAtkD, bool Enter, bool Stay)
     {
         if (HP <= 0) return;
-        if (AtkD == null && Enter)
+        if (AtkD != UseAtkD)
         {
+            if (!Enter) return;
             if (AtkCTs.ContainsKey(UseAtkSlot)) return;
             if (SP < UseAtkD.SPUse) return;
+            if (Player)
+            {
+                switch (UseAtkSlot)
+                {
+                    default: if (AtkSlot > 0) return; break;
+                    case 10: if (AtkSlot >= 10) return; break;
+                }
+            }
             if (UseAtkD.SPUse > 0) SP = 0;
             int CTs = Mathf.RoundToInt(UseAtkD.CT * 60);
             if (Player)
             {
                 CTs = Mathf.RoundToInt(CTs * (1f - PriSetGet.PassiveLVGet(Enum_Passive.CTカット) * 0.10f));
-                if(UseAtkD.AtkType == Enum_AtkType.必殺)
+                if (UseAtkD.AtkType == Enum_AtkType.必殺)
                 {
                     E_AtkCount++;
                     var SpHealLV = PriSetGet.PassiveLVGet(Enum_Passive.必殺再生);
@@ -432,7 +442,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             AtkBranch = 0;
             return;
         }
-        if (AtkD != null && UseAtkSlot == AtkSlot)
+        else
         {
             if (UseAtkD != AtkD)
             {

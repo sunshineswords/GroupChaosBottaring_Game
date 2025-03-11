@@ -15,7 +15,7 @@ public class Player_Cont : MonoBehaviourPun
     public bool Jump_Enter;
     public bool Dash_Enter;
     public bool Change_Enter;
-    public bool Target_Stay;
+    public bool Target_Enter;
     public bool NAtk_Enter;
     public bool NAtk_Stay;
     public bool S1Atk_Enter;
@@ -70,7 +70,7 @@ public class Player_Cont : MonoBehaviourPun
         Jump_Enter = PI.actions["Jump"].triggered;
         Dash_Enter = PI.actions["Dash"].triggered;
         Change_Enter = PI.actions["Change"].triggered;
-        Target_Stay = PI.actions["Target"].IsPressed();
+        Target_Enter = PI.actions["Target"].triggered;
         NAtk_Enter = PI.actions["N_Atk"].triggered;
         NAtk_Stay = PI.actions["N_Atk"].IsPressed();
         S1Atk_Enter = PI.actions["S1_Atk"].triggered;
@@ -88,7 +88,7 @@ public class Player_Cont : MonoBehaviourPun
         if (Moblie.Jump_Enter) Jump_Enter = true;
         if (Moblie.Dash_Enter) Dash_Enter = true;
         if (Moblie.Change_Enter) Change_Enter = true;
-        if (Moblie.Target_Stay) Target_Stay = true;
+        if (Moblie.Target_Enter) Target_Enter = true;
         if (Moblie.Atk_Enters[0]) NAtk_Enter = true;
         if (Moblie.Atk_Stays[0]) NAtk_Stay = true;
         if (Moblie.Atk_Enters[1]) S1Atk_Enter = true;

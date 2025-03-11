@@ -15,7 +15,7 @@ public class Player_Moblie : MonoBehaviour
     public bool DisT;
     public bool Jump_Enter;
     public bool Dash_Enter;
-    public bool Target_Stay;
+    public bool Target_Enter;
 
     public bool[] Atk_Enters;
     public bool[] Atk_Stays;
@@ -27,6 +27,8 @@ public class Player_Moblie : MonoBehaviour
     bool DashT;
     bool ChangeIn;
     bool ChangeT;
+    bool TargetIn;
+    bool TargetT;
     bool[] AtksIn = new bool[4];
     bool[] AtksT = new bool[4];
 
@@ -62,6 +64,16 @@ public class Player_Moblie : MonoBehaviour
         {
             Change_Enter = false;
             ChangeT = false;
+        }
+        if (TargetIn)
+        {
+            Target_Enter = !TargetT;
+            TargetT = true;
+        }
+        else
+        {
+            Target_Enter = false;
+            TargetT = false;
         }
         for (int i = 0; i < 4; i++)
         {
@@ -178,6 +190,6 @@ public class Player_Moblie : MonoBehaviour
     }
     public void TargetInput(bool b)
     {
-        Target_Stay = b;
+        TargetIn = b;
     }
 }

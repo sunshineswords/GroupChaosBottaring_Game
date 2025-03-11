@@ -43,28 +43,29 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
         List<ActionIcone> icones = new List<ActionIcone>()
         { actionIcones_DB.Menu_icons[deviceIndex] };
 
-
-        if (Status.Play == statu)  // ゲーム画面の操作説明
+        switch (statu)
         {
-            icones.Add(actionIcones_DB.Move_icons[deviceIndex]);
-            icones.Add(actionIcones_DB.Jump_icons[deviceIndex]);
-            icones.Add(actionIcones_DB.Target_icons[deviceIndex]);
-            icones.Add(actionIcones_DB.Chenge_icons[deviceIndex]);
-            icones.Add(actionIcones_DB.N_Atk_icons[deviceIndex]);
-            icones.Add(actionIcones_DB.S1_Atk_icons[deviceIndex]);
-            icones.Add(actionIcones_DB.S2_Atk_icons[deviceIndex]);
-            icones.Add(actionIcones_DB.E_Atk_icons[deviceIndex]);
-            icones.Add(actionIcones_DB.Look_icons[deviceIndex]);
-        }
-        else if (Status.UI == statu) // UI操作が必要な画面の操作説明
-        {
-            icones.Add(actionIcones_DB.UIMove_icons[deviceIndex]);
-            icones.Add(actionIcones_DB.UICofirm_icons[deviceIndex]);
-            icones.Add(actionIcones_DB.UIBack_icons[deviceIndex]);
-        }
-        else
-        {
-            Debug.LogWarning("未定義のアクションマップが使われています");
+            case Status.NONE:break;
+            case Status.Play:// ゲーム画面の操作説明
+                icones.Add(actionIcones_DB.Move_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.Dash_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.Jump_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.Target_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.Chenge_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.N_Atk_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.S1_Atk_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.S2_Atk_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.E_Atk_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.Look_icons[deviceIndex]);
+                break;
+            case Status.UI:// UI操作が必要な画面の操作説明
+                icones.Add(actionIcones_DB.UIMove_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.UICofirm_icons[deviceIndex]);
+                icones.Add(actionIcones_DB.UIBack_icons[deviceIndex]);
+                break;
+            default:
+                Debug.LogWarning("未定義のアクションマップが使われています");
+                break;
         }
         return icones.ToArray();
     }

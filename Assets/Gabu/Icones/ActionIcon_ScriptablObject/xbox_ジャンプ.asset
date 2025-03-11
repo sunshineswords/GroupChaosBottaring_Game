@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f027804dfa2bed047accec4633a5aade, type: 3}
   m_Name: "xbox_\u30B8\u30E3\u30F3\u30D7"
   m_EditorClassIdentifier: 
-  icon: {fileID: 2800000, guid: fa8b7b869c952784ebf078f5620def4e, type: 3}
+  icon: {fileID: 2800000, guid: df38238f065acda46b8ea974d54cb300, type: 3}
   title: "\u30B8\u30E3\u30F3\u30D7"
   description: 

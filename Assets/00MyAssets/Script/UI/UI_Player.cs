@@ -10,6 +10,7 @@ public class UI_Player : UI_State
 {
     [SerializeField] Player_Cont PCont;
     [SerializeField] Player_Atk PAtk;
+    [SerializeField] Player_Target PTarget;
 
     [SerializeField] Image DeathPanel;
     [SerializeField] float DeathAlphaSpeed;
@@ -22,6 +23,8 @@ public class UI_Player : UI_State
     [SerializeField] TextMeshProUGUI AtkNameTx;
     [SerializeField] TextMeshProUGUI AtkBranchTx;
     [SerializeField] List<Slider> BranchSliders;
+
+    [SerializeField] Image TargetImage;
 
     [SerializeField] TextMeshProUGUI AtkFBTx;
     [SerializeField] UI_Sin_Atk[] AtkUIs;
@@ -110,6 +113,11 @@ public class UI_Player : UI_State
 
         MPBar.fillAmount = Sta.MP / Mathf.Max(1, Sta.FMMP);
         MPFill.color = Sta.LowMP ? Color.red : Color.white;
+
+        var TargetColor = PTarget.TargetOff ? Color.white : new Color(1, 0.5f, 0);
+        TargetColor.a = TargetImage.color.a;
+        TargetImage.color = TargetColor;
+
         if (Sta.AtkD != null)
         {
             var AtkD = Sta.AtkD;

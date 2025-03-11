@@ -8,37 +8,20 @@ public class Player_Target : MonoBehaviour
     [SerializeField] Camera Cam;
     [SerializeField] int TargetTimes;
     [SerializeField] GameObject TargetObj;
-    int StayTime = 0;
-    int AutoTime = 0;
+    public bool TargetOff = false;
+    private void Update()
+    {
+        if (PCont.Target_Enter) TargetOff = !TargetOff;
+    }
     void FixedUpdate()
     {
-        if (PCont.Target_Stay)
+        if (Sta.TargetHit==null || (!TargetOff && PCont.Look.magnitude>=0.1f))
         {
-            StayTime++;
-            if (StayTime >= TargetTimes)
-            {
-                Sta.TargetHit = null;
-                TargetSet();
-            }
+            TargetSet();
         }
-        else if (StayTime > 0)
-        {
-            if (StayTime < TargetTimes)
-            {
-                Sta.TargetHit = null;
-            }
-            StayTime = 0;
-        }
-        AutoTime--;
         if (Sta.TargetHit != null && Sta.TargetHit.Sta.HP <= 0)
         {
-            AutoTime = 30;
-        }
-        if (AutoTime > 0)
-        {
-            Sta.TargetHit = null;
             TargetSet();
-            if (Sta.TargetHit != null) AutoTime = 0;
         }
     }
     void TargetSet()

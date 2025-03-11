@@ -24,6 +24,8 @@ public class InputIntefaceSystem_Gabu : MonoBehaviour
     [SerializeField]
     private ButtonClickedEvent m_OnCanceledClick = new ButtonClickedEvent();
 
+
+
     #endregion
     #region 関数
 
