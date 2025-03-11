@@ -102,4 +102,8 @@ public class InputIntefaceSystem_Gabu : MonoBehaviour
             Debug.LogWarning("アクションが見つかりませんでした");
         }
     }
+    public void CancelEvent()
+    {
+        m_OnCanceledClick.Invoke();
+    }
 }
