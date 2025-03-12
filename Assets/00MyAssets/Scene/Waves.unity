@@ -367,6 +367,7 @@ GameObject:
   - component: {fileID: 1371921335}
   - component: {fileID: 1371921338}
   - component: {fileID: 1371921339}
+  - component: {fileID: 1371921340}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -520,6 +521,20 @@ MonoBehaviour:
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1371921340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371921333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f206859b4756b449b56125531942c76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Meshs:
+  - {fileID: 1371921335}
 --- !u!1 &1729098001
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +705,7 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 2
+  m_RenderingLayerMask: 3
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: bd4bdabec30743a48a63a45f059a7143, type: 2}
@@ -1198,6 +1213,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5313857000553906546, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5748440184889056678, guid: b57668ad5696c664bb42507be07e6bd5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1531,6 +1550,6 @@ SceneRoots:
   - {fileID: 4596331959945479920}
   - {fileID: 2054576387}
   - {fileID: 1729098005}
-  - {fileID: 1007843722}
   - {fileID: 1371921337}
+  - {fileID: 1007843722}
   - {fileID: 15901146}
