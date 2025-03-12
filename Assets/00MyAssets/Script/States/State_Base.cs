@@ -419,6 +419,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                     case 10: if (AtkSlot >= 10) return; break;
                 }
             }
+            else if (AtkD != null) return;
             if (UseAtkD.SPUse > 0) SP = 0;
             int CTs = Mathf.RoundToInt(UseAtkD.CT * 60);
             if (Player)

@@ -3990,7 +3990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3038848296966050765, guid: 55b63cfc1e9a3b544beb0c77a8889d7f, type: 3}
       propertyPath: m_text
-      value: "\u30BD\u30ED\u3000\u2606\u2606\u2606\n\u30DE\u30EB\u30C1\u2606\u2606\u2606"
+      value: "\u30BD\u30ED   \u2606\u2606\u2606\n\u30DE\u30EB\u30C1\u2606\u2606\u2606"
       objectReference: {fileID: 0}
     - target: {fileID: 3038848296966050765, guid: 55b63cfc1e9a3b544beb0c77a8889d7f, type: 3}
       propertyPath: m_fontSize

@@ -42,7 +42,7 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
         // デフォルトの操作説明
         List<ActionIcone> icones = new List<ActionIcone>()
         { actionIcones_DB.Menu_icons[deviceIndex] };
-
+        if(deviceIndex <= 0)return icones.ToArray();
         switch (statu)
         {
             case Status.NONE:break;
@@ -80,9 +80,11 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
                 return 1;
             case "PlayStation Controller":
                 return 2;
+            case "Touch":
+                return -1;
             default:
                 Debug.LogWarning("未定義のデバイスが使われています");
-                return 3;
+                return -1;
         }
     }
 
