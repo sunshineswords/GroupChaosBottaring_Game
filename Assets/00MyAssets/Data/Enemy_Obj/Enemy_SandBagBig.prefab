@@ -228,11 +228,15 @@ MonoBehaviour:
   MMP: 0
   MPRegene: 0
   SPRegene: 10
+  MDown: 300
+  DownTime: 1500
   Atk: 200000
   Def: 100000
   HP: 0
   MP: 0
   SP: 0
+  DownV: 0
+  DownT: 0
   Ground: 0
   DeathTime: 0
   Target: {fileID: 0}

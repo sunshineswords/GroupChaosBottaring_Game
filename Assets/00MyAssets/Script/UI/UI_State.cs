@@ -14,6 +14,8 @@ public class UI_State : MonoBehaviour
     [SerializeField] Image HPMiddleFill;
     [SerializeField] Image HPFrontBar;
     [SerializeField] Image HPFrontFill;
+    [SerializeField] Image DownBar;
+    [SerializeField] Image DownFill;
     [SerializeField] List<UI_Sin_Buf> BufUIs;
     float CHPPer;
     private void Start()
@@ -60,6 +62,21 @@ public class UI_State : MonoBehaviour
             CHPPer = Mathf.Min(CHPPer + ChangeSpeed, HPPer);
         }
         CHPPer = Mathf.Clamp01(CHPPer);
+
+        if (DownBar != null)
+        {
+            if (Sta.DownT <= 0)
+            {
+                DownBar.fillAmount = Sta.DownV / Mathf.Max(1f, Sta.MDown);
+                DownFill.color = Color.cyan;
+            }
+            else
+            {
+                DownBar.fillAmount = Sta.DownT / Mathf.Max(1f, Sta.DownTime);
+                DownFill.color = Color.HSVToRGB(Mathf.Repeat(Time.time*1f, 1f), 1, 1);
+            }
+        }
+
         for (int i = 0; i < Mathf.Max(BufUIs.Count, Sta.Bufs.Count); i++)
         {
             if (i < Sta.Bufs.Count)

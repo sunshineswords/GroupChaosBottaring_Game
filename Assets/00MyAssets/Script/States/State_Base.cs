@@ -30,12 +30,16 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [Foldout("ステータス"), Tooltip("最大MP(移動力)")] public int MMP;
     [Foldout("ステータス"), Tooltip("秒間MP回復速度")] public float MPRegene;
     [Foldout("ステータス"), Tooltip("秒間SP回復速度")] public float SPRegene;
+    [Foldout("ステータス"), Tooltip("最大ダウン値")] public int MDown;
+    [Foldout("ステータス"), Tooltip("ダウン時間")] public int DownTime;
     [Foldout("ステータス"), Tooltip("攻撃力")] public int Atk;
     [Foldout("ステータス"), Tooltip("防御力")] public int Def;
     //
     [Foldout("数値")]public float HP;
     [Foldout("数値")] public float MP;
     [Foldout("数値")] public float SP;
+    [Foldout("数値")] public float DownV;
+    [Foldout("数値")] public float DownT;
     [Foldout("数値")] public bool Ground;
     [Foldout("数値")] public int DeathTime;
     [Foldout("数値")] public State_Base Target;
@@ -212,6 +216,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         NoDamage = false;
         #region スキル処理
         if (HP <= 0) AtkD = null;
+        if (DownT > 0) AtkD = null;
         Anim_AtkID = 0;
         Anim_AtkSpeed = 1;
         if (AtkD == null)
@@ -287,6 +292,18 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             {
                 BufSets(Enum_Bufs.根性, -1000, Enum_BufSet.付与, 0, GutLV);
                 BufSets(Enum_Bufs.根性CT, -1000, Enum_BufSet.付与, 60 * 15, 0);
+            }
+        }
+        if (MDown >= 0)
+        {
+            if (DownT <= 0)
+            {
+                if (DownV >= MDown) DownT = DownTime;
+            }
+            else
+            {
+                DownT--;
+                DownV = 0;
             }
         }
     }
@@ -406,6 +423,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public void AtkInput(int UseAtkSlot, Data_Atk UseAtkD, bool Enter, bool Stay)
     {
         if (HP <= 0) return;
+        if (DownT > 0) return;
         if (AtkD != UseAtkD)
         {
             if (!Enter) return;
@@ -591,6 +609,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (Val >= 0)BTManager.SEPlay(DamageSE, HitPos,true);
 
         if (!photonView.IsMine) return;
+        DownV++;
         if (Player)
         {
             if (Val > 0) ReceiveDam += Val;

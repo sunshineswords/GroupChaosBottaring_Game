@@ -23,7 +23,9 @@ public class Enemy_GroundMove : MonoBehaviourPun
         RigVect.x *= Rem;
         RigVect.z *= Rem;
         Sta.Anim_MoveID = 0;
-        if (Sta.HP > 0)
+        bool MoveCheck = Sta.HP > 0;
+        if (Sta.DownT > 0) MoveCheck = false;
+        if (MoveCheck)
         {
             Sta.TargetSet();
             if (Sta.Target != null)
