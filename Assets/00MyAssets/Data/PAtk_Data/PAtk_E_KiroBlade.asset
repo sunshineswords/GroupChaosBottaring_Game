@@ -84,6 +84,7 @@ MonoBehaviour:
       DamageType: 4
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*5
+      BreakValue: 4
       SPAdd: 0
       BufSets: []
     Adds: []

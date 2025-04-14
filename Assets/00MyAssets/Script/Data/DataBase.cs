@@ -22,6 +22,8 @@ public class DataBase : ScriptableObject
     public Class_Base_SEPlay BarriaHitSE;
     public Class_Base_SEPlay ShildHitSE;
 
+    public GameObject BreakEffect;
+
     public Data_Chara[] Charas;
     public Data_Atk[] N_Atks;
     public Data_Atk[] S_Atks;

@@ -14,8 +14,9 @@ public class UI_State : MonoBehaviour
     [SerializeField] Image HPMiddleFill;
     [SerializeField] Image HPFrontBar;
     [SerializeField] Image HPFrontFill;
-    [SerializeField] Image DownBar;
-    [SerializeField] Image DownFill;
+    [SerializeField] Image BreakBar;
+    [SerializeField] Image BreakFill;
+    [SerializeField] TextMeshProUGUI BreakText;
     [SerializeField] List<UI_Sin_Buf> BufUIs;
     float CHPPer;
     private void Start()
@@ -63,17 +64,19 @@ public class UI_State : MonoBehaviour
         }
         CHPPer = Mathf.Clamp01(CHPPer);
 
-        if (DownBar != null)
+        if (BreakBar != null)
         {
-            if (Sta.DownT <= 0)
+            if (Sta.BreakT <= 0)
             {
-                DownBar.fillAmount = Sta.DownV / Mathf.Max(1f, Sta.MDown);
-                DownFill.color = Color.cyan;
+                BreakBar.fillAmount = Sta.BreakV / Mathf.Max(1f, Sta.MBreak);
+                BreakFill.color = Color.cyan;
+                BreakText.text = "";
             }
             else
             {
-                DownBar.fillAmount = Sta.DownT / Mathf.Max(1f, Sta.DownTime);
-                DownFill.color = Color.HSVToRGB(Mathf.Repeat(Time.time*1f, 1f), 1, 1);
+                BreakBar.fillAmount = Sta.BreakT / Mathf.Max(1f, Sta.BreakTime);
+                BreakFill.color = Color.HSVToRGB(Mathf.Repeat(Time.time*1f, 1f), 1, 1);
+                BreakText.text = "Break!!!";
             }
         }
 

@@ -85,6 +85,7 @@ MonoBehaviour:
     NoDash: 0
     Aiming: 0
     NGravity: 0
+    NoDamage: 0
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: f5974f404649ca64bb7daed5fdc00e7e, type: 3}
     Fires:
@@ -175,6 +176,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.3
+      BreakValue: 1
       SPAdd: 1
       BufSets: []
     - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u9060\u8DDD\u96E2,SP+1.3)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)35.0%"
@@ -186,6 +188,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.35
+      BreakValue: 1
       SPAdd: 1.3
       BufSets: []
     - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u9060\u8DDD\u96E2,SP+1.6)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)40.0%"
@@ -197,6 +200,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.4
+      BreakValue: 1
       SPAdd: 1.6
       BufSets: []
     - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u9060\u8DDD\u96E2,SP+1.0)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)30.0%"
@@ -208,6 +212,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.3
+      BreakValue: 0.6
       SPAdd: 1
       BufSets: []
     - EditDisp: "[4]BNum:10|(\u91CD\u6483,\u9060\u8DDD\u96E2,SP+1.5)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)20.0%"
@@ -219,6 +224,7 @@ MonoBehaviour:
       DamageType: 1
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.2
+      BreakValue: 0.5
       SPAdd: 1.5
       BufSets: []
     Adds:
@@ -268,6 +274,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.12
+      BreakValue: 0.3
       SPAdd: 0.5
       BufSets: []
     Adds:

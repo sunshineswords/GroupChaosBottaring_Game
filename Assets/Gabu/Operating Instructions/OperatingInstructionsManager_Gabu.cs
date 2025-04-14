@@ -42,7 +42,7 @@ public class OperatingInstructionsManager_Gabu : MonoBehaviour
         // デフォルトの操作説明
         List<ActionIcone> icones = new List<ActionIcone>()
         { actionIcones_DB.Menu_icons[deviceIndex] };
-        if(deviceIndex <= 0)return icones.ToArray();
+        if(deviceIndex < 0)return icones.ToArray();
         switch (statu)
         {
             case Status.NONE:break;

@@ -126,6 +126,7 @@ MonoBehaviour:
     NoDash: 0
     Aiming: 0
     NGravity: 0
+    NoDamage: 0
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 19a057b8619edf54d87cd8fcffe14474, type: 3}
     Fires:
@@ -227,6 +228,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: (U.DEFdfmT.DEF)*0.4
+      BreakValue: 2
       SPAdd: 3
       BufSets: []
     - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+4.0)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)45.0%"
@@ -238,6 +240,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: (U.DEFdfmT.DEF)*0.45
+      BreakValue: 2
       SPAdd: 4
       BufSets: []
     - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+5.0)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)55.0%"
@@ -249,6 +252,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: (U.DEFdfmT.DEF)*0.55
+      BreakValue: 2
       SPAdd: 5
       BufSets: []
     - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+6.0)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)70.0%"
@@ -260,6 +264,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: (U.DEFdfmT.DEF)*0.70
+      BreakValue: 3
       SPAdd: 6
       BufSets: []
     - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+8.0)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)100.0%"
@@ -271,6 +276,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: (U.DEFdfmT.DEF)*1
+      BreakValue: 6
       SPAdd: 8
       BufSets: []
     - EditDisp: "[5]BNum:11|(\u91CD\u6483,\u8FD1\u8DDD\u96E2,SP+6.0)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)140.0%"
@@ -282,6 +288,7 @@ MonoBehaviour:
       DamageType: 1
       ShortAtk: 1
       DamCalc: (U.DEFdfmT.DEF)*1.4
+      BreakValue: 5
       SPAdd: 6
       BufSets: []
     - EditDisp: "[6]BNum:21|(\u843D\u4E0B,\u8FD1\u8DDD\u96E2,SP+4.0)(\u81EA\u9632\u5FA1\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)40.0%"
@@ -293,6 +300,7 @@ MonoBehaviour:
       DamageType: 2
       ShortAtk: 1
       DamCalc: (U.DEFdfmT.DEF)*0.4
+      BreakValue: 4
       SPAdd: 4
       BufSets: []
     Adds: []

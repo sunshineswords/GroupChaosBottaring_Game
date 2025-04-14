@@ -31,6 +31,7 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: eb81a134a0826fc4792faf22db68dfed, type: 3}
     Volume: 50
     Pitch: 200
+  BreakEffect: {fileID: 756941696458978195, guid: bdfe36baeb361ec4a9faa9f25667251e, type: 3}
   Charas:
   - {fileID: 11400000, guid: 07821d065f745214395a81df54ff17ce, type: 2}
   - {fileID: 11400000, guid: a7854d6c44cf2e94d898f0a5ac93e7aa, type: 2}
@@ -159,6 +160,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eb81a134a0826fc4792faf22db68dfed, type: 3}
   - {fileID: 8300000, guid: 02aab3dbb3ba6814a84ef0e107fdb488, type: 3}
   Stages:
+  - {fileID: 11400000, guid: 949ff99b1e1846943aab058e3a7cd7b6, type: 2}
   - {fileID: 11400000, guid: 632b57d86c62ed6439b96f12aeb840a2, type: 2}
   - {fileID: 11400000, guid: 07c8d87946b505d4484d0d663a5c7a9d, type: 2}
   - {fileID: 11400000, guid: fa020ce2b68dc2f4d88c0491add5409f, type: 2}
@@ -167,6 +169,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d59c50a3cfa86ff458c4d6b8f6539865, type: 2}
   - {fileID: 11400000, guid: 2799e698e0d47224ab2cb3078f5cb593, type: 2}
   - {fileID: 11400000, guid: a557a656e0c2a3548a4cd9dddf8c28f0, type: 2}
+  - {fileID: 11400000, guid: e8ccd078f52308f4ba9a4ac8c4ade72c, type: 2}
   Bufs:
   - {fileID: 11400000, guid: 19490759c80141b408ece1e741cf3959, type: 2}
   - {fileID: 11400000, guid: 92761fe2d8f3a074db1ced52b426524a, type: 2}

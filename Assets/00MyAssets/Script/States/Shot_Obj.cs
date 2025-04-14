@@ -99,7 +99,7 @@ public class Shot_Obj : MonoBehaviourPun
             HitCh = true;
             int Damage = DamSets(HitState, Hit);
             if (USta.Player) USta.AddInfoAdd(Damage);
-            HitState.Sta.Damage(HitPos, Damage);
+            HitState.Sta.Damage(HitPos, Damage,Hit.BreakValue);
             if (Hit.BufSets!=null)
             for (int j = 0; j < Hit.BufSets.Length; j++) HitState.Sta.BufSets(Hit.BufSets[j],USta);
             if (SPAddCT <= 0)

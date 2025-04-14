@@ -199,6 +199,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*1.4
+      BreakValue: 1
       SPAdd: 2
       BufSets: []
     - EditDisp: "[1]BNum:1|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+2.4)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)150.0%"
@@ -210,6 +211,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*1.5
+      BreakValue: 1
       SPAdd: 2.4
       BufSets: []
     - EditDisp: "[2]BNum:2|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+2.8)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)160.0%"
@@ -221,6 +223,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*1.6
+      BreakValue: 1
       SPAdd: 2.8
       BufSets: []
     - EditDisp: "[3]BNum:3|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+1.6)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)90.0%"
@@ -232,6 +235,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*0.9
+      BreakValue: 0.6
       SPAdd: 1.6
       BufSets: []
     - EditDisp: "[4]BNum:4|(\u901A\u5E38,\u8FD1\u8DDD\u96E2,SP+4.0)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)200.0%"
@@ -243,6 +247,7 @@ MonoBehaviour:
       DamageType: 0
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*2
+      BreakValue: 3
       SPAdd: 4
       BufSets: []
     - EditDisp: "[5]BNum:10|(\u91CD\u6483,\u8FD1\u8DDD\u96E2,SP+2.0)(\u81EA\u653B\u6483\u529B{\u9632\u8A08}\u5BFE\u9632\u5FA1\u529B)45.0%"
@@ -254,6 +259,7 @@ MonoBehaviour:
       DamageType: 1
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*0.45
+      BreakValue: 1.2
       SPAdd: 2
       BufSets: []
     Adds: []
@@ -280,6 +286,7 @@ MonoBehaviour:
       DamageType: 2
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*2.7
+      BreakValue: 5
       SPAdd: 4
       BufSets: []
     Adds: []

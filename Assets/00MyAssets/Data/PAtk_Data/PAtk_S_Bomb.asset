@@ -46,6 +46,7 @@ MonoBehaviour:
       DamageType: 3
       ShortAtk: 1
       DamCalc: 
+      BreakValue: 999.9
       SPAdd: 999.9
       BufSets:
       - EditDisp: "\u30B7\u30FC\u30EB\u30C9[0,\u6D88\u53BB](\u6642\u9593\u7121\u9650)"
@@ -73,6 +74,7 @@ MonoBehaviour:
       DamageType: 3
       ShortAtk: 1
       DamCalc: (U.ATKdfmT.DEF)*25
+      BreakValue: 0
       SPAdd: 0
       BufSets: []
     Adds: []

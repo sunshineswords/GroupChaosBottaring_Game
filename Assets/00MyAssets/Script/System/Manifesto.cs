@@ -154,6 +154,7 @@ static public class Manifesto
         {
             string Str = "";
             int ShotCounts = 0;
+            bool Shot = false;
             if (Fires != null)
                 for (int i = 0; i < Fires.Length; i++)
                 {
@@ -161,6 +162,7 @@ static public class Manifesto
                     if (Fire.BranchNum >= 0 && Fire.BranchNum != BNum) continue;
                     int TCounts = (Fire.Times.y - Fire.Times.x) / Mathf.Max(1, Fire.Times.z) + 1;
                     ShotCounts += Fire.Count * TCounts;
+                    Shot = true;
                 }
             if (Hits != null)
                 for (int i = 0; i < Hits.Length; i++)
@@ -179,12 +181,13 @@ static public class Manifesto
                     if (ShotCounts != 1) Str += "×" + ShotCounts;
                     if (Hit.DamCalc != "") Str += "\n" + CalStr(Hit.DamCalc, true);
                     Str += "</color>";
+                    if (Hit.BreakValue > 0) Str += "\n<color=#00FFFF>ブレイク:" + Hit.BreakValue.ToString("F1")+"</color>";
                     for (int j = 0; j < Hit.BufSets.Length; j++)
                     {
                         Str += "\n<color=#8888FF>" + Hit.BufSets[j].InfoStr(AddIf) + "</color>";
                     }
                 }
-            if (HitCT > 0) Str += "\n多段" + HitCT + "f/Hit";
+            if (Shot && HitCT > 0) Str += "\n多段" + HitCT + "f/Hit";
             if (Adds != null)
                 for (int i = 0; i < Adds.Length; i++)
                 {
@@ -247,6 +250,7 @@ static public class Manifesto
         [Tooltip("ダメージタイプ")]public Enum_DamageType DamageType;
         [Tooltip("近距離攻撃")] public bool ShortAtk;
         [Tooltip("ダメージ式\n"+TooltipStr),TextArea(1,3)] public string DamCalc;
+        [Tooltip("ブレイク値")] public float BreakValue;
         [Tooltip("命中時SP増加量")] public float SPAdd;
         [Tooltip("状態付与")] public Class_Base_BufSet[] BufSets;
     }

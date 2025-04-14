@@ -30,16 +30,16 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [Foldout("ステータス"), Tooltip("最大MP(移動力)")] public int MMP;
     [Foldout("ステータス"), Tooltip("秒間MP回復速度")] public float MPRegene;
     [Foldout("ステータス"), Tooltip("秒間SP回復速度")] public float SPRegene;
-    [Foldout("ステータス"), Tooltip("最大ダウン値")] public int MDown;
-    [Foldout("ステータス"), Tooltip("ダウン時間")] public int DownTime;
+    [Foldout("ステータス"), Tooltip("最大ブレイク値")] public int MBreak;
+    [Foldout("ステータス"), Tooltip("ブレイク時間")] public int BreakTime;
     [Foldout("ステータス"), Tooltip("攻撃力")] public int Atk;
     [Foldout("ステータス"), Tooltip("防御力")] public int Def;
     //
     [Foldout("数値")]public float HP;
     [Foldout("数値")] public float MP;
     [Foldout("数値")] public float SP;
-    [Foldout("数値")] public float DownV;
-    [Foldout("数値")] public float DownT;
+    [Foldout("数値")] public float BreakV;
+    [Foldout("数値")] public int BreakT;
     [Foldout("数値")] public bool Ground;
     [Foldout("数値")] public int DeathTime;
     [Foldout("数値")] public State_Base Target;
@@ -76,6 +76,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public Dictionary<int,Class_Sta_AtkCT> AtkCTs = new Dictionary<int,Class_Sta_AtkCT>();
     public Dictionary<int,GameObject> BufEffects = new Dictionary<int,GameObject>();
     public Dictionary<int, int> LocalCTs = new Dictionary<int, int>();
+    [System.NonSerialized] public GameObject BreakEffect = null;
     [System.NonSerialized] public int AddTimer = 0;
     [System.NonSerialized] public int[] AddDams = new int[10];
     [System.NonSerialized] public float AddDamTotal = 0;
@@ -157,6 +158,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     {
         Anim_OtherID = 0;
         if (HP <= 0) Anim_OtherID = 2;
+        else if (BreakT > 0) Anim_OtherID = 3;
         BufEffectSet();
         if (!photonView.IsMine) return;
 
@@ -174,7 +176,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         {
             StateDeaths();
         }
-        else
+        if (HP > 0)
         {
             LivesTimes();
         }
@@ -216,7 +218,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         NoDamage = false;
         #region スキル処理
         if (HP <= 0) AtkD = null;
-        if (DownT > 0) AtkD = null;
+        if (BreakT > 0) AtkD = null;
         Anim_AtkID = 0;
         Anim_AtkSpeed = 1;
         if (AtkD == null)
@@ -294,18 +296,28 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 BufSets(Enum_Bufs.根性CT, -1000, Enum_BufSet.付与, 60 * 15, 0);
             }
         }
-        if (MDown >= 0)
+        if (MBreak >= 0)
         {
-            if (DownT <= 0)
+            if (BreakT <= 0)
             {
-                if (DownV >= MDown) DownT = DownTime;
+                if (BreakV >= MBreak) BreakT = BreakTime;
             }
             else
             {
-                DownT--;
-                DownV = 0;
+                BreakT--;
+                BreakV = 0;
             }
         }
+        if (BreakT > 0)
+        {
+            if (BreakEffect == null)
+            {
+                BreakEffect = Instantiate(DB.BreakEffect, PosGet(), Quaternion.identity);
+                BreakEffect.transform.localScale = Vector3.one * (1f + SizeAdd * 0.01f);
+                BreakEffect.transform.parent = Rig != null ? Rig.transform : transform;
+            }
+        }
+        else if (BreakEffect != null) Destroy(BreakEffect);
     }
     void BufTimeRems()
     {
@@ -399,9 +411,9 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (Rig != null) return Rig.transform.eulerAngles;
         else return transform.eulerAngles;
     }
-    public void Damage(Vector3 HitPos, int Val)
+    public void Damage(Vector3 HitPos, int Val,float Break = 0)
     {
-        photonView.RPC(nameof(RPC_Damage), RpcTarget.All, HitPos, Val);
+        photonView.RPC(nameof(RPC_Damage), RpcTarget.All, HitPos, Val,Break);
     }
     public void TargetSet()
     {
@@ -423,7 +435,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public void AtkInput(int UseAtkSlot, Data_Atk UseAtkD, bool Enter, bool Stay)
     {
         if (HP <= 0) return;
-        if (DownT > 0) return;
+        if (BreakT > 0) return;
         if (AtkD != UseAtkD)
         {
             if (!Enter) return;
@@ -561,7 +573,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     #endregion
     #region RPCメソッド
     [PunRPC]
-    void RPC_Damage(Vector3 HitPos, int Val)
+    void RPC_Damage(Vector3 HitPos, int Val,float Break)
     {
         if (Val > 0 && NoDamage) return;
         if (HP <= 0) return;
@@ -609,7 +621,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         if (Val >= 0)BTManager.SEPlay(DamageSE, HitPos,true);
 
         if (!photonView.IsMine) return;
-        DownV++;
+        BreakV+=Break;
         if (Player)
         {
             if (Val > 0) ReceiveDam += Val;
@@ -690,11 +702,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             stream.SendNext(MMP);
             stream.SendNext(Atk);
             stream.SendNext(Def);
+            stream.SendNext(MBreak);
 
             stream.SendNext(Name);
             stream.SendNext(Team);
 
             stream.SendNext(HP);
+
+            stream.SendNext(BreakV);
+            stream.SendNext(BreakT);
 
             stream.SendNext(NoDamage);
 
@@ -747,11 +763,15 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             MMP = (int)stream.ReceiveNext();
             Atk = (int)stream.ReceiveNext();
             Def = (int)stream.ReceiveNext();
+            MBreak = (int)stream.ReceiveNext();
 
             Name = (string)stream.ReceiveNext();
             Team = (int)stream.ReceiveNext();
 
             HP = (float)stream.ReceiveNext();
+
+            BreakV = (float)stream.ReceiveNext();
+            BreakT = (int)stream.ReceiveNext();
 
             NoDamage = (bool)stream.ReceiveNext();
 

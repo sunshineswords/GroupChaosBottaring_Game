@@ -31,6 +31,7 @@ MonoBehaviour:
     NoDash: 0
     Aiming: 1
     NGravity: 0
+    NoDamage: 0
   Shots:
   - Obj: {fileID: 5905403385281065886, guid: 9bef7728e40c6614b99d30b5855e2020, type: 3}
     Fires:
@@ -57,6 +58,7 @@ MonoBehaviour:
       DamageType: 3
       ShortAtk: 0
       DamCalc: (U.ATKdfmT.DEF)*0.3
+      BreakValue: 2
       SPAdd: 1
       BufSets: []
     Adds: []

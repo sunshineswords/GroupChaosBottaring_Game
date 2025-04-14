@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
 using static BattleManager;
 using static Statics;
 public class Player_Target : MonoBehaviour
@@ -21,6 +22,7 @@ public class Player_Target : MonoBehaviour
         }
         if (Sta.TargetHit != null && Sta.TargetHit.Sta.HP <= 0)
         {
+            Sta.TargetHit = null;
             TargetSet();
         }
     }

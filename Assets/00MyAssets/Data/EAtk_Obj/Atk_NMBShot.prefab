@@ -299,6 +299,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 233dd7c3f68d9734ebde78c8fd2738fd, type: 2}
+    - target: {fileID: 1996948829591573589, guid: 94117571af86b9540855ce96ba549e79, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: ae5ddfa9727c71641bb6ecc303c5ba5e, type: 2}
     - target: {fileID: 3629478694356967566, guid: 94117571af86b9540855ce96ba549e79, type: 3}
       propertyPath: m_Name
       value: Model_Broccoli

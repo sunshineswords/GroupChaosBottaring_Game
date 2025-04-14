@@ -55,6 +55,7 @@ MonoBehaviour:
 
         *(5.0 or 0.01 or 0.01 or 0.01
         or 0.01 or 0.01)'
+      BreakValue: 1
       SPAdd: 0
       BufSets: []
     Adds: []

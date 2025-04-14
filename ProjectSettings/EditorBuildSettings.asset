@@ -32,6 +32,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00MyAssets/Scene/BOSBroccoli.unity
     guid: f4fe8881539d46d4f984d7e158fc6cb1
+  - enabled: 1
+    path: Assets/00MyAssets/Scene/Tutorial.unity
+    guid: 6d4fdc077a7216f40a45effc6191b17d
+  - enabled: 1
+    path: Assets/00MyAssets/Scene/FlyBoss.unity
+    guid: eeef92416e25c204ebcbb2660d5edddb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
