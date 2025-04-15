@@ -17,7 +17,7 @@ MonoBehaviour:
   Icon: {fileID: 2800000, guid: 70e101e1d5ceaa5439bf3ad4e3c791f7, type: 3}
   AtkType: 0
   Filters: 0000000064000000
-  EndTime: 60
+  EndTime: 65
   CT: 0
   SPUse: 0
   BranchInfos:
@@ -64,23 +64,23 @@ MonoBehaviour:
     UseMP: 0
     FutureNum: 0
     FutureTime: 0
-  - EditDisp: '[4]BNum:10Time:(55, 60)MP:100Future{Num:10Time:0}'
+  - EditDisp: '[4]BNum:10Time:(55, 65)MP:100Future{Num:10Time:0}'
     BranchNums: 0a000000
-    Times: {x: 55, y: 60}
+    Times: {x: 55, y: 65}
     Ifs: 01000000
     UseMP: 100
     FutureNum: 10
     FutureTime: 0
-  - EditDisp: '[5]BNum:0,1,2,3Time:(45, 60)MP:150Future{Num:10Time:0}'
+  - EditDisp: '[5]BNum:0,1,2,3Time:(45, 65)MP:150Future{Num:10Time:0}'
     BranchNums: 00000000010000000200000003000000
-    Times: {x: 45, y: 60}
+    Times: {x: 45, y: 65}
     Ifs: 010000000a000000
     UseMP: 150
     FutureNum: 10
     FutureTime: 0
-  - EditDisp: '[6]BNum:0,1,2,3Time:(45, 60)MP:0Future{Num:20Time:0}'
+  - EditDisp: '[6]BNum:0,1,2,3Time:(45, 65)MP:0Future{Num:20Time:0}'
     BranchNums: 00000000010000000200000003000000
-    Times: {x: 45, y: 60}
+    Times: {x: 45, y: 65}
     Ifs: 010000000b000000
     UseMP: 0
     FutureNum: 20

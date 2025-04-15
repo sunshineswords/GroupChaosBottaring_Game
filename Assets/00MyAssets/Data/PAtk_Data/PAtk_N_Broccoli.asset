@@ -17,7 +17,7 @@ MonoBehaviour:
   Icon: {fileID: 2800000, guid: c52b0a0623874c74baad17011f3d9323, type: 3}
   AtkType: 0
   Filters: 000000000300000065000000cb000000
-  EndTime: 50
+  EndTime: 70
   CT: 0
   SPUse: 0
   BranchInfos:
@@ -34,44 +34,44 @@ MonoBehaviour:
   - BID: 10
     Name: "\u91CD\u653B\u6483"
   Branchs:
-  - EditDisp: '[0]BNum:0Time:(16, 35)MP:0Future{Num:1Time:0}'
+  - EditDisp: '[0]BNum:0Time:(20, 50)MP:0Future{Num:1Time:0}'
     BranchNums: 00000000
-    Times: {x: 16, y: 35}
+    Times: {x: 20, y: 50}
     Ifs: 00000000
     UseMP: 0
     FutureNum: 1
     FutureTime: 0
-  - EditDisp: '[1]BNum:1Time:(16, 35)MP:0Future{Num:2Time:0}'
+  - EditDisp: '[1]BNum:1Time:(21, 50)MP:0Future{Num:2Time:0}'
     BranchNums: 01000000
-    Times: {x: 16, y: 35}
+    Times: {x: 21, y: 50}
     Ifs: 00000000
     UseMP: 0
     FutureNum: 2
     FutureTime: 0
-  - EditDisp: '[2]BNum:2Time:(21, 35)MP:0Future{Num:3Time:0}'
+  - EditDisp: '[2]BNum:2Time:(23, 50)MP:0Future{Num:3Time:0}'
     BranchNums: 02000000
-    Times: {x: 21, y: 35}
+    Times: {x: 23, y: 50}
     Ifs: 00000000
     UseMP: 0
     FutureNum: 3
     FutureTime: 0
-  - EditDisp: '[3]BNum:3Time:(21, 35)MP:0Future{Num:4Time:0}'
+  - EditDisp: '[3]BNum:3Time:(25, 50)MP:0Future{Num:4Time:0}'
     BranchNums: 03000000
-    Times: {x: 21, y: 35}
+    Times: {x: 25, y: 50}
     Ifs: 00000000
     UseMP: 0
     FutureNum: 4
     FutureTime: 0
-  - EditDisp: '[4]BNum:4Time:(31, 35)MP:0Future{Num:0Time:0}'
+  - EditDisp: '[4]BNum:4Time:(25, 50)MP:0Future{Num:0Time:0}'
     BranchNums: 04000000
-    Times: {x: 31, y: 35}
+    Times: {x: 25, y: 50}
     Ifs: 00000000
     UseMP: 0
     FutureNum: 0
     FutureTime: 0
-  - EditDisp: '[5]BNum:0,1,2,3,4Time:(35, 50)MP:200Future{Num:10Time:0}'
+  - EditDisp: '[5]BNum:0,1,2,3,4Time:(50, 70)MP:200Future{Num:10Time:0}'
     BranchNums: 0000000001000000020000000300000004000000
-    Times: {x: 35, y: 50}
+    Times: {x: 50, y: 70}
     Ifs: 01000000
     UseMP: 200
     FutureNum: 10

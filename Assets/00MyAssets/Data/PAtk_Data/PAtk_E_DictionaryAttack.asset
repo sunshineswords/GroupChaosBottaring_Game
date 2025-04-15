@@ -62,14 +62,14 @@ MonoBehaviour:
       BreakValue: 1
       SPAdd: 0
       BufSets:
-      - EditDisp: "\u9632\u5FA1\u4F4E\u4E0B[1,\u4ED8\u4E0E\u5897\u52A0](\u6642\u9593:\u4ED8\u4E0E1320Max1320)(\u6BB5\u968E:\u4ED8\u4E0E2Max200)"
+      - EditDisp: "\u9632\u5FA1\u4F4E\u4E0B[1,\u4ED8\u4E0E\u5897\u52A0](\u6642\u9593:\u4ED8\u4E0E600Max600)(\u6BB5\u968E:\u4ED8\u4E0E1Max25)"
         Buf: 120
         Index: 1
         Set: 1
-        TimeVal: 1320
-        PowVal: 2
-        TimeMax: 1320
-        PowMax: 200
+        TimeVal: 600
+        PowVal: 1
+        TimeMax: 600
+        PowMax: 25
     Adds: []
     HitCT: 0
   Moves: []
