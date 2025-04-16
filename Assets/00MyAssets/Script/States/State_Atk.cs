@@ -248,6 +248,16 @@ public class State_Atk
         if (Sta != null)
         {
             Sta.Team = USta.Team;
+            if (Shot.Summon != null)
+            {
+                if (Shot.Summon.LimitTime > 0)
+                {
+                    Sta.LimitFlag = true;
+                    Sta.BufSets(Enum_Bufs.時間制限, 0, Enum_BufSet.付与, Mathf.RoundToInt(Shot.Summon.LimitTime * 60f), 0);
+                }
+                Sta.MHP = Mathf.RoundToInt(Sta.MHP * (1f + Shot.Summon.HPMulPer * 0.01f));
+                Sta.Atk = Mathf.RoundToInt(Sta.Atk * (1f + Shot.Summon.HPMulPer * 0.01f));
+            }
         }
     }
 
@@ -279,8 +289,8 @@ public class State_Atk
             var Val = (float)Cal(State.Adds,USta,USta);
             switch (State.State)
             {
-                case Enum_State.回復:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(Val));USta.AddHeal += Val; break;
-                case Enum_State.ダメージ: USta.Damage(USta.PosGet(), Mathf.RoundToInt(Val)); USta.ReceiveDam += Val; break;
+                case Enum_State.回復:USta.Damage(USta.PosGet(), -Mathf.RoundToInt(Val));if(USta.PLValues!=null)USta.PLValues.AddHeal += Val; break;
+                case Enum_State.ダメージ: USta.Damage(USta.PosGet(), Mathf.RoundToInt(Val)); if (USta.PLValues != null) USta.PLValues.ReceiveDam += Val; break;
                 case Enum_State.MP増加: USta.MP += Val;break;
                 case Enum_State.MP減少: USta.MP -= Val; break;
                 case Enum_State.SP増加: USta.SP += Val;break;

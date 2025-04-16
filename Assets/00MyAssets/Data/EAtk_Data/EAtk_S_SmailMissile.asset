@@ -60,6 +60,10 @@ MonoBehaviour:
           Val: {x: 0, y: -90, z: 0}
     Hits: []
     Adds: []
+    Summon:
+      LimitTime: 30
+      HPMulPer: 0
+      AtkMulPer: 0
     HitCT: 60
   Moves: []
   States: []

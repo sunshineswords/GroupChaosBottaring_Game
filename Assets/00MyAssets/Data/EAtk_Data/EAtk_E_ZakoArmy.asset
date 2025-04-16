@@ -31,6 +31,7 @@ MonoBehaviour:
     NoDash: 0
     Aiming: 1
     NGravity: 0
+    NoDamage: 0
   Shots:
   - Obj: {fileID: 3138562507945577928, guid: 7d0686fb16f167944a4dee4ce8a736db, type: 3}
     Fires:
@@ -51,6 +52,11 @@ MonoBehaviour:
         RotBase: -1
         TransRots: []
     Hits: []
+    Adds: []
+    Summon:
+      LimitTime: 30
+      HPMulPer: 50
+      AtkMulPer: 100
     HitCT: 0
   Moves: []
   States: []

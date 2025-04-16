@@ -43,6 +43,11 @@ MonoBehaviour:
         RotBase: -1
         TransRots: []
     Hits: []
+    Adds: []
+    Summon:
+      LimitTime: 20
+      HPMulPer: 50
+      AtkMulPer: 25
     HitCT: 0
   Moves: []
   States: []

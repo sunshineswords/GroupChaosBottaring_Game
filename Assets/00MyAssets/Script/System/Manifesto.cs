@@ -123,6 +123,7 @@ static public class Manifesto
         [Tooltip("発射")] public Class_Atk_Shot_Fire[] Fires;
         [Tooltip("命中効果")] public Class_Atk_Shot_Hit[] Hits;
         [Tooltip("追加弾")] public Class_Atk_Shot_Add[] Adds;
+        [Tooltip("召喚設定")]public Class_Atk_Shot_Summon Summon;
         [Tooltip("多段ヒットCT(0以下は単発ヒット)")] public int HitCT;
         public void EditDispSet()
         {
@@ -202,7 +203,12 @@ static public class Manifesto
                         }
                     }
                 }
-
+            if (Summon != null)
+            {
+                if (Summon.LimitTime > 0) Str += "\n<color=#FF00FF>召喚時間" + Summon.LimitTime.ToString("F1") + "秒</color>";
+                if (Summon.HPMulPer != 0) Str += "\n<color=#FF00FF>召喚HP補正" + Summon.HPMulPer.ToString("F0") + "%</color>";
+                if (Summon.AtkMulPer != 0) Str += "\n<color=#FF00FF>召喚ATK補正" + Summon.AtkMulPer.ToString("F0") + "%</color>";
+            }
             return Str;
         }
     }
@@ -253,6 +259,13 @@ static public class Manifesto
         [Tooltip("ブレイク値")] public float BreakValue;
         [Tooltip("命中時SP増加量")] public float SPAdd;
         [Tooltip("状態付与")] public Class_Base_BufSet[] BufSets;
+    }
+    [System.Serializable]
+    public class Class_Atk_Shot_Summon
+    {
+        [Tooltip("自然消滅時間(秒)")]public float LimitTime = 0;
+        [Tooltip("HP補正%")] public float HPMulPer;
+        [Tooltip("ATK補正%")] public float AtkMulPer;
     }
     [System.Serializable]
     public class Class_Atk_Shot_Add
@@ -535,16 +548,17 @@ static public class Manifesto
         攻撃低下 = 110,
         防御低下 = 120,
 
+        時間制限 = 999,
         毒 = 1000,
         HP再生 = 2000,
-        シールド=2010,
+        シールド = 2010,
         バリア = 2011,
-        根性 =2100,
-        根性CT=2101,
-        復活待機=2102,
-        与ダメージ増加 =2200,
-        近距離強化=2201,
-        遠距離強化=2202,
+        根性 = 2100,
+        根性CT = 2101,
+        復活待機 = 2102,
+        与ダメージ増加 = 2200,
+        近距離強化 = 2201,
+        遠距離強化 = 2202,
     }
     public enum Enum_BufSet
     {

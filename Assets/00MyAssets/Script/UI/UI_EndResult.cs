@@ -56,14 +56,14 @@ public class UI_EndResult : MonoBehaviour
         {
             var Sta = BTManager.PlayerList[i];
             if (Sta == null) continue;
-            AddDamMax = Mathf.Max(AddDamMax, Sta.AddDamTotal);
-            AddHitMax = Mathf.Max(AddHitMax, Sta.AddHitTotal);
-            HealMax = Mathf.Max(HealMax, Sta.AddHeal);
-            BufMax = Mathf.Max(BufMax, Sta.AddBuf);
-            DBufMax = Mathf.Max(DBufMax, Sta.AddDBuf);
-            E_AtkMax = Mathf.Max(E_AtkMax, Sta.E_AtkCount);
-            RecDamMax = Mathf.Max(RecDamMax, Sta.ReceiveDam);
-            DeathMax = Mathf.Max(DeathMax, Sta.DeathCount);
+            AddDamMax = Mathf.Max(AddDamMax, Sta.PLValues.AddDamTotal);
+            AddHitMax = Mathf.Max(AddHitMax, Sta.PLValues.AddHitTotal);
+            HealMax = Mathf.Max(HealMax, Sta.PLValues.AddHeal);
+            BufMax = Mathf.Max(BufMax, Sta.PLValues.AddBuf);
+            DBufMax = Mathf.Max(DBufMax, Sta.PLValues.AddDBuf);
+            E_AtkMax = Mathf.Max(E_AtkMax, Sta.PLValues.E_AtkCount);
+            RecDamMax = Mathf.Max(RecDamMax, Sta.PLValues.ReceiveDam);
+            DeathMax = Mathf.Max(DeathMax, Sta.PLValues.DeathCount);
         }
         for (int i = 0; i < Mathf.Max(BTManager.PlayerList.Count, PlayerUIs.Count); i++)
         {
@@ -74,22 +74,22 @@ public class UI_EndResult : MonoBehaviour
             if (Sta != null)
             {
                 SinUI.UISet(i+1,Sta.photonView.Owner,true);
-                SinUI.Bars[0].fillAmount = Sta.AddDamTotal / Mathf.Max(1f, AddDamMax);
-                SinUI.ValTxs[0].text = Sta.AddDamTotal.ToString("F0");
-                SinUI.Bars[1].fillAmount = Sta.AddHitTotal / Mathf.Max(1f, AddHitMax);
-                SinUI.ValTxs[1].text = Sta.AddHitTotal.ToString("F0");
-                SinUI.Bars[2].fillAmount = Sta.AddHeal / Mathf.Max(1f, HealMax);
-                SinUI.ValTxs[2].text = Sta.AddHeal.ToString("F0");
-                SinUI.Bars[3].fillAmount = Sta.AddBuf / Mathf.Max(1f, BufMax);
-                SinUI.ValTxs[3].text = Sta.AddBuf.ToString("F0");
-                SinUI.Bars[4].fillAmount = Sta.AddDBuf / Mathf.Max(1f, DBufMax);
-                SinUI.ValTxs[4].text = Sta.AddDBuf.ToString("F0");
-                SinUI.Bars[5].fillAmount = Sta.E_AtkCount / Mathf.Max(1f, E_AtkMax);
-                SinUI.ValTxs[5].text = Sta.E_AtkCount.ToString("F0");
-                SinUI.Bars[6].fillAmount = Sta.ReceiveDam / Mathf.Max(1f, RecDamMax);
-                SinUI.ValTxs[6].text = Sta.ReceiveDam.ToString("F0");
-                SinUI.Bars[7].fillAmount = Sta.DeathCount / Mathf.Max(1f, DeathMax);
-                SinUI.ValTxs[7].text = Sta.DeathCount.ToString("F0");
+                SinUI.Bars[0].fillAmount = Sta.PLValues.AddDamTotal / Mathf.Max(1f, AddDamMax);
+                SinUI.ValTxs[0].text = Sta.PLValues.AddDamTotal.ToString("F0");
+                SinUI.Bars[1].fillAmount = Sta.PLValues.AddHitTotal / Mathf.Max(1f, AddHitMax);
+                SinUI.ValTxs[1].text = Sta.PLValues.AddHitTotal.ToString("F0");
+                SinUI.Bars[2].fillAmount = Sta.PLValues.AddHeal / Mathf.Max(1f, HealMax);
+                SinUI.ValTxs[2].text = Sta.PLValues.AddHeal.ToString("F0");
+                SinUI.Bars[3].fillAmount = Sta.PLValues.AddBuf / Mathf.Max(1f, BufMax);
+                SinUI.ValTxs[3].text = Sta.PLValues.AddBuf.ToString("F0");
+                SinUI.Bars[4].fillAmount = Sta.PLValues.AddDBuf / Mathf.Max(1f, DBufMax);
+                SinUI.ValTxs[4].text = Sta.PLValues.AddDBuf.ToString("F0");
+                SinUI.Bars[5].fillAmount = Sta.PLValues.E_AtkCount / Mathf.Max(1f, E_AtkMax);
+                SinUI.ValTxs[5].text = Sta.PLValues.E_AtkCount.ToString("F0");
+                SinUI.Bars[6].fillAmount = Sta.PLValues.ReceiveDam / Mathf.Max(1f, RecDamMax);
+                SinUI.ValTxs[6].text = Sta.PLValues.ReceiveDam.ToString("F0");
+                SinUI.Bars[7].fillAmount = Sta.PLValues.DeathCount / Mathf.Max(1f, DeathMax);
+                SinUI.ValTxs[7].text = Sta.PLValues.DeathCount.ToString("F0");
             }
             else
             {

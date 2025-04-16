@@ -24,6 +24,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [Foldout("設定")] public Class_Base_SEPlay DamageSE;
     [Foldout("設定")] public Class_Base_SEPlay DeathSE;
     [Foldout("設定"), Tooltip("死亡エフェクト")] public GameObject DeathEffect;
+    [Foldout("設定"), Tooltip("プレイヤー用変数")] public Player_BattleValues PLValues;
     //
     [Foldout("ステータス"), Tooltip("最大HP")]public int MHP;
     [Foldout("ステータス"), Tooltip("秒間HP回復速度")] public float HPRegene;
@@ -77,17 +78,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public Dictionary<int,GameObject> BufEffects = new Dictionary<int,GameObject>();
     public Dictionary<int, int> LocalCTs = new Dictionary<int, int>();
     [System.NonSerialized] public GameObject BreakEffect = null;
-    [System.NonSerialized] public int AddTimer = 0;
-    [System.NonSerialized] public int[] AddDams = new int[10];
-    [System.NonSerialized] public float AddDamTotal = 0;
-    [System.NonSerialized] public int[] AddHits = new int[10];
-    [System.NonSerialized] public int AddHitTotal = 0;
-    [System.NonSerialized] public float AddHeal = 0;
-    [System.NonSerialized] public int AddBuf = 0;
-    [System.NonSerialized] public int AddDBuf = 0;
-    [System.NonSerialized] public int E_AtkCount = 0;
-    [System.NonSerialized] public float ReceiveDam = 0;
-    [System.NonSerialized] public int DeathCount = 0;
+    [System.NonSerialized] public bool LimitFlag = false;
 
     public int FMHP
     {
@@ -186,7 +177,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         LocalCTRems();
         AtkPlays(CamTrans.eulerAngles);
         if (Rig) Rig.useGravity = !NGravity;
-        if (Player) AddInfoChange();
+        AddInfoChange();
     }
     #region 内部メソッド
     void Deletes()
@@ -248,7 +239,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             {
                 if (DeathTime == 0)
                 {
-                    DeathCount++;
+                    PLValues.DeathCount++;
                     BTManager.SEPlay(DeathSE, PosGet());
                     BTManager.DeathAdd();
                     BTManager.MessageAdd("<color=#FF0000>" + Name + "</color>\\<color=#FF0000>は倒れた!!!</color>");
@@ -318,6 +309,10 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             }
         }
         else if (BreakEffect != null) Destroy(BreakEffect);
+        if (LimitFlag && !BufCheck(Enum_Bufs.時間制限))
+        {
+            Deletes();
+        }
     }
     void BufTimeRems()
     {
@@ -386,17 +381,18 @@ public class State_Base : MonoBehaviourPun,IPunObservable
 
     void AddInfoChange()
     {
-        AddTimer++;
-        if(AddTimer >= 60)
+        if (PLValues == null) return;
+        PLValues.AddTimer++;
+        if(PLValues.AddTimer >= 60)
         {
-            AddTimer = 0;
-            for (int i = AddDams.Length - 1; i > 0; i--)
+            PLValues.AddTimer = 0;
+            for (int i = PLValues.AddDams.Length - 1; i > 0; i--)
             {
-                AddDams[i] = AddDams[i - 1];
-                AddHits[i] = AddHits[i - 1];
+                PLValues.AddDams[i] = PLValues.AddDams[i - 1];
+                PLValues.AddHits[i] = PLValues.AddHits[i - 1];
             }
-            AddDams[0] = 0;
-            AddHits[0] = 0;
+            PLValues.AddDams[0] = 0;
+            PLValues.AddHits[0] = 0;
         }
     }
     #endregion
@@ -457,7 +453,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 CTs = Mathf.RoundToInt(CTs * (1f - PriSetGet.PassiveLVGet(Enum_Passive.CTカット) * 0.10f));
                 if (UseAtkD.AtkType == Enum_AtkType.必殺)
                 {
-                    E_AtkCount++;
+                    PLValues.E_AtkCount++;
                     var SpHealLV = PriSetGet.PassiveLVGet(Enum_Passive.必殺再生);
                     if (SpHealLV > 0) Damage(PosGet(), Mathf.RoundToInt(MHP * SpHealLV * 0.15f));
                     var SpReturnLV = PriSetGet.PassiveLVGet(Enum_Passive.必殺返還);
@@ -488,11 +484,11 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     {
         var PowVal = Mathf.RoundToInt((float)Cal(BufSet.PowVal, AddSta, this));
         var PowMax = Mathf.RoundToInt((float)Cal(BufSet.PowMax, AddSta, this));
-        if (AddSta != null)
+        if (AddSta != null && AddSta.PLValues!=null)
         {
             var BufD = DB.Bufs.Find(x => x.Buf == BufSet.Buf);
-            if (BufD != null && BufD.Type == Enum_BufType.バフ) AddSta.AddBuf++;
-            if (BufD != null && BufD.Type == Enum_BufType.デバフ) AddSta.AddDBuf++;
+            if (BufD != null && BufD.Type == Enum_BufType.バフ) AddSta.PLValues.AddBuf++;
+            if (BufD != null && BufD.Type == Enum_BufType.デバフ) AddSta.PLValues.AddDBuf++;
         }
         BufSets(BufSet.Buf, BufSet.Index,BufSet.Set, BufSet.TimeVal, PowVal, BufSet.TimeMax, PowMax);
     }
@@ -554,21 +550,23 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     }
     public void AddInfoAdd(int Dam)
     {
-        AddDamTotal += Dam;
-        AddDams[0]+=Dam;
-        AddHitTotal++;
-        AddHits[0]++;
+        if (PLValues == null) return;
+        PLValues.AddDamTotal += Dam;
+        PLValues.AddDams[0]+=Dam;
+        PLValues.AddHitTotal++;
+        PLValues.AddHits[0]++;
     }
     public void AddInfoReset()
     {
-        AddTimer = 0;
-        for(int i = 0; i < AddDams.Length; i++)
+        if (PLValues == null) return;
+        PLValues.AddTimer = 0;
+        for(int i = 0; i < PLValues.AddDams.Length; i++)
         {
-            AddDams[i] = 0;
-            AddHits[i] = 0;
+            PLValues.AddDams[i] = 0;
+            PLValues.AddHits[i] = 0;
         }
-        AddDamTotal = 0;
-        AddHitTotal = 0;
+        PLValues.AddDamTotal = 0;
+        PLValues.AddHitTotal = 0;
     }
     #endregion
     #region RPCメソッド
@@ -624,7 +622,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
         BreakV+=Break;
         if (Player)
         {
-            if (Val > 0) ReceiveDam += Val;
+            if (Val > 0)PLValues.ReceiveDam += Val;
             var LifeVibrationLV = PriSetGet.PassiveLVGet(Enum_Passive.生命の振動);
             if (LifeVibrationLV > 0 && !LocalCTs.ContainsKey((int)Enum_PassiveAtk.生命の振動))
             {
@@ -748,14 +746,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             stream.SendNext(Buf_Pow.ToArray());
             stream.SendNext(Buf_TimeMax.ToArray());
 
-            stream.SendNext(AddDamTotal);
-            stream.SendNext(AddHitTotal);
-            stream.SendNext(AddHeal);
-            stream.SendNext(AddBuf);
-            stream.SendNext(AddDBuf);
-            stream.SendNext(E_AtkCount);
-            stream.SendNext(ReceiveDam);
-            stream.SendNext(DeathCount);
+            stream.SendNext(LimitFlag);
         }
         else
         {
@@ -812,14 +803,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 });
             }
 
-            AddDamTotal = (float)stream.ReceiveNext();
-            AddHitTotal = (int)stream.ReceiveNext();
-            AddHeal = (float)stream.ReceiveNext();
-            AddBuf = (int)stream.ReceiveNext();
-            AddDBuf = (int)stream.ReceiveNext();
-            E_AtkCount = (int)stream.ReceiveNext();
-            ReceiveDam = (float)stream.ReceiveNext();
-            DeathCount = (int)stream.ReceiveNext();
+            LimitFlag = (bool)stream.ReceiveNext();
         }
     }
 }
