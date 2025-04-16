@@ -314,19 +314,20 @@ public class State_Atk
     {
         var AtkD = USta.AtkD;
         if (AtkD.WeponSets == null) return;
+        if (USta.WepValues == null) return;
         for (int i = 0; i < AtkD.WeponSets.Length; i++)
         {
             var AtWep = AtkD.WeponSets[i];
             if (AtWep.BranchNum >= 0 && USta.AtkBranch != AtWep.BranchNum) continue;
             if (V3IntTimeCheck(USta.AtkTime, (Vector3Int)AtWep.Times))
             {
-                USta.WeponSets.TryAdd((int)AtWep.Set, -1);
-                USta.WeponPoss.TryAdd((int)AtWep.Set, Vector3.zero);
-                USta.WeponRots.TryAdd((int)AtWep.Set, Vector3.zero);
+                USta.WepValues.WeponSets.TryAdd((int)AtWep.Set, -1);
+                USta.WepValues.WeponPoss.TryAdd((int)AtWep.Set, Vector3.zero);
+                USta.WepValues.WeponRots.TryAdd((int)AtWep.Set, Vector3.zero);
 
-                USta.WeponSets[(int)AtWep.Set] = DB.Wepons.IndexOf(AtWep.Obj);
-                USta.WeponPoss[(int)AtWep.Set] = AtWep.PosChange;
-                USta.WeponRots[(int)AtWep.Set] = AtWep.RotChange;
+                USta.WepValues.WeponSets[(int)AtWep.Set] = DB.Wepons.IndexOf(AtWep.Obj);
+                USta.WepValues.WeponPoss[(int)AtWep.Set] = AtWep.PosChange;
+                USta.WepValues.WeponRots[(int)AtWep.Set] = AtWep.RotChange;
             }
         }
     }

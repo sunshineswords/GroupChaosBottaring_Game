@@ -25,6 +25,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [Foldout("設定")] public Class_Base_SEPlay DeathSE;
     [Foldout("設定"), Tooltip("死亡エフェクト")] public GameObject DeathEffect;
     [Foldout("設定"), Tooltip("プレイヤー用変数")] public Player_BattleValues PLValues;
+    [Foldout("設定"), Tooltip("武器表示用変数")] public State_WeponValues WepValues;
     //
     [Foldout("ステータス"), Tooltip("最大HP")]public int MHP;
     [Foldout("ステータス"), Tooltip("秒間HP回復速度")] public float HPRegene;
@@ -71,9 +72,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
 
     #endregion
     #region 内部変数
-    public Dictionary<int,int> WeponSets = new Dictionary<int, int>();
-    public Dictionary<int, Vector3> WeponPoss = new Dictionary<int, Vector3>();
-    public Dictionary<int, Vector3> WeponRots = new Dictionary<int, Vector3>();
+
     public Dictionary<int,Class_Sta_AtkCT> AtkCTs = new Dictionary<int,Class_Sta_AtkCT>();
     public Dictionary<int,GameObject> BufEffects = new Dictionary<int,GameObject>();
     public Dictionary<int, int> LocalCTs = new Dictionary<int, int>();
@@ -196,10 +195,13 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             if (AtkCTs[CTKeys[i]].CT <= 0) AtkCTs.Remove(CTKeys[i]);
         }
         #endregion
-        var WeponKeys = WeponSets.Keys.ToArray();
-        for (int i = 0; i < WeponKeys.Length; i++)
+        if (WepValues != null)
         {
-            WeponSets[WeponKeys[i]] = -1;
+            var WeponKeys = WepValues.WeponSets.Keys.ToArray();
+            for (int i = 0; i < WeponKeys.Length; i++)
+            {
+                WepValues.WeponSets[WeponKeys[i]] = -1;
+            }
         }
         SpeedRem = 0;
         NoJump = false;
@@ -712,14 +714,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
 
             stream.SendNext(NoDamage);
 
-            var WepSetKeys = WeponSets.Keys.ToArray();
-            var WepSetIDs = WeponSets.Values.ToArray();
-            var WepSetPoss = WeponPoss.Values.ToArray();
-            var WepSetRots = WeponRots.Values.ToArray();
-            stream.SendNext(WepSetKeys);
-            stream.SendNext(WepSetIDs);
-            stream.SendNext(WepSetPoss);
-            stream.SendNext(WepSetRots);
+
 
             stream.SendNext(Anim_MoveID);
             stream.SendNext(Anim_AtkID);
@@ -765,20 +760,6 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             BreakT = (int)stream.ReceiveNext();
 
             NoDamage = (bool)stream.ReceiveNext();
-
-            var WepSetKeys = (int[])stream.ReceiveNext();
-            var WepSetIDs = (int[])stream.ReceiveNext();
-            var WepSetPoss = (Vector3[])stream.ReceiveNext();
-            var WepSetRots = (Vector3[])stream.ReceiveNext();
-            WeponSets.Clear();
-            WeponPoss.Clear();
-            WeponRots.Clear();
-            for (int i = 0; i < WepSetKeys.Length; i++)
-            {
-                WeponSets.Add(WepSetKeys[i], WepSetIDs[i]);
-                WeponPoss.Add(WepSetKeys[i], WepSetPoss[i]);
-                WeponRots.Add(WepSetKeys[i], WepSetRots[i]);
-            }
 
             Anim_MoveID = (int)stream.ReceiveNext();
             Anim_AtkID = (int)stream.ReceiveNext();

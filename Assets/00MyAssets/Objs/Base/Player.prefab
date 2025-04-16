@@ -2010,6 +2010,8 @@ GameObject:
   - component: {fileID: 8739690619805315629}
   - component: {fileID: 8308598217215942496}
   - component: {fileID: 8387818687000070430}
+  - component: {fileID: 4857566199455060444}
+  - component: {fileID: 851651429656136078}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2055,6 +2057,8 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8308598217215942496}
+  - {fileID: 4857566199455060444}
+  - {fileID: 851651429656136078}
   - {fileID: 8853934589297293607}
   - {fileID: 7356951982738034333}
   - {fileID: 3855164340141204649}
@@ -2107,16 +2111,22 @@ MonoBehaviour:
     Volume: 200
     Pitch: 65
   DeathEffect: {fileID: 0}
+  PLValues: {fileID: 4857566199455060444}
+  WepValues: {fileID: 851651429656136078}
   MHP: 500000
   HPRegene: 10000
   MMP: 400
   MPRegene: 50
   SPRegene: 5
+  MBreak: 0
+  BreakTime: 0
   Atk: 100000
   Def: 100000
   HP: 0
   MP: 0
   SP: 0
+  BreakV: 0
+  BreakT: 0
   Ground: 0
   DeathTime: 0
   Target: {fileID: 0}
@@ -2154,6 +2164,30 @@ MonoBehaviour:
   Sta: {fileID: 8308598217215942496}
   RiviveSecond: 10
   HPPer: 100
+--- !u!114 &4857566199455060444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3643214705801281454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4317746fbdc4547b9473549fc4972d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &851651429656136078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3643214705801281454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed393dd8cdd84924cbd2621c8e863e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3677545289257640091
 GameObject:
   m_ObjectHideFlags: 0
@@ -9243,6 +9277,9 @@ MonoBehaviour:
   HPMiddleFill: {fileID: 8490122731189156726}
   HPFrontBar: {fileID: 4489092968868411576}
   HPFrontFill: {fileID: 3718758423495644003}
+  BreakBar: {fileID: 0}
+  BreakFill: {fileID: 0}
+  BreakText: {fileID: 0}
   BufUIs:
   - {fileID: 2514000485068347389}
   PCont: {fileID: 7175417792407954925}

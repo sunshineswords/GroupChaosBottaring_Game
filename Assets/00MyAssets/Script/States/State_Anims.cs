@@ -26,31 +26,34 @@ public class State_Anims : MonoBehaviour
             SetTrans.TryAdd(Enum_WeponSet.左手, Anim.GetBoneTransform(HumanBodyBones.LeftHand));
         }
 
-        var WeponKeys = Sta.WeponSets.Keys.ToArray();
-        for (int i = 0; i < WeponKeys.Length; i++)
+        if (Sta.WepValues != null)
         {
-            var WepKey = (Enum_WeponSet)WeponKeys[i];
-            WeponSets.TryAdd(WepKey, -1);
-            WeponSObjs.TryAdd(WepKey, null);
-            if (WeponSets[WepKey] != Sta.WeponSets[(int)WepKey])
+            var WeponKeys = Sta.WepValues.WeponSets.Keys.ToArray();
+            for (int i = 0; i < WeponKeys.Length; i++)
             {
-                WeponSets[WepKey] = Sta.WeponSets[(int)WepKey];
-                if (WeponSObjs[WepKey] != null) Destroy(WeponSObjs[WepKey]);
-                if (WeponSets[WepKey] >= 0)
+                var WepKey = (Enum_WeponSet)WeponKeys[i];
+                WeponSets.TryAdd(WepKey, -1);
+                WeponSObjs.TryAdd(WepKey, null);
+                if (WeponSets[WepKey] != Sta.WepValues.WeponSets[(int)WepKey])
                 {
-                    var InsWepon = Instantiate(DB.Wepons[WeponSets[WepKey]]);
-                    var Trans = SetTrans.TryGetValue(WepKey,out var oTrans) ? oTrans : null;
-                    InsWepon.transform.parent = Trans != null ? Trans : transform;
-                    WeponSObjs[WepKey] = InsWepon;
+                    WeponSets[WepKey] = Sta.WepValues.WeponSets[(int)WepKey];
+                    if (WeponSObjs[WepKey] != null) Destroy(WeponSObjs[WepKey]);
+                    if (WeponSets[WepKey] >= 0)
+                    {
+                        var InsWepon = Instantiate(DB.Wepons[WeponSets[WepKey]]);
+                        var Trans = SetTrans.TryGetValue(WepKey, out var oTrans) ? oTrans : null;
+                        InsWepon.transform.parent = Trans != null ? Trans : transform;
+                        WeponSObjs[WepKey] = InsWepon;
+                    }
                 }
-            }
-            var SetWep = WeponSObjs[WepKey];
-            if (WeponSObjs[WepKey] != null)
-            {
-                SetWep.transform.localPosition = Vector3.zero;
-                SetWep.transform.localPosition += Sta.WeponPoss[(int)WepKey];
-                SetWep.transform.localRotation = Quaternion.identity;
-                SetWep.transform.localEulerAngles += Sta.WeponRots[(int)WepKey];
+                var SetWep = WeponSObjs[WepKey];
+                if (WeponSObjs[WepKey] != null)
+                {
+                    SetWep.transform.localPosition = Vector3.zero;
+                    SetWep.transform.localPosition += Sta.WepValues.WeponPoss[(int)WepKey];
+                    SetWep.transform.localRotation = Quaternion.identity;
+                    SetWep.transform.localEulerAngles += Sta.WepValues.WeponRots[(int)WepKey];
+                }
             }
         }
     }

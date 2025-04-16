@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 8851893093483233145}
   - component: {fileID: 6544934709698599726}
   - component: {fileID: 1925398843158275794}
-  - component: {fileID: 680773896555929259}
-  - component: {fileID: 6760652969913205840}
   - component: {fileID: 2049415607464157120}
   - component: {fileID: 5206309696311436553}
   - component: {fileID: 466128821954756127}
   - component: {fileID: 7500122617385835745}
+  - component: {fileID: 5476268764611329710}
   m_Layer: 7
   m_Name: Enemy_Zako
   m_TagString: Untagged
@@ -88,44 +87,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 680773896555929259}
-  - {fileID: 6760652969913205840}
   - {fileID: 2049415607464157120}
+  - {fileID: 5476268764611329710}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &680773896555929259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3138562507945577928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 1
-  m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &6760652969913205840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3138562507945577928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 0
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 0
 --- !u!114 &2049415607464157120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,16 +122,22 @@ MonoBehaviour:
     Volume: 100
     Pitch: 100
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
+  PLValues: {fileID: 0}
+  WepValues: {fileID: 0}
   MHP: 100000
   HPRegene: 0
   MMP: 0
   MPRegene: 0
   SPRegene: 10
+  MBreak: 0
+  BreakTime: 0
   Atk: 100000
   Def: 50000
   HP: 0
   MP: 0
   SP: 0
+  BreakV: 0
+  BreakT: 0
   Ground: 0
   DeathTime: 0
   Target: {fileID: 0}
@@ -183,6 +155,7 @@ MonoBehaviour:
   NoDash: 0
   Aiming: 0
   NGravity: 0
+  NoDamage: 0
   Anim_MoveID: 0
   Anim_AtkID: 0
   Anim_AtkSpeed: 0
@@ -242,6 +215,18 @@ MonoBehaviour:
   Sta: {fileID: 2049415607464157120}
   EnemyAI: {fileID: 11400000, guid: aa8bc983b07a76d47adcc4c7b1d3c753, type: 2}
   timer: 0
+--- !u!114 &5476268764611329710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138562507945577928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f055b58b252384e4ea041e265f1b78be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4350126102488607792
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +353,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1797273990418561594, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599285015825411278, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599285015825411278, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599285015825411278, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3599285015825411278, guid: dd299bc117a0f7a42b611d1954cadb65, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

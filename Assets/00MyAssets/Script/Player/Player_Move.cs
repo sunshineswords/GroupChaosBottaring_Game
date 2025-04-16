@@ -34,7 +34,7 @@ public class Player_Move : MonoBehaviourPun
         if (!photonView.IsMine) return;
         var RigVect = Sta.Rig.linearVelocity;
         #region ジャンプ
-        if (!Sta.NoJump && PCont.Jump_Enter && RigVect.y <= JumpPow * 0.005f)
+        if (!Sta.NoJump && PCont.Jump_Enter && Sta.HP > 0 && RigVect.y <= JumpPow * 0.005f)
         {
             if (Sta.Ground)RigVect.y = JumpPow * 0.02f;
             else if(!Sta.LowMP)
@@ -49,7 +49,7 @@ public class Player_Move : MonoBehaviourPun
         var MoveVect = Cam.transform.forward * MoveInput.y + Cam.transform.right * MoveInput.x;
         MoveVect.y = 0;
 
-        if (!Sta.NoDash && Sta.DashTime <= 0 && !Sta.LowMP && PCont.Dash_Enter)
+        if (!Sta.NoDash && Sta.DashTime <= 0 && Sta.HP > 0 && !Sta.LowMP && PCont.Dash_Enter)
         {
             Sta.AtkD = null;
             Sta.MP -= DashMPCost;
@@ -77,10 +77,12 @@ public class Player_Move : MonoBehaviourPun
             var MoveInput = PCont.Move;
             var MoveVect = Cam.transform.forward * MoveInput.y + Cam.transform.right * MoveInput.x;
             MoveVect.y = 0;
+            float SpeedMlt = 1f - (Sta.SpeedRem * 0.01f);
+            if (Sta.HP <= 0) SpeedMlt = 0.3f;
             if (MoveVect.magnitude > 0.1f)
             {
                 Sta.Anim_MoveID = 1;
-                RigVect += MoveVect.normalized * MoveSpeed * 0.01f * (1f - Sta.SpeedRem * 0.01f);
+                RigVect += MoveVect.normalized * MoveSpeed * 0.01f * SpeedMlt;
                 var LookVect = Sta.Rig.transform.forward;
                 LookVect = Vector3.Slerp(LookVect.normalized, MoveVect.normalized, LerpSpeed * 0.01f);
                 LookVect.y = 0;
@@ -95,19 +97,22 @@ public class Player_Move : MonoBehaviourPun
         }
         #endregion
         #region 照準
-        if (Sta.AtkD != null && Sta.Aiming)
+        if (Sta.HP > 0)
         {
-            var LookRot = Cam.transform.eulerAngles;
-            LookRot.x = 0;
-            Sta.Rig.transform.eulerAngles = LookRot;
-        }
-        else
-        {
-            if (Sta.TargetHit != null)
+            if (Sta.AtkD != null && Sta.Aiming)
             {
-                var TargetVect = Sta.TargetHit.PosGet() - Sta.Rig.transform.position;
-                TargetVect.y = 0;
-                Sta.Rig.transform.LookAt(Sta.Rig.transform.position + TargetVect);
+                var LookRot = Cam.transform.eulerAngles;
+                LookRot.x = 0;
+                Sta.Rig.transform.eulerAngles = LookRot;
+            }
+            else
+            {
+                if (Sta.TargetHit != null)
+                {
+                    var TargetVect = Sta.TargetHit.PosGet() - Sta.Rig.transform.position;
+                    TargetVect.y = 0;
+                    Sta.Rig.transform.LookAt(Sta.Rig.transform.position + TargetVect);
+                }
             }
         }
         #endregion
