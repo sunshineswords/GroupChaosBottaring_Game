@@ -1,51 +1,81 @@
 ﻿using Photon.Pun;
 using UnityEngine;
 
-public class Net_MyRigView : MonoBehaviour, IPunObservable
+public class Net_MyRigView : MonoBehaviourPun
 {
-    private PhotonView pv;
-    private Rigidbody rb;
+    const float MinTimer = 0.05f;
 
-    // 回転用
-    private Quaternion targetRotation;
+    [SerializeField] Rigidbody Rig;
+    [SerializeField, Tooltip("同期頻度(秒)")] float StreamTime = 0.1f;
+
+    float Timer = 0;
+
+    Vector3 targetPosition;
+    Vector3 currentPosition;
+
+    Vector3 receivedVelocity;
+    float timeSinceLastUpdate;
+
+    Quaternion targetRotation;
+    Quaternion currentRotation;
 
     void Awake()
     {
-        pv = GetComponent<PhotonView>();
-        rb = GetComponent<Rigidbody>();
-        targetRotation = transform.rotation;
+        targetPosition = currentPosition = Rig.position;
+        targetRotation = currentRotation = Rig.rotation;
+        receivedVelocity = Vector3.zero;
+        timeSinceLastUpdate = 0f;
     }
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    void FixedUpdate()
     {
-        if (stream.IsWriting) // 自分が所有者
+        if (!photonView.IsMine)
         {
-            // Rigidbody の位置と速度を送る
-            stream.SendNext(rb.position);
-            stream.SendNext(rb.linearVelocity);
+            timeSinceLastUpdate += Time.fixedDeltaTime;
 
-            // Transform の回転を送る
-            stream.SendNext(transform.rotation);
-        }
-        else // 他人の表示側
-        {
-            // Rigidbody の同期
-            Vector3 receivedPosition = (Vector3)stream.ReceiveNext();
-            Vector3 receivedVelocity = (Vector3)stream.ReceiveNext();
-            rb.position = receivedPosition;
-            rb.linearVelocity = receivedVelocity;
+            // velocity から予測位置を計算
+            Vector3 predictedTarget = targetPosition + receivedVelocity * timeSinceLastUpdate;
+            if(Rig.useGravity)predictedTarget += 0.5f * Physics.gravity * timeSinceLastUpdate * timeSinceLastUpdate;
+            // 補間
+            currentPosition = Vector3.Lerp(currentPosition, predictedTarget, Time.fixedDeltaTime * 10f);
+            currentRotation = Quaternion.Lerp(currentRotation, targetRotation, Time.fixedDeltaTime * 10f);
 
-            // 回転の同期（補間用に保存）
-            targetRotation = (Quaternion)stream.ReceiveNext();
+            Rig.MovePosition(currentPosition);
+            Rig.MoveRotation(currentRotation);
         }
     }
 
     void Update()
     {
-        // 回転の補間（物理じゃないので Transform で OK）
-        if (!pv.IsMine)
+        if (PhotonNetwork.OfflineMode) return;
+        if (photonView.IsMine)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            Timer -= Time.unscaledDeltaTime;
+            if (Timer <= 0)
+            {
+                Timer = Mathf.Max(MinTimer, StreamTime);
+                photonView.RPC(nameof(RPC_Stream), RpcTarget.Others, Rig.position, Rig.linearVelocity, Rig.rotation);
+            }
         }
+    }
+
+    [PunRPC]
+    void RPC_Stream(Vector3 Pos, Vector3 Vel, Quaternion Rot)
+    {
+        targetPosition = Pos;
+        receivedVelocity = Vel;
+        targetRotation = Rot;
+
+        // 補間元と先を一致させる（ズレが大きいとき）
+        /*
+        if ((currentPosition - targetPosition).sqrMagnitude > 5f)
+        {
+            currentPosition = targetPosition;
+            currentRotation = targetRotation;
+        }
+        */
+
+        // 経過時間リセット（ここが重要！）
+        timeSinceLastUpdate = 0f;
     }
 }

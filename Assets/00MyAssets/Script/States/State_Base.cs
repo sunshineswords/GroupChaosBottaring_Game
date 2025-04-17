@@ -9,6 +9,8 @@ using static PlayerValue;
 using static Manifesto;
 using static Calculation;
 using NaughtyAttributes;
+using System.IO;
+
 public class State_Base : MonoBehaviourPun,IPunObservable
 {
     #region インスペクター変数
@@ -24,6 +26,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     [Foldout("設定")] public Class_Base_SEPlay DamageSE;
     [Foldout("設定")] public Class_Base_SEPlay DeathSE;
     [Foldout("設定"), Tooltip("死亡エフェクト")] public GameObject DeathEffect;
+    [Foldout("設定"), Tooltip("数値同期間隔(秒)")] public float StreamTime;
     [Foldout("設定"), Tooltip("プレイヤー用変数")] public Player_BattleValues PLValues;
     [Foldout("設定"), Tooltip("武器表示用変数")] public State_WeponValues WepValues;
     //
@@ -78,6 +81,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
     public Dictionary<int, int> LocalCTs = new Dictionary<int, int>();
     [System.NonSerialized] public GameObject BreakEffect = null;
     [System.NonSerialized] public bool LimitFlag = false;
+    float Timer = 0;
 
     public int FMHP
     {
@@ -143,6 +147,18 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             if (Player) Name = photonView.Owner.NickName;
         }
         if (CamTrans == null) CamTrans = transform;
+    }
+    void Update()
+    {
+        return;
+        if (PhotonNetwork.OfflineMode) return;
+        if (!photonView.IsMine) return;
+        Timer -= Time.unscaledDeltaTime;
+        if (Timer <= 0)
+        {
+            Timer = Mathf.Max(0.05f, StreamTime);
+            photonView.RPC(nameof(RPC_Stream_Base), RpcTarget.Others, MHP);
+        }
     }
     private void FixedUpdate()
     {
@@ -693,9 +709,56 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             Bufs.Remove(Bufi);
         }
     }
+
+    [PunRPC]
+    void RPC_Stream_Base(int Str_MHP,int Str_MMP, int Str_Atk, int Str_Def, int Str_MBreak, string Str_Name, int Str_Team, bool Str_NoDamage, bool Str_LimitFlag)
+    {
+        MHP = Str_MHP;
+        MMP = Str_MMP;
+        Atk = Str_Atk;
+        Def = Str_Def;
+        MBreak = Str_MBreak;
+        Name = Str_Name;
+        Team = Str_Team;
+        NoDamage = Str_NoDamage;
+        LimitFlag = Str_LimitFlag;
+    }
+    [PunRPC]
+    void RPC_Stream_Value(float Str_HP, float Str_BreakV, int Str_BreakT)
+    {
+        HP = Str_HP;
+        BreakV = Str_BreakV;
+        BreakT = Str_BreakT;
+    }
+    [PunRPC]
+    void RPC_Stream_Anim(int Str_MoveID, int Str_AtkID, float Str_AtkSpeed, int Str_OtherID)
+    {
+        Anim_MoveID = Str_MoveID;
+        Anim_AtkID = Str_AtkID;
+        Anim_AtkSpeed = Str_AtkSpeed;
+        Anim_OtherID = Str_OtherID;
+    }
+    [PunRPC]
+    void RPC_Stream_Buf(int[] Str_ID, int[] Str_Index, int[] Str_Time, int[] Str_Pow, int[] Str_TimeMax)
+    {
+        Bufs.Clear();
+        for (int i = 0; i < Str_ID.Length; i++)
+        {
+            Bufs.Add(new Class_Sta_BufInfo
+            {
+                ID = Str_ID[i],
+                Index = Str_Index[i],
+                Time = Str_Time[i],
+                Pow = Str_Pow[i],
+                TimeMax = Str_TimeMax[i],
+            });
+        }
+    }
+
     #endregion
     void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info)
     {
+        //return;
         if (stream.IsWriting)
         {
             stream.SendNext(MHP);
@@ -703,18 +766,14 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             stream.SendNext(Atk);
             stream.SendNext(Def);
             stream.SendNext(MBreak);
-
             stream.SendNext(Name);
             stream.SendNext(Team);
+            stream.SendNext(NoDamage);
+            stream.SendNext(LimitFlag);
 
             stream.SendNext(HP);
-
             stream.SendNext(BreakV);
             stream.SendNext(BreakT);
-
-            stream.SendNext(NoDamage);
-
-
 
             stream.SendNext(Anim_MoveID);
             stream.SendNext(Anim_AtkID);
@@ -741,7 +800,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             stream.SendNext(Buf_Pow.ToArray());
             stream.SendNext(Buf_TimeMax.ToArray());
 
-            stream.SendNext(LimitFlag);
+
         }
         else
         {
@@ -750,16 +809,14 @@ public class State_Base : MonoBehaviourPun,IPunObservable
             Atk = (int)stream.ReceiveNext();
             Def = (int)stream.ReceiveNext();
             MBreak = (int)stream.ReceiveNext();
-
             Name = (string)stream.ReceiveNext();
             Team = (int)stream.ReceiveNext();
+            NoDamage = (bool)stream.ReceiveNext();
+            LimitFlag = (bool)stream.ReceiveNext();
 
             HP = (float)stream.ReceiveNext();
-
             BreakV = (float)stream.ReceiveNext();
             BreakT = (int)stream.ReceiveNext();
-
-            NoDamage = (bool)stream.ReceiveNext();
 
             Anim_MoveID = (int)stream.ReceiveNext();
             Anim_AtkID = (int)stream.ReceiveNext();
@@ -784,7 +841,7 @@ public class State_Base : MonoBehaviourPun,IPunObservable
                 });
             }
 
-            LimitFlag = (bool)stream.ReceiveNext();
+
         }
     }
 }

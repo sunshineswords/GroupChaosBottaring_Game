@@ -247,12 +247,11 @@ GameObject:
   - component: {fileID: 3073676590767012862}
   - component: {fileID: 785899834645812091}
   - component: {fileID: 5480009619768488899}
-  - component: {fileID: 5384534443533919851}
-  - component: {fileID: 7506234997347593752}
   - component: {fileID: 2758125950921923790}
   - component: {fileID: 8417435144989242325}
   - component: {fileID: 1311994133549212179}
   - component: {fileID: 909472449231988662}
+  - component: {fileID: 6222000075698387468}
   m_Layer: 7
   m_Name: Enemy_Eiffel
   m_TagString: Untagged
@@ -326,44 +325,10 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 5384534443533919851}
-  - {fileID: 7506234997347593752}
   - {fileID: 2758125950921923790}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &5384534443533919851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7042812544794517674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 1
-  m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &7506234997347593752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7042812544794517674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 0
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 0
 --- !u!114 &2758125950921923790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +359,8 @@ MonoBehaviour:
     Volume: 300
     Pitch: 50
   DeathEffect: {fileID: 0}
+  PLValues: {fileID: 0}
+  WepValues: {fileID: 0}
   MHP: 9000000
   HPRegene: 0
   MMP: 0
@@ -485,6 +452,20 @@ MonoBehaviour:
   Sta: {fileID: 2758125950921923790}
   EnemyAI: {fileID: 11400000, guid: cb77e8619bf387a4e82d3bc7f42d8de7, type: 2}
   timer: 0
+--- !u!114 &6222000075698387468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042812544794517674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f055b58b252384e4ea041e265f1b78be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rig: {fileID: 785899834645812091}
+  StreamTime: 1
 --- !u!1 &7801158436413557424
 GameObject:
   m_ObjectHideFlags: 0

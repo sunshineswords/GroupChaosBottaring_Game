@@ -135,13 +135,12 @@ GameObject:
   - component: {fileID: 8851893093483233145}
   - component: {fileID: 6544934709698599726}
   - component: {fileID: 1925398843158275794}
-  - component: {fileID: 680773896555929259}
-  - component: {fileID: 6760652969913205840}
   - component: {fileID: 2049415607464157120}
   - component: {fileID: 5206309696311436553}
   - component: {fileID: 5439917454341434047}
   - component: {fileID: 3373766383878070975}
   - component: {fileID: 4728372311081195124}
+  - component: {fileID: 5301480725601316405}
   m_Layer: 7
   m_Name: Enemy_SandBagShort
   m_TagString: Untagged
@@ -215,44 +214,10 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 680773896555929259}
-  - {fileID: 6760652969913205840}
   - {fileID: 2049415607464157120}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &680773896555929259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3138562507945577928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 1
-  m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &6760652969913205840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3138562507945577928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 0
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 0
 --- !u!114 &2049415607464157120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,16 +248,22 @@ MonoBehaviour:
     Volume: 100
     Pitch: 100
   DeathEffect: {fileID: 104953593097573077, guid: c1e5ee7acc109e548aa05076c2ef7acc, type: 3}
+  PLValues: {fileID: 0}
+  WepValues: {fileID: 0}
   MHP: 100000000
   HPRegene: 0
   MMP: 0
   MPRegene: 0
   SPRegene: 10
+  MBreak: 0
+  BreakTime: 0
   Atk: 200000
   Def: 100000
   HP: 0
   MP: 0
   SP: 0
+  BreakV: 0
+  BreakT: 0
   Ground: 0
   DeathTime: 0
   Target: {fileID: 0}
@@ -385,6 +356,20 @@ MonoBehaviour:
   Sta: {fileID: 2049415607464157120}
   RiviveSecond: 10
   HPPer: 100
+--- !u!114 &5301480725601316405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3138562507945577928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f055b58b252384e4ea041e265f1b78be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rig: {fileID: 6544934709698599726}
+  StreamTime: 0.5
 --- !u!1 &4350126102488607792
 GameObject:
   m_ObjectHideFlags: 0

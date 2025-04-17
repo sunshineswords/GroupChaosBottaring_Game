@@ -181,13 +181,12 @@ GameObject:
   - component: {fileID: 3073676590767012862}
   - component: {fileID: 785899834645812091}
   - component: {fileID: 5480009619768488899}
-  - component: {fileID: 5384534443533919851}
-  - component: {fileID: 7506234997347593752}
   - component: {fileID: 6814216102208262774}
   - component: {fileID: 2758125950921923790}
   - component: {fileID: 7598547461402963404}
   - component: {fileID: 7140868982649933936}
   - component: {fileID: 3684016521456547551}
+  - component: {fileID: 1171832213126638180}
   m_Layer: 7
   m_Name: Enemy_Broccoli
   m_TagString: Untagged
@@ -260,44 +259,10 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 5384534443533919851}
-  - {fileID: 7506234997347593752}
   - {fileID: 2758125950921923790}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &5384534443533919851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7042812544794517674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 1
-  m_TeleportIfDistanceGreaterThan: 3
---- !u!114 &7506234997347593752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7042812544794517674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 0
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 0
 --- !u!136 &6814216102208262774
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -351,6 +316,8 @@ MonoBehaviour:
     Volume: 300
     Pitch: 50
   DeathEffect: {fileID: 0}
+  PLValues: {fileID: 0}
+  WepValues: {fileID: 0}
   MHP: 4326050
   HPRegene: 0
   MMP: 0
@@ -436,6 +403,20 @@ MonoBehaviour:
   Sta: {fileID: 2758125950921923790}
   RiviveSecond: 25
   HPPer: 25
+--- !u!114 &1171832213126638180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042812544794517674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f055b58b252384e4ea041e265f1b78be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rig: {fileID: 785899834645812091}
+  StreamTime: 0.1
 --- !u!1 &7801158436413557424
 GameObject:
   m_ObjectHideFlags: 0

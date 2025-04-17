@@ -47,6 +47,11 @@ MonoBehaviour:
   - RPC_SEPlay
   - RPC_BufSet
   - RPC_MessageAdd
+  - RPC_Stream
+  - RPC_Stream_Anim
+  - RPC_Stream_Base
+  - RPC_Stream_Buf
+  - RPC_Stream_Value
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
