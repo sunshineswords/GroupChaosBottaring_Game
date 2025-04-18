@@ -24,6 +24,7 @@ public class CameraDitherSystem : MonoBehaviour
 
     void LateUpdate()
     {
+        Debug.Log($"やってるよ");
         _material.SetVector(_valueName, _target.position);
     }
 }
